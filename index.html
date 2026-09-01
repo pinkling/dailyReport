@@ -35,7 +35,10 @@
   .pill.review{background:var(--blue);color:#fff}
   .item .title{font-size:14.5px;font-weight:600;flex:1;line-height:1.4}
   .item .meta{display:flex;gap:10px;color:var(--sub);font-size:11.5px;margin-top:6px}
-  .item .meta .latest{color:var(--neon);font-weight:700}
+  .item.latest-item{border-color:var(--neon-line);background:linear-gradient(160deg,rgba(61,220,151,.07),var(--card) 55%)}
+  .toggle{text-align:center;color:var(--sub);font-size:12.5px;padding:10px 0 2px;cursor:pointer;user-select:none}
+  .toggle:active{color:var(--neon)}
+  @media(hover:hover){.toggle:hover{color:var(--neon)}}
   .empty{text-align:center;color:var(--sub);font-size:13px;padding:40px 0}
   footer{text-align:center;color:var(--sub);font-size:11px;margin-top:28px;opacity:.7}
 </style>
@@ -72,31 +75,45 @@ function weekday(d){
 }
 
 let cur = "strategy";
+let expanded = false;
 const listEl = document.getElementById("list");
 const tabs = document.querySelectorAll(".tab");
+const MAX_HISTORY = 10;
 
 function render(){
   const items = REPORTS.filter(r=>r.type===cur)
     .sort((a,b)=>b.date.localeCompare(a.date));
-  const latest = items[0];
-  listEl.innerHTML = items.map((r,i)=>`
+  if(!items.length){ listEl.innerHTML = `<div class="empty">暂无报告</div>`; return; }
+
+  const card = r => `
     <a class="item" href="${r.path}">
       <div class="top">
         <span class="pill ${r.type}">${r.type==="strategy"?"策略":"复盘"}</span>
         <span class="title">${r.title}</span>
       </div>
       <div class="meta">
-        <span class="${i===0?'latest':''}">${fmtDate(r.date)} ${weekday(r.date)}</span>
+        <span>${fmtDate(r.date)} ${weekday(r.date)}</span>
         ${r.target?`<span>目标 ${r.target}</span>`:""}
-        ${i===0?`<span class="latest">最新</span>`:""}
       </div>
-    </a>`).join("") || `<div class="empty">暂无报告</div>`;
+    </a>`;
+
+  // 默认只展示最新一条；展开后显示过往最多 10 条
+  let html = card(items[0]).replace('class="item"', 'class="item latest-item"');
+  const history = items.slice(1, 1+MAX_HISTORY);
+  if(items.length > 1){
+    html += `<div class="toggle" id="toggleBtn">${expanded?"▲ 收起过往记录":"▼ 展开过往记录（"+history.length+"）"}</div>`;
+    if(expanded) html += history.map(card).join("");
+  }
+  listEl.innerHTML = html;
+  const btn = document.getElementById("toggleBtn");
+  if(btn) btn.addEventListener("click",()=>{ expanded = !expanded; render(); });
 }
 
 tabs.forEach(t=>t.addEventListener("click",()=>{
   tabs.forEach(x=>x.classList.remove("active"));
   t.classList.add("active");
   cur = t.dataset.type;
+  expanded = false;
   render();
 }));
 
