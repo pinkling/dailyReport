@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>策略日报 · 2026-09-01 → 目标 0901</title>
+<style>
+  :root{
+    --bg:#0b0f1a; --card:#131a2b; --card2:#1a2337; --line:#243049;
+    --txt:#e8edf7; --sub:#93a1bd;
+    --neon:#3ddc97; --neon-dim:rgba(61,220,151,.14); --neon-line:rgba(61,220,151,.35);
+    --red:#ff5d5d; --blue:#5b8cff; --purple:#a78bfa; --orange:#ffa94d; --gold:#f5c451;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:#2b3a5c;border-radius:3px}
+  ::-webkit-scrollbar-thumb:hover{background:#3a4d78}
+  *{scrollbar-width:thin;scrollbar-color:#2b3a5c transparent}
+  html{overflow-y:scroll;overflow-x:hidden}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.65}
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 48px}
+  header{background:linear-gradient(160deg,#0e3a26 0%,#0b0f1a 70%);padding:22px 14px 16px;border-bottom:1px solid var(--neon-line)}
+  .badge{display:inline-block;font-size:11px;color:#04140b;background:var(--neon);border-radius:20px;padding:2px 10px;font-weight:700;margin-right:6px}
+  .badge.red{background:var(--red);color:#fff}
+  .badge.blue{background:var(--blue);color:#fff}
+  h1{font-size:20px;margin-top:8px}
+  .date{color:var(--sub);font-size:12.5px;margin-top:4px}
+  section{margin-top:22px}
+  h2{font-size:16px;display:flex;align-items:center;gap:8px;margin-bottom:11px}
+  h2::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--neon);box-shadow:0 0 8px var(--neon)}
+  h2 .en{color:var(--sub);font-size:10.5px;font-weight:400}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:10px}
+  .card.hl{border-color:var(--neon-line);background:linear-gradient(180deg,rgba(61,220,151,.07),var(--card) 55%)}
+  .card.warn{border-color:rgba(255,93,93,.4);background:linear-gradient(180deg,rgba(255,93,93,.06),var(--card) 55%)}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .kpi{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px}
+  .kpi .t{font-size:10.5px;color:var(--sub)}
+  .kpi .v{font-size:16px;font-weight:700;margin-top:2px}
+  .kpi .s{font-size:10px;color:var(--sub);margin-top:2px}
+  .up{color:var(--red)} .down{color:var(--neon)} .neon{color:var(--neon)}
+  table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:8px;display:block;overflow-x:auto;white-space:nowrap}
+  th{color:var(--sub);text-align:left;font-weight:600;padding:5px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:6px 5px;border-bottom:1px solid #1b2540;vertical-align:top;white-space:normal;min-width:72px}
+  tr:last-child td{border-bottom:none}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  ul.tight{list-style:none}
+  ul.tight li{font-size:12.5px;color:#cdd6ea;padding-left:15px;position:relative;margin:6px 0}
+  ul.tight li::before{content:"◆";position:absolute;left:0;top:0;font-size:8px;color:var(--neon)}
+  ul.tight.warn li::before{color:var(--red)}
+  .tagx{display:inline-block;font-size:10px;border-radius:5px;padding:0 6px;margin-right:4px;vertical-align:middle;white-space:nowrap}
+  .tag-long{background:#12351f;color:var(--neon)}
+  .tag-mid{background:#3a2a12;color:var(--gold)}
+  .tag-day{background:#4d2222;color:#ff9d9d}
+  .small{font-size:11px;color:var(--sub)}
+  .stock{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px;margin-bottom:9px}
+  .stock .hd{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .stock .nm{font-weight:700;font-size:14.5px}
+  .stock .cd{color:var(--sub);font-size:11px}
+  .stock .role{font-size:10px;border-radius:5px;padding:0 6px;white-space:nowrap}
+  .role.lead{background:var(--neon-dim);color:var(--neon);border:1px solid var(--neon-line)}
+  .role.elast{background:rgba(91,140,255,.14);color:var(--blue);border:1px solid rgba(91,140,255,.35)}
+  .role.dip{background:rgba(245,196,81,.12);color:var(--gold);border:1px solid rgba(245,196,81,.3)}
+  .role.hold{background:rgba(255,169,77,.14);color:var(--orange);border:1px solid rgba(255,169,77,.35)}
+  .pill{display:inline-block;font-size:10.5px;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:1px 8px;margin:2px 4px 2px 0;color:#cdd6ea}
+  .pill b{color:var(--txt)}
+  .warnbox{background:rgba(255,93,93,.07);border:1px dashed rgba(255,93,93,.45);border-radius:10px;padding:9px 11px;font-size:12px;margin-top:8px;color:#f0b9b9}
+  .okbox{background:var(--neon-dim);border:1px dashed var(--neon-line);border-radius:10px;padding:9px 11px;font-size:12px;margin-top:8px;color:#bfeedd}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--neon-line),transparent);margin:14px 0}
+  footer{margin-top:26px;font-size:10.5px;color:#67748f;line-height:1.7}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <span class="badge">V3</span><span class="badge blue">回测校准版</span><span class="badge red">执行硬约束周</span>
+  </div>
+  <h1>策略日报 · 2026-09-01（周二）盘前 → 目标 0901<br>通胀交易主升日 × 算力扩散日 · 持仓条件单优先</h1>
+  <div class="date">生成 2026-09-01 07:5x（北京时间盘前）· 数据截止 08-31 收盘（fuyao 回填 5206/5212）+ 隔夜美股/商品（0901 07:4x）· 目标交易日 <b>2026-09-01 周二</b>（当前为交易日且未开盘 → 目标=今天，判定依据 fuyao.calendar_trading_days + 北京时间 07:43）</div>
+</header>
+
+<div class="wrap">
+
+<!-- 3.1 头部 -->
+<section>
+  <div class="grid3">
+    <div class="kpi"><div class="t">风险偏好评级</div><div class="v">3 / 5</div><div class="s">地缘升级×利率高压被A股消化为通胀交易</div></div>
+    <div class="kpi"><div class="t">建议总仓位</div><div class="s">事件夜≤70%规则</div><div class="v" style="font-size:15px">95%→<span style="color:var(--orange)">85%</span></div><div class="s">今日卖出兑现后恢复≥15%现金（复盘日报硬约束）</div></div>
+    <div class="kpi"><div class="t">风格判定</div><div class="v" style="font-size:15px">通胀资源≈AI硬件</div><div class="s">双主线并进，应用端第三线</div></div>
+  </div>
+  <div class="card" style="margin-top:10px">
+    <ul class="tight">
+      <li><b>大盘</b>：上证 3986.30（+0.86%），站回 4002 中枢下沿下方 0.4% 处；两市 2.13 万亿（+1.4%）；86 涨停 / 30 炸板（炸板率 25.9% 略升）。</li>
+      <li><b>隔夜外围</b>：美三大指数收跌（道 -0.70% / 标普 -0.33% / 纳 -0.12%），但油价布伦特站上 90 美元、LME 铜 14285 高位、10Y 美债 4.75%（2025年1月来最高，0827→0831 +8bp）。</li>
+      <li><b>今日主线推演</b>：伊朗事件再升级（特朗普称将回应）+ 原油 +4~7% → 化工/资源通胀链第一优先；Anthropic-Lambda 350亿美元云协议 + 黄仁勋“Vera Rubin 每吉瓦 400 亿美元营收” → AI 硬件/液冷扩散第二线；短剧/AI 应用 2 板确认日。</li>
+      <li><b>昨日复盘要点</b>：0830 报告方向 11/12 正确；踏空 2 单（星网/英维克）全部命中 V3.1 预设类型；执行差连续第 2 日>报告错 → <b>执行硬约束周启动：6 张条件单开盘前挂好，禁止盘中市价卖出</b>。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3.2 持仓诊断 -->
+<section>
+  <h2>② 持仓诊断 · 交易操作优先 <span class="en">PORTFOLIO（成本口径 0831 买入）</span></h2>
+
+  <div class="stock" style="border-color:rgba(255,169,77,.5)">
+    <div class="hd"><span class="nm">星网锐捷</span><span class="cd">002396 · 1300 股 · 成本 36.92</span><span class="role hold">冲高兑现 · 持仓浮盈 +9.3%</span></div>
+    <div style="font-size:12.5px;color:#cdd6ea;margin-top:6px">
+      现 40.36（3 连板）· 60m 一卖 @40.36 当根生成 + 日线笔 +65.2% 超长笔 = 动能尾段；LHB 游资 +1.16/+1.11 亿接力、机构席位净卖（-0.98 亿他席）→ 3 板后分歧日。<span class="tagx tag-mid">催化：中报算力硬件主线·中期</span>
+    </div>
+    <ul class="tight">
+      <li><b>条件单（开盘前挂好）</b>：股价 <b>≥40.8 → 减 1/2</b>（高开 ≥+3% 直接执行不等）；<b>≥43.0 → 再减 1/3</b>（20 日高上方兑现）；收盘 ≤36.9（成本线）→ 清仓剩余。</li>
+      <li><b>日内兑现</b>：高开 >3% 后 10:00 前滞涨（30 分钟内回落至涨幅 1/2 以下）→ 立即执行减仓单，不等 40.8。</li>
+      <li><b>不新高的含义</b>：明日不创新高=动能衰竭日，执行单全部生效；断板（收盘 <38.6 前平台）→ 全部出清。</li>
+      <li>卖飞纠正：若减仓后 2 日内缩量回踩 38.6 前平台不破 → 可接回 1/4；放量断板则认离，不回补。</li>
+    </ul>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">紫金矿业</span><span class="cd">601899 · 1500 股 · 成本 33.03</span><span class="role hold">持有 · 结构确认中</span></div>
+    <div style="font-size:12.5px;color:#cdd6ea;margin-top:6px">
+      现 33.67（-2.83% 后 V 型收复）· 日线 2s 卖 @33.67 当根 + 08-14 二买 32.53 与昨日低点 32.60 重合 = 买点依据成立但卖点未消化；昨日放量 98 亿恐慌尾段承接。<span class="tagx tag-long">催化：油价90+铜价高位·长期通胀主线</span>
+    </div>
+    <ul class="tight">
+      <li><b>条件单</b>：股价 <b>≥34.5 → 减 1/3</b>（前笔高 34.54 滞涨减）；<b>≥35.4 → 再减 1/3</b>（中枢上沿）；收盘 ≤32.5 → 清仓（跌破二买=结构破坏）。</li>
+      <li><b>持有依据</b>：布伦特站上 90 美元 + LME 铜 14285（-0.15% 微跌抗跌）→ 通胀交易主升日资源龙头第一受益；伦铜守住 14200 是板块级前提。</li>
+    </ul>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">江西铜业</span><span class="cd">600362 · 1000 股 · 成本 47.54</span><span class="role hold">持有 · 三买确认位</span></div>
+    <div style="font-size:12.5px;color:#cdd6ea;margin-top:6px">
+      现 48.40（-1.24%）· 日线二买 44.15 后回升，收在日线中枢上沿 48.78 下方 0.8%；放量过 48.78 = 三买确认。<span class="tagx tag-long">催化：同紫金·长期</span>
+    </div>
+    <ul class="tight">
+      <li><b>条件单</b>：放量（量比 >1.5）过 <b>48.78 → 持有加 1/4</b>（三买确认）；股价 ≤46.4 → 减 1/2（破昨日低）；收盘 ≤44.1 → 清仓（二买失守）。</li>
+      <li>加仓单仅在 <b>10:30 前量比 >1.5</b> 且站稳 48.78 时执行——量比 <0.8 的假突破不追。</li>
+    </ul>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">兴业银锡</span><span class="cd">000426 · 1200 股 · 成本 38.81</span><span class="role hold">持有偏减 · 回踩确认段</span></div>
+    <div style="font-size:12.5px;color:#cdd6ea;margin-top:6px">
+      现 39.85（-4.16%）· 收在 0828 高点 39.85 平价；日线二买 35.96 后回踩段，60m 末笔反弹 +6.3%；LME 锡 -1.86% 拖累弹性。<span class="tagx tag-mid">催化：小金属通胀扩散·中期</span>
+    </div>
+    <ul class="tight">
+      <li><b>条件单</b>：股价 <b>≥41.5 → 减 1/2</b>（0828 高点滞涨）；收盘 ≤37.5 → 清仓（破昨日低=回踩失败）。</li>
+      <li>回踩 38.4 缩量（量比 <0.8）不破 → 持有（中枢顶回踩=三买候选）；锡价若隔夜再 -3% → 优先于星网减仓。</li>
+    </ul>
+  </div>
+
+  <div class="warnbox"><b>执行硬约束周（第 1 天）</b>：① 上述 8 张条件单开盘前全部挂好，本周禁止任何“盘中看情况”的市价卖出；② 今日任何卖出兑现后，现金比例恢复 ≥15% 并保留至 9/4 非农夜（事件夜 ≤70% 硬上限第 4 次提示）；③ 资源三只共同的证伪源=美债 10Y 站稳 4.8% 上方 → 全部降档、止损单无条件执行。</div>
+</section>
+
+<!-- 3.3 宏观 -->
+<section>
+  <h2>③ 宏观与外围扫描 <span class="en">MACRO</span></h2>
+  <div class="card">
+    <ul class="tight">
+      <li><b>美债 10Y 4.75%</b>（0831，2025年1月来最高；0827→0831 4.67→4.75 +8bp，2Y 4.34、30Y 5.25，美国财政部）。沃什鹰派余波 + 巴克莱“9月+12月各加息 25bp”喊话。中信证券基准判断：<b>年内维持利率不变仍是基准情形</b>（7月不加息后9月立刻加息缺数据支持+中选前政治阻力）。</li>
+      <li><b>美股收跌但结构分化</b>：道 -0.70%/标普 -0.33%/纳 -0.12%；能源 XLE +2.04% 最强、金属矿商 GDX -1.14%；芯片逆势（NVDA +1.48%、MU +2.77%、SMH +0.64%）——<b>“利率杀估值”已被 AI 资本开支对冲</b>。亚马逊 -2.50%（FTC 诉讼）拖累纳指。</li>
+      <li><b>AI 算力催化升级</b>：Anthropic-Lambda 德州 350 亿美元云协议（0901 06:05 B级）；黄仁勋“Vera Rubin 可带来每吉瓦超 400 亿美元营收”；台积电“2027 硅光子市占率超 50%”；快手“国家AI基金向可灵注资 14 亿”。<b>判定：AI 硬件=长期主线，产业链订单级证据仍在加密</b>。</li>
+      <li><b>地缘/油价（今日最大变量）</b>：美伊再次互袭、油轮触雷（伊朗口径），WTI 涨 4~7%、<b>布伦特站上 90 美元</b>；特朗普称“将对袭击作出回应”，美方称“没有船只触碰水雷”（口径打架）。国内 SC 原油 +7%、焦煤 +7%、尿素夜盘 1771。0825 作战报告“油价 80 生命线”框架回归。</li>
+      <li><b>商品快照（0901 07:4x）</b>：COMEX 金 4496（隔夜微升但 GLD -0.11% 弱势未改）、LME 铜 14285（-0.15%）、沪铜夜盘 109350、LME 铝 +0.56%、锡 -1.86%；离岸人民币 6.7170 微升；BTC 78554（+1.87%）风险偏好未坍塌；A50 夜盘 14688 与昨收基本持平（无恐慌）。</li>
+      <li><b>国内</b>：8 月制造业 PMI 49.8 回升 0.1pp；中报收官“超七成盈利，半导体/能源金属增速领跑”；工信部“加大大模型/智能体/Token 采购力度 + AI 应用服务商专项行动”（0901 新催化）；七部门 2030 社零 60 万亿目标。</li>
+      <li><b>风险偏好判定：结构分化偏 risk-on（3/5）</b>——利率高压压制久期资产，但通胀交易+AI 资本开支双引擎使 A 股呈现“资源+硬件双主线”而非单边下跌。<b>传导路径</b>：油价上行 → 化工/资源/煤炭（<b>中期，3-10 日</b>，油轮事件续命前提=原油不回落）；Anthropic/NVDA → 液冷/PCB/光模块（<b>长期主线</b>）；美债 4.75% → 高位科技成长承压（<b>中期压制，但 A 股半衰期实测 ≤半天</b>）。</li>
+    </ul>
+    <div class="okbox"><b>利空另一面初筛（V2.3 非受害者排查）</b>：① 美债 4.75% 利空成长 → <b>另一面</b>=银行净息差改善（中行 +5.17% 创新高的逻辑延续，但昨日已放量大涨、今日只做观察不追）；② 地缘冲突利空航空/化纤成本 → <b>另一面</b>=油运（招商轮船类）+煤化工替代（金牛化工甲醇/华鲁恒升煤气化）；③ 金价承压利空黄金股 → <b>另一面</b>=山东黄金 V 型 +6.65% 已示范“纯度龙头先修复”，恐慌尾段买点规则第 2 次验证；④ FTC 诉讼利空亚马逊 → A 股无直接映射，忽略。</div>
+  </div>
+</section>
+
+<!-- 3.4 加红电报 -->
+<section>
+  <h2>④ 加红电报与关键消息 <span class="en">CATALYST</span></h2>
+  <div class="card">
+    <div class="small" style="margin-bottom:6px">0830 20:00 ~ 0901 07:45 财联社 783 条；<b>0 加红</b>（周末政策脉冲空窗），下表为 A/B 级关键项与催化分级：</div>
+    <table>
+      <tr><th>电报/事件</th><th>方向</th><th>板块</th><th>生命周期</th></tr>
+      <tr><td>布伦特站上90美元+美伊互袭+特朗普将回应（0901 06:05）</td><td class="up">利多</td><td>油化链/油运/煤化工</td><td><span class="tagx tag-mid">中期·事件续命3-10日</span></td></tr>
+      <tr><td>Anthropic-Lambda 350亿美元云协议（0901 07:29）</td><td class="up">利多</td><td>AI 算力/IDC/液冷</td><td><span class="tagx tag-long">长期·资本开支主线</span></td></tr>
+      <tr><td>黄仁勋：Vera Rubin 每吉瓦 400 亿美元营收</td><td class="up">利多</td><td>算力硬件全线</td><td><span class="tagx tag-long">长期</span></td></tr>
+      <tr><td>工信部：大模型/智能体/Token 首购+AI应用服务商专项（0831 15:04/15:02）</td><td class="up">利多</td><td>AI 应用/短剧传媒</td><td><span class="tagx tag-mid">中期·政策发酵</span></td></tr>
+      <tr><td>君正：DRAM Q3 持续涨价且供应紧张、Q4 预估续涨（0831 23:47）</td><td class="up">利多</td><td>存储链</td><td><span class="tagx tag-mid">中期</span></td></tr>
+      <tr><td>美国 10Y 升至 4.75%（0831 20:46）</td><td class="down">利空</td><td>科创高位/黄金</td><td><span class="tagx tag-mid">中期压制·A股半衰期≤半天</span></td></tr>
+      <tr><td>万向德农风险提示：玉米种子供大于求（0831 22:27）+捷荣澄清液冷收入占比极低（0831 20:47）</td><td class="down">偏空</td><td>种业5板/液冷蹭概念票</td><td><span class="tagx tag-day">一日·连板证伪信号</span></td></tr>
+      <tr><td>竞业达股东减持执行完毕（0831 20:50）</td><td class="down">偏空</td><td>AI教育2板</td><td><span class="tagx tag-day">一日</span></td></tr>
+      <tr><td>中际旭创拟回购 40-80 亿（0831 19:22）</td><td class="up">利多</td><td>光模块龙头</td><td><span class="tagx tag-mid">中期·信心信号</span></td></tr>
+      <tr><td>台积电 2027 硅光子超 50%；SK海力士 HBM 裸片交英特尔（0831 20:36）</td><td class="up">利多</td><td>硅光/光通信</td><td><span class="tagx tag-mid">中期</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 3.5 资金流向前瞻 -->
+<section>
+  <h2>⑤ 资金流向前瞻 ★ <span class="en">FLOW FORECAST</span></h2>
+  <div class="card hl">
+    <div class="small" style="margin-bottom:4px"><b>预期差检验程序（V2.2 四步）——对候选主线逐一执行：</b></div>
+    <ul class="tight">
+      <li><b>① 受益锚核验（化工油化链）</b>：最纯受益锚=布伦特原油本身+SC 主力。0831 WTI +4~7%、SC +6~7%、夜盘维持高位（07:47 报 86.4）；A股一阶受益（油气开采）昨日未大涨（中曼类未涨停），二阶煤化工（金牛 2 板/潞化 2 板）已启动。<b>锚=持续上行未兑现回落 → 预期差 >0，方向有效</b>；但一阶连板票（金牛/赤天 2 板）今日为兑现日，主推落在<b>二阶低位分支（尿素/磷肥/煤气化低位股）</b>。</li>
+      <li><b>② 一阶/二阶拆解（液冷/算力）</b>：一阶=液冷情绪票（海鸥股份 3 板、康盛首板，捷荣已澄清收入占比极低=伪锚）；二阶=PCB/光模块机构票（浪潮 LHB +4.23 亿机构级净买、中际旭创 40-80 亿回购）。<b>主推落二阶</b>：浪潮/沪电/英维克回踩，一阶情绪票只做龙头不做跟风。</li>
+      <li><b>③ 政策结构导向（工信部 AI 应用）</b>：“首购首用、风险补偿”直接受益=大模型/智能体厂商与 Token 供给（科大讯飞类+短剧内容端）；被提高门槛=无备案小应用商。受益精确到“内容/IP+AI 教育/出版应用”环节——时代出版（AI 出版+中报扣非增长）是政策条款级受益，而非泛“传媒”。</li>
+      <li><b>④ 反身性自问（化工）</b>：油价站上 90 已被全网讨论（财联社 06:05 隔夜要闻头条），<b>预期差窗口=开盘 30 分钟</b>；但“尿素/磷肥涨价的成本传导”讨论密度仍低——低位化工的三笔异动（四川美丰量比 2.0、泸天化 +6.42% 放量 9.4 亿=前一日 2 倍）说明潜伏盘已进、共识未成。<b>预期差 >0 但窗口短，只做低吸不追连板</b>。</li>
+      <li><b>黄金反身性自问</b>：巴克莱加息喊话人尽皆知、黄金股缺口回补已发生（中金/湖南破位）→ <b>预期差 ≤0，黄金全板块降级为观察</b>（例外：山东黄金 V 型修复但已 +6.65% 属兑现后状态，不追）。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="small" style="margin-bottom:4px"><b>四要素推演</b>：① 连板梯队行业归属——算力 12+液冷 8+光通信 5=最大集群、短剧 6 家=新增量、化工 4 家（金牛/赤天/潞化 2 板+郑州煤电）、装配式 2 家、地产 4 家（但深物业/我爱我家为超跌反弹型）；② LHB 连续两日——星网 2.26→3.01→0.73 亿（第 3 日转弱=游资接力机构撤退）、浪潮 +4.23 亿、中文在线 +5.97 亿、锦龙 +2.13 亿 4 板；净卖=天娱 -4.33 亿高位滞涨、誉衡 -3.98 亿；③ 成交额异动——两市 2.13 万亿+1.4%，泸天化 9.36 亿（前日 2 倍）、中文在线 36.4 亿（前日 3 倍）、浪潮 96 亿（前日 2.4 倍）=放量首日次日有惯性；④ 外部预期差——Anthropic 350 亿美元协议为盘后新事件，A股尚未定价（液冷/IDC 0901 开盘才反应）。</div>
+    <table>
+      <tr><th>方向</th><th>板块</th><th>置信度</th><th>开盘 30 分钟验证信号</th></tr>
+      <tr><td class="up">流入 ★★</td><td>化工油化链二阶（尿素/煤化工低位）</td><td>中高 70%</td><td>四川美丰/华鲁恒升平开或微高开放量上攻=正确；若金牛/赤天 3 板秒板而低位票滞涨=资金只炒情绪不扩散，降级</td></tr>
+      <tr><td class="up">流入 ★★</td><td>液冷/PCB 机构票（二阶）</td><td>中高 68%</td><td>浪潮/沪电高开 ≤3% 后不破分时均线=正确；Anthropic 协议发酵则 IDC/液冷集体高开，兑现日规则=不追 >4%</td></tr>
+      <tr><td class="up">流入 ★</td><td>短剧/AI 应用（2板确认日）</td><td>中 60%</td><td>中文在线高开 <4% 且 10:00 前不翻绿=2 板确立；天娱 -4.33 亿出货若延续=板块内部分化，只做龙头</td></tr>
+      <tr><td class="up">流入（回踩限定）</td><td>资源铜（通胀主线回踩）</td><td>中 60%</td><td>伦铜守 14200+紫金回踩 33.2-33.5 缩量不破=正确；江铜放量过 48.78=三买确认信号</td></tr>
+      <tr><td class="up">流入（政策）</td><td>AI 出版/教育应用（工信部专项）</td><td>中低 55%</td><td>时代出版 3 板则情绪确认但追高禁止；竞业达减持利空若压板块=应用端分化</td></tr>
+      <tr><td class="down">流出</td><td>地产一阶（昨日高开兑现后回落）</td><td>高 75%</td><td>保利/我爱我家低开 >-3% 开盘=兑现延续确认；装配式（鸿路）若被误伤则二阶顺延回踩</td></tr>
+      <tr><td class="down">流出</td><td>种业连板（5板风险提示+证伪信号）</td><td>高 72%</td><td>万向德农竞价低开 >-3%=公司自己发风险提示=断板前兆；新赛 3 板同查</td></tr>
+      <tr><td class="down">流出</td><td>黄金跟随票（缺口回补者）</td><td>中 65%</td><td>中金/湖南若反抽无量=下跌中继延续；金价 4496 若跌破 4450 前低=全板块二次探底</td></tr>
+      <tr><td class="down">流出</td><td>CXO/医药情绪票</td><td>中 60%</td><td>誉衡 -3.98 亿 LHB 出货延续=确认回避</td></tr>
+      <tr><td class="down">流出</td><td>存储高位滞涨票</td><td>中 55%</td><td>君正涨价利好若高开 >4% 冲高回落=利好兑现（君正 H1 已 +490% 定价充分），只做板块内低位</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 3.6 板块策略 -->
+<section>
+  <h2>⑥ 板块策略（六维评分 + 三问反查） <span class="en">SECTORS</span></h2>
+  <div class="card">
+    <table>
+      <tr><th>板块</th><th>宏观</th><th>催化</th><th>资金</th><th>缠论</th><th>估值</th><th>热度</th><th>总分</th><th>结论</th></tr>
+      <tr><td>化工油化链（二阶低位）</td><td>5</td><td>4</td><td>4</td><td>4</td><td>4</td><td>2</td><td><b>23</b></td><td>主推①·低吸不追板</td></tr>
+      <tr><td>液冷/PCB 机构票</td><td>4</td><td>5</td><td>4</td><td>4</td><td>3</td><td>3</td><td><b>23</b></td><td>主推②·回踩买</td></tr>
+      <tr><td>短剧/AI 应用</td><td>3</td><td>4</td><td>5</td><td>3</td><td>3</td><td>2</td><td><b>20</b></td><td>主推③·只做龙头</td></tr>
+      <tr><td>铜/资源（持仓）</td><td>5</td><td>4</td><td>3</td><td>3</td><td>4</td><td>3</td><td><b>22</b></td><td>持有·三买确认位</td></tr>
+      <tr><td>AI 出版/教育应用</td><td>3</td><td>3</td><td>3</td><td>3</td><td>4</td><td>2</td><td><b>18</b></td><td>观察·条件触发</td></tr>
+      <tr><td>银行红利</td><td>4</td><td>2</td><td>4</td><td>4</td><td>4</td><td>4</td><td><b>21↓</b></td><td>昨日放量大涨=兑现日，不追</td></tr>
+      <tr><td>装配式</td><td>3</td><td>3</td><td>2</td><td>4</td><td>4</td><td>3</td><td><b>19↓</b></td><td>降级·回踩观察</td></tr>
+      <tr><td>地产一阶</td><td>3</td><td>2</td><td>2</td><td>3</td><td>4</td><td>4</td><td><b>15</b></td><td>⚠流出</td></tr>
+      <tr><td>种业连板</td><td>4</td><td>2</td><td>2</td><td>2</td><td>3</td><td>5</td><td><b>18</b></td><td>⚠断板前兆</td></tr>
+      <tr><td>黄金</td><td>2</td><td>2</td><td>2</td><td>3</td><td>3</td><td>4</td><td><b>16</b></td><td>⚠预期差≤0</td></tr>
+    </table>
+    <div class="small" style="margin-top:6px">每项 1-5 分；热度越低分越低=预期差越大。银行催化 2 分=无新催化仅逻辑；装配式资金 2 分=鸿路 +4% 后回踩未确认、精工 -3.6% 分化。</div>
+  </div>
+
+  <div class="card hl">
+    <div class="stock" style="border:none;padding:0;background:none">
+      <div class="hd"><span class="nm">主推① 化工/油化链二阶低位（23/30）</span><span class="role lead">低吸·禁追连板</span></div>
+      <ul class="tight" style="margin-top:6px">
+        <li><b>证据链</b>：布伦特站上 90 + SC +7%（锚持续上行未兑现）；金牛化工/赤天化/潞化科技 2 板+郑州煤电涨停=情绪已点火；<b>二阶低位</b>：四川美丰 +2.14% 量比约 2.0（1.32 亿 vs 前日 1.27 亿温和放量）、泸天化 +6.42% 放量 9.36 亿（前日 2 倍）、华鲁恒升煤气化低位放量 10.9 亿——柴柴 Co 0831 19:37 点名化工（金牛/红宝/赤天/泸天）=资金共识正在形成但低位分支未 consensus。</li>
+        <li><b>三问反查</b>：昨日已大涨？<b>低位分支否</b>（美丰 +2.1%/华鲁 -1.65%），连板票是（金牛/赤天 +10%）→ 只做低位分支。催化已兑现？否——油价上行是进行时（今晚 Trump 回应=再定价窗口）。次日资金增量理由？是——涨停池化工 4 家扩散+焦煤/尿素夜盘续涨。</li>
+        <li><b>为何未到顶/未在出货</b>：低位票 ret20 均 <8%（华鲁 dd60 -15%），无龙虎榜卖席集中；连板票中报扭亏为真实业绩（赤天化扭亏+金牛中报增长），非纯蹭概念。</li>
+        <li><b>明日情景预案</b>：高开 <3%=按计划低吸；<b>高开 >5%（油价情绪集中爆发）=兑现日规则，只等回踩</b>；低开=地缘缓和（特朗普口径放软），板块顺延观察，油气开udaan不开仓。</li>
+        <li><b>进场方式</b>：左侧分批 1/3+1/3+1/3，全天滚动；单票 ≤4% 仓位。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card hl">
+    <div class="stock" style="border:none;padding:0;background:none">
+      <div class="hd"><span class="nm">主推② 液冷/PCB 机构票（23/30）</span><span class="role lead">回踩买·禁追高开>4%</span></div>
+      <ul class="tight" style="margin-top:6px">
+        <li><b>证据链</b>：浪潮信息涨停 LHB +4.23 亿（机构+游资混合=机构级认可）；中际旭创 40-80 亿回购（板块信心信号）；液冷涨停 8 家最大集群；Anthropic-Lambda 350 亿美元协议=AI 资本开支再加速的直接证据；英维克“订单排到年底”延续。缠论：英维克 60m 高位震荡未破结构（买 1 @46.45 后趋势完好）、沪电日线 2 卖 @120.66 当根已消化的中枢上沿运行。</li>
+        <li><b>三问反查</b>：昨日大涨？浪潮/英维克是（+10%/+5.8%）→ <b>兑现日规则生效：高开 >4% 一律不追</b>。催化已兑现？否——Anthropic 协议是盘后新事件，今日才定价。次日增量理由？是——协议若发酵，IDC/液冷为直接受益链。</li>
+        <li><b>为何未到顶</b>：沪电 ret20 +28% 但 dd60 尚有空间、浪潮中报落地后 PE 仍在板块中位；避开捷荣技术类“澄清收入占比极低”伪液冷票。</li>
+        <li><b>风控锚</b>：科创 50 收盘破 1605 → 科技仓位全部降档（连续 3 日有效，今日收 1684 距 1605 尚有 4.7%）。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="stock" style="border:none;padding:0;background:none">
+      <div class="hd"><span class="nm">主推③ 短剧/AI 应用——只做龙头（20/30）</span><span class="role lead">2板确认日·小仓</span></div>
+      <ul class="tight" style="margin-top:6px">
+        <li><b>证据链</b>：中文在线 LHB +5.97 亿（全市场净买第 1）+20% 涨停；涨停池短剧 6 家=午后最密集集群；工信部 AI 应用专项=政策背书；掌阅/上海电影跟随涨停。</li>
+        <li><b>三问反查</b>：昨日大涨？是（+20%）→ 只做“高开 ≤4% 且 10:00 不翻绿”的确认买，冲高 >6% 放弃。缠论：中文在线 60m 二买 @21.97 后主升、日线 2s 卖 @26.46 当根已突破消化——结构偏多但级别小，仓位压至 2% 以内。</li>
+        <li><b>分化警报</b>：天娱数科 LHB -4.33 亿高位滞涨=应用端内部分化已现，跟风票（华是科技 +20% 但净卖）一律回避。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card warn">
+    <div class="stock" style="border:none;padding:0;background:none">
+      <div class="hd"><span class="nm">风险警示板块（逆向自检·排除结论下注 V3.3）</span></div>
+      <table>
+        <tr><th>板块/判定</th><th>判定依据</th><th>代表股+反向失效信号</th></tr>
+        <tr><td>地产一阶·回避</td><td>昨日高开兑现（保利 -4.24% 冲高翻绿、招商 -8.8%、香江 -7.28%），受益锚贝壳美股 BEKE 隔夜再 -6.17%=兑现二次确认</td><td>保利 600048：若 3 日内缩量回踩 4.80 前平台不破且板块收复 5 日线 → 判定错误，回二买观察</td></tr>
+        <tr><td>种业连板·断板前兆</td><td>万向德农 5 板后公司发风险提示（玉米供大于求）+量能已现钝化；金健 +2.29% 弱反弹=第一龙头已退潮</td><td>万向德农 600371：若今日放量再板且 LHB 净买 >1 亿 → 判定错误，主线第三梯队确认</td></tr>
+        <tr><td>黄金跟随票·下跌中继</td><td>金价 4496 弱势（GLD -0.11%）+中金/湖南缺口放量回补=证伪条款已触发；10Y 4.75% 压制未解</td><td>湖南黄金 002155：若 2 日内收复 28.5（缺口顶）且金价站回 4550 → 判定错误，黄金坑关闭</td></tr>
+        <tr><td>CXO/医药情绪票·回避</td><td>誉衡 LHB -3.98 亿+键凯 -16.4% 补跌未完；无 60m 底背驰</td><td>药明康德：若放量收复 5 日线且连续 2 日净流入 → 判定错误</td></tr>
+        <tr><td>银行红利·兑现日不追</td><td>中行 +5.17% 创新高放量大涨后=“利空另一面”已兑现一日，追高=接最后一棒</td><td>中国银行 601988：若缩量（量比 <0.7）回踩 6.30 不破=强势洗盘，可重新评估</td></tr>
+        <tr><td>装配式·降级观察</td><td>鸿路 +4.01% 高开过多未给买区、精工 -3.57% 分化；地产情绪拖累</td><td>鸿路钢构 002541：若回踩 20.0 整数关缩量不破 → 二阶逻辑重启，升回观察</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 3.7 股票池 -->
+<section>
+  <h2>⑦ 重点股票池 <span class="en">WATCHLIST · 与资金前瞻逐行映射</span></h2>
+  <div class="small" style="margin-bottom:8px">排序=置信度。每只含条件单化触发+直接走强备选条款（V3.1）+分批止盈（V3.2）；条件触发型与常规同版式列池。</div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">四川美丰</span><span class="cd">000731 · 化工尿素</span><span class="role lead">龙头·低吸</span></div>
+    <div class="pill">现价 <b>6.67</b>（0831 收 +2.14%）</div>
+    <div class="pill">买入区 <b>6.50–6.58</b>（回踩 5 日线企稳，宽度 1.2%）</div>
+    <div class="pill">止损 <b>6.20</b></div>
+    <div class="pill">目标1 <b>7.20 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>7.8</b>（剩余按 5 日线移动止盈）</div>
+    <div class="pill">触发 <b>≤6.58 且 30 分钟不创时段新低+分时均线走平 ≥10 分钟=企稳</b></div>
+    <div class="small" style="margin-top:6px">直接走强备选（V3.1）：若低开高走不回踩——① 尿素期货盘中 +2% 且板块低位票集体放量，允许高开 <4% 追 1/4 仓；纯左侧埋伏，接受踏空。缠论：60m 一卖 @6.69 当根消化中，日线中枢上沿突破初期。置信度：中高。窗口 1-3 日。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">泸天化</span><span class="cd">000912 · 尿素+煤气化</span><span class="role elast">弹性</span></div>
+    <div class="pill">现价 <b>4.64</b>（+6.42% 放量 9.4 亿=前日 2 倍）</div>
+    <div class="pill">买入区 <b>4.35–4.45</b>（回踩 5 日线 4.24 上方，宽度 2.3%）</div>
+    <div class="pill">止损 <b>4.05</b></div>
+    <div class="pill">目标1 <b>4.95 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>5.4</b>（60m 卖点/移动止盈）</div>
+    <div class="pill">触发 <b>回踩 4.35-4.45 缩量（量比 <0.8）企稳</b></div>
+    <div class="small" style="margin-top:6px">柴柴 Co 点名票+放量异动最大；直接走强备选：LHB 若上榜且竞价量比 >2，允许高开 <4% 追 1/4。高开 >5% 放弃。缠论：60m 末笔 +29.8% 动能强但非背驰。置信度：中高。窗口 1-3 日。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">华鲁恒升</span><span class="cd">600426 · 煤化工平台</span><span class="role dip">低吸备选</span></div>
+    <div class="pill">现价 <b>21.45</b>（-1.65% 回踩）</div>
+    <div class="pill">买入区 <b>20.9–21.2</b>（回踩 5 日线 20.86 缩量企稳，宽度 1.4%）</div>
+    <div class="pill">止损 <b>20.2</b></div>
+    <div class="pill">目标1 <b>22.8 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>24.5</b>（前高/移动止盈）</div>
+    <div class="small" style="margin-top:6px">机构票定位（煤气化成本端受益油价+尿素双逻辑）；缠论：日线二买 @20.40 上方、60m 末笔 -7.0% 回踩段=低吸结构。条件单化：≤21.2 且不创时段新低。置信度：中。窗口 1-2 周。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">浪潮信息</span><span class="cd">000977 · AI 服务器/液冷</span><span class="role lead">龙头·回踩买</span></div>
+    <div class="pill">现价 <b>85.18</b>（涨停 +LHB +4.23 亿）</div>
+    <div class="pill">买入区 <b>79.5–82.0</b>（涨停价回吐 4-7%，宽度 3.1%）</div>
+    <div class="pill">止损 <b>76.3</b></div>
+    <div class="pill">目标1 <b>89.0 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>94</b>（移动止盈）</div>
+    <div class="pill">触发 <b>高开 >3% 不追（兑现日规则）；回踩 79.5-82 缩量企稳再接</b></div>
+    <div class="small" style="margin-top:6px">直接走强备选（V3.1 强制——LHB 机构级净买票）：若直接高开 >4% 走强，满足① Anthropic 协议盘中发酵（IDC 集体异动）或② 10:00 前量比 >1.5 且分时均线不破 → 允许高开 <5% 追 1/4 仓+剩余回踩补。60m 2s 卖 @85.18 当根=涨停卖点，明天不新高即衰竭日。置信度：中高。窗口 1-3 日。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">沪电股份</span><span class="cd">002463 · AI PCB</span><span class="role elast">弹性</span></div>
+    <div class="pill">现价 <b>124.91</b>（+2.64%）</div>
+    <div class="pill">买入区 <b>121–123</b>（回踩缩量，宽度 1.6%）</div>
+    <div class="pill">止损 <b>117</b></div>
+    <div class="pill">目标1 <b>131 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>138</b>（20日高方向移动止盈）</div>
+    <div class="small" style="margin-top:6px">缠论：日线 2 卖 @120.66 当根后 0831 收复=二卖失效确认；机构票（AI PCB 主线承接浪潮外溢）。置信度：中高。窗口 1-2 周。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">英维克</span><span class="cd">002837 · 液冷</span><span class="role dip">低吸备选</span></div>
+    <div class="pill">现价 <b>68.21</b>（+5.78%）</div>
+    <div class="pill">买入区 <b>65–66.5</b>（回踩缩量，宽度 2.3%）</div>
+    <div class="pill">止损 <b>62.5</b></div>
+    <div class="pill">目标1 <b>72.5 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>76.9</b>（0909 前高方向）</div>
+    <div class="small" style="margin-top:6px">0710 高点 78.5 与 0902 前 76.88 为前高压力带；“订单排到年底”催化延续。60m 高位震荡结构未破。0831 踏空教训票（62.89 未及下沿即拉升）→ 本期买区上移至 65，条件单化：≤66.5 企稳即接。置信度：中高。窗口 1-2 周。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">中文在线</span><span class="cd">300364 · 短剧/AI 应用</span><span class="role lead">龙头·确认买</span></div>
+    <div class="pill">现价 <b>27.28</b>（+20% 涨停 · LHB +5.97 亿）</div>
+    <div class="pill">买入区 <b>26.0–27.0</b>（涨停价上沿回踩，宽度 3.8%）</div>
+    <div class="pill">止损 <b>24.5</b></div>
+    <div class="pill">目标1 <b>29.5 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>33</b>（2 板后情绪高度）</div>
+    <div class="pill">触发 <b>高开 ≤4% 且 10:00 前不翻绿；高开 >6% 放弃</b></div>
+    <div class="small" style="margin-top:6px">2 板确认日玩法；分化警报：天娱 -4.33 亿=板块内部分化，只做 LHB 净买第 1 龙头。缠论：60m 二买 @21.97 主升段、日线 2s @26.46 已突破消化。仓位 ≤2%（情绪票纪律）。置信度：中。窗口 1-3 日。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">上海电影</span><span class="cd">601595 · 短剧+IP</span><span class="role elast">弹性</span></div>
+    <div class="pill">现价 <b>18.33</b>（涨停）</div>
+    <div class="pill">买入区 <b>17.2–17.8</b>（回踩缺口顶，宽度 3.4%）</div>
+    <div class="pill">止损 <b>16.4</b></div>
+    <div class="pill">目标1 <b>20.0 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>22</b></div>
+    <div class="small" style="margin-top:6px">国字号 IP+短剧复合（上海电影出品）；缠论：日线二买 @15.75 后主升。置信度：中。窗口 1-3 日。</div>
+  </div>
+
+  <div class="stock">
+    <div class="hd"><span class="nm">掌阅科技</span><span class="cd">603533 · 阅读IP+AI</span><span class="role dip">低吸备选</span></div>
+    <div class="pill">现价 <b>22.59</b>（涨停）</div>
+    <div class="pill">买入区 <b>21.2–21.8</b>（宽度 2.8%）</div>
+    <div class="pill">止损 <b>20.3</b></div>
+    <div class="pill">目标1 <b>24.5 → 减 1/2</b></div>
+    <div class="pill">目标2 <b>27</b></div>
+    <div class="small" style="margin-top:6px">日线 2s 卖 @23.73 当根未消化=风险位，仅轻仓低吸（分歧日）置信度：中低。窗口 1-3 日。</div>
+  </div>
+
+  <div class="stock" style="border-color:rgba(255,169,77,.45)">
+    <div class="hd"><span class="nm">条件触发 · 时代出版</span><span class="cd">600551 · AI 出版</span><span class="role hold">条件触发</span></div>
+    <div class="pill">现价 <b>8.25</b>（涨停 · 2 连板）</div>
+    <div class="pill">触发 <b>回踩 7.5–7.7 缩量不破=买</b>（买入区 7.5–7.7，止损 7.0，目标1 8.8 减 1/2，目标2 9.5）</div>
+    <div class="pill">证伪 <b>3 板失败+板块 AI 教育分化（竞业达减持发酵）→ 作废</b></div>
+    <div class="small" style="margin-top:6px">工信部“AI 出版”条款级受益+中报扣非增长（有业绩非纯题材）；2 板后按条件触发不追。距触发位 -9%，未触发不动作。置信度：中低。</div>
+  </div>
+
+  <div class="stock" style="border-color:rgba(255,169,77,.45)">
+    <div class="hd"><span class="nm">条件触发 · 鸿路钢构</span><span class="cd">002541 · 装配式</span><span class="role hold">条件触发</span></div>
+    <div class="pill">现价 <b>21.03</b>（+4.01%）</div>
+    <div class="pill">触发 <b>回踩 20.0–20.4 缩量不破=买</b>（买入区 20.0–20.4，止损 19.4，目标1 22.9 减 1/2，目标2 24.5）</div>
+    <div class="pill">证伪 <b>收盘破 19.4=二阶逻辑作废</b></div>
+    <div class="small" style="margin-top:6px">0830 主推①遗留：0831 高开 +4.5% 未给买区（gap -2.5% 踏空，属“左侧埋伏可接受类”）；新政二阶逻辑未变，回踩确认再进，不追高。距触发 -4.8%。置信度：中。</div>
+  </div>
+
+  <div class="card">
+    <div class="small"><b>复盘候选逐只表态（衔接《复盘日报 0831》⑨ 明日可买板块前瞻）：</b></div>
+    <table>
+      <tr><th>候选（来源）</th><th>表态</th><th>理由</th></tr>
+      <tr><td>化工/尿素：四川美丰/泸天化/湖北宜化</td><td class="up">采纳（美丰/泸天化入池，宜化改华鲁）</td><td>油价催化升级；宜化 0831 -1.14% 缩量分化=三票中最弱，换业绩更稳的华鲁恒升（缠论二买 @20.40 上方）</td></tr>
+      <tr><td>液冷/PCB：沪电 121-123 / 英维克 65-66.5 / 胜宏 235-240</td><td class="up">采纳（沪电/英维克），胜宏放弃</td><td>胜宏 0831 收 243.14 已修复出买区下沿且 0828 放量 143 亿滞涨=机构分歧；缺位由浪潮补位</td></tr>
+      <tr><td>装配式回踩：鸿路 19.9-20.4 / 精工 1.55-1.60 / 森特</td><td class="up">部分采纳（鸿路降级为条件触发）</td><td>精工 -3.57% 分化+缠论 60m 末笔 +83.5% 异常（除权失真）放弃；森特无缠论+资金证据不入池；鸿路条件单化</td></tr>
+      <tr><td>科创 50 破 1605 降科技、破 1580 清弹性</td><td class="up">采纳继续有效</td><td>0831 收 1684，距 1605 尚有 4.7%，双线继续挂在盘前清单</td></tr>
+      <tr><td>化肥接回条款：云天化 29.5-30.5 / 川金诺 21.0 企稳</td><td class="up">修正后采纳</td><td>云天化收 31.44 未到接回区（保留条款不动）；川金诺收 21.20 在 21.0 上方=条款待触发；今日化工池已用美丰/泸天化替代优先级，接回区仅限“底仓补回”纪律执行</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 3.8 上一日复盘 -->
+<section>
+  <h2>⑧ 上一日报告结论复盘 ★ <span class="en">REVIEW</span></h2>
+  <div class="card">
+    <div class="small" style="margin-bottom:6px">基准：《策略日报_20260830_目标0831》+《复盘日报 0831》；复盘对象=0831 实际走势（0831 收盘数据已在量能表核对：上证 3986.30 +0.86% / 创业板 3438.68 +0.42% / 科创50 1684.39 +1.34%）。</div>
+    <ul class="tight">
+      <li><b class="up">对</b>：地产一阶“高开 >4% 翻绿=兑现出货”预案精确命中——保利开 5.35 冲 5.42 翻绿收 -4.24%、招商 -8.80%；受益锚核验（贝壳冲高回落）第二次验证。隔夜 BEKE 再 -6.17%=判断继续有效。</li>
+      <li><b class="up">对</b>：“利率冲击日资源/黄金的买点在恐慌尾段而非次日”（0831 新规则）当日生成当日兑现——紫金 33.03 买入成本贴着全日低位区 32.60-33.75 下沿，收盘 +1.9%；山东黄金 33.60 V 型 +6.65% 同验证。巴克莱加息冲击 A 股半衰期 ≤半天第二次实证。</li>
+      <li><b class="up">对</b>：金健米业 -6.95% 完成农业第一阶段交接、“连板断板兑现”判定正确；蓝盾光电清仓执行满分（低开即出，-333 元止损保住本金）。</li>
+      <li><b class="up">对（但踏空）</b>：CPO/星网“资金连续性最强”方向判断正确——星网 3 连板 +10.00%；但买区 34.5-35.2 未触发（gap -0.85%）后用户 11:26 手工 36.92 买入，成本比预案高 4.9%。V3.1 备选条款的必要性被直接实证。</li>
+      <li><b class="down">错</b>：装配式二阶（主推①）鸿路 +4.01% 方向对但“低吸 19.5-19.9”被高开跳空甩掉（gap -2.5%）；精工 -3.57% 说明板块内部分化被低估——二阶受益≠齐涨，资金只选了龙头。修正：主推板块的弹性票必须有独立的量能/缠论证据（精工除权失真本次已剔除）。</li>
+      <li><b class="down">错</b>：英维克 62.5-64.2 买区差 -1.3% 未触发即 +5.78%——液冷“订单排到年底”催化的持续性被低估，买区应按“催化升级日上移一档”。本期英维克买区已上移至 65-66.5。</li>
+      <li><b class="down">错（粒度）</b>：“农业种业连板一律不接”错过万向德农 5 板/新赛 3 板第二梯队——排除粒度太粗。修正（V3.3 排除结论下注）：本期排除项全部附“代表股+反向失效信号”进次日复盘。</li>
+      <li><b>执行分账（0831）</b>：报告错 0 元 / 执行差约 -1100 元（云天化 31.4147 vs 减仓区下沿 31.9 差 1.5%）——连续第 2 日执行差>报告错 → <b>执行硬约束周启动（今日第 1 天）：8 张条件单盘前挂好，禁止盘中市价卖出；今日卖出兑现后现金恢复 ≥15%</b>。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3.9 风险 -->
+<section>
+  <h2>⑨ 风险提示与应对预案 <span class="en">RISK</span></h2>
+  <div class="card">
+    <ul class="tight">
+      <li><b>科创 50 双线（科技总开关）</b>：收盘破 <b>1605</b> → 科技仓位降档至 15% 以下；破 <b>1580</b> → 清全部弹性票（0831 收 1684.39，缓冲 4.7%）。</li>
+      <li><b>美债 10Y 4.8% 线（资源总开关）</b>：站稳 4.8% 上方 → 资源/黄金全部降档，紫金 32.5 / 江铜 44.1 / 兴业 37.5 止损单无条件执行（当前 4.75，距触发 0.05pp）。</li>
+      <li><b>地缘双情景</b>：① 特朗普回应升级（概率 55%）→ 油价续涨，化工/资源主升日延续，仓位可至 85% 上限但单票 ≤4%；② 口径放软（概率 45%，美方“没船触碰水雷”已现缓和口径）→ 油化链冲高回落，兑现日纪律=高位化工股冲 5% 减 1/2，资金回补液冷/PCB。</li>
+      <li><b>9/2 ISM、9/4 非农、9/11 CPI</b>：非农前科技/资源仓位不加新；9/4 事件夜现金 ≥30%（硬上限 70% 第 4 次提示）。</li>
+      <li><b>量能验证</b>：今日成交若 <2.0 万亿=缩量分化，主推①③降半仓执行；>2.2 万亿=放量延续，可按上限执行。</li>
+      <li><b>利空另一面预案（V2.3 双向）</b>：若油化链集体高开 >5% 后翻绿（利空=情绪兑现）→ 另一面=资金将回流液冷/PCB/短剧（本报告主推②③天然对冲），无需新开仓，只需把主推②的买区单立即激活。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 摘要 -->
+<section>
+  <h2>三句话摘要 <span class="en">TL;DR</span></h2>
+  <div class="card hl">
+    <ul class="tight">
+      <li><b>① 钱从哪里来、去哪里</b>：地产一阶兑现盘+种业连板退潮+黄金跟随票的资金 → 流向<b>化工油化链二阶低位（四川美丰 6.50-6.58 / 泸天化 4.35-4.45 / 华鲁恒升 20.9-21.2，置信度 70%）</b>与<b>液冷/PCB 机构票回踩（浪潮 79.5-82 / 沪电 121-123 / 英维克 65-66.5，置信度 68%）</b>，第三线=短剧龙头确认买（中文在线 26-27，小仓 ≤2%）。</li>
+      <li><b>② 持仓动作（条件单先行）</b>：星网 3 板+60m 一卖当根=<b>≥40.8 减 1/2、≥43 再减 1/3、收盘破 36.9 清</b>；紫金/江铜/兴业按四类点位表执行（江铜放量过 48.78=三买加仓单）；今日任何卖出兑现后现金恢复 ≥15%。</li>
+      <li><b>③ 什么信号证明我错了</b>：油化链高开 >5% 冲高翻绿=通胀定价一日游（转向主推②）；科创 50 收盘破 1605=科技全降档；10Y 站稳 4.8%=资源三只止损无条件执行；万向德农放量再板=LHB >1 亿=种业排除错误；鸿路回踩 20 不破=装配式升回观察。</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p><b>免责声明</b>：本报告由 AI 策略分析系统基于公开数据自动生成，仅供研究参考，不构成任何投资建议。市场有风险，决策需独立判断，盈亏自负。</p>
+  <p><b>数据来源与时间戳</b>：A 股行情 0831 收盘（本地 cache.db，fuyao 回填 5206/5212，已核对：上证 0831 实际收 3986.30 +0.86%，0830 复盘日报量价表中“上证 3952.18 -0.11%”行实为 0828 数据，创业板/科创行无误）；美股/商品 0831 收盘+0901 07:4x 隔夜（腾讯/新浪/东财 futsseapi）；美债收益率 0831（home.treasury.gov 日频曲线 2Y 4.34 / 10Y 4.75 / 30Y 5.25）；涨停池 86 家/龙虎榜 0831（同花顺 fuyao 特色数据）；财联社电报 0830 20:00~0901 07:45（783 条，0 加红）；缠论信号由本地 chanlib 计算（日线全量+60m 近 2 月，0901 07:5x 重算）；知识库观点：柴柴 Co 0831 19:37（化工点名）、撑伞猫 0831 20:12（星网溢价）、冰冰小美 0831（通胀趋势行情）、药门小韭菜纪要 0830（中信“年内不加息基准”、天风黄金）、市场研判 0831（复盘日报+回测蒸馏）。<b>缺失项</b>：LME 镍锡夜盘分时、贝壳港股 0831 日内形态（用美股 BEKE -6.17% 替代）、板块估值分位（板块六维“估值”按 ret20/dd60 相对位近似）——相关结论置信度已降级标注。</p>
+  <p><b>自检清单</b>：目标交易日已判定（0901，盘前）✓ 数据缺失已声明 ✓ 催化分级（油化=中期/Anthropic=长期/种业证伪=一日）✓ 2.3.1 四步检验（油化/液冷/应用/黄金逐条）✓ 2.3.2 利空另一面（银行/油运/黄金坑初筛+双向预案）✓ 资金前瞻 5 行流入全部有池内标的映射（美丰/泸天/华鲁/浪潮/沪电/英维克/中文在线/上电/掌阅/时代/鸿路）✓ 三问反查+受益锚一致性 ✓ 风险警示非空+代表股+反向失效信号 ✓ 每板块 3 只 ✓ 复盘候选逐只表态 ✓ 上一日复盘 ✓ 条件单化（全部 ≥X/≤X+量化定义：滞涨=30分钟内回落至涨幅1/2以下、缩量=量比<0.8、放量=量比>1.5 且 10:30 前成交额超昨日同时段、企稳=不创时段新低+分时均线走平≥10分钟）✓ 买区宽度 ≤4% 且距上沿 ≤3%（美丰 1.2%/泸天 2.3%/华鲁 1.4%/浪潮 3.1%/沪电 1.6%/英维克 2.3%/中文在线 3.8%/上电 3.4%/掌阅 2.8%）✓ 直接走强备选条款（V3.1：美丰/泸天/浪潮标注，纯左侧票标“接受踏空”）✓ 分批止盈（目标1 全部减 1/2+移动止盈）✓ HTML 移动端适配 ✓</p>
+</footer>
+
+</div>
+</body>
+</html>

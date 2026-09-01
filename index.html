@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>每日报告 · 策略日报 & 复盘</title>
+<style>
+  :root{
+    --bg:#0b0f1a; --card:#131a2b; --card2:#1a2337; --line:#243049;
+    --txt:#e8edf7; --sub:#93a1bd;
+    --neon:#3ddc97; --neon-dim:rgba(61,220,151,.14); --neon-line:rgba(61,220,151,.35);
+    --red:#ff5d5d; --blue:#5b8cff; --gold:#f5c451;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:#2b3a5c;border-radius:3px}
+  *{scrollbar-width:thin;scrollbar-color:#2b3a5c transparent}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.65;min-height:100vh}
+  .wrap{max-width:560px;margin:0 auto;padding:0 14px 48px}
+  header{background:linear-gradient(160deg,#0e3a26 0%,#0b0f1a 70%);padding:26px 14px 18px;border-bottom:1px solid var(--neon-line);text-align:center}
+  header h1{font-size:21px;letter-spacing:1px}
+  header .sub{color:var(--sub);font-size:12px;margin-top:4px}
+  .tabs{display:flex;gap:8px;margin:18px 0 12px}
+  .tab{flex:1;text-align:center;padding:11px 0;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:14.5px;font-weight:600;cursor:pointer;transition:.15s;user-select:none}
+  .tab.active{background:var(--neon-dim);border-color:var(--neon-line);color:var(--neon);box-shadow:0 0 12px rgba(61,220,151,.12)}
+  .tab .dev{display:block;font-size:10px;font-weight:400;color:var(--sub);margin-top:1px}
+  .list{margin-top:6px}
+  .item{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:var(--txt);transition:.15s}
+  .item:active{background:var(--card2)}
+  @media(hover:hover){.item:hover{border-color:var(--neon-line);background:var(--card2)}}
+  .item .top{display:flex;align-items:center;gap:8px}
+  .pill{font-size:10.5px;padding:2px 9px;border-radius:20px;font-weight:700;flex-shrink:0}
+  .pill.strategy{background:var(--neon);color:#04140b}
+  .pill.review{background:var(--blue);color:#fff}
+  .item .title{font-size:14.5px;font-weight:600;flex:1;line-height:1.4}
+  .item .meta{display:flex;gap:10px;color:var(--sub);font-size:11.5px;margin-top:6px}
+  .item .meta .latest{color:var(--neon);font-weight:700}
+  .empty{text-align:center;color:var(--sub);font-size:13px;padding:40px 0}
+  footer{text-align:center;color:var(--sub);font-size:11px;margin-top:28px;opacity:.7}
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 每日报告</h1>
+  <div class="sub" id="updatedAt">—</div>
+</header>
+<div class="wrap">
+  <div class="tabs">
+    <div class="tab active" data-type="strategy">📈 策略日报<span class="dev">移动端</span></div>
+    <div class="tab" data-type="review">🖥️ 复盘日报<span class="dev">PC 端</span></div>
+  </div>
+  <div class="list" id="list"></div>
+  <footer>数据仅供参考，不构成投资建议</footer>
+</div>
+
+<script>
+const REPORTS = [
+  {type:"strategy", date:"20260901", target:"0901", title:"策略日报 · 2026-09-01 → 目标 0901", path:"reports/strategy/20260901.html"},
+  {type:"strategy", date:"20260831", target:"0831", title:"策略日报 · 2026-08-30 → 目标 0831 | 预期差检验版：装配式二阶受益 × 地产一阶已定价", path:"reports/strategy/20260831.html"},
+  {type:"strategy", date:"20260828", target:"0828", title:"策略日报 · 2026-08-28 · 目标0828 | NVDA 财报后 AI 硬件链验证日", path:"reports/strategy/20260828.html"},
+  {type:"review", date:"20260831", title:"复盘日报 · 2026-08-31 · 归因闭环 + 回测联动", path:"reports/review/20260831.html"},
+  {type:"review", date:"20260828", title:"复盘日报 · 2026-08-28 · 归因闭环", path:"reports/review/20260828.html"}
+];
+
+function fmtDate(d){
+  return d.slice(0,4)+"-"+d.slice(4,6)+"-"+d.slice(6,8);
+}
+function weekday(d){
+  const w = new Date(d.slice(0,4), d.slice(4,6)-1, d.slice(6,8)).getDay();
+  return "周"+"日一二三四五六"[w];
+}
+
+let cur = "strategy";
+const listEl = document.getElementById("list");
+const tabs = document.querySelectorAll(".tab");
+
+function render(){
+  const items = REPORTS.filter(r=>r.type===cur)
+    .sort((a,b)=>b.date.localeCompare(a.date));
+  const latest = items[0];
+  listEl.innerHTML = items.map((r,i)=>`
+    <a class="item" href="${r.path}">
+      <div class="top">
+        <span class="pill ${r.type}">${r.type==="strategy"?"策略":"复盘"}</span>
+        <span class="title">${r.title}</span>
+      </div>
+      <div class="meta">
+        <span class="${i===0?'latest':''}">${fmtDate(r.date)} ${weekday(r.date)}</span>
+        ${r.target?`<span>目标 ${r.target}</span>`:""}
+        ${i===0?`<span class="latest">最新</span>`:""}
+      </div>
+    </a>`).join("") || `<div class="empty">暂无报告</div>`;
+}
+
+tabs.forEach(t=>t.addEventListener("click",()=>{
+  tabs.forEach(x=>x.classList.remove("active"));
+  t.classList.add("active");
+  cur = t.dataset.type;
+  render();
+}));
+
+// 更新时间 = 最新的报告日期
+const newest = REPORTS.map(r=>r.date).sort().pop();
+document.getElementById("updatedAt").textContent = "最近更新 " + fmtDate(newest);
+
+render();
+</script>
+</body>
+</html>

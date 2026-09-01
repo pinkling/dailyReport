@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1400">
+<title>复盘日报 · 2026-08-28 · 归因闭环</title>
+<style>
+  :root{--bg:#0b0f1a;--panel:#131a2b;--panel2:#0e1424;--line:#243049;--txt:#e8edf7;--sub:#93a1bd;--accent:#3ddc97;--red:#ff5470;--yellow:#ffc14d;--orange:#ff9f43;--blue:#5aa9ff;--purple:#b78cff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  /* ── 滚动条主题化（PC）：荧光绿 thumb + 深色 track ── */
+  ::-webkit-scrollbar{width:8px;height:8px}
+  ::-webkit-scrollbar-track{background:#0b0f1a}
+  ::-webkit-scrollbar-thumb{background:#3ddc97;border-radius:4px;border:2px solid #0b0f1a}
+  ::-webkit-scrollbar-thumb:hover{background:#6bf0b5}
+  ::-webkit-scrollbar-corner{background:#0b0f1a}
+  html,body{scrollbar-color:#3ddc97 #131a2b;scrollbar-width:thin}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;font-size:13.5px;line-height:1.55;min-width:1400px}
+  .wrap{display:grid;grid-template-columns:minmax(0,70%) minmax(0,30%);gap:14px;padding:16px 20px;max-width:1900px;margin:0 auto}
+  /* ── 头部 ── */
+  header{grid-column:1/-1;background:linear-gradient(135deg,#101a2e 0%,#0d1526 60%,#12271f 100%);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+  header h1{font-size:21px;letter-spacing:1px;border-left:4px solid var(--accent);padding-left:12px}
+  header h1 .d{color:var(--accent);font-size:14px;font-weight:400;margin-left:8px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:12px;font-size:12px;color:var(--sub)}
+  .meta b{color:var(--txt);font-weight:600}
+  .tagline{margin-top:10px;font-size:13.5px;color:var(--accent);background:rgba(61,220,151,.08);border:1px solid rgba(61,220,151,.25);border-radius:8px;padding:7px 12px}
+  /* ── 区块 ── */
+  section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+  section h2{font-size:15.5px;border-left:4px solid var(--accent);padding-left:10px;margin-bottom:12px;letter-spacing:.5px}
+  section h2 .tag{font-size:11px;color:var(--sub);font-weight:400;margin-left:8px}
+  section h3{font-size:13.5px;color:var(--accent);margin:12px 0 6px}
+  /* ── 表格 ── */
+  .tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .tbl th{position:sticky;top:0;background:#1a2338;color:var(--accent);text-align:left;padding:6px 8px;border-bottom:2px solid var(--accent);font-weight:600;white-space:nowrap;z-index:2}
+  .tbl td{padding:6px 8px;border-bottom:1px solid #1c2540;vertical-align:top}
+  .tbl tr:hover td{background:rgba(61,220,151,.04)}
+  .scroll{max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:8px}
+  .num{font-family:"SF Mono",Consolas,monospace;font-size:12px;white-space:nowrap}
+  /* ── 徽标 ── */
+  .ok{color:#0f1626;background:var(--accent);border-radius:4px;padding:1px 7px;font-weight:700;font-size:11.5px;white-space:nowrap}
+  .part{color:#14100a;background:var(--yellow);border-radius:4px;padding:1px 7px;font-weight:700;font-size:11.5px;white-space:nowrap}
+  .fail{color:#fff;background:var(--red);border-radius:4px;padding:1px 7px;font-weight:700;font-size:11.5px;white-space:nowrap}
+  .warn{color:#fff;background:var(--orange);border-radius:4px;padding:1px 7px;font-weight:700;font-size:11.5px;white-space:nowrap}
+  .info{color:#0d1526;background:var(--blue);border-radius:4px;padding:1px 7px;font-weight:700;font-size:11.5px;white-space:nowrap}
+  .purple{color:#fff;background:var(--purple);border-radius:4px;padding:1px 7px;font-weight:700;font-size:11.5px;white-space:nowrap}
+  .up{color:var(--red);font-weight:700}.down{color:var(--accent);font-weight:700}
+  /* ── 侧栏 ── */
+  aside{position:sticky;top:14px;align-self:start;display:flex;flex-direction:column;gap:14px;max-height:calc(100vh - 28px);overflow-y:auto}
+  aside section{background:var(--panel2);border-color:#2a3550;margin-bottom:0}
+  aside h2{font-size:14.5px}
+  ul.clean{list-style:none}
+  ul.clean li{padding:7px 0 7px 18px;border-bottom:1px dashed #22304f;position:relative;font-size:12.5px}
+  ul.clean li:before{content:"▸";position:absolute;left:2px;color:var(--accent)}
+  ul.clean li:last-child{border-bottom:none}
+  .kpi{display:flex;gap:10px;flex-wrap:wrap}
+  .kpi .box{flex:1;min-width:120px;background:#10182c;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center}
+  .kpi .box .v{font-size:20px;font-weight:800;color:var(--accent)}
+  .kpi .box .l{font-size:11px;color:var(--sub);margin-top:2px}
+  .src{font-size:10.5px;color:var(--sub);margin-top:8px;border-top:1px dashed #263552;padding-top:6px}
+  .flow{display:flex;flex-direction:column;gap:2px}
+  .flow .t{display:flex;gap:10px;align-items:baseline;padding:7px 10px;border-left:3px solid var(--accent);background:#10182c;border-radius:0 8px 8px 0;margin-bottom:4px}
+  .flow .t .tm{font-family:Consolas,monospace;color:var(--accent);font-size:12px;font-weight:700;white-space:nowrap}
+  .note{background:#10182c;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--sub);margin-top:8px}
+  .note b{color:var(--txt)}
+  /* ── 移动端（≤768px）：单栏降级 · 无横向/内层滚动条 ── */
+  @media (max-width:768px){
+    body{min-width:0;font-size:12.5px;-webkit-text-size-adjust:100%}
+    .wrap{display:block;grid-template-columns:none;padding:10px;max-width:100%}
+    header{grid-column:auto;padding:14px 14px}
+    header h1{font-size:17px}
+    .meta{flex-direction:column;gap:6px;font-size:11.5px}
+    main{min-width:0}
+    aside{position:static;max-height:none;overflow:visible}
+    section{padding:12px}
+    /* 表格：取消 min-width（含内联）+ 字号压缩，禁横向滚动 */
+    .tbl{min-width:0 !important;font-size:11px;table-layout:auto}
+    .tbl th,.tbl td{padding:4px 6px;white-space:normal;word-break:break-word}
+    .tbl th{position:static}
+    .scroll{max-height:none;overflow:visible;border:none;border-radius:0}
+    .num{white-space:normal;font-size:11px}
+    .kpi .box{min-width:70px;padding:8px}
+    .kpi .v{font-size:16px}
+    .flow .t{flex-direction:column;gap:2px}
+    a[href]{word-break:break-all}
+  }
+  /* ── 打印 ── */
+  @media print{
+    body{min-width:0;background:#fff;color:#111}
+    .wrap{display:block;max-width:100%;padding:0}
+    header,section,aside section{background:#fff;border:1px solid #ccc;color:#111;break-inside:avoid}
+    aside{position:static;max-height:none;overflow:visible}
+    .tbl th{background:#eee;color:#000;position:static}
+    header h1{border-color:#333}
+    .ok,.part,.fail,.warn,.info,.purple{background:#e8e8e8;color:#000}
+    .up{color:#c00}.down{color:#060}
+    .tagline{border-color:#999;color:#035}
+    .note{background:#f5f5f5;color:#333}
+    section{break-inside:avoid}
+    .scroll{max-height:none;overflow:visible}
+    a{color:#000}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>复盘日报 · 归因闭环版 <span class="d">2026-08-28（周五）</span></h1>
+  <div class="meta">
+    <span>复盘对象日：<b>2026-08-28</b>（交易日 ✓，15:00 已收盘）</span>
+    <span>A 股数据截止：<b>2026-08-28 收盘</b>（fuyao 回填 20:52 完成，5212/5212，4 只停牌无数据）</span>
+    <span>预判基准：《策略日报_20260828_目标0828》（生成 08-28 07:40，数据截至 08-27 收盘）</span>
+    <span>明日风险偏好：<b style="color:var(--yellow)">3/5（较昨日 4/5 降一档）</b>——科技退潮 + 今夜 22:00 沃什杰克逊霍尔讲话未落地</span>
+  </div>
+  <div class="tagline">今日操作总评：<b>方向对、执行糙</b>——09:43~09:48 按"冲高回落"预判清仓 6 只科技（收盘全部低于卖价，规避约 2.8% 回撤，6 笔已实现 +4,016 元）；但剑桥/中一/鹏鼎 3 笔卖点差 2.7%~3.6%，且兑现资金 100% 换仓农业化肥（违反"保留 ≥10% 现金 + 农业 ≤3%"纪律），满仓过沃什讲话前夜。</div>
+  <div class="src">数据来源：cache.db 日线（同花顺 backfill）· 腾讯指数行情 · 同花顺龙虎榜/涨停池/炸板池（08-28）· 财联社电报（08-28）· portfolios.json / journal.json · chanlib 缠论重算（20:53）· 知识库外部深度复盘蒸馏【2026-08-28】</div>
+</header>
+
+<!-- ══════════ 左侧主复盘区 ══════════ -->
+<main style="min-width:0">
+
+<!-- 2.1 预判兑现度核对表 -->
+<section id="s2">
+  <h2>① 预判兑现度核对表 <span class="tag">基准 = 策略日报 08-28 07:40 · 判定全部落到数据</span></h2>
+  <div class="kpi" style="margin-bottom:12px">
+    <div class="box"><div class="v">6</div><div class="l">兑现</div></div>
+    <div class="box"><div class="v">4</div><div class="l">部分兑现</div></div>
+    <div class="box"><div class="v">2</div><div class="l">证伪</div></div>
+    <div class="box"><div class="v">1</div><div class="l">待验证（沃什讲话）</div></div>
+    <div class="box"><div class="v">50%</div><div class="l">严格兑现率（含部分 83%）</div></div>
+  </div>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1180px">
+    <thead><tr><th style="width:20%">昨日预判（策略日报条目）</th><th style="width:34%">今日实际</th><th style="width:9%">判定</th><th style="width:24%">证据（价格/量能/时间点）</th><th style="width:13%">偏差原因</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>标题主线：NVDA 财报后"AI 硬件链验证日"，科技延续进攻</td>
+        <td>科技全面退潮：科创50 收 1662.15 <span class="down">-1.85%</span>（昨日 +3.77%），科技核心 30 只 5 涨 25 跌均值 -2.55%</td>
+        <td><span class="fail">证伪</span></td>
+        <td>科创50 缩量 -20.8%（8.0 亿手 vs 10.1 亿手）；大普微 +20%→+1.42%、中船特气 +6.77%→-3.64%；光模块中际旭创高 915.88 收 858.35</td>
+        <td>财报一日催化生命周期 = 2 天，第 2 天亚太集体收敛（日韩台同剧本），"验证日"误判为延续日</td>
+      </tr>
+      <tr>
+        <td>创业板 60m 卖点 3473 当根＝<b>高开注意回落</b></td>
+        <td>早盘冲高 09:53 创业板 +1%（上涨近 3300 只）→ 10:54 三大指数<b>全部翻绿</b> → 收 3424.40 <span class="down">-1.41%</span></td>
+        <td><span class="ok">兑现</span></td>
+        <td>60m 二卖 @3489.34 于今日 10:30 生成（chanlib 重算）；10:54 拐点 = 卖点生成后 24 分钟</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>情景预案"高开低走 → 反弹一日游：弹性仓兑现 1/2"</td>
+        <td>实际为"<b>低开→冲高→回落</b>"变体：09:26 三指数集体低开，09:53 冲高，10:54 翻绿，午后阴跌</td>
+        <td><span class="part">部分</span></td>
+        <td>财联社 09:26 竞价低开 / 09:53 冲高 / 10:54 翻绿 / 14:54 两市破 2 万亿但较昨缩 200 亿；回落触发 ✓，用户执行清仓 100%（预案为 1/2，<b>超量执行</b>）</td>
+        <td>场景触发方向对；超量执行 = 执行纪律问题（见⑦）</td>
+      </tr>
+      <tr>
+        <td>主推①覆铜板/PCB（评分 25/30）：高开 &gt;4% 不追，回踩 5 日线分批</td>
+        <td>板块逆势红但龙头分化：金安国纪 +5.43%<b>炸板</b>（open 1 次）收 73.18，生益 +3.32% 收 145.65，沪电 -0.26% 收 121.70</td>
+        <td><span class="part">部分</span></td>
+        <td>金安 09:30 高开 72.07 直接脱离 66-67.8 买区、冲 76.35 炸板回落（量 70.8 亿）→ "高开 &gt;4% 不追 / 回踩分批"规则正确，未触发买入；生益翻红但涨幅有限；板块受科技退潮拖累</td>
+        <td>板块级主推在"确认日"出现情绪票（金安）炸板 = 主推粒度应细化到机构龙头（生益 &gt; 金安）</td>
+      </tr>
+      <tr>
+        <td>主推②光模块/光通信（23 分）：只做龙头回踩 旭创 845-860 / 天孚 255-262</td>
+        <td>中际旭创高 915.88 冲高回落收 <b>858.35</b>（-0.90%）→ <b>回踩区 845-860 当日触及</b>；天孚 263.58（-1.34%）未到 255-262；星网锐捷 <b>涨停 +10.02%</b> 收 36.69（2 板）</td>
+        <td><span class="part">部分</span></td>
+        <td>旭创收盘落入买区 = 回踩剧本兑现；但买区只存在收盘最后时刻，盘中追入即套当日-0.9%；星网锐捷 31.5-32.5 买区全天未回踩（开盘 33.8 直接走强，盘中秒板），LHB 连续第 2 日净买 +3.01 亿</td>
+        <td>"只等回踩"踏空连续资金票；LHB 连续方向应单列规则（见⑪）</td>
+      </tr>
+      <tr>
+        <td>主推③半导体设备材料：新仓仅回踩参与（联瑞），持仓以诊断为准</td>
+        <td>半导体材料领跌：上海新阳 -3.12%（已清仓回避 ✓）、江丰 -3.37%（已清 ✓）、半导体材料板块 -2.74%</td>
+        <td><span class="ok">兑现</span></td>
+        <td>若持有未减则两只均收盘低于昨收 3%+；早盘清仓方向与"板块材料 -2.74% 跌幅榜第 5"吻合</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>存储（22 分）：仅回踩 德明利 400-415，禁开盘追高</td>
+        <td>德明利 -0.17% 收 429.03（60m 中枢下沿 429.01 恰好触及），回踩区 400-415 未到</td>
+        <td><span class="ok">兑现</span></td>
+        <td>缩量止跌（收平），未触发买入 = 正确不操作；德明利 hot_rank 15，资金仍在但位置高</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>农业（15 分）：不追连板，只选低位滞涨 ≤3%</td>
+        <td><b>农业/化肥成今日第一主线</b>：氮肥 +7.33% 全市场第一，种子 +4.53%、种植业 +3.42%；化肥涨停 4 家（新农股份 3 板 / 万向德农 4 板）；金健米业 9 天 6 板后 LHB <b>净卖 -1.80 亿</b></td>
+        <td><span class="fail">证伪（方向低估）</span></td>
+        <td>氮肥 +7.33% &gt; 科技板块全部；"不追连板"仍正确（金健米业 LHB 主力游资双出 -1.41 亿/机构出）；但 15 分低估了农业 = 评分体系未纳入"全球共振（厄尔尼诺）强度"维度</td>
+        <td>评分低估长期主线强度；用户实际进化肥分支（云天化/川金诺）恰是次日资金去向，见⑥</td>
+      </tr>
+      <tr>
+        <td>医药/CXO ⚠出货中：不轮入</td>
+        <td>CXO -3.64% 跌幅榜第 2（疫苗 -3.94% 第 1）；百花医药 LHB 净卖 -0.16 亿继续</td>
+        <td><span class="ok">兑现</span></td>
+        <td>CXO 板块续跌 + 药明系逻辑未变；未轮入医药正确。注意：医药情绪票分化（冀衡 4 板/千金 3 板涨停）——机构权重票跌、游资题材票涨</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>黄金珠宝：股价与金价背离=情绪末端，追高=接最后一棒</td>
+        <td>深中华A 7 板（黄金珠宝）：LHB 两笔合计 -2,229 万，<b>机构净卖 -1.35 亿、游资净买 +1.43 亿</b>；板未破但筹码在机构→游资换手</td>
+        <td><span class="part">部分</span></td>
+        <td>机构出货证据成立（org_net 两笔 -8,763 万 + -4,697 万）；游资互搏维持板 → 末端特征延续，未到崩塌日</td>
+        <td>警示结论正确但需等"游资也撤"才确认顶部；不宜预演崩塌时点</td>
+      </tr>
+      <tr>
+        <td>持仓诊断 6 只：高抛/减仓为主（剑桥 208 减 / 中一 41.2-42 减 / 鹏鼎 92-93.5 减 / 三只材料持有）</td>
+        <td>6 只全部减仓卖出，<b>收盘全部低于卖价</b>（剑桥 -3.39% / 中一 -2.49% / 江丰 -2.50% / 新阳 -2.49% / 鹏鼎 -1.03% / 铜冠 -0.69%）</td>
+        <td><span class="ok">兑现</span></td>
+        <td>剑桥收 192.31 &lt; 预案减仓线 194.7 ✓；中一收 39.10 &lt; 40（高开低走减半线）✓；但 3 笔卖点低于预案触发区 2.7%~3.6%（剑桥 199.05 vs 高 204.5，中一 40.10 vs 41.2，鹏鼎 90.11 vs 93.52），见⑦逐笔</td>
+        <td>方向全对；时点执行 3/6 差（未挂条件单 = 执行模式问题）</td>
+      </tr>
+      <tr>
+        <td>组合总预案：弹性仓兑现 1/3~1/2；轮入医药暂缓；<b>轮入农业仅限低位滞涨 ≤3%</b>；<b>保留 ≥10% 现金</b>；不满仓过周末</td>
+        <td>兑现资金 18.9 万 ≈100% 换仓农业化肥 3 只（云天化 9.3 万 + 川金诺 9.05 万 + 蓝盾 0.52 万），<b>零现金</b>满仓过沃什讲话前夜</td>
+        <td><span class="fail">违反（纪律）</span></td>
+        <td>医药暂缓 ✓；农业仓位 100% vs 预案 ≤3%（超 33 倍）；现金 0% vs ≥10%；08-26 起连续第 2 次满仓过重大事件夜（上次为英伟达财报）</td>
+        <td>规则写在报告里、没写进执行清单 = 预案执行率 0</td>
+      </tr>
+      <tr>
+        <td>风险提示：今夜 22:00 沃什讲话 → 不加杠杆、不满仓过周末</td>
+        <td>讲话未落地（本报告 20:5x 生成）；仓位现状：100%，暴露度与 08-26 同构</td>
+        <td><span class="info">待验证</span></td>
+        <td>外部研判：鹰派概率 ~60%（PCE 3.7% 超预期 + 三官员鹰派）；贝叶斯后验 H3 维持利率 82%</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><b>构造偏差共性问题：</b>① 评分体系把农业给 15 分（"不追连板"），而资金实际给农业 25 分+（全市场第一）——"全球共振题材"维度缺失；② 主推以板块为粒度，确认日实际赚亏在"机构龙头 vs 游资领涨"个股层（金安炸板 vs 生益红）；③ 预案行文用≤/≥软约束（"≤3%"），执行时全被忽略——下期把约束写进"今日执行清单"硬条目。</div>
+</section>
+
+<!-- 2.2 资金流向实际路径复盘 -->
+<section>
+  <h2>② 资金流向实际路径复盘 <span class="tag">谁先动·动多久·拐点在几点</span></h2>
+  <div class="flow">
+    <div class="t"><span class="tm">09:15-09:29</span><span>竞价：三大指数<b>集体低开</b>（财联社 09:26）——亚太消化 NVDA +8.7% 后的获利回吐；农业/化肥竞价偏强（金健米业/新农股份高开）</span></div>
+    <div class="t"><span class="tm">09:30-09:53</span><span><b>科技冲高诱多段</b>：低开高走，创业板 09:53 涨逾 1%、上涨个股近 3300 只；早盘放量（10:28 两市破 1 万亿，较昨同时<b>放量 1000 亿+</b>）；用户在 09:43-09:48 于此段清仓 6 只科技（剑桥 199.05 等），卖在冲高段但非最高点</span></div>
+    <div class="t"><span class="tm">10:30-10:54</span><span><b>拐点</b>：创业板 60m 二卖 @3489.34 于 10:30 生成（缠论重算）；<b>10:54 三大指数全部翻绿</b>（财联社）——科技资金止盈转向；此段金安国纪冲 76.35 炸板</span></div>
+    <div class="t"><span class="tm">11:00-13:38</span><span>午评（11:31）：双创冲高回落、<b>农业板块反复活跃</b>——资金从科技切向农化的换手在上午完成；13:38 创业板跌逾 1%</span></div>
+    <div class="t"><span class="tm">午后-14:54</span><span><b>缩量阴跌</b>：14:54 两市破 2 万亿但较昨日同时缩量超 200 亿（早放晚缩）；科技票无人承接，化肥/农药逆势走强（化工+农药涨停池 6 家）</span></div>
+    <div class="t"><span class="tm">14:57-15:00</span><span>尾盘：科创50 收 1662.15（-1.85%）<b>缩量 -20.8%</b>定调"获利了结非恐慌"；氮肥 +7.33% 收全天第一；<b>房产租赁 +5.44% 尾盘异动</b>（盘后 19:06 房贷新政提前抢跑）</span></div>
+  </div>
+  <h3>资金去了"我没预判到"的三条路径（纳入下期规则）</h3>
+  <table class="tbl">
+    <thead><tr><th style="width:16%">意外路径</th><th>证据链</th><th style="width:30%">规则化</th></tr></thead>
+    <tbody>
+      <tr><td><b>房产租赁 +5.44%</b>（板块涨幅第 2）</td><td>盘后 19:06 两部门"房贷期限 30→40 年"新政（A 级加红）；19:29 住贷办法印发。尾盘异动 = 政策抢跑资金</td><td>新增"尾盘异动板块查政策"检查项（收盘 1 小时内有对应加红电报 → 次日高开处理）</td></tr>
+      <tr><td><b>医药游资票涨停</b>（冀衡 4 板/千金 3 板）</td><td>与 CXO 机构票下跌并存：冀衡 LHB 净买 +165 万（游资 -2,384 万）、千金药业 3 板"创新药+药材种植"——资金在板块内做了高低切</td><td>板块研判拆两轨：机构权重轨（看主力/ETF）与游资情绪轨（看连板/炸板池），分别定多空</td></tr>
+      <tr><td><b>星网锐捷 2 板涨停</b>（+10.02%，LHB 连续 2 日净买 +2.26亿→+3.01亿）</td><td>昨日买区 31.5-32.5 全天未回踩，开盘 33.8 直接走强秒板——连续资金流入票不回踩</td><td>新增"LHB 连续方向 ≥2 日"规则：净买方向一致且净额递增 → 次日延续概率高，止损"只等回踩"改为"高开 <4% 可追 1/4"</td></tr>
+    </tbody>
+  </table>
+  <h3>今日资金收盘定论</h3>
+  <div class="note"><b>流入：</b>化肥/农药（氮肥 +7.33%、涨停 4 家）、种子/种植（万向德农 4 板）、煤化工/氟化工、房产租赁（政策抢跑）；<b>流出：</b>科技全链（半导体材料 -2.74%、通信线缆 -3.38%、风电 -3.04%）、CXO/疫苗。<b>持续性初判：</b>农化 = 主线级（厄尔尼诺全球共振 + 第一阶段龙头金健出货 = 分支轮动）；科技 = 获利了结（缩量 -20.8%，科创50 二买 1580 结构未破，非系统性离场）；房产 = 政策脉冲，续性待明日成交确认。</div>
+</section>
+
+<!-- 2.3 催化生命周期验证 -->
+<section>
+  <h2>③ 催化生命周期验证 <span class="tag">三类催化 × 今日实际 → 写入知识库分级</span></h2>
+  <table class="tbl">
+    <thead><tr><th style="width:12%">催化类型</th><th style="width:22%">昨日标注</th><th style="width:34%">今日实际走势</th><th style="width:16%">生命周期结论</th><th>分级更新</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>一日催化</b></td>
+        <td>英伟达财报（08-27 04:00 落地）：Q2 963 亿、2028 财年 +70% 指引、内存锁单 1190→2790 亿 → "AI 硬件链验证日"</td>
+        <td>兑现日 = 08-27（科创50 +3.77%、科技 30 均值 +6.38%）；<b>今日（+1 日）亚太集体收敛</b>：科创50 -1.85%，日韩台同步消化；光模块龙头避高开回落</td>
+        <td><b>落地日 1 天 + 次日收敛</b>（2 次样本：08-28 证伪、08-27 兑现）</td>
+        <td>财报类一日催化的 A 股映射窗口 = <b>落地日 1 天</b>。兑现节奏应为"落地日尾盘减 1/3、次日早盘冲高再减"——08-28 用户的清仓动作正是次日冲高段，方向获得认证</td>
+      </tr>
+      <tr>
+        <td><b>中期催化</b></td>
+        <td>CCL 涨价周期（金安/生益中报 +987%/+429% 等）</td>
+        <td>建滔积层板 16:33 <b>年内第七次提价</b>电报（催化推进）；生益 +3.32% 红、金安 +5.43% 但<b>炸板</b>；生益电子 15:59 公告 22.57 亿新建高速板项目（产能继续投）</td>
+        <td><b>仍在延续</b>，但内部高低切</td>
+        <td>中期催化维持；情绪票（金安 hot_rank 22 炸板）先退潮、机构票（生益）后走 → 参与标的从"板块"细化为"机构龙头"</td>
+      </tr>
+      <tr>
+        <td><b>长期主线</b></td>
+        <td>农业（厄尔尼诺全球共振）：第一阶段 = 种业/大米（金健米业 9 天 6 板）</td>
+        <td>氮肥 +7.33% 第一、化肥涨停 4 家、农药（新农股份 3 板）；金健米业 LHB 净卖 -1.80 亿（第一阶段龙头兑现使命）；柴柴 15:38 同判"第一阶段龙头金健米业完成使命，化肥 = 第二阶段分支"</td>
+        <td><b>主升结构保持，进入第二阶段（化肥/农药）</b></td>
+        <td>长期主线维持；分支轮动确认（种业→化肥）。分级依据 = 涨停池行业集中度 + 连板梯队行业归属 + 龙头 LHB 方向——三项今日全部命中</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note"><b>验证结论（写入知识库）：</b>① 财报一日催化窗口 = 落地日 1 天（本日第 2 次验证）；② 中期催化延续期内"机构龙头 &gt; 游资领涨"；③ 长期主线用"连板梯队行业归属 + 龙头 LHB 方向"判定分支轮动点（金健出货日 = 化肥接棒日）。</div>
+</section>
+
+<!-- 2.4 量价形态复盘 -->
+<section>
+  <h2>④ 量价形态复盘表 <span class="tag">与昨日量能对比 → 反转 or 轮动定论</span></h2>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1180px">
+    <thead><tr><th style="width:14%">标的</th><th style="width:16%">收盘/涨跌</th><th style="width:20%">量能变化（vs 昨日）</th><th style="width:16%">量价归类</th><th style="width:20%">含义</th><th>附注</th></tr></thead>
+    <tbody>
+      <tr><td>上证指数</td><td class="num">3952.18 <span class="down">-0.11%</span></td><td class="num">510.6 亿手（-1.2%）| 成交额 9703.7 亿（昨 10102 亿，-3.9%）</td><td><span class="info">缩量回调</span></td><td>健康/中性</td><td>MA20 3910 上方，中枢下沿 4002 未收复</td></tr>
+      <tr><td>创业板指</td><td class="num">3424.40 <span class="down">-1.41%</span></td><td class="num">186.2 亿手（<b>+2.0%</b>）</td><td><span class="warn">放量下跌（温和派发）</span></td><td>短线资金离场信号</td><td>60m 二卖 @3489.34 当根；放量但幅度小，未破 3415 支撑</td></tr>
+      <tr><td>科创50</td><td class="num">1662.15 <span class="down">-1.85%</span></td><td class="num">8.0 亿手（<b>-20.8%</b>）</td><td><span class="ok">缩量回调（健康获利了结）</span></td><td>非恐慌出逃</td><td>60m 二买 1580 上方结构未破；与外部复盘"7/8 反转特征受考验"互相印证</td></tr>
+      <tr><td>沪深300</td><td class="num">4609.18 <span class="down">-0.46%</span></td><td>—</td><td><span class="info">缩量回调</span></td><td>健康</td><td>日线二买 4549.7 保持</td></tr>
+      <tr><td>两市合计</td><td class="num">2.10 万亿</td><td>较昨日同时段缩量超 200 亿（财联社 14:54）；早盘 10:28 反而放量 1000 亿+</td><td><span class="info">早放晚缩</span></td><td>冲高段放量=诱多换手，午后无人承接</td><td>上证 9703.7 亿 + 深成 11313.5 亿（腾讯）</td></tr>
+      <tr><td>农化（氮肥 +7.33%）</td><td class="num">放量上涨</td><td>化肥涨停 4 家、涨停池 81 家 vs 昨 77 家</td><td><span class="ok">放量上涨（确认）</span></td><td>主升确认</td><td>涨幅榜 TOP15 农化全包（种子+4.53%、种植+3.42%、煤化工+3.60%）</td></tr>
+      <tr><td>科技链（核心 30 只）</td><td class="num">均值 <span class="down">-2.55%</span></td><td>科创50 缩量 -20.8%</td><td><span class="ok">缩量下跌（获利了结）</span></td><td>轮动而非系统性下跌</td><td>大普微 +20%→+1.42% 振幅最大，其余缩量阴跌</td></tr>
+      <tr><td>黄金珠宝（深中华A 7 板）</td><td class="num">缩量涨停（题材）</td><td>—</td><td><span class="warn">情绪末端特征</span></td><td>筹码机构→游资换手</td><td>LHB 机构净卖 -1.35 亿、游资 +1.43 亿</td></tr>
+      <tr><td>CXO/疫苗</td><td class="num"><span class="down">-3.64% / -3.94%</span></td><td>—</td><td><span class="fail">放量下跌（派发）</span></td><td>出货延续</td><td>跌幅榜前 2，昨日"出货中"评级验证</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><b>定论：</b>昨日（8/27）8 维中 7 维的反转特征今日受考验——科技未续涨，但整体未崩（缩量 + 涨停 81 家情绪未恶化）→ 判定为<b>轮动特征成立</b>（科技→农化），非系统性下跌。反转是否夭折看明日：科创50 若放量收复 1693 则反转延续；缩量阴跌破 1632 → 降级为反弹。上证单日 -0.11% 缩量 = 权重无恙。</div>
+</section>
+
+<!-- 2.5 缠论结构收盘快照 -->
+<section>
+  <h2>⑤ 缠论结构收盘快照 <span class="tag">chanlib 重算 · 日线 + 60m · 20:53</span></h2>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1180px">
+    <thead><tr><th style="width:13%">标的</th><th style="width:9%">收盘(涨跌)</th><th style="width:10%">最新笔向</th><th style="width:26%">最新买卖点（生成/失效）</th><th style="width:14%">背驰状态</th><th style="width:15%">中枢位置</th><th>结构一句话</th></tr></thead>
+    <tbody>
+      <tr><td>上证指数</td><td class="num">3952.18 <span class="down">-0.11%</span></td><td>向下</td><td>日线 2s 卖 @3990.30（08-18 生成，距现价 +0.96%）持续压制</td><td>未背驰</td><td>日线中枢下沿 4002 下方（未收复）</td><td>结构未转强，反弹验证失败</td></tr>
+      <tr><td>创业板指</td><td class="num">3424.40 <span class="down">-1.41%</span></td><td>向下</td><td><b>60m 二卖 @3489.34 今日 10:30 生成（当根）</b>；日线二卖 @3354.82 下方</td><td>未背驰</td><td>60m 中枢 3489-3548 区间下移中</td><td>明日压力 3489，支撑 3415/3382</td></tr>
+      <tr><td>科创50</td><td class="num">1662.15 <span class="down">-1.85%</span></td><td>向下</td><td>60m 二买 @1579.96（08-24 生成，+5.2%）<b>结构完好</b>；日线无近期卖点</td><td>未背驰</td><td>60m 中枢上移结构保持</td><td>回踩未破二买区，反转基础仍在；破 1605 则恶化</td></tr>
+      <tr><td>沪深300</td><td class="num">4609.18 <span class="down">-0.46%</span></td><td>向下</td><td>日线 2s 买 @4549.72（08-06 生成）上方保持</td><td>未背驰</td><td>3680 上方日线中枢内</td><td>权重搭台结构未坏</td></tr>
+      <tr><td>云天化 600096<br><span class="src">持仓 3000 股 @31.08</span></td><td class="num">31.58 <span class="up">+2.04%</span></td><td>向下</td><td><b>日线 2s 卖 @31.58 当根 + 60m 一卖 @31.58（15:00 生成）＝双卖点当根</b></td><td>60m 顶背驰迹象（相对 08-14 2 买 28.89）</td><td>60m 中枢 29.16-31.58</td><td>买当日即顶到双重卖点——明日高开注意回吐</td></tr>
+      <tr><td>川金诺 300505<br><span class="src">持仓 4400 股 @20.56</span></td><td class="num">21.50 <span class="up">+4.17%</span></td><td>向下</td><td><b>日线 2s 卖 @21.50 当根</b>；60m 无近期卖点（最近为 05-11 @26.40 远）</td><td>无背驰</td><td>60m 中枢 20.26-21.86 上沿突破中</td><td>单级别卖点当根 = "强中带警"，弱于云天化的双卖点</td></tr>
+      <tr><td>蓝盾光电 300862<br><span class="src">持仓 100 股 @52.39</span></td><td class="num">50.91 <span class="down">-6.42%</span></td><td>向下（大阴）</td><td>无近期买卖点（日线/60m 均无结构支撑）</td><td>—</td><td>无有效中枢</td><td>结构混沌 + 逻辑模糊（环保监测/红外 ≠ 农业主线），最弱持仓</td></tr>
+      <tr><td>剑桥科技 603083（已清）<br><span class="src">印证参照</span></td><td class="num">192.31 <span class="down">-2.98%</span></td><td>向下</td><td>60m 无近期点；日线二卖 @198.21（08-27 当根）兑现</td><td>—</td><td>60m 中枢 183-214 回落到下沿</td><td>清仓点 199.05 &gt; 收盘 192.31，卖点选择方向正确</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><b>结构快照可直接引用：</b>科创50（60m 二买 1580 未破，支撑 1632/1605/1580）是明日科技仓的"总开关"；云天化/川金诺的日线二卖当根 = 明日冲高兑现的依据；蓝盾无结构 = 清仓依据。</div>
+</section>
+
+<!-- 2.7 持仓持有建议（★新增章节） -->
+<section>
+  <h2>⑥ 持仓持有建议（逐只·基于收盘结构） <span class="tag">双子表 · 四选一 · 四点位 · 触发/预案 bullet 化防高行</span></h2>
+  <h3>A. 点位表（全短数值格）</h3>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1000px">
+    <thead><tr><th style="width:17%">标的</th><th style="width:8%">操作</th><th style="width:25%">支撑 / 加仓线</th><th style="width:15%">压力位</th><th style="width:18%">止损位</th><th style="width:17%">目标位</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>云天化</b><br><span class="src">600096 · 3000 股 @31.08 · 浮盈 +1.61%</span></td>
+        <td><span class="warn">减仓</span></td>
+        <td class="num">30.78（今低）<br>30.5-30.8（回补观察）</td>
+        <td class="num">31.73 / 32.40</td>
+        <td class="num">收盘破 30.10 清</td>
+        <td class="num">33.0+（有效破 31.73）</td>
+      </tr>
+      <tr>
+        <td><b>川金诺</b><br><span class="src">300505 · 4400 股 @20.56 · 浮盈 +4.57%</span></td>
+        <td><span class="part">减仓</span></td>
+        <td class="num">20.26（今低）<br>20.5-20.6（回补观察）</td>
+        <td class="num">21.86 / 22.30</td>
+        <td class="num">收破 20.20 减半<br>破 19.80 清</td>
+        <td class="num">23.5</td>
+      </tr>
+      <tr>
+        <td><b>蓝盾光电</b><br><span class="src">300862 · 100 股 @52.39 · 浮亏 -2.82%</span></td>
+        <td><span class="fail">清仓</span></td>
+        <td class="num">49.90（今低）<br>无加仓线</td>
+        <td class="num">52.40（成本）/ 52.99</td>
+        <td class="num">收盘破 49.90 立即清</td>
+        <td class="num">—（认错离场）</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>B. 触发条件 + 明日预案 / 今日衔接（每条一行 · ≤20 字）</h3>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1000px">
+    <thead><tr><th style="width:12%">标的</th><th style="width:37%">触发条件</th><th style="width:51%">明日预案 / 今日衔接</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>云天化</b><br><span class="src">600096</span></td>
+        <td>• 日线 2s 卖 31.58 + 60m 一卖（15:00）= 双卖点当根<br>• 磷肥板块高开 &gt;3% = 兑现日，不追</td>
+        <td>• 冲 31.7-32.0 滞涨 → 条件单 31.7 减 1/2（勿市价）<br>• 平开弱于板块 → 减 1/3；收盘破 30.1 → 清<br>• 今日首日买入：不补不加；兑现资金不回补化肥</td>
+      </tr>
+      <tr>
+        <td><b>川金诺</b><br><span class="src">300505</span></td>
+        <td>• 日线 2s 卖 21.50 当根（涨多警示）<br>• 60m 无卖点 → 卖点级别弱于云天化</td>
+        <td>• 高开 +5%（≈22.58）减 1/3<br>• 冲 21.86 滞涨减 1/3；低开破 20.9 减 1/2<br>• 今日低吸成功（日内 19% 分位）：破 20.26 转清</td>
+      </tr>
+      <tr>
+        <td><b>蓝盾光电</b><br><span class="src">300862</span></td>
+        <td>• 缠论无买点 + 板块归属模糊（环保/红外 ≠ 主线）<br>• 当日 -6.42% 大阴破位；买点日内 80% 分位 = 追高</td>
+        <td>• 反抽 52.0-52.5 出清全部<br>• 低开破 49.9 → 竞价直接清<br>• 不摊平、不补仓（金额小但原则一致）</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>候选未持有（仅观察位 · 不给买卖建议）</h3>
+  <table class="tbl">
+    <thead><tr><th>标的</th><th style="width:24%">今日收盘</th><th style="width:42%">观察位</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>金安国纪 002636</td><td class="num">73.18 <span class="up">+5.43%</span>（炸板）</td><td class="num">72.0 → 66-67.8（昨买区）</td><td>情绪票炸板，回踩买区再谈</td></tr>
+      <tr><td>生益科技 600183</td><td class="num">145.65 <span class="up">+3.32%</span></td><td class="num">138.4 → 134-136（昨买区）</td><td>机构龙头，今日逆势红</td></tr>
+      <tr><td>中际旭创 300308</td><td class="num">858.35 <span class="down">-0.90%</span></td><td class="num">845-860（区已触及）</td><td>需科创50 企稳配合</td></tr>
+      <tr><td>星网锐捷 002396</td><td class="num">36.69 <span class="up">+10.02%</span>（2 板）</td><td class="num">33.8-34.2，不回踩不追</td><td>LHB 连续 2 日净买</td></tr>
+      <tr><td>德明利/天孚/沪电</td><td class="num">429.03 / 263.58 / 121.70</td><td class="num">400-415 / 255-262 / 117-119</td><td>均未触发</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 2.6 持仓与交易执行归因 -->
+<section>
+  <h2>⑦ 持仓与交易执行归因（逐笔） <span class="tag">卖出 09:43-09:48 清 6 只 · 买入为上午段（时点未记录）· 两维评判</span></h2>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1350px">
+    <thead><tr><th style="width:9%">时间</th><th style="width:12%">标的</th><th style="width:12%">成交价</th><th style="width:15%">当日 H/L/C（位置%）</th><th style="width:11%">结果</th><th style="width:16%">判断维度（预判 vs 实际）</th><th style="width:16%">执行维度（计划 vs 实做）</th><th style="width:9%">错误标签</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>09:43</td><td>卖出 剑桥科技 200 股</td><td class="num">199.05</td>
+        <td class="num">H 204.5 / L 191.8 / C 192.31<br>位置 57%（中位偏上）</td>
+        <td class="num"><span class="up">+1,528 元<br>（+3.99%）</span></td>
+        <td><b>判断：对。</b>预判冲高回落 → 收盘 192.31 <span class="down">-3.39%</span> 低于卖价；卖后规避约 -3% 回撤</td>
+        <td><b>执行：差 -2.7%。</b>整笔市价卖在 09:43 冲高段；当日高 204.5（预案减仓区 208-213 未到，但日内高点 204.5 存在）——未挂 203-204 条件单 = 少拿 2.7%</td>
+        <td><span class="warn">时点执行差</span> <span class="ok">卖对动作</span></td>
+      </tr>
+      <tr>
+        <td>09:44</td><td>卖出 中一科技 500 股</td><td class="num">40.10</td>
+        <td class="num">H 41.20 / L 39.08 / C 39.10<br>位置 48%（中位）</td>
+        <td class="num"><span class="up">+225 元<br>（+1.13%）</span></td>
+        <td><b>判断：对。</b>预案"高开低走直接破 40 减半 / 冲 41.2-42 滞涨减"——收盘 39.10 破 40 ✓；清仓方向正确</td>
+        <td><b>执行：差 -2.7%。</b>当日触及减仓区下沿 41.20（预案触发），但卖出在 40.10——若挂 41.2 条件单可多拿 2.7%；且 500 股全清 vs 预案"减 1/2~2/3"= 超量</td>
+        <td><span class="warn">时点执行差</span></td>
+      </tr>
+      <tr>
+        <td>09:45</td><td>卖出 鹏鼎控股 300 股</td><td class="num">90.11</td>
+        <td class="num">H 93.52 / L 87.99 / C 89.18<br>位置 38%（偏低）</td>
+        <td class="num"><span class="up">+168 元<br>（+0.63%）</span></td>
+        <td><b>判断：对。</b>预案"弱于板块借机减 1/2"——鹏鼎当日 -0.02% 远弱于板块；收盘 89.18 &lt; 卖价</td>
+        <td><b>执行：差 -3.6%。</b>减仓区 92-93.5 当日触及（H 93.52）但卖在 90.11 未挂单；若条件单 92.5 兑现 +2.6%</td>
+        <td><span class="warn">时点执行差</span></td>
+      </tr>
+      <tr>
+        <td>09:46</td><td>卖出 铜冠铜箔 300 股</td><td class="num">115.19</td>
+        <td class="num">H 119.48 / L 113.01 / C 114.39<br>位置 34%（偏低）</td>
+        <td class="num"><span class="up">+1,437 元<br>（+4.34%）</span></td>
+        <td><b>判断：对。</b>冲高回落兑现；收盘 114.39 &lt; 卖价 -0.69%</td>
+        <td><b>执行：中。</b>减仓区 122-125 未到（H 119.48），卖在 115.19 高于收盘 ✓ 但低于当日高 3.6%——在"预案未触发"的前提下主动兑现，方向可接受</td>
+        <td><span class="ok">卖对动作</span></td>
+      </tr>
+      <tr>
+        <td>09:47</td><td>卖出 江丰电子 200 股</td><td class="num">245.96</td>
+        <td class="num">H 249.27 / L 239.27 / C 239.82<br>位置 67%（偏高）</td>
+        <td class="num"><span class="up">+444 元<br>（+0.91%）</span></td>
+        <td><b>判断：对。</b>半导体材料 -2.74% 领跌，收盘 239.82 &lt; 卖价 -2.50%</td>
+        <td><b>执行：良。</b>卖在日内 67% 分位，接近减仓线 262-265 未到前的合理兑现</td>
+        <td><span class="ok">卖对动作</span></td>
+      </tr>
+      <tr>
+        <td>09:48</td><td>卖出 上海新阳 200 股</td><td class="num">90.02</td>
+        <td class="num">H 91.24 / L 87.75 / C 87.78<br>位置 65%（偏高）</td>
+        <td class="num"><span class="up">+214 元<br>（+1.20%）</span></td>
+        <td><b>判断：对。</b>同上，收盘 87.78 &lt; 卖价 -2.49%</td>
+        <td><b>执行：良。</b>日内 65% 分位，减仓线 93.4-94 未到前的合理兑现</td>
+        <td><span class="ok">卖对动作</span></td>
+      </tr>
+      <tr>
+        <td>上午段*</td><td>买入 云天化 3000 股</td><td class="num">31.08（成本）</td>
+        <td class="num">H 31.73 / L 30.78 / C 31.58<br>位置 32%（偏低段）</td>
+        <td class="num">浮盈 <span class="up">+1.61%<br>（+1,500 元）</span></td>
+        <td><b>判断：对。</b>农业-化肥主线第二阶段（氮肥 +7.33% 第一）；磷肥龙头地位成立</td>
+        <td><b>执行：中。</b>成本 31.08 贴近当日开盘 30.80（低开区买入，未追高也未等低吸）；买后日线 2s 卖 + 60m 一卖双点当根 = 时点偏晚（买在卖点生成当根）</td>
+        <td><span class="info">农业主线</span> <span class="info">化肥分支</span> <span class="warn">卖点当根买入</span></td>
+      </tr>
+      <tr>
+        <td>上午段*</td><td>买入 川金诺 4400 股</td><td class="num">20.56（成本）</td>
+        <td class="num">H 21.86 / L 20.26 / C 21.50<br>位置 19%（低吸）</td>
+        <td class="num">浮盈 <span class="up">+4.57%<br>（+4,136 元）</span></td>
+        <td><b>判断：对。</b>磷化工，化肥第二分支弹性票（当日 +4.17% 板块内最强）</td>
+        <td><b>执行：优。</b>买在日内 19% 分位 = 低吸成功，当日即 +4.57%</td>
+        <td><span class="ok">低吸到位</span></td>
+      </tr>
+      <tr>
+        <td>上午段*</td><td>买入 蓝盾光电 100 股</td><td class="num">52.39（成本）</td>
+        <td class="num">H 52.99 / L 49.90 / C 50.91<br>位置 <b>80%（追高）</b></td>
+        <td class="num">浮亏 <span class="down">-2.82%<br>（-148 元）</span></td>
+        <td><b>判断：错。</b>"环保监测/红外"与农业-化肥主线无关；当日 -6.42% 大阴 + 缠论无买点 → 该买不该买</td>
+        <td><b>执行：差。</b>买在日内 80% 分位 = 典型追高；同样资金若分类给川金诺/云天化则当日 +4% 以上</td>
+        <td><span class="fail">追高</span> <span class="fail">逻辑模糊</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">* 买入 3 笔的精确成交时点 journal 未记录（仅知为上午），位置分位 =（成交价-当日低）/（当日高-当日低），按 portfolios.json 成本价与当日 H/L 计算。</div>
+  <h3>卖飞/买早纠正条款</h3>
+  <ul class="clean">
+    <li><b>无卖飞</b>：6 只卖出全部收盘 &lt; 卖价，方向零失误——今日为 08-24 以来首次"卖对动作"连续 6/6。</li>
+    <li><b>买早/买错（蓝盾光电）</b>：明日反抽 52.0-52.5 出清（认错放弃，不摊平）；若低开破 49.9 竞价直接清。</li>
+    <li><b>买早（云天化/川金诺，双卖点当根）</b>：不是认错，是"兑现节奏修正"——明日高开按⑥预案分批减，绝不回补，等化肥板块回踩 20.5-20.6/30.5-30.8 再看是否二进。</li>
+  </ul>
+</section>
+
+<!-- 2.8 龙虎榜/连板梯队信号 -->
+<section>
+  <h2>⑧ 龙虎榜/连板梯队信号（明日初判） <span class="tag">本日收盘推断 · 置信度低一档</span></h2>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1200px">
+    <thead><tr><th>标的</th><th style="width:10%">连板/状态</th><th style="width:20%">龙虎榜净买（万）</th><th style="width:24%">席位性质（机构/游资）</th><th style="width:14%">方向判定</th><th>对明日含义</th></tr></thead>
+    <tbody>
+      <tr><td>星网锐捷（数据中心交换机+光）</td><td><span class="ok">2 板涨停</span> +10.02%</td><td class="num"><span class="up">+30,129</span></td><td>总净买 +3.01 亿；机构 -2,494 / 游资 -3,057（买盘为其他/接力盘）</td><td><span class="ok">连续流入</span></td><td>LHB 连续 2 日净买（+2.26 亿→+3.01 亿）→ 明日通信设备延续候选；但 2 板后分歧加大</td></tr>
+      <tr><td>金健米业（种业龙头）</td><td>9 天 6 板后首日未板</td><td class="num"><span class="down">-17,953</span></td><td>游资 -14,078 / 机构缺席 = 主力双撤</td><td><span class="fail">出货</span></td><td>农业第一阶段龙头使命结束；万向德农（4 板）成为接棒观察，不接连板</td></tr>
+      <tr><td>深中华A（黄金珠宝）</td><td><span class="warn">7 板</span>（顶格）</td><td class="num">-2,229（两笔合计）</td><td>机构 -13,462 / 游资 +14,327 = 机构出、游资接</td><td><span class="warn">末段博弈</span></td><td>游资互搏段，亏钱效应随时出现；不碰</td></tr>
+      <tr><td>昊华科技（化工）</td><td>—</td><td class="num"><span class="down">-31,964</span></td><td>机构 -51,853（大额）</td><td><span class="fail">机构出货</span></td><td>化工高位分化警示：化工票只做低位（化肥），不做高位（氟化工/煤化工跟风）</td></tr>
+      <tr><td>香江控股（算力租赁）</td><td><span class="ok">2 板</span></td><td class="num"><span class="up">+16,819</span>（两笔合计）</td><td>游资主导（+3,330）</td><td><span class="ok">游资进攻</span></td><td>"算力合同+中报减亏"题材接力，情绪指标</td></tr>
+      <tr><td>锦龙股份（券商+算力租赁+重组）</td><td><span class="ok">3 板</span></td><td class="num"><span class="up">+12,519</span></td><td>游资 +2,202 / 机构 -1,088</td><td><span class="ok">题材延续</span></td><td>重组+算力双属性，连板梯队高位票之一</td></tr>
+      <tr><td>沃特股份（PTFE/PCB）</td><td><span class="ok">2 板</span>（6 天 3 板）</td><td class="num"><span class="up">+8,765</span></td><td>游资 +3,652 / 机构 -1,403</td><td><span class="part">游资接力</span></td><td>PCB 细分材料情绪票；公司澄清 PTFE 收入仅 400 万 → 纯题材，不碰</td></tr>
+      <tr><td>新农股份（农药）</td><td><span class="ok">3 板</span></td><td class="num"><span class="down">-4,032</span></td><td>机构 -6,845 / 游资 -419</td><td><span class="fail">涨停出货</span></td><td>农药主线情绪的"机构不认可"信号——农化接力更依赖游资，波动放大</td></tr>
+      <tr><td>冀衡医药 / 千金药业</td><td><span class="ok">4 板 / 3 板</span></td><td class="num">+165 / —</td><td>冀衡游资 -2,384（分歧）</td><td><span class="part">情绪票</span></td><td>医药内部"机构权重跌、游资情绪涨"分化 —— 与 CXO 判断不冲突</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><b>连板梯队结构（今日 81 涨停 / 16 炸板 / 炸板率 16.5%）：</b>7 板深中华A · 5 板海鸥住工（控制权变更）· 4 板捷荣技术（折叠屏）/万向德农（种业）/冀衡医药 · 3 板千金药业/新农股份（农药）/锦龙股份。行业归属：农业 4 + 化肥 4 + 医药 6 + 科技 22（首板为主）+ 重组题材。连板高位集中在<b>黄金珠宝 / 重组 / 医药情绪票</b>，农业接力在中位（3-4 板）。<b>明日资金最可能去向（低置信度）：</b>① 化肥/农药第二分支（氮肥 +7.33% 后看磷肥/复合肥扩散）；② 医药游资票高低切（冀衡/千金 3-4 板梯队）；③ 房产链（房贷 40 年新政盘后落地，今日房产租赁 +5.44% 抢跑，明日高开需成交确认）；④ 科技超跌反弹候选——但前提是沃什讲话不鹰派（概率仅 ~40%）。</div>
+</section>
+
+<!-- 2.9 明日可买板块前瞻 -->
+<section>
+  <h2>⑨ 明日可买板块前瞻 <span class="tag">★ 三源交叉 · 每板块 3 只（龙头/弹性/低吸备选） · 低置信度收盘推断</span></h2>
+  <div class="note" style="margin-bottom:10px"><b>置信度声明：</b>本章节为收盘推断，供明日《策略日报》2.3/2.5 使用，置信度较正式策略报告低一档；仓位建议一律 ≤3%（观察仓），最终以次日策略日报为准。三源一致性：农化=三源一致（中）、光模块=两源一致（低）、房产链=两源一致（低，政策脉冲）。</div>
+  <h3>板块 1 · 化肥/磷化工（农业主线第二阶段分支）<span class="ok">三源一致 · 置信度中</span></h3>
+  <table class="tbl">
+    <thead><tr><th style="width:14%">三源证据</th><th>要点</th></tr></thead>
+    <tbody>
+      <tr><td><b>① 蒸馏方法论</b></td><td>贝叶斯框架：通胀粘性 80% → 实物资产 30% 维持、农业 12%；氮肥 +7.33% 领涨 + 化肥涨停 4 家 = 资金接力方向明确</td></tr>
+      <tr><td><b>② 专家观点</b></td><td>柴柴Co 08-28 15:38"农业大舞台…第一阶段龙头金健米业完成使命"（化肥=第二分支）；爱在冰川 08-28 观察清单持续农化方向</td></tr>
+      <tr><td><b>③ 缠论结构</b></td><td>云天化/川金诺双卖点当根 = <b>持仓兑现位非追买位</b>；板块整体处于主升（万向德农 4 板/新农 3 板梯队健康），回踩低吸结构成立</td></tr>
+    </tbody>
+  </table>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1050px">
+    <thead><tr><th style="width:19%">代表性 3 只</th><th style="width:8%">角色</th><th style="width:15%">收盘（涨跌）</th><th style="width:24%">缠论结构</th><th style="width:18%">观察买区</th><th>失效信号</th></tr></thead>
+    <tbody>
+      <tr><td>云天化 600096<br><span class="src">磷肥龙头（已持有）</span></td><td>龙头</td><td class="num">31.58 <span class="up">+2.04%</span></td><td class="num">日线 2s 卖 31.58 + 60m 一卖（当根）</td><td class="num">30.5-30.8 回踩不破</td><td class="num">收盘破 30.10</td></tr>
+      <tr><td>川金诺 300505<br><span class="src">磷化工弹性（已持有）</span></td><td>弹性</td><td class="num">21.50 <span class="up">+4.17%</span></td><td class="num">日线 2s 卖 21.50 当根、60m 无卖点</td><td class="num">20.5-20.9 回踩企稳</td><td class="num">收盘破 20.20</td></tr>
+      <tr><td>湖北宜化 000422<br><span class="src">尿素/磷肥复合（未持有）</span></td><td>低吸备选</td><td class="num">13.13 <span class="up">+4.46%</span></td><td class="num">日线一买 12.25（08-21）后上行、结构最健康</td><td class="num">12.5-12.8 回踩缩量</td><td class="num">收盘破 12.25（一买低点）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><b>明日验证信号：</b>开盘 30 分钟氮肥板块涨幅 &gt;1% 且云天化不破 30.78（今低）= 主线延续；平开低走破 30.5 = 第二分支证伪，转观察。<b>边界：</b>连板继承票（万向德农 4 板）与金健米业（LHB -1.8 亿出货）不碰——只做分支低吸。</div>
+  <h3>板块 2 · 光模块/光通信（科技超跌反弹候选）<span class="part">两源一致 · 置信度低</span></h3>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1050px">
+    <thead><tr><th style="width:19%">代表性 3 只</th><th style="width:8%">角色</th><th style="width:15%">收盘（涨跌）</th><th style="width:24%">缠论结构</th><th style="width:18%">观察买区</th><th>失效信号</th></tr></thead>
+    <tbody>
+      <tr><td>中际旭创 300308<br><span class="src">光模块龙头</span></td><td>龙头</td><td class="num">858.35 <span class="down">-0.90%</span></td><td class="num">60m 无卖点；回踩区 845-860 今日已触及</td><td class="num">845-858 分批</td><td class="num">收盘破 830</td></tr>
+      <tr><td>星网锐捷 002396<br><span class="src">交换机/光通信</span></td><td>弹性</td><td class="num">36.69 <span class="up">+10.02%</span>（2 板）</td><td class="num">60m 二买 29.73（08-26）后主升</td><td class="num">不回踩不追；33.8-34.2 仅观察</td><td class="num">炸板且收盘破 33.4</td></tr>
+      <tr><td>天孚通信 300394<br><span class="src">光器件弹性</span></td><td>低吸备选</td><td class="num">263.58 <span class="down">-1.34%</span></td><td class="num">60m 二买 242 结构完好，未到卖点</td><td class="num">255-262（昨日买区）</td><td class="num">收盘破 249</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><b>三源注记：</b>蒸馏源提示"科技获利了结或延续 1-2 日"（谨慎）；缠论源 60m 无卖点、回踩结构成立（支持）；专家源柴柴 15:18"创业板 3280-3300 才能看科技"（暂不支持）→ 两源一致仅低置信。<b>验证信号：</b>沃什讲话不鹰派（今夜 22:00）+ 明日科创50 放量收复 1693 = 前提成立；科创50 缩量阴跌破 1632 = 放弃。</div>
+  <h3>板块 3 · 房产链（政策脉冲 · 尾盘抢跑）<span class="part">两源一致 · 置信度低</span></h3>
+  <div class="scroll">
+  <table class="tbl" style="min-width:1050px">
+    <thead><tr><th style="width:19%">代表性 3 只</th><th style="width:8%">角色</th><th style="width:15%">收盘（涨跌）</th><th style="width:24%">缠论结构</th><th style="width:18%">观察买区</th><th>失效信号</th></tr></thead>
+    <tbody>
+      <tr><td>保利发展 600048<br><span class="src">地产龙头</span></td><td>龙头</td><td class="num">5.19 <span class="up">+0.19%</span></td><td class="num">日线无买卖点（缠论缺失，置信度降级）</td><td class="num">5.10-5.15 回踩</td><td class="num">收盘破 5.05</td></tr>
+      <tr><td>我爱我家 000560<br><span class="src">房产租赁/经纪</span></td><td>弹性</td><td class="num">2.64 涨停</td><td class="num">60m 一卖 3.33 远（05-12），无近压</td><td class="num">涨停不追；2.49-2.55 回踩</td><td class="num">炸板收盘破 2.49</td></tr>
+      <tr><td>世联行 002285<br><span class="src">房产代理/租赁</span></td><td>低吸备选</td><td class="num">2.33 <span class="up">+4.95%</span></td><td class="num">日线二买 2.09（08-24）+ MACD 转强，结构支持</td><td class="num">2.21-2.26 回踩缩量</td><td class="num">收盘破 2.09（二买低点）</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note"><b>三源注记：</b>证据链=盘后 19:06 房贷 30→40 年（A 级电报）+ 今日房产租赁 +5.44% 尾盘异动抢跑（蒸馏源）；缠论源仅世联行结构支持；专家源无明确表态 → 两源一致低置信。<b>验证信号：</b>明日高开 &gt;4% 不追（政策脉冲惯例）；10:30 前板块成交额未延续放大 = 脉冲证伪，一律放弃。保利缠论缺失已声明。</div>
+</section>
+
+<!-- 2.5/2.6 之外：量价与方法之外 → 高频错误模式统计 -->
+<section>
+  <h2>⑩ 高频错误模式统计卡 <span class="tag">journal 聚合 · 数据窗口 08-24~08-28（5 交易日）</span></h2>
+  <div class="kpi" style="margin-bottom:12px">
+    <div class="box"><div class="v">23</div><div class="l">日志条目（5 交易日）</div></div>
+    <div class="box"><div class="v">3</div><div class="l">高频模式识别</div></div>
+    <div class="box"><div class="v">66%</div><div class="l">近 3 份报告主推命中率（无迟钝警报）</div></div>
+    <div class="box"><div class="v">08-27</div><div class="l">最严重卖飞日（11 只加权 +6%）</div></div>
+  </div>
+  <h3>错误标签频次（journal.tags，近 10 交易日实际覆盖 08-24~08-28）</h3>
+  <table class="tbl" style="max-width:640px">
+    <thead><tr><th>标签</th><th>频次</th><th>涉及日</th><th>趋势</th></tr></thead>
+    <tbody>
+      <tr><td>恐慌离场</td><td>2</td><td>08-26（卖在跳水低点 V 修复）/ 08-27（11 只全清次日全卖飞）</td><td><span class="ok">收敛中</span>（08-27 后未再犯）</td></tr>
+      <tr><td>纪律外操作</td><td>2</td><td>08-24（ETF 斩仓 / 行云止损）</td><td>—</td></tr>
+      <tr><td>分散过度/平铺</td><td>3</td><td>08-24（双 ETF）/ 08-26（11 只平铺）</td><td>08-28 单板块 3 只 = 改善</td></tr>
+      <tr><td>开盘半小时内清仓</td><td>2</td><td>08-27 / 08-28（本次方向对）</td><td><span class="warn">未收敛</span>（节奏模式）</td></tr>
+      <tr><td>满仓过重大事件夜</td><td>2</td><td>08-26（英伟达财报）/ 08-28（沃什讲话）</td><td><span class="fail">未收敛</span>（本日再次）</td></tr>
+      <tr><td>时点执行差（无条件单）</td><td>3</td><td>08-28 剑桥/中一/鹏鼎（差 2.7%~3.6%）</td><td><span class="fail">新增</span>（本日新识别）</td></tr>
+      <tr><td>追高（日内 80% 分位买）</td><td>1</td><td>08-28 蓝盾光电</td><td>—</td></tr>
+      <tr><td>预判失误/提前下车/止损后反弹</td><td>各 1</td><td>08-27 预判失败 / 08-24</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <h3>三大高频亏损模式（按金额影响排序）</h3>
+  <div class="note"><b>① 满仓过事件夜（2 次，未收敛）：</b>08-26 满仓过英伟达财报 → 08-27 高开低走预判失败割在低点（-5,000 元级）；08-28 满仓过沃什讲话 → 暴露与上次同构。对应规则：事件夜/周五 ≤70% 仓位硬上限。<br><b>② 开盘半小时恐慌/预判式清仓（3 次，收敛中）：</b>08-26 卖在跳水低点后 V 修复（卖飞 5%+）、08-27 11 只全清全员卖飞（加权 +6%）、08-28 第 3 次方向首次正确——根因未消：清仓决策仍在"预判"而非"触发位"。改进：清仓理由必须能写成条件单（跌破 X），无法写条件的清仓一律降级为减 1/2。<br><b>③ 卖出无挂单纪律（本日识别，3 笔差 2.7%~3.6%）：</b>剑桥 199.05 vs 204.5、中一 40.10 vs 41.2、鹏鼎 90.11 vs 93.52——预案点位全部给了，但执行全是整笔市价。改进：减仓触发一律预挂条件单（前高/5 日线下方），禁止市价整笔。</div>
+  <h3>迟钝警报：近 3 份策略报告主推次日验证</h3>
+  <table class="tbl">
+    <thead><tr><th>报告（生成日）</th><th>主推板块/方向</th><th>次日实际</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>今日作战 08-26</td><td>科技回流：液冷温控、光缆龙头（贵金属/CXO 出货）</td><td>科创50 08-26 <span class="up">+1.71%</span>，科技反弹</td><td><span class="ok">命中</span></td></tr>
+      <tr><td>今日作战 08-27</td><td>算力硬件链验证日（持仓享受反弹）</td><td>科创50 08-27 <span class="up">+3.77%</span>，科技 30 均值 +6.38%</td><td><span class="ok">命中</span></td></tr>
+      <tr><td>策略日报 08-28（今日验证）</td><td>覆铜板/PCB 主推 + 光模块回踩</td><td>金安 +5.43%<b>炸板</b>/生益 +3.32%；旭创回踩区触及；板块整体受科技拖累</td><td><span class="part">部分</span>（龙头个股对、板块指数弱）</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>无 &lt;50% 警报（命中 2/3 + 部分 1/3）。共性漏洞 = 粒度问题：</b>主推写在"板块"层，赚钱实际发生在"机构龙头个股"层——08-28 金安（游资领涨）炸板而生益（机构）红。推演环节修补：主推清单从"板块"改为"板块 + 机构龙头 + 回踩位"三件套；情绪票只在炸板率 &lt;20% 且板块首次启动日才纳入。</div>
+</section>
+
+</main>
+
+<!-- ══════════ 右侧固定侧栏 ══════════ -->
+<aside>
+
+  <section>
+    <h2>⑪ 明日修正要点 · 陷阱清单</h2>
+    <ul class="clean">
+      <li><b>化肥高开追高</b>：云天化/川金诺日线二卖当根，明日高开 &gt;3% 不追，等回踩 20.5-20.9 / 30.5-30.8；若直接加速（板块 +5%+）只减不加。</li>
+      <li><b>沃什讲话（今夜 22:00）鹰派</b>（概率 ~60%）：明日科技若高开 <b>不抢跑</b>；科创50 收盘破 1605 降科技、破 1580 清弹性仓。</li>
+      <li><b>深中华A 7 板游资互搏</b>（机构 -1.35 亿）不碰；金健米业 LHB -1.8 亿出货 → 农业<b>连板继承票</b>（万向德农 4 板）同样不接。</li>
+      <li><b>房产链政策高开</b>（房贷 30→40 年，19:06 盘后 A 级）：今日已 +5.44% 抢跑，明日高开 &gt;4% 不追，看 10:30 前成交是否延续再定。</li>
+      <li><b>蓝盾光电</b>（-6.42% 大阴）：不摊平、不补仓，按⑥反抽 52 出清。</li>
+      <li><b>昊华科技机构 -5.19 亿</b> → 化工只做低位化肥分支，回避高位化工跟风。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>⑫ 持仓明日执行预案（点位总表）</h2>
+    <table class="tbl">
+      <thead><tr><th>持仓</th><th>操作</th><th>关键触发</th></tr></thead>
+      <tbody>
+        <tr><td>云天化<br><span class="src">3000 股 @31.08</span></td><td><span class="warn">减仓</span></td><td>冲 31.7-32 滞涨减 1/2（条件单 31.7）；收盘破 30.1 清</td></tr>
+        <tr><td>川金诺<br><span class="src">4400 股 @20.56</span></td><td><span class="part">减仓</span></td><td>高开 +5% 减 1/3；冲 21.86 滞涨减 1/3；收破 20.2 减半</td></tr>
+        <tr><td>蓝盾光电<br><span class="src">100 股 @52.39</span></td><td><span class="fail">清仓</span></td><td>反抽 52.0-52.5 出清；破 49.9 竞价清；低开直接挂单</td></tr>
+      </tbody>
+    </table>
+    <div class="src">卖出一律预挂条件单 · 禁止整笔市价（07 实证：3 笔各差 2.7%~3.6%）</div>
+  </section>
+
+  <section>
+    <h2>⑬ 预判规则库增删改（→ 知识库）</h2>
+    <ul class="clean">
+      <li><b>新增 · LHB 连续方向</b>：净买 ≥2 日且方向一致 → 次日延续概率高，买法从"只等回踩"改为"高开 &lt;4% 追 1/4 + 回踩补"（星网锐捷 +2.26→+3.01 亿实证）。</li>
+      <li><b>新增 · 财报一日催化窗口 = 落地日 1 天</b>：兑现节奏"落地日尾盘减 1/3、次日早盘冲高再减"（英伟达 2 次验证）。</li>
+      <li><b>新增 · 板块确认日只买机构龙头</b>：主推粒度 板块→"板块+机构龙头+回踩位"三件套；游资领涨票只在炸板率 &lt;20% 的首次启动日纳入（金安炸板实证）。</li>
+      <li><b>新增 · 买票资格</b>：当日涨幅 &gt;+5% 且板块归属模糊的票禁止（蓝盾 -6.42% 实证）；"环保/红外"类蹭题票不进池。</li>
+      <li><b>新增 · 尾盘板块异动查政策</b>：收盘 1 小时内有对应加红电报 → 次日按"政策脉冲"处理（房产租赁 +5.44% 实证）。</li>
+      <li><b>修改 · 农业评级</b>：15 分 → <b>25 分</b>（长期主线）；新增"全球共振强度"评分维度；参与限第二阶段分支（化肥/农药），连板继承票不碰（金健 LHB 出货实证）。</li>
+      <li><b>修改 · 仓位硬约束</b>：事件夜/周五 ≤70%；预案约束从"≤3% 软行文"改为执行清单硬条目（08-26/08-28 两次违反实证）。</li>
+      <li><b>修改 · 卖出执行</b>：减仓一律条件单分批，禁止整笔市价（08-28 三笔各差 2.7%~3.6% 实证）。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>免责声明</h2>
+    <div class="note" style="font-size:11px;line-height:1.6">
+      本报告由 AI 复盘系统基于公开数据（同花顺/腾讯/财联社/外部公开复盘）自动生成，仅供个人复盘研究参考，不构成任何投资建议。所有历史判断均以当时数据为限；市场有风险，决策需独立判断，盈亏自负。缠论买卖点为结构参考，不承诺预测未来。
+    </div>
+  </section>
+
+</aside>
+</div>
+</body>
+</html>
