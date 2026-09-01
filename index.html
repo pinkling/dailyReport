@@ -59,11 +59,11 @@
 
 <script>
 const REPORTS = [
-  {type:"strategy", date:"20260901", target:"0901", title:"策略日报 · 2026-09-01 → 目标 0901", path:"reports/strategy/20260901.html"},
-  {type:"strategy", date:"20260831", target:"0831", title:"策略日报 · 2026-08-30 → 目标 0831 | 预期差检验版：装配式二阶受益 × 地产一阶已定价", path:"reports/strategy/20260831.html"},
-  {type:"strategy", date:"20260828", target:"0828", title:"策略日报 · 2026-08-28 · 目标0828 | NVDA 财报后 AI 硬件链验证日", path:"reports/strategy/20260828.html"},
-  {type:"review", date:"20260831", title:"复盘日报 · 2026-08-31 · 归因闭环 + 回测联动", path:"reports/review/20260831.html"},
-  {type:"review", date:"20260828", title:"复盘日报 · 2026-08-28 · 归因闭环", path:"reports/review/20260828.html"}
+  {type:"strategy", date:"20260901", time:"08:27", target:"0901", title:"策略日报 · 2026-09-01 → 目标 0901", path:"reports/strategy/20260901.html"},
+  {type:"strategy", date:"20260831", time:"23:21", target:"0831", title:"策略日报 · 2026-08-30 → 目标 0831 | 预期差检验版：装配式二阶受益 × 地产一阶已定价", path:"reports/strategy/20260831.html"},
+  {type:"strategy", date:"20260828", time:"07:36", target:"0828", title:"策略日报 · 2026-08-28 · 目标0828 | NVDA 财报后 AI 硬件链验证日", path:"reports/strategy/20260828.html"},
+  {type:"review", date:"20260831", time:"22:24", title:"复盘日报 · 2026-08-31 · 归因闭环 + 回测联动", path:"reports/review/20260831.html"},
+  {type:"review", date:"20260828", time:"17:53", title:"复盘日报 · 2026-08-28 · 归因闭环", path:"reports/review/20260828.html"}
 ];
 
 function fmtDate(d){
@@ -92,7 +92,7 @@ function render(){
         <span class="title">${r.title}</span>
       </div>
       <div class="meta">
-        <span>${fmtDate(r.date)} ${weekday(r.date)}</span>
+        <span>${fmtDate(r.date)} ${weekday(r.date)}${r.time?" "+r.time:""}</span>
         ${r.target?`<span>目标 ${r.target}</span>`:""}
       </div>
     </a>`;
@@ -117,9 +117,9 @@ tabs.forEach(t=>t.addEventListener("click",()=>{
   render();
 }));
 
-// 更新时间 = 最新的报告日期
-const newest = REPORTS.map(r=>r.date).sort().pop();
-document.getElementById("updatedAt").textContent = "最近更新 " + fmtDate(newest);
+// 更新时间 = 最新的报告日期+分钟
+const newest = REPORTS.map(r=>r).sort((a,b)=> (b.date+(b.time||"")).localeCompare(a.date+(a.time||"")))[0];
+document.getElementById("updatedAt").textContent = "最近更新 " + fmtDate(newest.date) + (newest.time?" "+newest.time:"");
 
 render();
 </script>
