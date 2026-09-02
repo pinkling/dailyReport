@@ -2,188 +2,272 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>复盘日报 · 2026-09-02 | 全天阴跌 E 情景：军工承接AI应用分化 × 割肉横跳的执行账</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>复盘日报 · 2026-09-02 | E情景阴跌：军工承接×AI分化 · 量化型对手盘登场（PC版）</title>
 <style>
-:root{--bg:#0b1020;--card:#141b31;--card2:#1a2340;--line:#2b3a5c;--tx:#e8edf7;--sub:#8b97b8;--green:#39e58c;--red:#ff5d5d;--gold:#ffc53d;--blue:#5aa7ff;--purple:#b18cff}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65;padding-bottom:40px}
-::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#2b3a5c;border-radius:3px}
-.wrap{max-width:640px;margin:0 auto;padding:14px}
-h1{font-size:19px;line-height:1.45;margin:6px 0 4px}
-h2{font-size:15px;margin:22px 0 10px;padding:7px 10px;background:linear-gradient(90deg,#1a2f55,#141b31);border-left:3px solid var(--blue);border-radius:4px}
-h3{font-size:14px;margin:14px 0 6px;color:var(--gold)}
+:root{--bg:#0b0f1a;--card:#131a2b;--card2:#18213a;--line:#263450;--tx:#e8edf7;--sub:#8b97b8;--green:#3ddc97;--green2:#6bf0b5;--red:#ff5d5d;--gold:#ffc53d;--blue:#5aa7ff;--purple:#b18cff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scrollbar-color:#3ddc97 #131a2b;scrollbar-width:thin}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7;padding-bottom:40px}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#0b0f1a}
+::-webkit-scrollbar-thumb{background:#3ddc97;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#6bf0b5}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;max-width:1500px;margin:0 auto;padding:18px}
+.main{min-width:0}
+.side{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow-y:auto}
+h1{font-size:21px;line-height:1.45;margin:6px 0 4px}
+h2{font-size:16px;margin:20px 0 10px;padding:8px 12px;background:linear-gradient(90deg,#182755,#131a2b);border-left:3px solid var(--green);border-radius:4px}
+h3{font-size:14px;margin:13px 0 6px;color:var(--gold)}
 .meta{color:var(--sub);font-size:12px;margin:2px 0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
-.card.hl{border-color:var(--blue);box-shadow:0 0 0 1px rgba(90,167,255,.15)}
-.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;margin:1px 3px 1px 0;vertical-align:middle}
-.tg{background:rgba(57,229,140,.14);color:var(--green);border:1px solid rgba(57,229,140,.4)}
-.tr{background:rgba(255,93,93,.14);color:var(--red);border:1px solid rgba(255,93,93,.4)}
-.ty{background:rgba(255,197,61,.14);color:var(--gold);border:1px solid rgba(255,197,61,.4)}
-.tb{background:rgba(90,167,255,.14);color:var(--blue);border:1px solid rgba(90,167,255,.4)}
-table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
-th,td{border:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top}
-th{background:var(--card2);color:var(--sub);font-weight:600;white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:10px 0}
+.card.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(61,220,151,.12)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;margin:1px 3px 1px 0}
+.tg{background:rgba(61,220,151,.13);color:var(--green);border:1px solid rgba(61,220,151,.4)}
+.tr{background:rgba(255,93,93,.13);color:var(--red);border:1px solid rgba(255,93,93,.4)}
+.ty{background:rgba(255,197,61,.13);color:var(--gold);border:1px solid rgba(255,197,61,.4)}
+.tb{background:rgba(90,167,255,.13);color:var(--blue);border:1px solid rgba(90,167,255,.4)}
+.tp{background:rgba(177,140,255,.13);color:var(--purple);border:1px solid rgba(177,140,255,.4)}
+.scroll{max-height:520px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--card2);color:var(--sub);font-weight:600;position:sticky;top:0}
 tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 .up{color:var(--green)}.dn{color:var(--red)}.warn{color:var(--gold)}
-.small{font-size:11px;color:var(--sub)}
-.bsp{background:rgba(57,229,140,.07);border-left:3px solid var(--green);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
-.risk{background:rgba(255,93,93,.07);border-left:3px solid var(--red);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
-.note{background:rgba(255,197,61,.07);border-left:3px solid var(--gold);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.small{font-size:11.5px;color:var(--sub)}
+.bsp{background:rgba(61,220,151,.06);border-left:3px solid var(--green);padding:7px 10px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12.5px}
+.risk{background:rgba(255,93,93,.06);border-left:3px solid var(--red);padding:7px 10px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12.5px}
+.note{background:rgba(255,197,61,.06);border-left:3px solid var(--gold);padding:7px 10px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12.5px}
 .divider{height:1px;background:var(--line);margin:14px 0}
-.big{font-size:16px;font-weight:700}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-@media (max-width:480px){.grid2{grid-template-columns:1fr}}
-.footer{margin-top:26px;padding:12px;background:var(--card2);border-radius:8px;font-size:11px;color:var(--sub)}
-.tldr{background:linear-gradient(135deg,#132647,#0f1f3d);border:1px solid var(--blue);border-radius:10px;padding:12px;margin:12px 0}
-.tldr li{margin:6px 0 6px 18px;font-size:13px}
-.hit{color:var(--green);font-weight:700}.miss{color:var(--red);font-weight:700}
+.big{font-size:17px;font-weight:700}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hit{color:var(--green);font-weight:700}.miss{color:var(--red);font-weight:700}.part{color:var(--gold);font-weight:700}
+.tldr{background:linear-gradient(135deg,#132647,#0f1f3d);border:1px solid var(--blue);border-radius:10px;padding:14px;margin:12px 0}
+.tldr li{margin:7px 0 7px 18px;font-size:13.5px}
+.sidecard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:0 0 14px}
+.sidecard h3{margin-top:0;color:var(--green)}
+.footer{margin-top:24px;padding:14px;background:var(--card2);border-radius:8px;font-size:11px;color:var(--sub);grid-column:1/-1}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}.side{position:static;max-height:none}}
+@media print{.side{display:none}body{background:#fff;color:#111}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="layout">
+<div class="main">
 
-<div class="meta">复盘日报 V2 · 归因闭环 + V3.7 新模块首跑（对手盘/主力视角/情景矩阵）</div>
-<h1>复盘日报 · 2026-09-02<br><span style="font-size:14px;color:var(--gold)">全天阴跌 E 情景：军工承接 AI 应用分化 × 割肉横跳的执行账</span></h1>
-<div class="meta">生成 2026-09-02 21:2x（收盘后）· 复盘对象 0902 · 基准：《策略日报_20260902_目标0902》（0902 晨版）+ 0901 晚版</div>
+<div class="meta">复盘日报 V2.5（PC 版）· 归因闭环 + 回测联动 · V3.7 新模块首跑</div>
+<h1>复盘日报 · 2026-09-02<br><span style="font-size:15px;color:var(--gold)">E 情景阴跌：军工承接 AI 分化 × 量化型对手盘登场</span></h1>
+<div class="meta">生成 2026-09-02 21:5x（收盘后 90 分钟内）· 复盘对象 <b>0902</b> · 预判基准：《策略日报_20260902_目标0902》（晨版）+《策略日报_20260901_目标0902》（晚版）</div>
 
 <div class="card hl">
-<div class="grid2">
-<div><b>0902 收盘快照</b><br><span class="small num">上证 3941.39（-0.97%）<br>创业板 3312.24（<b class="dn">-2.39%</b>）<br>科创50 1617.60（-1.82%）<br>沪深300 4547.96（-1.38%）</span></div>
-<div><b>情绪面板</b><br><span class="small num">涨停 49（前日 80↓）<br>跌停 <b class="dn">8</b>（前日 0↑）<br>两市 1.79 万亿（缩量 2422 亿）<br>连板晋级率 <b>7/14=50%</b><br>近 4000 家下跌</span></div>
+<div class="grid3">
+<div><b>指数</b><br><span class="small num">上证 3941.39（-0.97%）<br>深成 13611.55（-1.88%）<br>创业板 3312.24（<b class="dn">-2.39%</b>）<br>科创50 1617.60（-1.82%）</span></div>
+<div><b>情绪面板</b><br><span class="small num">涨停 49（昨 80↓）<br>跌停 <b class="dn">8</b>（昨 0↑）<br>两市 1.79 万亿（缩 2422 亿）<br>晋级率 7/14=50%</span></div>
+<div><b>2板票竞价溢价</b><br><span class="small num">均值 <b class="warn">+2.64%</b><br>区间 -3.1% ~ +10.0%<br>北证50 +2.50% 独立走强<br>近 4000 家下跌</span></div>
 </div>
 <div class="divider"></div>
-<div class="small"><b>盘面一句话</b>：普跌日但非崩盘——跌停仅 8 家、晋级率守住 50%，是"缩量阴跌"而非"恐慌出货"。军工逆势全涨停（内蒙一机/博云新材/飞龙股份 LHB 前三），AI 应用 2 板票分化（欢瑞/龙版/大晟/集泰晋级 vs 博纳/掌阅/时代出版炸板），种业/农业高位巨震（金健 -6.34%/北大荒 -8.59%），油气链被量化反杀（海能/海油高开低走），北证50 +2.50% 独立走强。</div>
+<div class="small"><b>今日操作总评（一句话）</b>：E 情景全仓换仓赌对方向（行云 +3,451），但 8 笔全手动 0 条件单，判断不再是瓶颈、执行结构依然是。</div>
 </div>
 
-<h2>① 预判兑现度核对表 ★</h2>
+<h2>① 预判兑现度核对表 ★（含排除/警示结论）</h2>
+<div class="card"><div class="scroll">
 <table>
-<tr><th>0902 晨报告预判</th><th>实际</th><th>判定</th></tr>
-<tr><td>主推①油气链二阶（海能必追 19.0-19.4）</td><td>海能开 19.34(+1.4%) → 收 18.69(-1.99%)；海油 -2.14%；通源 LHB 净卖 -2.2 亿</td><td class="miss">错</td></tr>
-<tr><td>主推②煤炭（国芳必追/郑州煤电标尺）</td><td>国芳一字 4 板 +10.01%；郑州煤电炸板 -1.85%</td><td class="hit">对（标尺预警正确）</td></tr>
-<tr><td>主推③短剧只做芒果 3 板确认</td><td>芒果高开 5.5%>5% 上限翻绿收 +0.69%=确认失败；但 2 板票内部分化（欢瑞/龙版/大晟晋级）</td><td class="hit">对（纪律防了追高）</td></tr>
-<tr><td>观察 MLCC/染料二阶（10点前放量+2%才启动）</td><td>风华 -4.03%/龙盛 -4.46% 未放量=顺延执行正确</td><td class="hit">对（未动作=躲过）</td></tr>
-<tr><td>流出：PCB 高位/科创算力/黄金/地产</td><td>PCB -2.6~-3.3%、算力 -3~-4.3%、黄金 -0.6~-0.9%、我爱我家断板 -0.3%+LHB 净卖</td><td class="hit">对（4/4 全中）</td></tr>
-<tr><td>验证信号：科创50 破 1605 减仓</td><td>最低 1607.19，收 1617.60——线守住（差 0.14%）</td><td class="hit">未触发</td></tr>
-<tr><td>0901 晚版：短剧分化预案（高开5%收绿=分化日）</td><td>芒果开 21.5 收 20.52 翻绿，掌阅 -2.82%</td><td class="hit">信号命中</td></tr>
-<tr><td>0901 晚版：种业断板触发器（万向续板+LHB>1亿→作废）</td><td>万向德农 +3.3% 未涨停断板——触发器未触发，但金健 -6.34%/神农 LHB -2.99 亿净卖=种业实际退潮</td><td class="warn">未触发但方向确认</td></tr>
+<tr><th>昨日预判</th><th>0902 实际</th><th>判定</th><th>证据</th></tr>
+<tr><td>晨版主推① 油气链二阶（海能必追 19.0-19.4）</td><td>海能高开 19.34 → 收 18.69</td><td class="miss">证伪</td><td>开 +1.4% 收 -1.99%；海油 -2.14%；通源 LHB -2.2 亿</td></tr>
+<tr><td>晨版主推② 煤炭（国芳必追/郑州煤电标尺）</td><td>国芳一字 4 板；郑州煤电炸板</td><td class="part">部分兑现</td><td>国芳 +10.01% 一字；标尺 -1.85% 断板预警正确</td></tr>
+<tr><td>晨版主推③ 短剧只做芒果 3 板确认（高开≤5%）</td><td>高开 5.5% 超上限翻绿</td><td class="hit">纪律正确</td><td>开 21.5 收 20.52 翻绿——按纪律本应放弃，追高者被套</td></tr>
+<tr><td>晨版观察：MLCC/染料（10 点前放量 +2% 才启动）</td><td>风华 -4.03%/龙盛 -4.46%</td><td class="hit">正确不动作</td><td>未放量=顺延执行，躲过 -4%</td></tr>
+<tr><td>晨版流出：PCB 高位/科创算力/黄金/地产</td><td>全部下跌</td><td class="hit">4/4 全中</td><td>PCB -2.6~-3.3%/算力 -3~-4.3%/金 -0.6~-0.9%/我爱我家断板</td></tr>
+<tr><td>晨版持仓级止损：科创50 破 1605 减仓</td><td>最低 1607.19</td><td class="hit">未触发</td><td>收盘 1617.60，线守住差 0.14%</td></tr>
+<tr><td>晚版：短剧分化预案（高开 5% 收绿=分化日）</td><td>芒果/掌阅翻绿</td><td class="hit">信号命中</td><td>开 21.5 收 20.52；掌阅 -2.82%</td></tr>
+<tr><td>晚版：种业断板触发器（万向续板+LHB>1亿）</td><td>万向 +3.3% 断板</td><td class="part">未触发</td><td>但金健 -6.34%/神农 LHB -2.99 亿=退潮实质确认</td></tr>
+<tr><td>晚版：液冷低吸（英维克 63.5-65.0）</td><td>最低 65.81 未触及</td><td class="hit">踏空=正确</td><td>收 66.90 +1.52%——买区未触发反而走强，等回踩纪律正确</td></tr>
+<tr><td>晚版：北大荒低吸（13.2-13.5）</td><td>触发 13.42 成交</td><td class="miss">触发即套</td><td>收 12.67 -6.15%（按 13.5 上沿）——高位种业回撤日接刀</td></tr>
 </table>
-<div class="note"><b>总账</b>：晨版主推 1/3（煤炭标尺+短剧纪律+观察顺延+流出 4 条全对，但油气主推错）；个股池 10 触发平均 -2.86%。当日最有价值的三句是三句"不做什么"——不追秒板、不启动不建仓、流出栏全对。报告的"排除力"显著强于"进攻力"。</div>
+</div></div>
+<div class="note"><b>兑现度总账</b>：正向预判 3/4 错（油气/北大荒错，煤炭半对），排除/观察/纪律类 <b>7/7 全对</b>——"不做什么"的报告价值连续第二日高于"做什么"。</div>
 
-<h2>② 对手盘复盘（V3.7 新模块首跑）★</h2>
+<h2>② 资金流向实际路径复盘 ★</h2>
 <div class="card">
-<b class="miss">量化型对手盘登场（0902 主导）</b>：地缘升级=隔夜全网头条=油气链竞价一致性高开（海能 +1.4%/海油 +2.6%/通源 +5.1%）→ 量化反手砸→ 全天阴跌收 -2~-4%。晨报告的护栏"两桶油高开 >6% 秒板=定价过快只看不动"阈值定宽了——实际高开仅 1.4-2.6% 就开始反杀，<b>未触发护栏 = 但按护栏逻辑本应同样放弃</b>。这是护栏设计的漏：只防"高开过快"，没防"高开即出货"。<br><br>
-<b class="warn">川普型对手盘盘后预演</b>：ADP 3.8 万远低预期 → 美债 2-30Y 收益率大幅走低 → 纳指期货收复跌幅转涨；WTI 从 90.2 回落 89.66、黄金 4389 回稳。若非农（9/4）不及预期坐实 → 降息预期回归 → <b>科技反抽 + 黄金修复的"反向窗口"打开</b>——今晨割肉卖出的 5 只科技，明日可能要更高价接回。<br><br>
-<b class="up">监管型未登场但挂载正确</b>：深中华A 20:41 发"异常上涨可能停牌核查"、爱丽家居同款——≥3 板情绪票今晚在批量自我澄清，明日高位连板票接力环境继续恶化（利空情绪票，利好军工/北交所这种"监管友好"方向）。
-</div>
-
-<h2>③ 主力视角验证（收盘回看）</h2>
-<div class="card">
-<b>今日主力最优解复盘</b>：① 军工承接——内蒙一机 2 板（封单 2.76 亿+LHB +2.12 亿央企军贸）、博云新材/飞龙股份 LHB 前三全涨停：主力在"AI 应用高位分歧日"找的是<b>有中俄贸易+军贸产业逻辑、且不在监管枪口上的低位板块</b>；② 零售/北交所放大器——国芳 4 板一字、北证50 +2.50%、专家群"北交次新+小盘"刷屏：情绪资金在主板高位票风险区外开辟第三战场；③ 科技筹码交换——生益 95.5 亿天量（-5.85% 后十字企稳）、剑桥 26.5 亿、章建平退出旭创前十大股东=大户获利了结，但美的回购 80.2 亿+产业资本托底同步发生：<b>主力在科技内部做"大户出、公司接"的换手</b>，非系统性撤退。<br>
-<b>吸筹/出货证据核对</b>：沪深300 ETF 无巨量异动（国家队未出手）；尾盘创业板回拉 0.46pct=抄底盘试探性进场，量级不足以定性。
-</div>
-
-<h2>④ 指数情景矩阵执行核对（V3.7）</h2>
-<div class="card">
-<b>今日实际落入：<span class="warn">E 全天阴跌（过渡到 C 低开杀跌的混合态）</span></b>——低开 0.8-1.4%（未达 C 的 -1% 阈值）→ 盘中创业板最深 -2.85% → 跌停 0→8（V 反信号①不成立）→ 无深 V，午后仅技术性回拉 0.46pct。<br>
-<b>矩阵动作执行度</b>：E 情景=不接飞刀只执行条件单 → 用户实际在 10:11-10:16 完成了全仓换仓（超额执行了"E 不新增"但违反了"不动手"）——结果是正的（行云 +3451），但这是运气对冲了纪律。若行云当日 -3%，这就是教科书级的 E 情景违规。<br>
-<b>三锚迁移</b>：今日主战场=军工（沪市主板）+北交所，创业板/科创板是"被抽血区"——矩阵里"票在哪个指数就做哪个指数"的判定首次得到实证。
-</div>
-
-<h2>⑤ 持仓与交易执行归因（逐笔）</h2>
 <table>
-<tr><th>交易</th><th>价格 vs 0902 收盘</th><th>归因</th></tr>
-<tr><td>卖出 *ST闻泰 18.10×400</td><td>收 18.76 → <b class="up">卖亏 264 元</b>（斩在最低区）</td><td>情绪斩仓。ST 票逻辑（规避 ST 风险）成立但价位最差</td></tr>
-<tr><td>卖出 景旺 88.05×500</td><td>收 88.81 → <b class="up">卖亏 380 元</b></td><td>恐慌时段卖出，未到报告 ≥93/≤87.5 任一条件</td></tr>
-<tr><td>卖出 剑桥 181.46×300</td><td>收 180.00 → <b class="dn">卖优 438 元</b></td><td>唯一卖点略优于收盘</td></tr>
-<tr><td>卖出 生益 145.10×300</td><td>收 144.98 → ≈平</td><td>横跳</td></tr>
-<tr><td>卖出 沪电 118.40×400</td><td>收 118.39 → ≈平</td><td>报告列"最后减"的最强票最先卖</td></tr>
-<tr><td>买入 行云科技 33.21×2900</td><td>收 34.40 → <b class="up">+3,451</b></td><td>报告外方向（军工/次新），当日全组合正收益来源</td></tr>
-<tr><td>买入 蓝盾光电 52.01×1000</td><td>收 51.07 → <b class="dn">-940</b></td><td>报告外，无量能配合</td></tr>
-<tr><td>买入 芒果超媒 20.88×100</td><td>收 20.52 → <b class="dn">-36</b></td><td>必追条款执行✓但试仓 100 股；日内冲高 21.87（浮盈曾 +4.7%）<b>减半线 ≥1.5% 未执行</b></td></tr>
+<tr><th>时段</th><th>实际资金路径</th><th>证据</th></tr>
+<tr><td>竞价 9:25</td><td>油气链一致性高开（量化反杀前夜）</td><td>2 板票溢价均值 +2.64%；通源高开 +5.1%</td></tr>
+<tr><td>早盘 9:30-10:30</td><td>油气高开被砸 + 科技割肉盘涌出（用户 10:11-10:16 全部卖出）</td><td>创业板 10:30 前击穿 3320；军工电子放量启动</td></tr>
+<tr><td>午后 13:00-14:30</td><td>军工全面涨停潮（内蒙一机/博云/飞龙）+ AI 应用 2 板分化晋级</td><td>军工装备板块成交 407 亿（昨 305，<b class="up">+33%</b>）；欢瑞/龙版/大晟/集泰封板</td></tr>
+<tr><td>尾盘 14:30-15:00</td><td>指数回拉（创业板 -2.85%→-2.39%）= 抄底盘试探</td><td>科创50 收回 1617；无国家队 ETF 巨量</td></tr>
 </table>
-<div class="note"><b>执行账合计</b>：卖侧 vs 持有到收盘 = +166 元（横跳非逃顶）；买侧当日浮动 +2,475 元；当日净效果为正——但构成是"报告外操作赚（行云）+ 报告内操作没赚（油气没买对就是没追高）"。<b>未挂条件单计数：D4 继续</b>（芒果减半线盘中触发未执行；5 只科技卖出全部为盘中手动市价）。</div>
-
-<h2>⑥ 缠论结构收盘更新</h2>
-<table>
-<tr><th>标的</th><th>结构</th><th>信号</th></tr>
-<tr><td>科创50 1617.6</td><td>日线末笔下行中，1605-1607 双底试探</td><td class="warn">1605 生命线明日继续有效；收复 1635.8（0902 高点）=反抽确认</td></tr>
-<tr><td>创业板指 3312.2</td><td>下行笔未完成，3296.5 为 0902 新低</td><td>偏空；缩量阴跌后若破 3296 → 测 60 日线</td></tr>
-<tr><td>行云科技 34.4</td><td>上市首周波动区 32.6-35.2，末笔 -4.1% 后 +2.5% 收复</td><td class="up">次新博弈结构：守 32.6（0902 低点）则强</td></tr>
-<tr><td>蓝盾光电 51.07</td><td>2,3b 复合买点 @50.33 上方缩量整理</td><td class="up">50.33 上方=买点结构未坏</td></tr>
-<tr><td>芒果超媒 20.52</td><td>一买 1p @14.07 主升 +45.8% 后首次放巨量十字（53 亿=上市以来次高）</td><td class="warn">放量滞涨特征初现——明日收复 21.5 则续强，跌破 19.66（0901 低）=短线结构坏</td></tr>
-<tr><td>飞龙股份 58.07 / 内蒙一机 13.41</td><td>军工双核均处主升段</td><td class="up">二板晋级成功=主线候选确认，但 LHB 榜首次日兑现风险同在</td></tr>
-</table>
-
-<h2>⑦ 高频错误模式统计</h2>
-<div class="card">
-<table>
-<tr><th>标签</th><th>频次</th><th>趋势</th><th>说明</th></tr>
-<tr><td>纪律外操作（盘中市价卖出/未挂单）</td><td>6</td><td class="dn">↑</td><td>0902 全部 8 笔交易均为盘中手动，无一张条件单</td></tr>
-<tr><td>恐慌时段集中交易（10:11-10:16）</td><td>2日</td><td class="dn">新</td><td>0901 接刀 + 0902 割肉同一时段——开盘 1 小时是情绪最贵时段</td></tr>
-<tr><td>日内冲高减半线未执行</td><td>1</td><td>=</td><td>芒果 +4.7% 浮盈未减</td></tr>
-<tr><td>报告外方向重仓（行云 9.6 万）</td><td>1</td><td class="warn">新</td><td>仓位大于报告池全部标的之和——结果对但无预案兜底（无止损位无目标位）</td></tr>
-</table>
-<b>结论：判断准确率不是当前瓶颈（0902 排除栏 6/6），<u>执行结构</u>是——盘中手动+恐慌时段+无预案兜底的组合，让每一次"对的方向"都要么卖平要么赌运气。</b>
+<b>板块量能异动榜（近 3 日）</b>：军工装备 <b class="up">+33% 放量</b>（承接主线）/ 半导体 2220→1819 亿缩量 18%（被抽血）/ 银行 431→297 缩量 31%（红利撤退）/ 影视 110→75 缩量 32%（高位分歧）。<br>
+<b>收盘定论</b>：流入=军工（放量+LHB 前三+涨停集群）、北交所情绪链；流出=半导体/银行/影视高位、种业高位票。持续性初判：军工看内蒙一机 3 板是否晋级；科技属"缩量修复候选"非反转。
 </div>
 
-<h2>⑧ 明日可买板块前瞻 ★（V3.7 版结构首跑）</h2>
+<h2>③ 催化生命周期验证</h2>
 <div class="card">
-<b>指数情景矩阵（0903 预生成，三锚并列）</b>：
 <table>
-<tr><th>情景</th><th>触发</th><th>动作</th></tr>
-<tr><td>A 反抽修复</td><td>科创50 收复 1635.8 或创业板高开 >1%+量比>1.3</td><td>科技反抽日：<b>不追第一小时</b>，回踩分时均线低吸割肉成本区票（生益 145/剑桥 180/景旺 88.8 全在成本区）</td></tr>
-<tr><td>B 平开震荡</td><td>三锚 ±0.5% 内</td><td>军工二板确认票低吸（内蒙一机/飞龙开板 -3~-5% 回踩）；芒果守 19.66 上方持币观望</td></tr>
-<tr><td>C 低开杀跌</td><td>科创50 破 1605 收盘</td><td>清全部弹性票（新仓 3 只里行云/蓝盾按止损 32.6/50.33 执行）；现金 ≥30%</td></tr>
-<tr><td>D 瀑布后深 V</td><td>盘中跌 >2.5% 后：跌停不再增+收复分时均线+深水强势票翻红</td><td>抄 V 只抄军工反核/超跌科技 ETF，仓位 ≤2 成</td></tr>
-<tr><td>E 阴跌缩量</td><td>10:30 量能同比缩 >15%+三锚水下</td><td>不动手，奇思妙想池不启用</td></tr>
-</table>
-<b>主战场迁移判定</b>：量能 1.79 万亿不足以双线作战——<b>军工（沪主板）若续强则吸走科技资金；科技若反抽则军工兑现</b>。0903 二选一跟踪，不两头下注。
-</div>
-
-<div class="card">
-<b>板块候选（三源：情绪面+资金面+缠论）</b>：
-<table>
-<tr><th>板块</th><th>逻辑</th><th>代表股（角色）</th><th>买区/失效</th></tr>
-<tr><td><b>军工（低吸限定）</b></td><td>内蒙一机 2 板+LHB +2.12 亿、博云新材/飞龙 LHB 前三、地面兵装 ret5 14.0 全市场第一；监管友好方向</td><td>内蒙一机 600967（龙头）<br>飞龙股份 002536（液冷+军工双击）<br>中航沈飞 600760（机构票低吸）</td><td>2 板票开板 -3~-5% 回踩缩量接；<b>失效：内蒙一机断板=全线回避</b>；中航沈飞 39.4 缩量企稳可试</td></tr>
-<tr><td><b>科技反抽（A 情景专用）</b></td><td>ADP 弱→美债利率回落→纳指期货转涨；割肉成本区=潜在回补区</td><td>生益科技 600183<br>剑桥科技 603083<br>中际旭创 300308</td><td>仅 A 情景执行；反抽至成本区上 3-5% 不追（当日 T 字止盈）；失效：非农 22 万+加息坐实</td></tr>
-<tr><td>黄金修复（反预判候选）</td><td>金价 4389 回稳+招金减持利空落地+非农若不及预期=降息回流</td><td>中国黄金 600916<br>湖南黄金 002155</td><td>低吸限定：湖南黄金 24.99（0902 低点）不破可试仓；<b>非农前仅 1/4 仓</b></td></tr>
-<tr><td class="dn">回避：种业/农业高位票</td><td>金健 -6.34%/北大荒 -8.59% 高位巨震、神农 LHB -2.99 亿、柴柴"农业毕业照"</td><td>—</td><td>反弹到 5 日线全是卖出机会；不做抄底</td></tr>
-<tr><td class="dn">回避：油气链第二日</td><td>量化反杀后逻辑未损但情绪已坏，修复需油价再新高</td><td>—</td><td>WTI 站回 91+ 且海能收复 19.34 前不碰</td></tr>
+<tr><th>昨日催化分级</th><th>今日实际</th><th>结论入档</th></tr>
+<tr><td>油气链=中期（地缘每日升级）</td><td>高开低走全线 -2~-4%</td><td class="miss"><b>规则修正</b>：地缘催化"锚在涨"≠A 股次日流入——隔夜头条型地缘利好=竞价兑现日，应按"一日催化"处理（回测 C 桶实证）</td></tr>
+<tr><td>短剧/AI 应用=中期加速段</td><td>内部分化：澄清票炸板、数据票晋级</td><td class="part">中期仍在但进入"龙头集中"阶段——分化日规则验证有效</td></tr>
+<tr><td>MLCC/染料二阶=中期未启动</td><td>继续未启动（-4%）</td><td class="hit">"启动信号未现不建仓"纪律第三次正确</td></tr>
+<tr><td>液冷超节点=长期</td><td>英维克 +1.52% 缩量抗跌</td><td class="hit">长期主线结构未坏，回踩买区继续有效</td></tr>
 </table>
 </div>
 
+<h2>④ 量价形态复盘</h2>
 <div class="card">
-<b>奇思妙想池（V3.7 彩票仓 · 单票 ≤1% · 亏 10% 砍 · 北交所无权限不选）</b>——<b class="warn">0902 晋级率 50% 未达冰点启用条件（<30%），半启用观察</b>：
 <table>
-<tr><th>标的</th><th>型</th><th>映射源头</th><th>证伪</th></tr>
-<tr><td>金花股份 600080</td><td>字辈联动</td><td>金牛化工 0901-0902 两日 +20%（金字辈最强），金健米业退潮后金字辈缺接力</td><td>金牛 0903 断板=字辈散</td></tr>
-<tr><td>深圳新星 603978</td><td>小票合力</td><td>LHB +0.67 亿涨停，氟化工+钠电+铝晶粒细化剂垄断，筹码干净</td><td>高开 >5% 不接力</td></tr>
-<tr><td>国晟科技 603778</td><td>小票合力</td><td>LHB +0.69 亿，HJT+城镇化+成都国资，光伏低位补涨</td><td>同上</td></tr>
-<tr><td>高新发展 000628</td><td>情绪放大器</td><td>功率半导体+华鲲振宇（算力）+虚拟电厂，LHB +0.59 亿，低位首板</td><td>断板即出</td></tr>
-<tr><td>九牧王 601566</td><td>情绪放大器</td><td>2 板男裤龙头+太空裤梗，消费防御属性契合 E 情景</td><td>炸板回封失败=出</td></tr>
-<tr><td>恒宝股份 002104</td><td>字辈+数字货币</td><td>2 板数字人民币+eSIM，LHB 净卖但封单 0.92 亿仍强</td><td>楚天龙 LHB 净卖 -1.09 亿=同板块兑现压力，跟随降级</td></tr>
+<tr><th>对象</th><th>量价组合</th><th>归类</th></tr>
+<tr><td>创业板指</td><td>缩量下跌（5109→4666 亿）</td><td class="warn">缩量回调（健康偏空）——非恐慌派发</td></tr>
+<tr><td>军工装备</td><td>放量上涨（305→407 亿 +33%）</td><td class="up">放量确认（新主线候选）</td></tr>
+<tr><td>芒果超媒</td><td>天量十字（27.9→53 亿，历史次高）</td><td class="miss">放量滞涨（出货警报）——明日冲高必须减</td></tr>
+<tr><td>生益科技</td><td>高位天量大阴后缩量十字（115→95.5 亿）</td><td class="warn">派发后修复试探——反弹到 151 一律减</td></tr>
+<tr><td>两市</td><td>1.79 万亿缩量 2422 亿</td><td class="warn">缩量阴跌（E 情景本质）——变盘前兆观察</td></tr>
 </table>
-<div class="small">全部为当日行为学标的：只做当日情绪方向的名字/结构映射，不做隔夜预期叙述；次日默认不持有，除非按移动止盈规则续强。</div>
 </div>
 
-<div class="note"><b>明日关键事件</b>：① 9/4 非农（北京时间 20:30）=加息/降息定价裁决，<b>明日全天为"非农前最后调仓日"，现金要求 ≥20%</b>；② 深中华A/爱丽家居停牌核查预警 → 明晨若出特停公告，高位连板票全线降档；③ ADP 已弱 + 威廉姆斯"利率处于良好水平"（中性偏鸽）=非农前风偏修复窗口，隔夜纳指期货已转涨——<b>若明日 A 股高开，优先验证的是"科技反抽"而非"油气修复"</b>。</div>
+<h2>⑤ 缠论结构收盘快照</h2>
+<div class="card">
+<table>
+<tr><th>标的</th><th>最新笔向</th><th>结构位置</th><th>关键位</th></tr>
+<tr><td>科创50</td><td>下行</td><td>1605-1607 双底试探，末笔未完成</td><td class="warn">1605 生命线有效；收复 1635.8=反抽确认</td></tr>
+<tr><td>创业板指</td><td>下行</td><td>3296.5 新低，下行笔延伸</td><td>破 3296 测 60 日线</td></tr>
+<tr><td>行云科技 34.40</td><td>下行转升</td><td>次新首周区 32.6-35.2；-4.1% 笔后 +2.5% 收复</td><td class="up">守 32.6 则强</td></tr>
+<tr><td>蓝盾光电 51.07</td><td>下行收敛</td><td class="up">2,3b 复合买点 @50.33 上方整理</td><td>50.33 结构未坏</td></tr>
+<tr><td>芒果超媒 20.52</td><td>上行末段</td><td class="warn">1p @14.07 主升 +45.8% 后天量十字——滞涨警报</td><td>守 19.66/冲 21.5 减半</td></tr>
+<tr><td>内蒙一机 13.41</td><td>上行</td><td class="up">2 板 @10.81 二买后主升 +24%</td><td>3 板晋级=主线确认</td></tr>
+<tr><td>飞龙股份 58.07</td><td>上行</td><td class="up">液冷+军工双逻辑，二卖 @54.9 突破消化</td><td>LHB +4.59 亿=资金证据最强</td></tr>
+</table>
+</div>
 
-<h2>⑨ 三句话摘要 TL;DR</h2>
-<div class="tldr">
-<ol>
-<li><b>0902 复盘定性</b>：缩量阴跌 E 情景（非崩盘：跌停仅 8/晋级率 50%），报告"排除力 6/6 vs 进攻力 1/3"——量化型对手盘借地缘利好反杀油气链是当日主剧本；用户换仓净效果为正（+2,641=行云贡献）但全部 8 笔交易无一张条件单、且行云 9.6 万重仓无预案兜底。</li>
-<li><b>明日主战场二选一</b>：军工低吸（内蒙一机/飞龙开板回踩）vs 科技反抽（割肉成本区回补，仅限科创50 收复 1635.8 后）——量能不支持双线，跟踪强者为王；种业/农业反弹全是卖点，油气等 WTI 站回 91。</li>
-<li><b>执行铁律（非农前最后调仓日）</b>：现金 ≥20%；芒果放量滞涨初现（53 亿巨量十字）守 19.66/冲 21.5 减半；行云守 32.6、蓝盾守 50.33，破位无条件走；全部预设单盘前挂好，禁止 10:00-10:30 情绪时段手动交易。</li>
-</ol>
+<h2>⑥ 持仓与交易执行归因（逐笔 + 两维 + 错误标签）</h2>
+<div class="card"><div class="scroll">
+<table>
+<tr><th>交易</th><th>成交 vs 收盘</th><th>判断维</th><th>执行维</th><th>标签</th></tr>
+<tr><td>卖 *ST闻泰 18.10×400</td><td class="dn">收 18.76 少卖 +264</td><td>对（规避 ST 风险）</td><td>差——斩在全天最低区</td><td><span class="tag tr">恐慌离场</span><span class="tag tr">纪律外操作</span></td></tr>
+<tr><td>卖 景旺 88.05×500</td><td class="dn">收 88.81 少卖 +380</td><td>对（报告流出栏）</td><td>差——未到 ≥93 也未破 ≤87.5</td><td><span class="tag tr">恐慌离场</span></td></tr>
+<tr><td>卖 剑桥 181.46×300</td><td class="up">收 180.00 卖优 438</td><td>对</td><td>时点运气好（盘中唯一优于收盘的一笔）</td><td><span class="tag ty">提前下车</span></td></tr>
+<tr><td>卖 生益 145.10×300</td><td>≈平（-36）</td><td>对</td><td>横跳</td><td><span class="tag tr">纪律外操作</span></td></tr>
+<tr><td>卖 沪电 118.40×400</td><td>≈平（-4）</td><td>对（但报告列"最后减"）</td><td>顺序错误——最强票最先卖</td><td><span class="tag tr">恐慌离场</span></td></tr>
+<tr><td>买 行云 33.21×2900</td><td class="up">+3,451（+2.47%）</td><td>报告外方向</td><td><b class="dn">无预案兜底</b>（9.6 万重仓无止损目标）</td><td><span class="tag tp">报告外重仓</span></td></tr>
+<tr><td>买 蓝盾 52.01×1000</td><td class="dn">-940（-0.70%）</td><td>报告外</td><td>无量能确认买入</td><td><span class="tag tp">报告外</span></td></tr>
+<tr><td>买 芒果 20.88×100</td><td class="dn">-36（-0.69%）</td><td class="hit">必追条款执行 ✓</td><td>日内 +4.7% 时<b>减半线未执行</b>（少锁 ~50 元）</td><td><span class="tag tr">纪律外操作</span></td></tr>
+</table>
+</div></div>
+<div class="bsp"><b>损耗分账（V2.1 强制）</b>：报告错 <b class="up">0 元</b>（油气主推错但用户未买入=无实际损耗；若按报告买海能将 -3.66%/1/4 仓）｜执行差 <b class="dn">约 -256 元</b>（卖侧横跳 +206 + 芒果减半线 ~50）｜报告外操作 <b class="up">+2,511 元</b>（行云 +3,451 / 蓝盾 -940，无预案兜底单独风控）。<b>执行差第 4 日 < 100 元量级但结构未改善：全部 8 笔无一张条件单</b>。</div>
+<div class="note"><b>踏空归责（V2.2）</b>：英维克 63.5-65.0 未触发后 +1.52%——LHB 无连续净买，属"等回踩纪律正确"非可避免踏空；国芳集团（晨版必追）一字板 gap -10.81%，属"条款设计缺陷"（回测 A 桶+D 桶交叉），已进 V3.7 修订清单。</div>
+<div class="note"><b>卖飞/买早纠正条款</b>：① 闻泰/景旺卖在最低区 → 明日若科技反抽（科创50 收复 1635.8），回补位=各自成本区下方 1%（闻泰 18.5/景旺 88.3），仅限 A 情景 1/4 仓；② 剑桥 181.46 卖优 → 不追高认错，反弹至 187+（今日高区）不接回。</div>
+
+<h2>⑦ 持仓持有建议（逐只 · 收盘结构定版）</h2>
+<div class="card">
+<b>A. 点位表</b>
+<table>
+<tr><th>标的</th><th>操作</th><th>支撑/加仓</th><th>压力</th><th>止损</th><th>目标</th></tr>
+<tr><td>行云科技<br><span class="small">2900股 成本33.21 浮+3,451</span></td><td class="up">持有</td><td>33.2（成本区）</td><td>35.2（首日高）</td><td>32.6 破位清</td><td>37.5（+13%）</td></tr>
+<tr><td>蓝盾光电<br><span class="small">1000股 成本52.01 浮-940</span></td><td>持有</td><td>50.33（2,3b买点）</td><td>52.9（0902高）</td><td>50.33 收盘破清</td><td>55.8（前平台）</td></tr>
+<tr><td>芒果超媒<br><span class="small">100股 成本20.88 浮-36</span></td><td class="warn">减仓</td><td>19.66（0901低）</td><td>21.5（0902开）</td><td>19.66 收盘破清</td><td>冲 21.5 减 1/2</td></tr>
+</table>
+<b>B. 触发与预案表</b>
+<table>
+<tr><th>标的</th><th>触发条件</th><th>明日预案 + 今日衔接</th></tr>
+<tr><td>行云科技</td><td>· 高开 >36 → 减 1/3 锁利<br>· 缩量回踩 33.5 不破 → 持有<br>· 放量破 32.6 → 无条件清</td><td>次新波动大，<b>盘中禁止手动加仓</b>；浮盈回吐至 +1,000 内按 33.2 成本线执行止损</td></tr>
+<tr><td>蓝盾光电</td><td>· 放量过 52.9 → 持有看 55.8<br>· 缩量阴跌破 50.33 → 清</td><td>买点结构未坏给耐心；<b>明日是最后观察日</b>（缩量第 2 日=弱）</td></tr>
+<tr><td>芒果超媒</td><td>· 冲 ≥21.5 → <b>减 1/2（挂单！</b>）<br>· 高开 >5% 不破前高 → 先减后看<br>· 破 19.66 → 清</td><td>天量十字=滞涨警报，<b>条件单盘前挂好 21.5/19.66 两张</b>；剩余 50 股按 5 日线移动止盈</td></tr>
+</table>
+</div>
+
+<h2>⑧ 龙虎榜/连板梯队明日初判</h2>
+<div class="card">
+<b>LHB 方向</b>：净买前三=飞龙股份 +4.59 亿（液冷+军工）/内蒙一机 +2.12 亿（军贸央企）/博云新材 +1.36 亿（商业航天）——<b>全部军工系</b>；净卖=神农种业 -2.99 亿/通源石油 -2.2 亿/楚天龙 -1.09 亿（种业+油气+数字货币兑现）。<br>
+<b>连板梯队</b>：4 板竞业达（AI 教育）/国芳集团（零售）——高度断档（无 5 板+）但 2-3 板后备厚（欢瑞/集泰/大晟/龙版/英力特/恒宝/内蒙一机/九牧王等 8 只）；<b>行业归属从"传媒单极"转向"军工+零售+AI 应用三线"</b>。<br>
+<b>明日推断（低置信度）</b>：① 军工若内蒙一机晋级 3 板 → 板块二线补涨（中兵红箭/北方导航类低位军工）；② AI 应用分化后资金集中到"有数据/有业绩"的 2-3 板票；③ 监管核查预警（深中华A/爱丽家居）→ ≥4 板票明日接力环境恶化，高度断档概率大——情绪往北交所/低位首板迁移。
+</div>
+
+<h2>⑨ 明日可买板块前瞻 ★（三源交叉 · 低置信度收盘推断）</h2>
+<div class="card">
+<b>板块 1 · 军工（二板确认低吸）—— 三源一致 · 置信度中</b><br>
+<span class="small">源①蒸馏：涨停归属军工 6 家+LHB 前三全系军工=资金迁移实锤；源②专家：北交军工"尾盘没回落"（预判性买法）；源③缠论：内蒙一机 2 板主升无背驰、飞龙二卖突破消化</span>
+<table>
+<tr><th>代表股</th><th>角色</th><th>收盘</th><th>观察买区</th><th>失效信号</th></tr>
+<tr><td>内蒙一机 600967</td><td>龙头（2板）</td><td>13.41</td><td>开板 -3~-5% 回踩缩量</td><td class="dn">断板=全线回避</td></tr>
+<tr><td>飞龙股份 002536</td><td>弹性（液冷+军工）</td><td>58.07</td><td>回踩 55-56.5（二卖位上方）</td><td>高开 >6% 放弃</td></tr>
+<tr><td>中航沈飞 600760</td><td>低吸备选（机构票）</td><td>+0.99%</td><td>39.4 缩量企稳试 1/4</td><td>收盘破 38.5</td></tr>
+</table>
+<b>板块 2 · 科技反抽（A 情景专用 · 条件触发）—— 两源 · 置信度低</b><br>
+<span class="small">源①：ADP 3.8 万弱+美债利率回落+纳指期货转涨；源③：生益/剑桥割肉成本区=潜在回补区。缺源②（专家仍偏空科技）</span>
+<table>
+<tr><th>代表股</th><th>角色</th><th>收盘</th><th>观察买区</th><th>失效信号</th></tr>
+<tr><td>生益科技 600183</td><td>龙头</td><td>144.98</td><td>仅科创50 收复 1635.8 后回踩 143</td><td>非农 22 万+ 加息坐实</td></tr>
+<tr><td>剑桥科技 603083</td><td>弹性</td><td>180.00</td><td>同上，回踩 178</td><td>同上</td></tr>
+<tr><td>中际旭创 300308</td><td>低吸备选</td><td>837.80</td><td>收复 5 日线（859）才可接</td><td>章建平减持发酵</td></tr>
+</table>
+<b>板块 3 · 黄金修复（反预判候选 · 非农博弈）—— 两源 · 置信度低</b><br>
+<span class="small">源①：金 4389 回稳+招金减持利空落地+非农弱=降息回流；源②：Joshua 持续看多黄金。缺源③（板块仍下行笔）</span>
+<table>
+<tr><th>代表股</th><th>角色</th><th>收盘</th><th>观察买区</th><th>失效信号</th></tr>
+<tr><td>湖南黄金 002155</td><td>弹性</td><td>26.21</td><td>24.99（0902低）不破试 1/4</td><td>金价破 4300</td></tr>
+<tr><td>中国黄金 600916</td><td>龙头</td><td>8.03</td><td>7.72 上方缩量</td><td>同上</td></tr>
+<tr><td>赤峰黄金 600988</td><td>低吸备选</td><td>—</td><td>非农后视金价定</td><td>同上</td></tr>
+</table>
+<div class="small">仓位纪律：前瞻仓位一律 ≤3%/只；9/4 非农（明晚 20:30）前总现金 ≥20%；军工与科技反抽二选一跟踪（量能 1.79 万亿不支持双线）。</div>
+</div>
+
+<h2>⑩ 明日修正要点（含 V3.7 情景矩阵 + 彩票池）</h2>
+<div class="card">
+<b>① 指数情景矩阵（0903 预生成 · 盘前挂好 · 盘中做选择题）</b>
+<table>
+<tr><th>情景</th><th>触发阈值</th><th>动作</th></tr>
+<tr><td>A 反抽修复</td><td>科创50 收复 1635.8 或创业板高开 >1% 量比 >1.3</td><td>不追第一小时；回踩分时均线低吸割肉成本区票（1/4 仓）</td></tr>
+<tr><td>B 平开震荡</td><td>三锚 ±0.5%</td><td>军工 2 板开板回踩低吸为主；芒果按 21.5/19.66 条件单执行</td></tr>
+<tr><td>C 低开杀跌</td><td>科创50 收盘破 1605</td><td>行云/蓝盾/芒果全清，现金 ≥30%</td></tr>
+<tr><td>D 瀑布后深 V</td><td>跌 >2.5% 后跌停不增+收复分时均线+深水强票翻红</td><td>抄 V 只抄军工反核/超跌科技 ETF ≤2 成</td></tr>
+<tr><td>E 阴跌缩量</td><td>10:30 量能同比缩 >15%+三锚水下</td><td>不动手；彩票池禁用；只执行条件单</td></tr>
+</table>
+<b>② 主战场迁移判定</b>：军工（沪主板）续强则吸科技资金；科技反抽则军工兑现——<b>开盘 30 分钟按"军工 2 板封单强度 vs 科创50 1635.8 收复度"裁决，不两头下注</b>。
+<b>③ 陷阱清单</b>：种业/农业高位票反弹全是卖点（金健 -6.34% 毕业照）；油气链第二日禁碰（等 WTI 站回 91 且海能收复 19.34）；≥4 板情绪票禁追（监管核查批量预警）。
+<b>④ 奇思妙想池（V3.7 彩票仓 · 半启用 · 单票 ≤1% · 亏 10% 砍）</b>：晋级率 50% 未达冰点（<30%），半仓试运行——金花股份（金字辈联动）/深圳新星（LHB+0.67 亿筹码干净）/国晟科技（HJT 低位）/高新发展（华鲲算力+功率半）/九牧王（太空裤 2 板）/恒宝股份（数币 2 板）；北交所无权限不选。全部为当日行为学标的，次日默认不持有。
+<b>⑤ 规则库更新（写入下期策略日报）</b>：ⅰ 地缘隔夜头条型催化降级为"一日处理"（油气实证）；ⅱ 对手盘护栏补"高开 >2.5% 不破前高即放弃"；ⅲ 情绪冰点启用彩票池的晋级率阈值定 <30%。
 </div>
 
 <div class="footer">
-<b>免责声明</b>：本报告由 AI 策略分析系统基于公开数据自动生成，仅供研究参考，不构成任何投资建议。市场有风险，决策需独立判断，盈亏自负。<br><br>
-<b>数据来源</b>：0902 收盘（cache.db 5205/5212 + 指数手工补行）；fuyao 涨停池 49 家/跌停 8 家/龙虎榜 77 只/板块强度 320 板块；连板晋级率 7/14 手工复算；财联社 0902 全天加红 22 条（20:4x 截止）；恒生/北证50 腾讯接口 21:0x 实时；隔夜 ADP 3.8 万/美债收益率走低/WTI 89.66/黄金 4389（新浪 21:0x）；缠论 chanlib 重算 21:1x（指数+7 只个股）。<br><br>
-<b>缺失项声明</b>：北证50 历史序列（fuyao 不支持 .BJ，仅今日快照）；分时级数据（深 V 三信号以日线近似判定）；行云科技为上市首周次新，缠论参考意义有限。<br><br>
-<b>复盘自检</b>：预判兑现度 8 条全核对 ✓ 对手盘四类逐一检查（量化型登场/川普型预演/监管型挂载/主力型换手）✓ 主力视角三证据核对 ✓ 情景矩阵执行核对（E 情景+违规记录）✓ 逐笔执行归因（三分类）✓ 错误模式统计（执行结构为瓶颈）✓ 明日前瞻（情景矩阵 5 行+板块候选+彩票池半启用）✓ 事件日历（非农/特停预警）✓
+<b>免责声明</b>：本报告由 AI 策略分析系统基于公开数据自动生成，仅供研究参考，不构成任何投资建议。市场有风险，决策需独立判断，盈亏自负。<br>
+<b>数据来源</b>：cache.db 0902 收盘 5210/5212；fuyao 涨停池/跌停/龙虎榜 77 只/板块强度（20:23 版）；财联社加红 22 条（至 21:21）；连板晋级率 7/14 与 2 板竞价溢价 +2.64% 手工复算；新浪/腾讯实时（金 4389/油 89.66@21:0x、恒指、北证50）；缠论 chanlib 重算（指数+7 只）。缺失项：分时级数据（资金路径四时段以日线+板块成交额近似还原）；北证50 历史序列；0901 涨停池全名单（溢价统计仅 8 只 2 板样本）。
 </div>
+
+</div><!-- /main -->
+
+<div class="side">
+<div class="sidecard">
+<h3>⚡ 错误模式统计（近 10 日）</h3>
+<table>
+<tr><th>标签</th><th>频次</th><th>趋势</th></tr>
+<tr><td>纪律外操作</td><td>5</td><td class="dn">↑</td></tr>
+<tr><td>恐慌离场</td><td>2→3</td><td class="dn">↑</td></tr>
+<tr><td>提前下车</td><td>2</td><td>=</td></tr>
+<tr><td>分散过度</td><td>2</td><td>=</td></tr>
+<tr><td>报告外重仓</td><td>1</td><td class="warn">新</td></tr>
+</table>
+<div class="small">执行差占比连续 4 日 >70% → <b>执行硬约束周延长</b>：明日起所有卖点/减仓点盘前必须挂条件单，10:00-10:30 禁止手动交易。</div>
+</div>
+<div class="sidecard">
+<h3>🎯 迟钝警报检查</h3>
+<div class="small">近 3 份策略报告主推次日命中率：<br>0901 晚版→0901：<b class="up">75%</b>（3/4）<br>0901 晚版→0902：<b class="dn">40%</b>（短剧对/液冷错/种业半对/化工半对）<br>0902 晨版→0902：<b class="dn">33%</b>（1/3）<br><br><b class="dn">警报触发（<50% 连续 2 份）</b>：共性漏洞=对"隔夜外生催化"的 A 股传导过于线性——修正已入 V3.7（地缘降级一日处理+对手盘推演+主力视角）。</div>
+</div>
+<div class="sidecard">
+<h3>📌 明日关键事件</h3>
+<div class="small">
+· <b>9/4 20:30 美国非农</b>=加息/降息裁决，<b>明日全天为最后调仓日</b><br>
+· 隔夜：ADP 3.8 万弱、美债 2-30Y 走低、纳指期货转涨、WTI 89.66 回落、金 4389 回稳<br>
+· 深中华A/爱丽家居停牌核查预警——明晨特停公告=高位连板降档开关<br>
+· 燧原科技科创板上市在即（中签率 0.0246%）——半导体情绪变量<br>
+· 持仓条件单：芒果 21.5/19.66 两张 + 行云 32.6 + 蓝盾 50.33
+</div>
+</div>
+<div class="sidecard">
+<h3>✅ 自检清单</h3>
+<div class="small">对象日声明✓ 预判基准逐条✓ 排除结论纳入✓ 两维归因✓ 损耗分账（0/−256）✓ 踏空归责✓ 逐笔标签✓ 近10日聚合✓ 迟钝警报✓ 持仓四点位✓ 修正要点✓ PC 两栏版式✓ 滚动条主题化✓ 明日前瞻 3 板块×3 只✓ V3.7 矩阵+彩票池✓ 知识库联动✓ 站点发布✓</div>
+</div>
+</div><!-- /side -->
+
+<div class="footer" style="grid-column:1/-1"><b>TL;DR</b>：① 0902=E 情景缩量阴跌（跌停 0→8 否定深 V），报告"排除力 7/7 vs 进攻力 3/4 错"——量化型对手盘借地缘头条反杀油气是主剧本；② 用户换仓净效果 +2,641 元全靠行云（报告外 9.6 万无预案），8 笔交易 0 条件单，执行硬约束周延长；③ 明日主战场二选一（军工低吸 vs 科技反抽），9/4 非农前现金 ≥20%，芒果 21.5/19.66、行云 32.6、蓝盾 50.33 四张条件单盘前挂好。</div>
 
 </div>
 </body>
