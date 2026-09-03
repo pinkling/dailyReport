@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>复盘日报 · 2026-09-03 | 蓝盾先手清仓全对 × 景旺报告外重仓反手 × 报告主推大满贯一手没上</title>
+<style>
+:root{--bg:#0b0f1a;--card:#131a2b;--card2:#1a2338;--line:#263450;--tx:#e8edf7;--sub:#8b97b8;--green:#3ddc97;--red:#ff5d5d;--gold:#ffc53d;--blue:#5aa7ff;--purple:#b18cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.6;padding-bottom:40px}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#0b0f1a}::-webkit-scrollbar-thumb{background:#3ddc97;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#6bf0b5}
+*{scrollbar-color:#3ddc97 #131a2b;scrollbar-width:thin}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+h1{font-size:20px;line-height:1.45;margin:6px 0 4px}
+h2{font-size:15px;margin:20px 0 10px;padding:7px 10px;background:linear-gradient(90deg,#1a2f55,#141b31);border-left:3px solid var(--green);border-radius:4px}
+h3{font-size:13.5px;margin:12px 0 6px;color:var(--gold)}
+.meta{color:var(--sub);font-size:12px;margin:2px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;margin:1px 3px 1px 0;white-space:nowrap}
+.tg{background:rgba(61,220,151,.14);color:var(--green);border:1px solid rgba(61,220,151,.4)}
+.tr{background:rgba(255,93,93,.14);color:var(--red);border:1px solid rgba(255,93,93,.4)}
+.ty{background:rgba(255,197,61,.14);color:var(--gold);border:1px solid rgba(255,197,61,.4)}
+.tb{background:rgba(90,167,255,.14);color:var(--blue);border:1px solid rgba(90,167,255,.4)}
+.tp{background:rgba(177,140,255,.14);color:var(--purple);border:1px solid rgba(177,140,255,.4)}
+.layout{display:grid;grid-template-columns:1fr 340px;gap:14px;align-items:start}
+.side{position:sticky;top:10px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--card2);color:var(--sub);font-weight:600;position:sticky;top:0}
+tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.up{color:var(--green)}.dn{color:var(--red)}.warn{color:var(--gold)}
+.small{font-size:11px;color:var(--sub)}
+.scroll{max-height:520px;overflow:auto}
+.bsp{background:rgba(61,220,151,.07);border-left:3px solid var(--green);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12.5px}
+.risk{background:rgba(255,93,93,.07);border-left:3px solid var(--red);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12.5px}
+.note{background:rgba(255,197,61,.07);border-left:3px solid var(--gold);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12.5px}
+.big{font-size:16px;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.footer{margin-top:24px;padding:12px;background:var(--card2);border-radius:8px;font-size:11px;color:var(--sub)}
+@media (max-width:768px){
+ .layout{grid-template-columns:1fr}.side{position:static}
+ body{font-size:13px}
+ table{font-size:11px}
+ th,td{padding:4px 5px}
+ .scroll{max-height:none;overflow:visible}
+ .grid2,.grid3{grid-template-columns:1fr}
+ .hide-m{display:none}
+}
+@media print{
+ body{background:#fff;color:#111}
+ .side{position:static}
+ h2{background:#eee;color:#111}
+ .card{border-color:#ccc;background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="meta">复盘日报 V2.9 · 回测联动 · 损耗三本账 · 情景矩阵执行核对</div>
+<h1>复盘日报 · 2026-09-03 周四<br><span style="font-size:14px;color:var(--gold)">蓝盾先手清仓全对 × 景旺报告外重仓反手 × 报告主推大满贯一手没上</span></h1>
+<div class="meta">复盘对象：2026-09-03（已收盘）｜数据截止 0903 收盘（cache.db qfq）｜预判基准：《策略日报_20260903_目标0903》（V3.8 首跑，0903 07:53 生成）</div>
+<div class="meta">数据源实测（20:3x）：fuyao 增量 5206/5212 ✓ ｜ 涨停池/炸板池/LHB/人气榜 = 0903 交易日 ✓ ｜ 财联社电报至 19:18 ✓ ｜ 雪球 70 帖已入库 ✓ ｜ 新浪指数行已补 ✓</div>
+<div class="meta">今日操作总评：<b style="color:var(--green)">卖出端全对（三本账首次正贡献），买入端报告外重仓反手景旺——判断与纪律双缺位</b></div>
+
+<div class="layout">
+<div class="main">
+
+<h2>① 预判兑现度核对表（含排除/警示结论）</h2>
+<div class="scroll"><table>
+<tr><th>昨日预判（0903 日报）</th><th>今日实际</th><th>判定</th><th>证据</th></tr>
+<tr><td>军工主线确认日（68%）：内蒙一机高开≤5%封单>1亿</td><td>内蒙一机开+8.9%冲板失败回落收+1.12%；飞龙+8.54%</td><td><span class="tag tr">部分兑现</span></td><td>主线确认但龙头一机高开超放弃线8.9%，飞龙承接主线卡位（LHB+1.72亿第二）</td></tr>
+<tr><td>液冷/算力硬件（58%）：飞龙回踩55-56.5、亿田10点前放量站30.9</td><td>飞龙最低57.42未回踩收+8.54%；亿田+7.54%达标；英维克+3.41%</td><td><span class="tag tg">兑现</span></td><td>方向全对，但回踩买区全部踏空（gap-1.6%），"直接走强追1/4"备选未执行</td></tr>
+<tr><td>黄金修复（55%）：湖南黄金站上26.4</td><td>开26.99站上26.4收27.54(+5.07%)</td><td><span class="tag tg">兑现</span></td><td>启动信号命中，买区25.8-26.4未给回踩（当日低26.60，gap-0.75%）</td></tr>
+<tr><td>科技反抽 A 情景：科创50收复1635.8才做</td><td>开1634.5最高1636.3瞬触即跳水收1611.2(-0.40%)，最低1596.6</td><td><span class="tag ty">盘中假触发</span></td><td>瞬触1635.8上沿0.5点未站稳；收盘1611未破1605生命线但盘中破位——双向贴线</td></tr>
+<tr><td><b>排除</b>：≥4板情绪票流出（72%）</td><td>国芳5板(+10%)、集泰4板(+10%)、龙版4板(+10%)</td><td><span class="tag tr">证伪</span></td><td>冰点日情绪票反向续命；核查预警未落地；但竞业达炸板-5.19%部分正确</td></tr>
+<tr><td><b>排除</b>：种业/农业高位票反弹全卖（75%）</td><td>北大荒-0.08%滞涨、金健米业-4.93%（LHB净卖1亿）</td><td><span class="tag tg">兑现</span></td><td>毕业照成立，反弹即卖正确</td></tr>
+<tr><td><b>排除</b>：油气链 WTI 站回91前回避</td><td>WTI收91.01站回91；中远海能涨停+8.77%</td><td><span class="tag ty">边缘证伪</span></td><td>油价恰好触及解锁位当日海能涨停——"92确认"条件定得略高，错过节后首日</td></tr>
+<tr><td>持仓条件单：芒果21.5减半/19.66清</td><td>09:32卖21.43，冲23.19回落收20.15</td><td><span class="tag tg">执行✓</span></td><td>卖点≈减半线（差0.3%），当日高点区</td></tr>
+<tr><td>持仓条件单：蓝盾收盘破50.33次日清</td><td>09:44卖48.54，收盘45.80(-10.32%)</td><td><span class="tag tg">执行✓超预期</span></td><td>先手于条件线，收盘较卖价再跌5.6%、盘中低44.10</td></tr>
+<tr><td>持仓条件单：行云36.0减1/3/32.6清</td><td>10:00卖34.74，收35.10(+2.03%)</td><td><span class="tag ty">条件外手动</span></td><td>两条件未触发；34.74低于缠论卖点区35.35下沿，少卖约1%</td></tr>
+<tr><td>非农前现金≥20%（昨晚承诺）</td><td>卖出19.51万≈买入19.53万，现金未增</td><td><span class="tag tr">未执行</span></td><td>景旺19.1万重仓直接打满，承诺连续第2日落空</td></tr>
+</table></div>
+
+<h2>② 资金流向实际路径复盘（四时段）</h2>
+<table>
+<tr><th>时段</th><th>实际路径</th><th>证据</th></tr>
+<tr><td>竞价 9:25</td><td>贵金属/算力硬件高开，军工一机高开8.9%抢跑</td><td>三大指数高开0.29-0.90%；竞价溢价全样本+1.23%（昨日-0.36%转正）</td></tr>
+<tr><td>早盘 9:30-10:30</td><td>航运/油气链异动启动，高位人气股批量跳水；<b>10:00 前后=全日拐点</b></td><td>09:34创业板涨逾1%→10:18高位股跌停潮（传智/深中华等）；用户10:00卖行云=拐点前离场</td></tr>
+<tr><td>午后 13:00-14:30</td><td>指数冲高回落全翻绿，KOSPI跳水传导，半导体关税消息压制</td><td>13:23三大指数翻绿；13:55韩国跳水；液冷/电源13:5x有星星之火（雪球白河愁盘中帖佐证）</td></tr>
+<tr><td>尾盘 14:30-15:00</td><td>缩量企稳，无恐慌扩散；军工二线（光洋LHB+2.91亿第一）吸金</td><td>收评：科创50高开低走-0.4%；两市1.76万亿较昨日再缩300亿</td></tr>
+</table>
+<div class="small">板块量能异动（代表股近似）：油气航运+59%、军工+49%、短剧+47%、黄金+23%、算力租赁+14%、PCB+4%、种业-28%。资金实际主线=航运/军工/液冷三线，与报告预判方向一致但"必追"标的封单条件过严没接上。</div>
+
+<h2>②A 对手盘复盘（四类）</h2>
+<table>
+<tr><th>对手盘</th><th>登场？</th><th>证据</th><th>预案执行</th></tr>
+<tr><td>量化型（高开反杀）</td><td><span class="tag tr">登场</span></td><td>内蒙一机高开8.9%未封板→日内回落5.8%；护栏2.5%阈值今日实测触发于8.9%（>6%放弃条款生效）</td><td>放弃条款写了且正确；但"直接走强追1/4"备选在飞龙上未执行</td></tr>
+<tr><td>监管型（特停核查）</td><td><span class="tag tg">未登场</span></td><td>深中华A公告核查预警但未停牌；竞业达/国芳未特停——排除栏据此证伪</td><td>反向条款"核查落空+放量晋级=情绪高潮重启"今日应触发→彩票池升满配未执行</td></tr>
+<tr><td>川普型（外生反转）</td><td><span class="tag tg">未登场</span></td><td>美伊互袭继续无谈判信号；WTI 91.01</td><td>无需执行</td></tr>
+<tr><td>主力型（借利好兑现）</td><td><span class="tag ty">部分登场</span></td><td>芒果冲23.19放量滞涨回落收阴=典型兑现；飞龙未炸（LHB机构票接住）</td><td>芒果兑现预案（冲高减）用户执行✓；"兑现后回踩黄金坑"芒果20.14明日观察</td></tr>
+</table>
+
+<h2>②B 主力视角验证</h2>
+<table>
+<tr><th>证据</th><th>今日实测</th><th>结论</th></tr>
+<tr><td>国家队ETF量能</td><td>588000/159915 在库数据滞后（0901 0.7x/0.7x）；510300 未入缓存</td><td class="warn">数据缺口，降级声明——明日补 ETF 日线回填</td></tr>
+<tr><td>尾盘30分钟</td><td>14:30后指数企稳无跳水，高位票跌停未扩散（跌停22家 vs 涨停57）</td><td>无出逃迹象=退潮而非崩塌</td></tr>
+<tr><td>连板隔日溢价</td><td>竞价溢价+1.23%（昨日-0.36%转正）；但晋级率3/13=23%跌破冰点线</td><td>溢价修复+晋级率崩=分化日（资金集中龙一龙二）</td></tr>
+<tr><td>主力实际最优策略</td><td>早盘借一机冲板锁军工、资金外溢液冷与航运，午后压科创</td><td>与报告推演一致；报告"反着做"条款（4板不碰/二线低位补涨）光洋股份+2.91亿LHB验证</td></tr>
+</table>
+
+<h2>③ 催化生命周期验证</h2>
+<table>
+<tr><th>催化</th><th>报告分级</th><th>今日实际</th><th>修正</th></tr>
+<tr><td>兵装重组+军贸（内蒙一机）</td><td>中期主线</td><td>冲3板失败但板块未散（飞龙/光洋承接）</td><td>维持中期；龙头断板≠板块终结，卡位票接棒</td></tr>
+<tr><td>博通AI指引（液冷/算力）</td><td>中期</td><td>英维克+3.41%、亿田+7.54%、澜起/精智达公告加码</td><td>维持中期，产业公告密集=叙事强化</td></tr>
+<tr><td>油价地缘（海能）</td><td>中期（待92确认）</td><td>WTI恰好站回91，海能当日涨停</td><td class="dn">分级错配：隔夜头条型地缘利好按一日处理规则再次验证——解锁条件"92"次日给不给位置不确定，油气二阶只在回踩日做</td></tr>
+<tr><td>医保国谈9/5（创新药）</td><td>事件前置</td><td>电报确认9/5举行</td><td>明日博弈窗口，一日催化对待</td></tr>
+</table>
+
+<h2>④ 量价形态复盘</h2>
+<table>
+<tr><th>标的</th><th>量价组合</th><th>判定</th></tr>
+<tr><td>沪指/深成指</td><td>缩量滞涨（1.76万亿较昨日-300亿）</td><td>冲高回落十字=方向未决</td></tr>
+<tr><td>科创50</td><td>缩量阴跌，日内V假</td><td>趋势下行笔内，1605-1635.8夹缝</td></tr>
+<tr><td>蓝盾光电（已清）</td><td class="dn">放量下跌-10.32%</td><td>派发确认——用户先手清仓正确</td></tr>
+<tr><td>行云科技（已清）</td><td>放量冲高回落（35.50/35.10收）</td><td>滞涨初现，卖早1%但方向对</td></tr>
+<tr><td>景旺电子（持仓）</td><td>放量假破位回收（85.60→88.42）</td><td>85.60长下影=回踩有承接；但LHB曾出货组背景未消</td></tr>
+<tr><td>创成长ETF（持仓）</td><td>缩量平盘（0.754收平）</td><td>beta工具仓，随创业板</td></tr>
+<tr><td>芒果超媒（已清）</td><td class="warn">天量23.19长上影阴线</td><td>放量滞涨警报兑现——21.43卖出后回落，卖点A</td></tr>
+</table>
+
+<h2>⑤ 缠论结构收盘快照</h2>
+<table>
+<tr><th>标的</th><th>最新笔向</th><th>结构位</th><th>状态</th></tr>
+<tr><td>科创50</td><td>下行笔 1695.96→1617.09（60m，-4.65%）</td><td>日线笔端点1604.59/生命线1605；反压1612.7已收复</td><td>下行笔未完，收盘贴笔端点=明日破位/反弹裁决日</td></tr>
+<tr><td>景旺电子</td><td>下行笔 97.37→88.38（60m，-9.23%）</td><td>60m中枢ZD 64.62/ZG 73.69（远位）；近端笔端88.38已贴</td><td>日线连3阴笔，今日85.60长下影=一买候选待确认；破85.6结构坏</td></tr>
+<tr><td>创成长ETF</td><td>0.754平收</td><td>0.74双底/0.77反弹高</td><td>横盘中性，随创业板3296-3312二买区</td></tr>
+</table>
+
+<h2>⑥ 持仓与交易执行归因（逐笔）</h2>
+<table>
+<tr><th>交易</th><th>价格 vs 区间</th><th>判断对错</th><th>执行对错</th><th>标签</th></tr>
+<tr><td>卖 蓝盾 1900股@48.54 09:44</td><td>收盘45.80（卖价高出5.98%）</td><td class="up">判断对——"下跌无抵抗"</td><td class="up">执行优——先手于50.33条件线</td><td><span class="tag tg">止损纪律</span></td></tr>
+<tr><td>卖 行云 2900股@34.74 10:00</td><td>收盘35.10（卖价低1.0%）</td><td class="warn">部分对——上涨乏力但未走坏</td><td class="warn">未到36.0/35.35卖点区手动卖</td><td><span class="tag ty">提前下车</span></td></tr>
+<tr><td>卖 芒果 100股@21.43 09:32</td><td>当日高点区（收盘20.15）</td><td class="up">判断对</td><td class="up">≈21.5减半线执行✓</td><td><span class="tag tg">执行预案</span></td></tr>
+<tr><td>买 景旺 2200股@86.79 10:36</td><td>当日区间85.60-90.56内</td><td class="dn">无预判依据——A情景未触发</td><td class="dn">19.1万重仓无止损挂单</td><td><span class="tag tr">报告外重仓</span></td></tr>
+<tr><td>买 创成长 5800份@0.754 10:38</td><td>平价</td><td>中性beta工具</td><td class="warn">与景旺同日打满现金</td><td><span class="tag ty">报告外小仓</span></td></tr>
+</table>
+<div class="risk"><b>T+1 制度核对</b>：① 今日买入景旺/创成长全部为隔夜敞口仓（明日才可止损）——景旺19.1万重仓在非农前夜+科创50夹缝日建仓，隔夜风险未提示即满上=执行差；② 今日卖出全为底仓（0902建仓T+1已解）✓；③ 日内减半预案：行云底仓回转未执行（直接全清）。</div>
+<div class="note"><b>踏空归责</b>：飞龙+8.54%（LHB连续2日净买+机构级证据，报告已给"高开≤4%直接走强追1/4"备选条款=踏空可避免）；湖南黄金+5.07%（备选条款缺失，等回踩纪律正确）；亿田+7.54%（触发条款满足但用户未执行——报告池内票未跟）。</div>
+<div class="card"><b>损耗分账（三本账）</b>
+<div class="grid3">
+<div><span class="tag tr">报告错</span><br><b class="dn">约 -0 元</b><br><span class="small">主推方向全对，无报告错损失；排除栏情绪票证伪损失≈踏空国芳+10%（非持仓）</span></div>
+<div><span class="tag ty">执行差</span><br><b class="warn">约 -59 元</b><br><span class="small">行云卖早1%（-350元）+芒果差0.3%（+3元）+飞龙/亿田/湖南黄金未跟（踏空机会成本约+2500元未计入损益，计入执行机会成本）</span></div>
+<div><span class="tag tp">报告外</span><br><b>景旺浮盈+1.88% / 创成长0%</b><br><span class="small">合计19.54万无预案兜底（无止损挂单）；0902割肉价88.05成本上方=两日反手</span></div>
+</div></div>
+
+<h2>⑦ 持仓持有建议（逐只）</h2>
+<h3>A. 点位表</h3>
+<table>
+<tr><th>标的</th><th>操作</th><th>支撑·加仓线</th><th>压力位</th><th>止损位</th><th>目标位</th></tr>
+<tr><td>景旺电子 603228<br><span class="small">2200股@86.79 浮+1.88%</span></td><td><span class="tag ty">持有·设止损</span></td><td>85.60（今日长下影）</td><td>90.56/93.90</td><td><b class="dn">85.60 收盘破</b></td><td>93.9 减半</td></tr>
+<tr><td>创成长ETF 159967<br><span class="small">5800份@0.754 浮0%</span></td><td><span class="tag tg">持有</span></td><td>0.74（双底）</td><td>0.771/0.79</td><td>0.735</td><td>0.79+随创业板</td></tr>
+</table>
+<h3>B. 触发与预案表</h3>
+<table>
+<tr><th>标的</th><th>触发条件</th><th>明日预案+今日衔接</th></tr>
+<tr><td>景旺电子</td><td>① 科创50收盘<1605；② 收盘<85.60；③ 冲90.5滞涨</td><td>①无条件清仓（0902割肉88.05下方=逻辑证伪）；②同上无条件；③减1/2。非农20:30前不加仓</td></tr>
+<tr><td>创成长ETF</td><td>创业板收盘<3285</td><td>清仓（二买区破位）；3312上方不动</td></tr>
+</table>
+<div class="note"><b>板块占位预期（V2.9）</b>：景旺=PCB/算力硬件——今日板块量能+4%中性跟随，液冷二线（英维克+3.4%）强于PCB一线；明日确认信号=沪电/生益能否收复5日线，证伪=生益A情景假触发后继续缩量阴跌。创成长=创业板beta——3296-3312二买候选区上方横盘，破3285则二买失效。</div>
+
+<h2>⑧ 龙虎榜/连板梯队明日初判</h2>
+<div class="scroll"><table>
+<tr><th>信号</th><th>内容</th></tr>
+<tr><td>LHB 净买前三</td><td>光洋股份+2.91亿（机构+1.09亿，机器人2板）/黄河旋风+2.82亿/白银有色+2.43亿——超硬材料+机器人新分支吸金</td></tr>
+<tr><td>LHB 净卖警示</td><td>沃特股份-2.13亿/百花医药-1.38亿；我爱我家-0.72亿（地产断板退潮确认）</td></tr>
+<tr><td>人气榜背离</td><td>金健米业人气第2+LHB净卖1亿=散户接机构货；远东股份人气第1（前期爆炒后续观察）</td></tr>
+<tr><td>连板梯队</td><td>5板国芳（大消费总龙）→4板龙版/集泰（AI应用/字符）→2板金帝/博云/光洋。晋级率3/13=23%冰点+高度5板=冰点但未断龙</td></tr>
+<tr><td>明日初判</td><td class="warn">军工卡位股（飞龙减持公告落地）与超硬材料/机器人分支最可能吸金；国芳若6板=情绪高潮重启信号。置信度低</td></tr>
+</table></div>
+
+<h2>⑨ 明日可买板块前瞻（置信度低一档）</h2>
+<table>
+<tr><th>板块</th><th>三源证据</th><th>3只候选</th><th>买区/失效</th></tr>
+<tr><td>超硬材料/工业母机<br><span class="tag tb">LHB新分支</span></td><td>蒸馏：光洋2板+2.91亿机构主买=资金去新分支；专家：白河愁"ai特点就是轮着炒"；缠论：黄河旋风放量突破平台</td><td>①黄河旋风（龙头）②光洋股份（弹性·2板）③沃尔德（低吸备选）</td><td>黄河旋风回踩分时均价/破前低失效；光洋2板次日溢价负则分支证伪</td></tr>
+<tr><td>军工卡位（飞龙/成飞）<br><span class="tag ty">条件触发</span></td><td>蒸馏：主线未死卡位轮转；专家：药韭歼10CE军贸+航展倒计时；缠论：成飞回踩62-63.4缩量企稳结构</td><td>①中航成飞②飞龙股份③内蒙一机（回踩12.2-12.5才看）</td><td>成飞62-63.4缩量不破+10点翻红；失效=放量破60.3。飞龙注意减持利空低开-3%内才接</td></tr>
+<tr><td>黄金修复<br><span class="tag tg">非农博弈</span></td><td>蒸馏：央行购金叙事；专家：金4400未站稳分歧；缠论：湖南黄金主升笔延伸</td><td>①湖南黄金②赤峰黄金③中国黄金</td><td>湖南黄金27.21站稳看28.92；非农>20万=金价杀回4300全部放弃。买区仅限回踩26.4-26.6</td></tr>
+</table>
+<div class="small">三源一致=军工卡位（中置信）；其余两源=低置信。每板块≤3只、单票≤3%。**明日验证信号**：①光洋竞价溢价（>+3%=分支确认）；②成飞10点前翻红（=军工卡位续）；③金价4300保卫战（=黄金线存亡）。</div>
+
+<h2>⑨A 指数情景矩阵（0904 预生成）</h2>
+<table>
+<tr><th>情景</th><th>触发阈值</th><th>主战场</th><th>动作+仓位</th></tr>
+<tr><td>A 反抽修复</td><td>科创50站上1635.8且30分钟不回落 / 创业板放量过3413</td><td>科技</td><td>生益143-145/剑桥178-180各1/4；总仓≤70%</td></tr>
+<tr><td>B 平开震荡</td><td>三锚±0.5%（沪指3930-3955）</td><td>军工卡位+超硬材料</td><td>成飞回踩62-63.4低吸1/4；彩票池升满配（晋级率23%<30%）；总仓≤65%</td></tr>
+<tr><td>C 低开杀跌</td><td>科创50收盘<1605</td><td>无（防御）</td><td>景旺无条件清；创成长清；现金≥50%等非农</td></tr>
+<tr><td>D 瀑布后深V</td><td>跌>2.5%后跌停不增+收复分时均线+深水强票翻红</td><td>主线反核</td><td>只抄军工反核/科创ETF≤2成；禁抄种业/油气</td></tr>
+<tr><td>E 阴跌缩量</td><td>10:30量能同比缩>15%+三锚水下</td><td>无</td><td>不动手只执行条件单；20:30非农前现金≥50%</td></tr>
+</table>
+<div class="small"><b>主战场裁决</b>：开盘30分钟看①科创50对1605/1635.8位置②光洋/超硬分支竞价溢价——双弱则空仓等非农。**深V三信号固定**。今晚非农20:30=所有情景的上位变量：非农前仓位压到≤50%现金。</div>
+
+<h2>⑩ 高频错误模式统计</h2>
+<div class="scroll"><table>
+<tr><th>模式</th><th>近10日频次</th><th>趋势</th></tr>
+<tr><td>未挂条件单手动操作</td><td>0828×3 → 0901×2 → 0902×5 → <b>0903×1</b>（行云）</td><td><span class="tag tg">收敛</span>（蓝盾/芒果首次按线执行）</td></tr>
+<tr><td>报告外重仓</td><td>0902行云9.6万 → <b>0903景旺19.1万</b></td><td><span class="tag tr">恶化</span>（金额翻倍，兜底缺失）</td></tr>
+<tr><td>恐慌离场</td><td>0901×1 → 0902×5 → <b>0903×0</b></td><td><span class="tag tg">收敛</span></td></tr>
+<tr><td>报告池内票未跟</td><td>0901×3 → 0902×0 → <b>0903×3</b>（飞龙/亿田/湖南黄金）</td><td><span class="tag tr">恶化</span>——报告胜率提升后执行反而脱节</td></tr>
+</table></div>
+<div class="note"><b>主推命中率警报解除</b>：近3份报告主推次日验证 0901轮40% → 0902轮33% → <b class="up">0903轮方向3/3+板块全正=回升</b>；V3.7/V3.8 修订（护栏2.5%/情景矩阵/情绪指数）初见成效。但**触发后平均+4.17% vs 用户实际捕获0%**——研判修复、执行脱节，钱亏在"没跟"。</div>
+<div class="note"><b>奇思妙想池复盘</b>：半启用5只方向命中2/5（九牧王+3.09/深圳新星+1.95）；无一触发买入条件（高开≤4%不破10.36等）——纪律执行✓未乱买。晋级率23%<30%→<b>次日按规则升满配</b>（6只、单票≤1%、亏10%砍），标的由明日晨报池定。</div>
+
+<h2>⑪ 明日修正要点</h2>
+<table>
+<tr><th>#</th><th>修正</th><th>实证来源→条款位置</th></tr>
+<tr><td>1</td><td class="dn">景旺19.1万明日按情景C执行：<b>科创50收盘<1605无条件清仓</b>，不看浮盈</td><td>0903 A情景假触发+0902割肉88.05反手→情景矩阵C行动项</td></tr>
+<tr><td>2</td><td>"收复XX"类情景阈值必须补<b>站稳口径</b>（站上且30分钟不回落）</td><td>科创50 1636.3瞬触假信号→策略日报2.7 情景矩阵+A情景条款</td></tr>
+<tr><td>3</td><td>"高开≤4%直接走强追1/4"从备选升级为<b>标准条款</b>（LHB连续净买票必配）</td><td>飞龙-8.54%踏空/回测A桶连续3轮→策略日报2.5 买区条款</td></tr>
+<tr><td>4</td><td>冰点日排除情绪票需加<b>"核查公告落地"生效条件</b></td><td>国芳5板+6.33%排除栏证伪→策略日报2.4 流出栏</td></tr>
+<tr><td>5</td><td>非农前现金≥20%承诺连续2日落空→<b>明晨开盘前先决定仓位再决定票</b></td><td>0902-0903实盘→执行硬约束周D6</td></tr>
+</table>
+
+</div><!-- /main -->
+
+<div class="side">
+<h2>错误模式 / 明日要点</h2>
+<div class="card">
+<h3 style="margin-top:0">今日一句话</h3>
+<p style="font-size:12.5px">卖的全部对，买的全部外；报告+4.17%一场空——<b>研判在修复，执行在脱节</b>。</p>
+</div>
+<div class="card">
+<h3>三本账</h3>
+<table>
+<tr><td>报告错</td><td class="up">≈0 元</td></tr>
+<tr><td>执行差</td><td class="warn">-59 元</td></tr>
+<tr><td>报告外</td><td>浮+1.88%（无兜底）</td></tr>
+</table>
+<p class="small">执行机会成本：未跟飞龙/亿田/湖南黄金 ≈ 放弃 +2500 元报告内收益。</p>
+</div>
+<div class="card">
+<h3>明日三大陷阱</h3>
+<p class="small">① 非农20:30前重仓硬扛（景旺无止损）<br>② 科创50 1605假破位又假收复的双向洗盘<br>③ 冰点日追高5板国芳接力</p>
+</div>
+<div class="card">
+<h3>持仓速查</h3>
+<table>
+<tr><th>标的</th><th>动作</th><th>硬线</th></tr>
+<tr><td>景旺</td><td>持有·设止损</td><td class="dn">85.60/科创50<1605</td></tr>
+<tr><td>创成长</td><td>持有</td><td>0.735</td></tr>
+</table>
+</div>
+<div class="card">
+<h3>情绪温度计</h3>
+<table>
+<tr><td>晋级率</td><td class="dn">3/13=23%（冰点线30%下方）</td></tr>
+<tr><td>竞价溢价</td><td class="up">+1.23% 转正</td></tr>
+<tr><td>涨停/跌停</td><td>57/22</td></tr>
+<tr><td>炸板率</td><td class="warn">33/(44+33)=43% 高</td></tr>
+<tr><td>两市量能</td><td>1.76万亿 缩量</td></tr>
+<tr><td>涨跌家数</td><td class="dn">1801/3275</td></tr>
+</table>
+</div>
+<div class="card">
+<h3>回测联动（第4轮）</h3>
+<p class="small">触发4/9·踏空4/9·触发均+4.17%·信号4/8。踏空全是A桶（方向对买区深）：飞龙-1.6%/湖南黄金-0.75%/沈飞-0.57%。V3.8情绪指数35分判定正确，晋级率23%跌破冰点线→明日彩票池升满配条件达成。</p>
+</div>
+</div>
+</div><!-- /layout -->
+
+<div class="footer">复盘日报 V2.9 · 生成 2026-09-03 20:4x · 数据源：cache.db qfq（fuyao 5206/5212）· fuyao special pools（0903）· 财联社加红电报 56条 · 雪球 70 帖 · 缠论：chan_engine day/60m force recalc<br>免责声明：本报告为个人复盘记录，不构成投资建议。缺失项声明：510300 ETF 量能数据未入缓存（主力视角证据①降级）；分时级资金路径为日线+板块成交额近似还原。</div>
+</div>
+</body>
+</html>
