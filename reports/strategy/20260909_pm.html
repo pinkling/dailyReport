@@ -58,6 +58,11 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 b.gold{color:#ffc857}
 b.cy{color:#4dd6b8}
 b.exp{color:#7fb3ff}
+
+/* UI 对齐约束（V4.9）：卡内列表与正文左边距对齐，禁用浏览器默认 40px 缩进 */
+.card ul,.card ol{margin:6px 0;padding-left:20px}
+.card li{margin:4px 0}
+.tldr ol{padding-left:20px}
 </style>
 </head>
 <body>
@@ -237,7 +242,6 @@ b.exp{color:#7fb3ff}
 <!-- 【组件规范·禁止用表格行替代卡片】每只标的 = .stock 卡：.hd(.clickable data-copy + .tag 角色标签，必追标 .tag tr must) +
      .ignite ⚡启动条件(触发源/盘面确认/失败判定三层) + .kv ≥4 行(0904现价/买区含宽度与踏空标注/止损目标1目标2/缠论锚或温度计)；
      卡片数=池规模(6-9)；末尾附过往推荐复盘小表(small, 上一期池逐只涨跌幅) -->
-<h2>⑦ 重点股票池</h2>
 <h2>⑦ 重点股票池（资源涨价链 × 13 只 · 每板块 3 只+启动条件三层）</h2>
 <div class="stock">
 <div class="hd"><span><span class="cd">601872</span> <span class="nm">招商轮船</span></span><span class="must">必追</span><span class="tag tg">油运 · 主攻</span></div>
@@ -366,7 +370,6 @@ b.exp{color:#7fb3ff}
 <!-- ═══ ⑦A 奇思妙想池 ═══ -->
 <!-- 【组件规范·禁止用表格替代卡片】首行 .bsp 启用判定块(触发依据+护栏+C/E禁用)，随后每只 = .stock 卡：
      .hd(.clickable + .tag 型别) + .ignite ⚡(触发源/确认/失败) + .kv(映射源头/证伪信号/次日默认不持有)；卡片数 5-6 -->
-<h2>⑦A 奇思妙想池</h2>
 <h2>⑦A 奇思妙想池（冰点半配 · 炸板率 >35% 且跌停 >8 家时升正配）</h2>
 <div class="stock">
 <div class="hd"><span><span class="cd">002046</span> <span class="nm">国机精工</span></span><span class="tag tp">彩票 · 金刚石散热</span></div>
