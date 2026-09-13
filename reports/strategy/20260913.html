@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>策略日报 · 0914（周一）· 冰点转折观察日（晨间修订版）</title>
+<style>
+:root{--bg:#0b1020;--card:#141b31;--card2:#1a2340;--line:#2b3a5c;--tx:#e8edf7;--sub:#8b97b8;--green:#39e58c;--red:#ff5d5d;--gold:#ffc53d;--blue:#5aa7ff;--purple:#b18cff}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65;padding-bottom:40px}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#2b3a5c;border-radius:3px}
+.wrap{max-width:640px;margin:0 auto;padding:14px}
+h1{font-size:19px;line-height:1.45;margin:6px 0 4px}
+h2{font-size:15px;margin:20px 0 10px;padding:7px 10px;background:linear-gradient(90deg,#1a2f55,#141b31);border-left:3px solid var(--green);border-radius:4px}
+h3{font-size:14px;margin:13px 0 6px;color:var(--gold)}
+.meta{color:var(--sub);font-size:12px;margin:2px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.card.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(57,229,140,.15)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;margin:1px 3px 1px 0;max-width:100%;overflow-wrap:anywhere}
+.tg{background:rgba(57,229,140,.14);color:var(--green);border:1px solid rgba(57,229,140,.4)}
+.tr{background:rgba(255,93,93,.14);color:var(--red);border:1px solid rgba(255,93,93,.4)}
+.ty{background:rgba(255,197,61,.14);color:var(--gold);border:1px solid rgba(255,197,61,.4)}
+.tb{background:rgba(90,167,255,.14);color:var(--blue);border:1px solid rgba(90,167,255,.4)}
+.tp{background:rgba(177,140,255,.14);color:var(--purple);border:1px solid rgba(177,140,255,.4)}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;table-layout:fixed}
+th,td{border:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top;word-break:break-all}
+th{background:var(--card2);color:var(--sub);font-weight:600}
+tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.up{color:var(--green)}.dn{color:var(--red)}.warn{color:var(--gold)}
+.num{font-variant-numeric:tabular-nums}
+.small{font-size:11px;color:var(--sub)}
+.bsp{background:rgba(57,229,140,.07);border-left:3px solid var(--green);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.risk{background:rgba(255,93,93,.07);border-left:3px solid var(--red);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.note{background:rgba(255,197,61,.07);border-left:3px solid var(--gold);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.ignite{background:rgba(57,229,140,.09);border:1px dashed var(--green);border-radius:6px;padding:6px 9px;margin:6px 0;font-size:12px}
+.divider{height:1px;background:var(--line);margin:13px 0}
+.big{font-size:16px;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+.stock{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin:10px 0}
+.stock.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(57,229,140,.15)}
+.stock .hd{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px}
+.stock .nm{font-size:15px;font-weight:700}
+.stock .cd{color:var(--sub);font-size:12px;margin-right:4px}
+.stock .hd .clickable{cursor:pointer}
+.stock .hd .clickable:active .nm{color:var(--green)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:12px;margin-top:7px}
+.kv>b{color:var(--sub);font-weight:400;white-space:nowrap}
+.kv .v{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+@media (max-width:400px){.kv{grid-template-columns:1fr;gap:0 0}.kv b{white-space:normal;margin-top:4px}}
+.must{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:700;letter-spacing:1px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.tldr{background:linear-gradient(135deg,#132647,#0f1f3d);border:1px solid var(--blue);border-radius:10px;padding:12px;margin:12px 0}
+.tldr li{margin:6px 0 6px 18px;font-size:13px}
+.footer{margin-top:24px;padding:12px;background:var(--card2);border-radius:8px;font-size:11px;color:var(--sub)}
+
+/* V4.8 重点三色：金=关键点位数字 青=买卖动词 蓝=主推/专家引用 */
+b.gold{color:#ffc857}
+b.cy{color:#4dd6b8}
+b.exp{color:#7fb3ff}
+
+/* UI 对齐约束（V4.9）：卡内列表与正文对齐，禁浏览器默认 40px 缩进；h2 全篇唯一 */
+.card ul,.card ol{margin:6px 0;padding-left:20px}
+.card li{margin:4px 0}
+.tldr ol{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- ═══ 【构建纪律】（S1.2，生成时必读——三个惯性错误的历史） ═══
+     ① .kv 网格内只允许 <b>/<span class="v"> 成对出现：需要分隔时必须 关闭kv→divider→重开kv，
+        禁止把 <div class="divider"> 或任何块级元素写进 kv（0904/0907/0908/0909/0910 五次复发，全部靠门禁拦截）；
+     ② 正文文字写"必追"的卡片，hd 必须同步挂 <span class="tag tr must">必追</span> 徽章（徽章-文字同步，
+        校验脚本会做双向断言）；
+     ③ 组件计数下限是动态的：⑦A 彩票池"未启用"时 .stock/.ignite 下限自动下调（见样式规范 S1.2），
+        构建前先数一遍：② 持仓 N1 + ⑦ 池 N2（+⑦A N3 若启用），心里有数再动笔。
+═══════════════════════════════════════════════════════════ -->
+<div class="meta">生成 2026-09-13 23:20、<b style="color:var(--gold)">晨间修订 2026-09-14 07:20</b> · 数据日 0911 收盘 · 数据包 pack_0911 errors=0 · 提示词版本：docs/ 最新版</div>
+<h1>策略日报 · 0914（周一）目标 · 冰点转折观察日（晨间修订版）</h1>
+<div class="meta">数据截止：电报 2026-09-14 07:11（晨间修订） · 美股=周五收盘+周一开盘期货（纳指期货 -1.06%） · <b style="color:var(--gold)">美债收益率数据缺失，已声明降置信</b></div>
+<div class="meta"><b style="color:var(--gold)">目标交易日 0914（周一）· FOMC 0917 议息周（CME 加息 86.2%，特朗普施压中）· 0914 霍尔木兹会谈（油价已跳涨 WTI 103.1）· 一切结算=T+1（本版结算日 0915）</b></div>
+
+<!-- ═══ 头部大数字卡（必填：情绪指数 big / 风险评级 big；样式基线 V3.8B 禁改） ═══ -->
+<div class="card hl">
+<div class="grid2">
+<div><b>情绪指数</b><br><span class="big dn num">33 / 100</span><br><span class="small">偏冷（分级）· 5 日趋势 95→61→61→54→33 高位四连降</span></div>
+<div><b>风险偏好评级 / 仓位</b><br><span class="big dn num">2 / 5 · 总仓 ≤40%</span><br><span class="small">冰点+议息周+高度梯队封单集体分歧；承接减半、禁后手追单</span></div>
+</div>
+<div class="divider"></div>
+<div class="small"><b>连板高度 / 晋级率</b>：4 板瑞尔特（封单衰减仅 8% 独苗健康）· 晋级率 3/9=33.3%　<b>两市量能</b>：1.97 万亿（放量 +3248 亿，0911 放量下跌日）</div>
+<div class="divider"></div>
+<div class="small"><b class="warn">隔夜三大变量</b>：① 金安国纪/超声电子英伟达认证<b class="dn">双澄清</b>（去伪）② <b class="dn">纳指期货周一开盘 -1.06%</b>（道 -0.25/标普 -0.5）——周五偏暖隔夜被期货否定 ③ 沙特管道中断发酵 <b class="dn">WTI +3% 至 103.1</b>（伊朗爆炸+沙特空袭胡塞 58 次，0914 会谈前地缘升级）</div>
+</div>
+
+<!-- ═══ TLDR（.tldr 渐变卡 + ol，三到五条，每条一句话可执行） ═══ -->
+<div class="tldr">
+<ol>
+<li><b class="gold">冰点规则全开</b>：情绪 33 偏冷四连降+FOMC 0917，风险 2/5、总仓 <b class="gold">≤40%</b>，<b class="cy">禁后手追单</b>，承接减半，只做确认票。</li>
+<li><b class="exp">B1 覆铜板链维持 A 级</b>：PCB 首板潮 7 只+LHB 资金 3 日持续（金安 8.12 亿）+COHR +4.16 隔夜；周末澄清=去掉认证伪逻辑、涨价主逻辑未破——<b class="gold">金安低开 ≤2% 且 10:00 前收复 80 = 裁决通过</b>。</li>
+<li>主推低吸带：<b class="gold">金安 76-80 / 风华 52-54 / 嘉立创 172-178 / 崇达 18.8-19.3</b>，电力低位杭州热电 <b class="gold">17.6-18.2</b>；<b class="cy">纳指期货 -1.06%+WTI +3%=竞价承压概率大，全部只做带内被动成交、踏空不追</b>。</li>
+<li>持仓：东山<b class="cy">持有</b>贴 187（高开 204+ 冲高兑现做 T 卖侧）；黄河<b class="cy">持有观察+必挂 14.55 清仓单</b>（金刚石叙事 C 级不入买区）。</li>
+<li>存储背离（WDC -2.98）德明利降观察；超声澄清+封单衰减 69% 剔出；MLCC 业绩兑现研报（0914 晨）增强风华佐证；油价已跳涨——会谈达成则回吐，<b class="cy">两头都是减仓项</b>。</li>
+</ol>
+</div>
+
+<!-- ═══ ② 持仓诊断（每只 .stock 卡：.hd 三段头 + .kv 字段网格；不放 .ignite） ═══ -->
+<h2>② 持仓诊断 · 交易操作优先</h2>
+<div class="stock hl">
+<div class="hd"><span class="clickable" data-copy="002384 东山精密"><span class="cd">002384</span><span class="nm">东山精密</span></span><span class="tag tb">PCB 中军 · 持有</span><span class="tag tr must">必追</span></div>
+<div class="kv">
+<b>持仓</b><span class="v">300 股 @197.01，浮亏 <b class="dn">-1.31%</b>（周五收 194.42，5 日位 70.8%）</span>
+<b>量价</b><span class="v">5 日振幅 5.01%（t_viable ✓）· 量比 1.2 · PCB 首板潮+COHR/康宁隔夜，持有逻辑强化</span>
+<b>动作</b><span class="v"><b class="cy">持有</b>，<b class="gold">必挂 187 清仓单</b>（成本 -5.1% 生命线）；高开 ≥204 冲高滞涨=当日兑现做 T 卖侧</span>
+<b>隔夜风险</b><span class="v">中：FOMC 周高 pos+澄清情绪外溢为最大变数，英伟达链澄清未涉及东山</span>
+</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="600172 黄河旋风"><span class="cd">600172</span><span class="nm">黄河旋风</span></span><span class="tag ty">超硬材料 · 持有观察</span><span class="tag tr must">必追</span></div>
+<div class="kv">
+<b>持仓</b><span class="v">9600 股 @15.2233，浮亏 <b class="dn">-1.27%</b>（周五收 15.03，5 日位 17.8% 贴底、缩量 0.68）</span>
+<b>周末变量</b><span class="v">金刚石散热双催化（沃尔德专家会+调研六股点名）=C 级叙事，<b class="exp">不入买区、不改持仓纪律</b></span>
+<b>动作</b><span class="v"><b class="cy">持有观察</b>，<b class="gold">必挂 14.55 清仓单</b>（-4.4% 硬止损）；高开 ≥3% 冲高无量=当日兑现清仓（T+1 预案）</span>
+<b>隔夜风险</b><span class="v">中高：C 级叙事不支撑隔夜加逻辑，破位单是唯一保险；不因周末题材放宽止损</span>
+</div>
+</div>
+
+<!-- ═══ ③ 宏观与外围扫描 ═══ -->
+<h2>③ 宏观与外围扫描</h2>
+<div class="card">
+<div class="kv">
+<b>议息对峙</b><span class="v">CME 9 月加息概率 <b class="gold">86.2%</b>（自 90% 微降）；高盛转鹰 vs 特朗普「没有理由加息」；晨间媒体口径出现「预防式加息、A 股风险偏好有望修复」——落地前双向波动</span>
+<b>油价跳涨</b><span class="v"><b class="dn">WTI +3% 至 103.1</b>：沙特管道中断+伊朗霍尔木兹甘省爆炸+沙特空袭胡塞 58 次（会谈前地缘升级）；白河愁杠杆框架=预期先行，0914 会谈达成则回吐</span>
+<b>期货开盘</b><span class="v">周一开盘期货：<b class="dn">纳指 100 -1.06%、标普 -0.50%、道 -0.25%</b>——周五偏暖隔夜被期货否定，A 股科技链竞价承压；现货金 -0.36%/银 -1%</span>
+<b>美股周五</b><span class="v">道 +0.98/纳 +0.96；SMH +1.47；<b class="up">COHR +4.16、康宁 +2.01、AAOI +2.0</b>、ARM +4.17；<b class="dn">VRT +3.60、GEV +3.61</b>；存储弱 MU -0.22/WDC -2.98</span>
+<b>周末产业</b><span class="v">智谱 50 亿美元融资；词元 2026 年 10 亿亿；<b class="up">Anthropic 本季度将盈利</b>；马斯克：SpaceX 明年太空部署英伟达 NVL72；英伟达拟投 Anthropic 100 亿美元</span>
+<b>数据缺失</b><span class="v">美债收益率接口空值（ust=null）——利率锚缺失，宏观条目置信统一 -5</span>
+</div>
+</div>
+
+<!-- ═══ ④ 加红电报与关键消息（table colgroup，单元格 ≤70 字） ═══ -->
+<h2>④ 加红电报与关键消息</h2>
+<table>
+<colgroup><col style="width:11%"><col style="width:74%"><col style="width:15%"></colgroup>
+<tr><th>时间</th><th>内容</th><th>级别</th></tr>
+<tr><td class="num">0914 07:06</td><td>研报快讯：MLCC 业绩向好，景气改善进入业绩兑现阶段（风华池票佐证）</td><td class="up">B·MLCC</td></tr>
+<tr><td class="num">0914 06:33</td><td>Anthropic 告知支持者本季度将实现盈利（AI 商业化里程碑）</td><td class="up">B·AI</td></tr>
+<tr><td class="num">0914 06:18</td><td>媒体口径：美联储加息偏向「预防式」，A 股风险偏好有望修复</td><td class="warn">B·解读</td></tr>
+<tr><td class="num">0914 06:13</td><td>CME：美联储 9 月加息 25bp 概率 86.2%（不变 13.8%）</td><td class="warn">B·议息</td></tr>
+<tr><td class="num">0914 06:10</td><td><b class="dn">WTI 涨幅扩大至 3%，报 103.1 美元（沙特管道中断发酵）</b></td><td class="dn">B·油价</td></tr>
+<tr><td class="num">0914 06:03</td><td><b class="dn">周一开盘期货：纳指 100 跌超 1%、标普 -0.50%、道 -0.25%</b></td><td class="dn">B·期货</td></tr>
+<tr><td class="num">0914 05:23</td><td>伊朗霍尔木兹甘省锡里克地区传出爆炸巨响，性质未明</td><td class="dn">B·地缘</td></tr>
+<tr><td class="num">0913 21:42</td><td>白宫顾问：特朗普认为没有理由加息，选前保持现状很重要</td><td class="warn">B·对峙</td></tr>
+<tr><td class="num">0913 15:34</td><td><b class="dn">金安国纪：纳入英伟达、华为供应链认证等信息均不实</b></td><td class="dn">B·澄清</td></tr>
+<tr><td class="num">0913 15:33</td><td><b class="dn">超声电子（5天3板）：高频板通过英伟达认证不实，无产品供货</b></td><td class="dn">B·澄清</td></tr>
+</table>
+
+<!-- ═══ ⑤ 资金流向前瞻 ★ ═══ -->
+<h2>⑤ 资金流向前瞻 ★</h2>
+<div class="card">
+<table>
+<colgroup><col style="width:20%"><col style="width:16%"><col style="width:14%"><col style="width:50%"></colgroup>
+<tr><th>标的</th><th>LHB 净买</th><th>净率</th><th>信号（LHB=ref 态，只作承接验证不作身位依据）</th></tr>
+<tr><td>金安国纪</td><td class="up num">8.12 亿</td><td class="num">6.0%</td><td>3 日持续净买，周五未板仍获大额承接=B1 主逻辑核心证据</td></tr>
+<tr><td>风华高科</td><td class="up num">2.92 亿</td><td class="num">2.9%</td><td>首板日即获 2.92 亿净买+5.74 亿封单=潮内质量最高</td></tr>
+<tr><td>嘉立创</td><td class="up num">1.87 亿</td><td class="num">15.0%</td><td>次新+PCB 双属性，净率最高=新资金态度</td></tr>
+<tr><td>崇达技术</td><td class="up num">1.09 亿</td><td class="num">5.4%</td><td>AI 服务器 PCB 首板跟随承接</td></tr>
+<tr><td>超声电子</td><td class="dn num">-0.53 亿</td><td class="dn">-1.5%</td><td>2 板净卖+周日澄清=资金已先撤，印证剔出决策</td></tr>
+</table>
+<div class="bsp">主力净流入前列：通信设备、元件均 <b class="gold">超 30 亿</b>；白河愁 0911 复盘注记：旭创/新易盛股价涨但游资净流出 31.2/21.5 亿——<b class="exp">机构接、游资跑</b>，低位承接优于高位追随。</div>
+</div>
+
+<!-- ═══ ⑤B 情绪指数（七项表 + 5 日趋势） ═══ -->
+<h2>⑤B 情绪指数</h2>
+<div class="card">
+<table>
+<colgroup><col style="width:22%"><col style="width:26%"><col style="width:18%"><col style="width:34%"></colgroup>
+<tr><th>分项</th><th>数值</th><th>得分</th><th>解读</th></tr>
+<tr><td>涨停家数</td><td class="num">40</td><td class="num">8/15</td><td>家数尚可但跌停 21 家对冲</td></tr>
+<tr><td>涨跌停比</td><td class="num">1.9</td><td class="dn">0/15</td><td>弱势区</td></tr>
+<tr><td>连板晋级率</td><td class="num">3/9=33.3%</td><td class="num">8/20</td><td>中位偏低</td></tr>
+<tr><td>连板高度</td><td class="num">4 板</td><td class="num">5/10</td><td>瑞尔特独苗，高度压缩</td></tr>
+<tr><td>炸板率</td><td class="num">31.0%</td><td class="dn">0/15</td><td>分歧大（桂林/云煤高分歧炸板）</td></tr>
+<tr><td>竞价溢价</td><td class="num">0.61%</td><td class="num">6/15</td><td>中性偏弱</td></tr>
+<tr><td>赚钱效应</td><td class="num">0.03%</td><td class="num">6/10</td><td>接近归零，普跌结构</td></tr>
+</table>
+<div class="note">5 日趋势 <b class="gold">95→61→61→54→33</b>：自 0907 亢奋高位四连跳水，属「高位退化」而非「低位出清」——按月月转折点口径，0911 已放量下跌，<b class="exp">0914-0915=第二三天买点观察窗</b>；冰点恐慌带 -3% 外挂、承接减半、禁后手。</div>
+</div>
+
+<!-- ═══ ⑥A 主力在想什么 ═══ -->
+<h2>⑥A 主力在想什么</h2>
+<div class="card">
+<ul>
+<li><b class="exp">证据一（潮）</b>：PCB 首板 7 家（崇达/嘉立创/高斯贝尔/博敏/澳弘/骏亚/协和）+超声 2 板——资金在 FOMC 前选择「涨价+业绩确定性」方向抱团，而非高位题材。</li>
+<li><b class="exp">证据二（承接）</b>：金安未板日仍获 8.12 亿 LHB 净买、3 日持续；嘉立创净率 15%——机构型资金在低位接，游资在高位撤（旭创/新易盛反例）。</li>
+<li><b class="exp">证据三（轮动）</b>：高度梯队封单集体衰减（鼎信 86%/超声 69%/闽东 63%）而首板封单健康（风华 5.74 亿）——主力做「弃高就低」的换手，明日梯队分歧大概率加深。</li>
+</ul>
+</div>
+
+<!-- ═══ ⑥B 对手盘预案表 ═══ -->
+<h2>⑥B 对手盘预案表</h2>
+<div class="card">
+<table>
+<colgroup><col style="width:16%"><col style="width:42%"><col style="width:42%"></colgroup>
+<tr><th>方向</th><th>明天谁出更高价（对手盘论证）</th><th>无对手盘则</th></tr>
+<tr><td>覆铜板链</td><td>①涨价传导（LME 铜新高+COHR 隔夜）下游追库存 ②PCB 潮跟随资金 ③金安 3 日 LHB 承接延续</td><td>澄清情绪扩散=只留风华单票，仓减半</td></tr>
+<tr><td>电力低位</td><td>①VRT/GEV 隔夜 +3.6 映射 ②冰点避险资金 ③闽东梯队若回封带动低位补涨</td><td>闽东 3 板炸板+板块塌=当日放弃</td></tr>
+<tr><td>防御红利</td><td>①议息周避险 ②油价上推通胀对冲需求 ③冰点现金牛偏好（冰冰冠军口径）</td><td>风险偏好修复日跑输=不上仓位</td></tr>
+</table>
+</div>
+
+<!-- ═══ ⑥C 指数情景矩阵（5 行动表 + 概率合计 100%，V3.9） ═══ -->
+<h2>⑥C 指数情景矩阵</h2>
+<div class="card">
+<table>
+<colgroup><col style="width:20%"><col style="width:12%"><col style="width:68%"></colgroup>
+<tr><th>情景</th><th>概率</th><th>行动</th></tr>
+<tr><td>高开修复</td><td class="num">20%</td><td>金安 10:00 前收复 80=B1 裁决通过，低吸带执行；风华溢价持有不追</td></tr>
+<tr><td>平市分化</td><td class="num">30%</td><td>指数 ±0.5%、PCB 内部分化——只做低吸带被动成交，总仓 ≤40%</td></tr>
+<tr><td>低开消化（期货拖累，含澄清杀）</td><td class="num">25%</td><td>纳指期货 -1.06% 传导=普遍低开：低吸带挂单等被动成交不接第一刀；金安低开 &gt;4% 不收复=B1 降半仓</td></tr>
+<tr><td>续跌冰点</td><td class="num">15%</td><td>放量下跌延续——<b class="cy">禁后手</b>，只留止损单，等 0915 第三天（月月口径）</td></tr>
+<tr><td>油价冲击发酵</td><td class="num">10%</td><td>WTI 已 103.1，若会谈再破裂续涨——成本端杀（先减仓），油气/油运对冲</td></tr>
+</table>
+<div class="small">概率合计 100%；切换触发：金安竞价即裁决（见 ⑦ 池卡）；晨间修订：纳指期货 -1.06%+WTI +3% 使「低开消化」情景权重上调，油价冲击从双向改为偏上行。</div>
+</div>
+
+<!-- ═══ ⑥D 缠论推演买卖点位 ═══ -->
+<h2>⑥D 缠论推演买卖点位</h2>
+<div class="card">
+<div class="note"><b>信号源声明</b>：缠论 n=27、命中率 14.8%、Brier 0.209=<b class="dn">ref 态</b>——以下仅参考位展示，不构成决策依据；本期 chan_predict 无输出（推演缺失已声明）。</div>
+<div class="kv">
+<b>上证参考</b><span class="v">0911 低点 <b class="gold">3852</b>（放量下影）为短线锚，收复 3900=修复；失守 3852=冰点加深</span>
+<b>科创50参考</b><span class="v">1605 生命线延续有效（0908 起跟踪），站回前科技仓位承接减半</span>
+</div>
+</div>
+
+<!-- ═══ ⑥ 板块策略 ═══ -->
+<h2>⑥ 板块策略</h2>
+<div class="card hl">
+<h3>B1 覆铜板/PCB 链 · 主线纵深 30%（A 级证据门）</h3>
+<div class="kv">
+<b>证据链</b><span class="v">资金：PCB 首板潮 7 家+金安 LHB 3 日 8.12 亿；产业：覆铜板涨价传导+LME 铜新高；隔夜：COHR +4.16/康宁 +2.01/AAOI +2.0；共识：白河愁/药韭/冰冰多源同向</span>
+<b>去伪声明</b><span class="v">金安/超声澄清认证传闻——<b class="dn">英伟达认证逻辑废止</b>，主逻辑=涨价+供需+承接，未受损</span>
+<b>出货自检</b><span class="v">未到顶证据：首板潮规模仍在扩（7 家）；已在出货信号：超声 2 板净卖+衰减 69%——潮内部分化，弃高就低</span>
+<b>情景预案</b><span class="v">高开=低吸带被动成交不追价；平开=带内分批；低开破带=当日空仓等待</span>
+<b>反预判</b><span class="v">若市场反向选「澄清杀」，超声跌停而金安红盘=资金只认真逻辑，金安成唯一避险票（加仓档）</span>
+</div>
+</div>
+<div class="card">
+<h3>B2 电力（算力用电+避险）· 低位轮动 10%（B 级）</h3>
+<div class="kv">
+<b>证据链</b><span class="v">隔夜 VRT +3.60/GEV +3.61；闽东 3 板梯队+杭州热电/江苏新能首板；撑伞猫蒸馏：电力=算力用电避险品</span>
+<b>分歧警示</b><span class="v">闽东 3 板封单衰减 <b class="gold">63%</b>=分歧位，3 板高度冰点市难接力——只做低位首板不做高位</span>
+<b>情景预案</b><span class="v">杭州热电回踩带内承接；闽东炸板+板块塌=当日放弃</span>
+<b>反预判</b><span class="v">若资金反向拥抱高位闽东回封，低位首板反而滞涨——承认踏空，不追 3 板</span>
+</div>
+</div>
+<div class="card">
+<h3>C 军工 · 纯对冲观察 0 仓（C 级）</h3>
+<div class="kv">
+<b>证据链</b><span class="v">内蒙一机/银河电子首板+金砖周末露面；无新增隔夜催化，证据纯叙事</span>
+<b>判定</b><span class="v">C 级置信 ≤40：<b class="cy">不给仓位</b>；内蒙一机若 2 板可作军工情绪温度计观察</span>
+<b>反预判</b><span class="v">若资金反向放弃军工回扑 PCB，首板二板梯队全灭=军工逻辑同步失效，无独立行情</span>
+</div>
+</div>
+<div class="card">
+<h3>D 事件时间窗 · 禁新仓窗口</h3>
+<div class="kv">
+<b>FOMC 0917</b><span class="v">加息定价 88-90% vs 特朗普施压——落地前风险偏好压制，新仓冻结至决议后</span>
+<b>0914 会谈</b><span class="v">霍尔木兹航运协议：达成=油价溢价再抽掉（利好 PCB/航空）；破裂=油价跳涨（减仓项）</span>
+<b>0915 数据</b><span class="v">中国 8 月经济数据+指数成分股变动生效——开盘结构扰动项</span>
+<b>反预判</b><span class="v">若市场提前抢跑「会谈达成」买航空/炼化而油价未落，事件票先于事实动——不追，等结果落地</span>
+</div>
+</div>
+<div class="risk"><b>风险警示（必填栏）</b>：代表股=金安国纪（B1 锚）；反向失效信号=澄清后低开 &gt;4% 且 10:30 前不收复 80；断板自动失效条件=风华/嘉立创/崇达三家全部低开破前日分时均线，B1 整体降档至观察，仅保留金安 76-80 单票低吸。</div>
+
+<!-- ═══ ⑦ 重点股票池（.stock 卡 + 首行 .ignite 启动条件；过往复盘小表） ═══ -->
+<h2>⑦ 重点股票池 · AI 结合资金选择（5 只）</h2>
+<div class="stock hl">
+<div class="hd"><span class="clickable" data-copy="002636 金安国纪"><span class="cd">002636</span><span class="nm">金安国纪</span></span><span class="tag tg">B1 锚 · 裁决票</span></div>
+<div class="ignite">⚡触发：竞价低开 ≤2% 且 10:00 前收复 80（澄清裁决通过）｜确认：分时均线上方放量企稳+铜价映射｜失败：低开 &gt;4% 全天弱势（B1 降档减半）</div>
+<div class="kv">
+<b>现价</b><span class="v">82.46（5 日位 92%，周五未板仍获 LHB 8.12 亿）</span>
+<b>买区</b><span class="v"><b class="gold">76-80</b>（-5.5%~-3%）；<b class="cy">直接走强=踏空不追</b>（冰点禁后手）</span>
+<b>止损/目标</b><span class="v">止损 <b class="gold">74.0</b>；目标1 <b class="gold">88</b> / 目标2 <b class="gold">92</b>；T+1 预案：次日不收复买区上沿=兑现离场</span>
+<b>锚</b><span class="v">LHB 3 日持续承接+覆铜板涨价周期（白河愁传导时序：涨价端第一站）</span>
+</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="000636 风华高科"><span class="cd">000636</span><span class="nm">风华高科</span></span><span class="tag tg">MLCC 首板王 · 潮旗</span></div>
+<div class="ignite">⚡触发：高开 ≤4% 回踩 53.5 不破｜确认：10:30 前 MLCC 跟随（双星/铜峰）转强｜失败：一字或高开 &gt;7%=放弃（禁后手）</div>
+<div class="kv">
+<b>现价</b><span class="v">55.99（首板封 <b class="gold">5.74 亿</b> 全场最强+LHB 2.92 亿）</span>
+<b>买区</b><span class="v"><b class="gold">52-54</b>（-7%~-3.5%）；一字涨停=踏空放弃</span>
+<b>止损/目标</b><span class="v">止损 <b class="gold">49.5</b>；目标1 <b class="gold">61</b> / 目标2 <b class="gold">66</b></span>
+<b>锚</b><span class="v">MLCC 涨价周期+AI 服务器用量；0914 晨研报佐证「MLCC 业绩兑现阶段」（双星/铜峰同链）</span>
+</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="001232 嘉立创"><span class="cd">001232</span><span class="nm">嘉立创</span></span><span class="tag tg">次新 PCB 平台</span></div>
+<div class="ignite">⚡触发：回踩 172-178 缩量企稳｜确认：次新+PCB 双属性同向（首板次日承接）｜失败：破 170 平台=潮退确认</div>
+<div class="kv">
+<b>现价</b><span class="v">182.48（首板封 1.54 亿+LHB 净率 15% 全池最高）</span>
+<b>买区</b><span class="v"><b class="gold">172-178</b>（-5.7%~-2.5%）；高开直接走强=踏空不追</span>
+<b>止损/目标</b><span class="v">止损 <b class="gold">168</b>；目标1 <b class="gold">195</b> / 目标2 <b class="gold">205</b></span>
+<b>锚</b><span class="v">新资金态度票（净率 15%）=潮内最干净的承接样本</span>
+</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="002815 崇达技术"><span class="cd">002815</span><span class="nm">崇达技术</span></span><span class="tag tg">AI 服务器 PCB 首板</span></div>
+<div class="ignite">⚡触发：回踩 18.8-19.3 缩量｜确认：PCB 潮内共振（≥3 家翻红）｜失败：低开破 18.5=一日游确认</div>
+<div class="kv">
+<b>现价</b><span class="v">20.08（首板封 1.26 亿+LHB 1.09 亿）</span>
+<b>买区</b><span class="v"><b class="gold">18.8-19.3</b>（-6.4%~-3.9%）</span>
+<b>止损/目标</b><span class="v">止损 <b class="gold">18.2</b>；目标1 <b class="gold">22</b> / 目标2 <b class="gold">24</b></span>
+<b>锚</b><span class="v">股份回购+高端 PCB 出海逻辑（药韭 0913 光博会链）</span>
+</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="605011 杭州热电"><span class="cd">605011</span><span class="nm">杭州热电</span></span><span class="tag tb">B2 电力低位首板</span></div>
+<div class="ignite">⚡触发：回踩 17.6-18.2 缩量企稳｜确认：VRT/GEV 映射+闽东 3 板不炸｜失败：闽东炸板+电力梯队塌=当日放弃</div>
+<div class="kv">
+<b>现价</b><span class="v">19.03（首板封 0.63 亿，09:55 早板）</span>
+<b>买区</b><span class="v"><b class="gold">17.6-18.2</b>（-7.5%~-4.4%）</span>
+<b>止损/目标</b><span class="v">止损 <b class="gold">17.0</b>；目标1 <b class="gold">20.5</b> / 目标2 <b class="gold">22</b></span>
+<b>锚</b><span class="v">算力用电+油价避险双逻辑（撑伞猫蒸馏口径），低位低拥挤</span>
+</div>
+</div>
+<div class="card"><div class="small"><b>上期池（20260912 版）处置复盘</b>：金安 82.46 → 维持锚票（澄清去伪）；风华 首板 → 升级入池；华正 227.74（5 日位 85.8 高位）→ 降观察；德明利 402.73（美股存储 WDC -2.98 背离）→ 降观察；博云 23.53（C 级无隔夜）→ 降观察。超声电子（上期观察）→ <b class="dn">剔除</b>（澄清+净卖+衰减 69%）。新增：崇达/杭州热电。</div></div>
+
+<h2>⑦A 奇思妙想池 · 半启用（情绪 33 冰点，只做确认票）</h2>
+<div class="bsp">启用判定：冰点半启用=只留 3 只彩票位、单票 ≤1%、<b class="cy">默认次日不持有</b>；型别=事件/映射一日博弈。</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="002161 远望谷"><span class="cd">002161</span><span class="nm">远望谷</span></span><span class="tag tp">彩票 · 收购+光通信</span></div>
+<div class="ignite">⚡触发：一字或 5 分钟内回封｜确认：光通信潮同向｜失败：开板不回封=走</div>
+<div class="kv">
+<b>映射</b><span class="v">拟收购光泰通信+光通信首板封 2.72 亿（09:25 秒板）</span>
+<b>证伪/退出</b><span class="v">开板不回封即走；C40 置信，次日冲高兑现</span>
+</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="605069 正和生态"><span class="cd">605069</span><span class="nm">正和生态</span></span><span class="tag tp">彩票 · 智谱映射</span></div>
+<div class="ignite">⚡触发：回踩不破昨分时均线｜确认：智谱融资情绪外溢｜失败：高开低走破位=走</div>
+<div class="kv">
+<b>映射</b><span class="v">智谱 AI+水务首板（智谱 50 亿融资落地的 A 股情绪映射）</span>
+<b>证伪/退出</b><span class="v">智谱港股周一若破发=C 40 证伪；次日冲高兑现</span>
+</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="603938 三孚股份"><span class="cd">603938</span><span class="nm">三孚股份</span></span><span class="tag tp">彩票 · 反倾销+光纤</span></div>
+<div class="ignite">⚡触发：回踩 5 日线企稳｜确认：光纤材料潮（远望谷/铭普同向）｜失败：孤板回落=走</div>
+<div class="kv">
+<b>映射</b><span class="v">二氯硅反倾销+光纤材料首板封 1.12 亿（09:39）</span>
+<b>证伪/退出</b><span class="v">反倾销一日游=次日兑现；C40</span>
+</div>
+</div>
+
+<div class="card">
+<h3>⑦C 奇想板 · 升级通道观察（连续 2 日验证→⑧ 议题）</h3>
+<div class="note">
+<b>① 金刚石散热链</b>（黄河旋风/国机精工/四方达/力量钻石）：周末双源催化（沃尔德专家会 4Q26 量产+zyy 调研六股点名）；C 级——A 股板块周五无异动实证，观察 0914-0915 是否首动，首动则黄河持仓档升级。<br>
+<b>② 光模块散热元年</b>（中石科技/苏州天脉）：1.6T 为分界的散热方案切换，天风/长江双调研；观察放量首板。<br>
+<b>③ MFC 国产化</b>（高凯技术/星源材质链）：邦瓷 10 月下旬过验证=裁决节点，此前只跟踪。<br>
+<b>④ 恺英网络 002517</b>：2.98 亿美元间接参股娱美德（传奇 IP）；事件票看周一承接。<br>
+<b>⑤ 智谱生态</b>（正和生态/华胜天成）：智谱 50 亿落地+ARR 16 亿美元的 A 股映射，随港股周一表现定真伪。
+</div>
+</div>
+
+<h2>⑦E 四专家选股 Panel · 2.16（冠军前置，各按自己蒸馏口径）</h2>
+<div class="card hl">
+<div class="hd"><span class="tag tg">🥇 冠军 · 冰冰（宏观链+防御）</span></div>
+<div class="kv">
+<b>最认可</b><span class="v">防御红利+能源链：油价已跳涨 103.1（供应损失 4%）+议息周+冰点——能源现金牛与股息是唯一无需对手盘的方向</span>
+<b>板块判断</b><span class="v">进攻端（PCB 潮）不否认，但冰点四连降下「先活下来」：红利防御权重上调</span>
+<b>持仓视角</b><span class="v">东山：持有贴 187，204+ 冲高兑现做 T；黄河：反抽 15.8+ 清仓、破 14.55 无条件走（C 级叙事不是持仓理由）</span>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="600900 长江电力"><span class="cd">600900</span><span class="nm">长江电力</span></span><span class="tag tb">防御水电</span></div>
+<div class="ignite">⚡T+1 预案：回撤带 27.8-28.5（沿用 0912 冠军口径）｜确认：议息周避险资金流入｜失败：放量破 27.4</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="601088 中国神华"><span class="cd">601088</span><span class="nm">中国神华</span></span><span class="tag tb">煤炭高股息</span></div>
+<div class="ignite">⚡T+1 预案：油价上行+冬季补库双逻辑｜确认：能源板块同向｜失败：油价会谈后回吐=逻辑暂歇</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="000722 湖南发展"><span class="cd">000722</span><span class="nm">湖南发展</span></span><span class="tag tb">水电低位</span></div>
+<div class="ignite">⚡T+1 预案：回撤带 14.4-15.0（0912 口径）｜确认：电力板块共振｜失败：孤军回落=放弃</div>
+</div>
+</div>
+<div class="card">
+<div class="hd"><span class="tag ty">🥈 撑伞猫（微观博弈·锚点破译）</span></div>
+<div class="kv">
+<b>最认可</b><span class="v">PCB 首板潮内「封单最强三只」——冰点市我只看箭射哪了：首板王风华 5.74 亿就是锚</span>
+<b>判定</b><span class="v"><b class="cy">半仓上限+只接恐慌带被动成交</b>：回踩带挂单等打下来，不追竞价不追分时拉升；断板（超声）=走弱一律不接</span>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="000636 风华高科"><span class="cd">000636</span><span class="nm">风华高科</span></span><span class="tag tb">首板王</span></div>
+<div class="ignite">⚡T+1 预案：52-54 恐慌带挂单｜确认：回踩缩量不破 53.5｜失败：带内放量下杀=撤单</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="001232 嘉立创"><span class="cd">001232</span><span class="nm">嘉立创</span></span><span class="tag tb">净率之王</span></div>
+<div class="ignite">⚡T+1 预案：172-178 挂单｜确认：次新承接强（净率 15%）｜失败：破 170 撤单</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="002815 崇达技术"><span class="cd">002815</span><span class="nm">崇达技术</span></span><span class="tag tb">首板跟随</span></div>
+<div class="ignite">⚡T+1 预案：18.8-19.3 挂单｜确认：潮内共振≥3 家翻红｜失败：低开破 18.5 撤单</div>
+</div>
+</div>
+<div class="card">
+<div class="hd"><span class="tag ty">🥉 月月（转折点·身位链）</span></div>
+<div class="kv">
+<b>最认可</b><span class="v">覆铜板身位链：金安（身位 1）→华正（中军）→崇达（跟随）——看 A 买 A，只做主线内身位</span>
+<b>判定</b><span class="v">0911 放量下跌已现，<b class="exp">0914=第二天买点观察窗</b>：10:00 半日成交缩至 6000 亿内企稳=转折候选；续放量下跌=等 0915 第三天，<b class="cy">不抢第一天反弹</b></span>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="002636 金安国纪"><span class="cd">002636</span><span class="nm">金安国纪</span></span><span class="tag tb">身位 1</span></div>
+<div class="ignite">⚡T+1 预案：转折确认后 78-80 接｜确认：缩量企稳+收复 80｜失败：放量破 76=身位松动</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="603186 华正新材"><span class="cd">603186</span><span class="nm">华正新材</span></span><span class="tag tb">涨价中军</span></div>
+<div class="ignite">⚡T+1 预案：回撤 215-222 观察（5 日位 85.8 高位只等深回撤）｜失败：高位滞涨缩量=剔除</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="002815 崇达技术"><span class="cd">002815</span><span class="nm">崇达技术</span></span><span class="tag tb">身位跟随</span></div>
+<div class="ignite">⚡T+1 预案：18.8-19.3（转折确认后）｜失败：潮退一日游=走</div>
+</div>
+</div>
+<div class="card">
+<div class="hd"><span class="tag ty">④ Joshua（确定性·回撤带）</span></div>
+<div class="kv">
+<b>最认可</b><span class="v">光通信 PCB 回撤带：COHR +4.16/康宁 +2.01/AAOI +2.0 隔夜——机构锚在回撤带等确定性，不参与情绪竞价</span>
+<b>判定</b><span class="v">存储链背离（WDC -2.98）不碰存储；只做有机构承接记录的回撤票</span>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="002463 沪电股份"><span class="cd">002463</span><span class="nm">沪电股份</span></span><span class="tag tb">机构锚</span></div>
+<div class="ignite">⚡T+1 预案：回撤带 123-126（5 日位 83.1 缩量 0.8）｜确认：COHR 链映射+量能回补｜失败：放量破 122=机构撤</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="002636 金安国纪"><span class="cd">002636</span><span class="nm">金安国纪</span></span><span class="tag tb">承接锚</span></div>
+<div class="ignite">⚡T+1 预案：76-80（LHB 3 日持续=确定性最高的承接记录）｜失败：澄清杀破 76=重估</div>
+</div>
+<div class="stock">
+<div class="hd"><span class="clickable" data-copy="603186 华正新材"><span class="cd">603186</span><span class="nm">华正新材</span></span><span class="tag tb">中军回撤</span></div>
+<div class="ignite">⚡T+1 预案：215-222 深回撤带｜确认：涨价函再落地｜失败：无价无量=等</div>
+</div>
+</div>
+
+<!-- ═══ ⑧ 上一日报告结论复盘 ═══ -->
+<h2>⑧ 上一日报告结论复盘</h2>
+<div class="card">
+<table>
+<colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+<tr><th>20260912 版结论（目标同 0914）</th><th>周末增量</th><th>本期修订</th></tr>
+<tr><td>B1 覆铜板链 30% A 级（金安/嘉立创/风华）</td><td>金安/超声澄清英伟达认证传闻；PCB 首板潮扩至 7 家</td><td><b class="up">维持 A 级</b>：去伪不伤主逻辑（涨价+承接）；超声剔出</td></tr>
+<tr><td>黄河全清竞价必追 + 东山持有贴 187</td><td>金刚石板块双催化（专家会+六股点名）</td><td>黄河改<b class="cy">持有观察+必挂 14.55</b>（C 级叙事不入买区）；东山不变</td></tr>
+<tr><td>⑦ 池=金安/华正/风华/德明利/博云</td><td>美股存储 WDC -2.98；博云无隔夜；PCB 潮扩容</td><td>调入崇达/杭州热电；华正/德明利/博云降观察</td></tr>
+<tr><td>⑦D/⑦E 冰冰口径 5 只（湖南/华银/长电/紫金/神华）</td><td>油价 +4% 供应损失+议息周避险</td><td>滚动为长电/神华/湖南发展三卡（紫金随铜弱暂出）</td></tr>
+<tr><td>账本 b0912-001~014（结算 0915）</td><td>—</td><td>继续挂起结算；本期新增 b0913 系列（见 ⑩）</td></tr>
+</table>
+</div>
+
+<!-- ═══ ⑨ 风险提示与应对预案 ═══ -->
+<h2>⑨ 风险提示与应对预案</h2>
+<div class="card">
+<ul>
+<li><b class="dn">议息落地杀</b>：特朗普施压若失败、9 月加息落地（定价 88-90%）=全球风险资产二次定价；应对：新仓冻结至 0917 后，存量只留止损单。</li>
+<li><b class="dn">澄清情绪扩散</b>：认证传闻链（超声/金安之外的中京/协和等 PCB 情绪票）集体退潮可能误伤 B1；应对：只留承接实证票（LHB 3 日），情绪票不碰。</li>
+<li><b class="dn">油价已跳涨</b>：WTI 103.1（+3%），管道中断+伊朗爆炸+沙特空袭升级；会谈达成=快速回吐、破裂=续涨——两头都预设减仓项，油运/油气仅作对冲观察不追。</li>
+<li><b class="dn">冰点末日轮</b>：低位补跌风险（周五跌停 21 家集中在有色/互金融）；应对：不接飞刀，恐慌带挂单只挂潮内票。</li>
+<li><b class="dn">数据缺失</b>：美债接口空值+缠论推演无输出——利率锚与结构参考双缺，置信统一降档。</li>
+</ul>
+</div>
+
+<!-- ═══ ⑩ 三句话摘要 + 信念账本登记表（V3.9 3.10） ═══ -->
+<h2>⑩ 三句话摘要 · 信念账本登记表</h2>
+<div class="card hl">
+<div class="bsp"><b>三句话</b>：①冰点四连降+议息周，<b class="cy">总仓 ≤40% 禁后手</b>，本版是「提前生成版」明晨按增量修订；②B1 覆铜板链维持 A 级但<del>认证逻辑</del>废止——金安竞价裁决（低开 ≤2% 收复 80）决定本周期成败；③0914=月月口径第二天买点观察窗：缩量企稳才谈转折，放量续跌等 0915。</div>
+<table>
+<colgroup><col style="width:14%"><col style="width:12%"><col style="width:44%"><col style="width:14%"><col style="width:16%"></colgroup>
+<tr><th>条目</th><th>层级</th><th>判定（claim 摘要）</th><th>置信</th><th>结算</th></tr>
+<tr><td class="num">b0913-001</td><td>★核心</td><td>金安低开 ≤2% 收复 80=B1 维持 30%；低开 &gt;4% 不收复=降半仓</td><td class="num">55</td><td class="num">T+1=0915</td></tr>
+<tr><td class="num">b0913-002</td><td>★核心</td><td>风华/嘉立创/崇达 ≥2 家高开 ≥3% 且 10:30 不破均线=首板潮延续</td><td class="num">55</td><td class="num">T+1=0915</td></tr>
+<tr><td class="num">b0913-003</td><td>★核心</td><td>10:00 半日 ≤6000 亿缩量企稳=冰点转折候选（月月第二天口径）</td><td class="num">55</td><td class="num">T+1=0915</td></tr>
+<tr><td class="num">b0913-004</td><td>观察</td><td>东山持有贴 187；204+ 冲高兑现做 T 卖侧</td><td class="num">60</td><td class="num">0915</td></tr>
+<tr><td class="num">b0913-005</td><td>观察</td><td>黄河持有挂 14.55；高开 ≥3% 无量=当日兑现</td><td class="num">55</td><td class="num">0915</td></tr>
+<tr><td class="num">b0913-006</td><td>观察</td><td>⑦E-冰冰：防御红利三票为议息周主防御</td><td class="num">50</td><td class="num">0915</td></tr>
+<tr><td class="num">b0913-007</td><td>观察</td><td>⑦E-撑伞猫：首板潮三强恐慌带挂单，半仓上限</td><td class="num">50</td><td class="num">0915</td></tr>
+<tr><td class="num">b0913-008</td><td>观察</td><td>⑦E-月月：身位链+量能裁决（缩量企稳才转折）</td><td class="num">50</td><td class="num">0915</td></tr>
+<tr><td class="num">b0913-009</td><td>观察</td><td>⑦E-Joshua：光通信 PCB 回撤带三票（沪电/金安/华正）</td><td class="num">50</td><td class="num">0915</td></tr>
+<tr><td class="num">b0913-010</td><td>观察</td><td>⑦C-金刚石链：0914-0915 若首动则黄河档升级，C 级不入买区</td><td class="num">40</td><td class="num">0918</td></tr>
+</table>
+<div class="small">T+1 结算口径：盈亏=入场→0915 首个可卖时点兑现区间；★核心 ≤3 驱动版本迭代。</div>
+</div>
+
+<footer>
+<div><b>免责声明</b>：本报告由 AI 按《策略日报提示词》最新版（V5.6）生成，属周日提前版，周一晨间按增量信息修订后为准。所有点位与仓位为研究推演，<b>不构成投资建议，下单永远人工</b>。用户执行风格=全进全出二值化。</div>
+<div>数据源：pack_0911（fuyao 0911 收盘/涨停池 40/LHB 0911/板块 320）、财联社电报至 0913 22:48、美股周五收盘 27 标的、知识库预取（专家蒸馏 89 条/专家交流合集）、账本 signal_scores。缺失：美债收益率、缠论推演输出。</div>
+<div>自检：构建纪律三项（kv 纯净/徽章同步/动态计数 stock=22 ignite=20）生成前已核；晨间修订（0914 07:20）增量=期货开盘/油价跳涨/CME 86.2%/MLCC 佐证/Anthropic 盈利，已过新鲜度三核查；validate_style.py 门禁与 S8 四视口人工实测见发布流程；错码防线=stock_list 核验通过（嘉立创 001232/金安 002636 等）。</div>
+</footer>
+</div>
+<script>
+(function(){
+  var FALLBACK = function(text){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+  };
+  var copyText = function(text){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function(){ FALLBACK(text); });
+    } else { FALLBACK(text); }
+  };
+  var flash = function(el){
+    if (el.dataset.copied) return;
+    el.dataset.copied = '1';
+    var old = el.style.color;
+    el.style.color = '#39e58c';
+    el.title = '已复制';
+    setTimeout(function(){ el.style.color = old; el.removeAttribute('data-copied'); delete el.dataset.copied; }, 1000);
+  };
+  document.querySelectorAll('.stock .clickable').forEach(function(first){
+    first.addEventListener('click', function(){
+      copyText(first.getAttribute('data-copy') || first.innerText.replace(/\s+/g,' '));
+      flash(first);
+    });
+  });
+})();
+</script>
+</body>
+</html>
