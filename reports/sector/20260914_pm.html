@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>板块分析日报 · 2026-09-14（周一）· PCB电子主线确认 × AI应用支线 × 电力轮动 × 农业排除</title>
+<style>
+:root{--bg:#0b1020;--card:#141b31;--card2:#1a2340;--line:#2b3a5c;--tx:#e8edf7;--sub:#8b97b8;--green:#39e58c;--red:#ff5d5d;--gold:#ffc53d;--blue:#5aa7ff;--purple:#b18cff}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65;padding-bottom:40px}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#2b3a5c;border-radius:3px}
+.wrap{max-width:640px;margin:0 auto;padding:14px}
+h1{font-size:19px;line-height:1.45;margin:6px 0 4px}
+h2{font-size:15px;margin:20px 0 10px;padding:7px 10px;background:linear-gradient(90deg,#1a2f55,#141b31);border-left:3px solid var(--green);border-radius:4px}
+h3{font-size:14px;margin:13px 0 6px;color:var(--gold)}
+.meta{color:var(--sub);font-size:12px;margin:2px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.card.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(57,229,140,.15)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;margin:1px 3px 1px 0;max-width:100%;overflow-wrap:anywhere}
+.tg{background:rgba(57,229,140,.14);color:var(--green);border:1px solid rgba(57,229,140,.4)}
+.tr{background:rgba(255,93,93,.14);color:var(--red);border:1px solid rgba(255,93,93,.4)}
+.ty{background:rgba(255,197,61,.14);color:var(--gold);border:1px solid rgba(255,197,61,.4)}
+.tb{background:rgba(90,167,255,.14);color:var(--blue);border:1px solid rgba(90,167,255,.4)}
+.tp{background:rgba(177,140,255,.14);color:var(--purple);border:1px solid rgba(177,140,255,.4)}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;table-layout:fixed}
+th,td{border:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top;word-break:break-all}
+th{background:var(--card2);color:var(--sub);font-weight:600}
+tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.up{color:var(--green)}.dn{color:var(--red)}.warn{color:var(--gold)}
+.num{font-variant-numeric:tabular-nums}
+.small{font-size:11px;color:var(--sub)}
+.bsp{background:rgba(57,229,140,.07);border-left:3px solid var(--green);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.risk{background:rgba(255,93,93,.07);border-left:3px solid var(--red);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.note{background:rgba(255,197,61,.07);border-left:3px solid var(--gold);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.ignite{background:rgba(57,229,140,.09);border:1px dashed var(--green);border-radius:6px;padding:6px 9px;margin:6px 0;font-size:12px}
+.divider{height:1px;background:var(--line);margin:13px 0}
+.big{font-size:16px;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+.stock{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin:10px 0}
+.stock.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(57,229,140,.15)}
+.stock .hd{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px}
+.stock .nm{font-size:15px;font-weight:700}
+.stock .cd{color:var(--sub);font-size:12px;margin-right:4px}
+.stock .hd .clickable{cursor:pointer}
+.stock .hd .clickable:active .nm{color:var(--green)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:12px;margin-top:7px}
+.kv>b{color:var(--sub);font-weight:400;white-space:nowrap}
+.kv .v{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+@media (max-width:400px){.kv{grid-template-columns:1fr;gap:0 0}.kv b{white-space:normal;margin-top:4px}}
+.must{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:700;letter-spacing:1px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.tldr{background:linear-gradient(135deg,#132647,#0f1f3d);border:1px solid var(--blue);border-radius:10px;padding:12px;margin:12px 0}
+.tldr li{margin:6px 0 6px 18px;font-size:13px}
+.footer{margin-top:24px;padding:12px;background:var(--card2);border-radius:8px;font-size:11px;color:var(--sub)}
+
+/* V4.8 重点三色：金=关键点位数字 青=买卖动词 蓝=主推/专家引用 */
+b.gold{color:#ffc857}
+b.cy{color:#4dd6b8}
+b.exp{color:#7fb3ff}
+
+/* UI 对齐约束（V4.9）：卡内列表与正文对齐，禁浏览器默认 40px 缩进；h2 全篇唯一 */
+.card ul,.card ol{margin:6px 0;padding-left:20px}
+.card li{margin:4px 0}
+.tldr ol{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- ═══ 【构建纪律】（板块分析版 V1 起生效——复用策略日报 V3.8B 版式基线） ═══
+     ① 本报告是"板块为主体"的分析，不推个股——任何地方出现个股代码，必须是：
+        数据举证（涨停池/龙虎榜成员名）或 用户点名分析，二者都必须有上下文说明，禁止裸列代码当推荐；
+     ② .kv 网格内只允许 <b>/<span class="v"> 成对出现：需要分隔时关闭kv→divider→重开kv；
+     ③ 板块卡 = .card > h3(板块名+定位tag) + .kv ≥3 行（定位/资金/证据/催化/结构）+ 末尾风险行；
+     ④ 三色纪律同策略日报：b.gold=关键数值 b.cy=买卖/动作动词 b.exp=板块/主线引用。
+═══════════════════════════════════════════════════════════ -->
+<div class="meta">板块分析日报 · 2026-09-14（周一）· 收盘后</div>
+<h1>板块分析日报 · 2026-09-14（周一）</h1>
+<div class="meta">数据截止 2026-09-14 收盘 · 数据包 pack_0914 · 板块资金流(东财) 20:02</div>
+<div class="meta"><b style="color:var(--gold)">结算口径：T+1（2026-09-15）验证板块判断可持续性 · 登记账本 0914</b></div>
+
+<!-- ═══ 头部大数字卡（情绪闸门 + 主线定性） ═══ -->
+<div class="card hl">
+<div class="grid2">
+<div><b>情绪指数</b><br><span class="big warn num">61 / 100</span><br><span class="small">正常（分级）· 5 日趋势 33→61 回升</span></div>
+<div><b>主线定性</b><br><span class="big up num">PCB/电子主升</span><br><span class="small">行业+概念双净流入 · 涨停12家 · 龙虎榜净买居前 · 美股映射共振</span></div>
+</div>
+<div class="divider"></div>
+<div class="small"><b>连板高度 / 晋级率</b>：4 板（闽东电力）· 晋级率 57.1%　<b>两市量能</b>：1.63 万亿（-17% 缩量修复日）</div>
+<div class="divider"></div>
+<div class="small"><b class="warn">资金主线（主力净流入）</b>：元件 +28.8亿 · 印制电路板 +23.1亿 · 电子化学品 +17.6亿 · 概念 PCB +43.9亿 / MLCC +22.4亿</div>
+</div>
+
+<!-- ═══ TLDR（板块三结论：今日强 / 未来强 / 排除） ═══ -->
+
+<div class="tldr">
+<ol>
+<li><b class="exp">主线=PCB/电子元器件</b>：行业+概念双净流入、涨停12家、龙虎榜净买居前、美股映射共振——昨日策略日报 B1 覆铜板主线 <b class="gold">30%</b> 兑现，PCB 潮确认；<b class="cy">弃高就低</b>（超声衰减69%）</li>
+<li><b class="exp">支线=AI 应用/安全</b>：涨停12家但无行业资金流支撑、美股 AI 应用端弱——<b class="cy">观察不追</b>，中新赛克 3 板为情绪温度计</li>
+<li><b class="exp">轮动=电力</b>：闽东 4 板但封单小+公司澄清（海上风电未开工）、特高压通达 2 板——低位首板可看，高位不接</li>
+<li><b class="exp">新发酵=液冷/散热/光通信上游</b>（意华/宏盛/瑞玛/天通/黄河旋风金刚石散热）：AI 硬件散热链延伸 + 美股 COHR +4.16 共振——<b class="cy">未来强势候选</b></li>
+<li><b class="dn">排除</b>：农业链（白河愁 9/8 看多但 ret5 全线转弱）、资源小金属（钴/稀土/钨 ret20 垫底）、高位 PCB 内部分化票</li>
+</ol>
+</div>
+
+<h2>证据摘要五表（写作前产出）</h2>
+
+<h3>① 题材聚合（涨停 reason 聚类）</h3>
+<table><tr><th>题材</th><th>家数</th><th>定性</th></tr>
+<tr><td>电子元器件（PCB/HDI/MLCC/覆铜板/钽/铜箔/石英）</td><td>12</td><td class="up">主线</td></tr>
+<tr><td>AI 应用/安全（AI安全/智谱AI/内容审核/数据标注）</td><td>12</td><td>支线</td></tr>
+<tr><td>医药（中药创新药/医疗）</td><td>6</td><td>分散</td></tr>
+<tr><td>汽车（A0车型/氢能/新能源客车/整车）</td><td>4</td><td>分散</td></tr>
+<tr><td>电力/新能源（海上风电/特高压/清洁能源）</td><td>3</td><td>轮动</td></tr>
+<tr><td>军工/机器人（航空/机器人线束）</td><td>3</td><td>分散</td></tr>
+<tr><td>液冷/散热/光通信上游（液冷/连接器/铌酸锂/金刚石散热）</td><td>6</td><td class="up">新发酵</td></tr></table>
+
+<h3>② 连板结构（涨停池 continue_day_cnt）</h3>
+<table><tr><th>连板</th><th>标的</th><th>题材</th><th>封单</th><th>封单衰减</th></tr>
+<tr><td>4</td><td>闽东电力</td><td>清洁能源+海上风电</td><td>9000万</td><td class="warn">小</td></tr>
+<tr><td>3</td><td>超声电子</td><td>PCB+HDI+覆铜板</td><td>26333万</td><td class="warn">衰减69%</td></tr>
+<tr><td>3</td><td>中新赛克</td><td>AI安全+数据安全</td><td>24964万</td><td>稳</td></tr>
+<tr><td>3</td><td>凯盛新能</td><td>光伏玻璃+产能出清</td><td>826万</td><td class="dn">极小</td></tr>
+<tr><td>2</td><td>双星新材</td><td>MLCC离型膜+复合铜箔</td><td>15905万</td><td>稳</td></tr>
+<tr><td>2</td><td>通达股份</td><td>特高压+机器人线束</td><td>7076万</td><td>稳</td></tr>
+<tr><td>2</td><td>澳弘电子</td><td>HDI+AI服务器电源</td><td>2861万</td><td class="warn">小</td></tr></table>
+
+<h3>③ 封单锚点</h3>
+<table><tr><th>信号</th><th>标的</th><th>判定</th></tr>
+<tr><td>封单衰减 ≥50% 分歧</td><td>超声电子（衰减69%）</td><td class="warn">PCB 内部分化，弃高就低</td></tr>
+<tr><td>封单极小</td><td>凯盛新能（826万）</td><td class="dn">光伏玻璃弱板，不追</td></tr>
+<tr><td>尾盘弱板</td><td>闽东电力（4板小封单）</td><td class="warn">电力高位分歧</td></tr></table>
+
+<h3>④ 板块主力资金流（东财）</h3>
+<table><tr><th>行业净流入</th><th>亿</th><th>概念净流入</th><th>亿</th></tr>
+<tr><td>医药生物</td><td>+29.0</td><td>PCB</td><td>+43.9</td></tr>
+<tr><td>元件</td><td>+28.8</td><td>新材料</td><td>+43.5</td></tr>
+<tr><td>印制电路板</td><td>+23.1</td><td>MLCC</td><td>+22.4</td></tr>
+<tr><td>通用设备</td><td>+18.5</td><td>电池技术</td><td>+26.5</td></tr>
+<tr><td>磨具磨料</td><td>+18.1</td><td>QFII重仓</td><td>+30.2</td></tr>
+<tr><td>电子化学品Ⅲ</td><td>+17.6</td><td>昨日高振幅</td><td>+39.6</td></tr></table>
+<div class="small">净流出端：风电零部件/疫苗/港口/诊断服务（-0.7亿左右，流出温和）。东财数据 20:02 时点可用，未降级。</div>
+
+<h3>⑤ 板块强度（320 行业 ret5/ret20）</h3>
+<table><tr><th>板块</th><th>ret5</th><th>ret20</th><th>dd60</th><th>MA20</th><th>分档</th></tr>
+<tr><td>印制电路板</td><td class="up">+12.63%</td><td>+14.25%</td><td>5.81%</td><td>Y</td><td class="up">强趋势（主升）</td></tr>
+<tr><td>元件</td><td class="up">+10.17%</td><td>+9.86%</td><td>11.36%</td><td>Y</td><td class="up">强趋势（主升）</td></tr>
+<tr><td>焦炭加工</td><td>+4.7%</td><td>+12.66%</td><td>6.48%</td><td>Y</td><td>强趋势</td></tr>
+<tr><td>种子生产</td><td class="dn">-8.51%</td><td>+27.74%</td><td>10.76%</td><td>Y</td><td class="dn">高位滞涨（ret5 转弱）</td></tr>
+<tr><td>粮油加工</td><td class="dn">-4.47%</td><td>+18.73%</td><td>8.65%</td><td>Y</td><td class="dn">高位滞涨</td></tr>
+<tr><td>种植业与林业</td><td class="dn">-5.86%</td><td>+17.47%</td><td>9.33%</td><td>Y</td><td class="dn">高位滞涨</td></tr>
+<tr><td>钴</td><td class="dn">-5.34%</td><td class="dn">-15.96%</td><td>27.19%</td><td>N</td><td class="dn">弱势</td></tr>
+<tr><td>稀土</td><td class="dn">-4.24%</td><td class="dn">-14.9%</td><td>24.39%</td><td>N</td><td class="dn">弱势</td></tr>
+<tr><td>半导体设备</td><td class="dn">-3.69%</td><td class="dn">-14.26%</td><td>35.35%</td><td>N</td><td class="dn">弱势</td></tr></table>
+
+
+<!-- ═══ ① 板块强弱全景榜（320 行业 ret5/ret20/dd60/MA20 分档 + 涨停题材聚合） ═══ -->
+<h2>① 板块强弱全景</h2>
+
+<div class="card"><b>全市场板块地图（320 行业四维分档）</b></div>
+<table><tr><th>档位</th><th>板块</th><th>特征</th></tr>
+<tr><td class="up">强趋势·主升</td><td>印制电路板/元件/电子化学品/焦炭加工/磨具磨料</td><td>ret5 暴拉 + ret20 居前 + MA20 上</td></tr>
+<tr><td class="warn">强趋势·贴顶</td><td>国有大型银行（dd60 0.19% 贴顶）</td><td>银行稳，但无弹性</td></tr>
+<tr><td class="dn">高位滞涨</td><td>种子/粮油/种植业/氮肥/林业</td><td>ret20 居前但 ret5 全线转弱（-3~-8%）</td></tr>
+<tr><td class="dn">弱势</td><td>钴/镍/钨/稀土/半导体设备/逆变器</td><td>ret20 深跌 + MA20 下 + 今日续跌</td></tr></table>
+<div class="note"><b class="exp">核心读图</b>：全市场呈"电子元器件一枝独秀 + 农业退潮 + 资源弱势"三分。资金高度集中于 PCB/元件链，其余板块资金流出温和但无进攻性。</div>
+
+
+<!-- ═══ ② 板块主力资金流（东财行业/概念净流入榜，缺则声明降级） ═══ -->
+<h2>② 板块主力资金流</h2>
+
+<div class="card hl">
+<h3>行业净流入 Top（中线建仓痕迹）</h3>
+<div class="kv"><b>元件</b><span class="v">+28.8亿 · 今 +2.71%</span></div>
+<div class="kv"><b>印制电路板</b><span class="v">+23.1亿 · 今 +3.18%</span></div>
+<div class="kv"><b>电子化学品</b><span class="v">+17.6亿 · 今 +2.17%</span></div>
+<div class="kv"><b>医药生物</b><span class="v">+29.0亿 · 今 +1.97%（资金流入但涨停分散）</span></div>
+<div class="divider"></div>
+<h3>概念净流入 Top（短线炒作资金）</h3>
+<div class="kv"><b>PCB</b><span class="v">+43.9亿 · 今 +2.19%</span></div>
+<div class="kv"><b>MLCC</b><span class="v">+22.4亿 · 今 +3.31%</span></div>
+<div class="kv"><b>新材料</b><span class="v">+43.5亿 · 今 +0.94%</span></div>
+<div class="divider"></div>
+<div class="bsp"><b class="cy">主线叠加验证</b>：元件行业 +28.8亿 ∩ PCB概念 +43.9亿 ∩ MLCC +22.4亿 = <b class="exp">行业与概念双净流入</b>——这是真主线（非短线脉冲）。</div>
+<div class="small">净流出端温和（风电/疫苗/港口 -0.7亿左右），无板块级恐慌抛售。</div>
+</div>
+
+
+<!-- ═══ ③ 主线判定（涨停题材聚类 + 连板高度 + 龙虎榜归因 → 主线/支线/轮动/新发酵四态） ═══ -->
+<h2>③ 主线判定</h2>
+
+<table><tr><th>四态</th><th>板块</th><th>判定依据</th><th>处理</th></tr>
+<tr><td class="up">主线</td><td>PCB/电子元器件（PCB/HDI/MLCC/覆铜板/钽）</td><td>行业+概念双净流入 · 涨停12家 · 龙虎榜净买3席居前（风华2.8亿/超声2.7亿/双星2.2亿）· 美股 COHR+4.16/SMH+1.47 · 昨日 B1 主线兑现</td><td class="cy">主升确认，弃高就低</td></tr>
+<tr><td class="warn">支线</td><td>AI 应用/安全</td><td>涨停12家（中新赛克3板）但无行业资金流 · 美股 NBIS-1.56/CRWV-0.15 弱</td><td>观察不追，情绪温度计</td></tr>
+<tr><td class="warn">轮动</td><td>电力/新能源</td><td>闽东4板（封单小+公司澄清）· 特高压通达2板 · 昨日 B2 电力低位轮动</td><td>低位首板可看，高位不接</td></tr>
+<tr><td class="up">新发酵</td><td>液冷/散热/光通信上游</td><td>意华连接器+液冷/宏盛液冷/瑞玛光通信散热/天通铌酸锂/黄河旋风金刚石散热 涨停 · 美股 COHR+4.16</td><td class="cy">未来强势候选</td></tr></table>
+
+
+<!-- ═══ ④ 今日强势板块深度（逐板块 .card：定位/资金/证据链/催化生命周期/结构/对手盘/情景） ═══ -->
+<h2>④ 今日强势板块深度</h2>
+
+<div class="card hl">
+<h3>PCB / 电子元器件 · 主线主升 <span class="tag tg">主线</span></h3>
+<div class="kv"><b>定位</b><span class="v">生命周期=主升段（发酵→主升确认，昨日 B1 30% 兑现，PCB 潮爆发）</span></div>
+<div class="kv"><b>资金</b><span class="v">行业元件+28.8亿/PCB+23.1亿 · 概念PCB+43.9亿/MLCC+22.4亿 · 龙虎榜风华2.8亿/超声2.7亿/双星2.2亿</span></div>
+<div class="kv"><b>证据链</b><span class="v">产业=覆铜板涨价传导+LME铜新高（A级）；涨停=12家含超声3板/双星2板/澳弘2板；映射=COHR+4.16/SMH+1.47/SKHY+0.94</span></div>
+<div class="kv"><b>催化生命周期</b><span class="v">中期催化（涨价+供需+AI算力资本开支），非一日头条型——可持续</span></div>
+<div class="kv"><b>缠论结构</b><span class="v">板块指数日线主升，指数大盘（上证 3979→3888 回调笔中）未破位</span></div>
+<div class="kv"><b>对手盘</b><span class="v">主力最优解=让 PCB 高度维持但内部分化（弃高就低），散户追高超声/凯盛会被套</span></div>
+<div class="risk"><b class="cy">证伪信号</b>：① 明日 PCB 首板家数骤降（<3家=退潮）；② 覆铜板涨价停报/铜价回落；③ 龙头 3 板集体炸板。反向标的=若 PCB 走弱资金回流电力/军工避险。</div>
+</div>
+
+<div class="card">
+<h3>AI 应用/安全 · 支线 <span class="tag ty">支线</span></h3>
+<div class="kv"><b>定位</b><span class="v">支线=有独立逻辑但资金体量小，高度低于主线（中新赛克3板为最高）</span></div>
+<div class="kv"><b>资金</b><span class="v">无行业资金流支撑，纯题材涨停（AI安全3+AI应用2+智谱1+内容审核1+数据标注1）</span></div>
+<div class="kv"><b>证据链</b><span class="v">美股 AI 应用端弱（NBIS-1.56/CRWV-0.15）；无板块级催化</span></div>
+<div class="kv"><b>催化生命周期</b><span class="v">偏短线炒作，缺中期催化——政策/订单未落地</span></div>
+<div class="risk"><b class="cy">证伪信号</b>：中新赛克 3 板断板=支线降温。反向=资金回流电子主线。</div>
+</div>
+
+<div class="card">
+<h3>电力/新能源 · 轮动 <span class="tag ty">轮动</span></h3>
+<div class="kv"><b>定位</b><span class="v">昨日 B2 低位轮动判断，今日闽东4板为全场最高连板</span></div>
+<div class="kv"><b>资金</b><span class="v">闽东电力 LHB 净买1.3亿 · 特高压通达2板7076万 · 豫能控股算力+抽蓄涨停</span></div>
+<div class="kv"><b>证据链</b><span class="v">算力用电逻辑（润泽AIDC 500亿授信）+ 美股 GEV+3.61 电力设备出海</span></div>
+<div class="kv"><b>风险</b><span class="v">闽东公司澄清"海上风电项目均未开工未投产"——纯题材高度，4板封单仅9000万</span></div>
+<div class="risk"><b class="cy">证伪信号</b>：闽东 4 板明日断板=电力高度塌；只看低位首板（杭州热电类）不接高位。</div>
+</div>
+
+
+<!-- ═══ ⑤ 未来可能强势板块（预期差四步 + 美股映射 + 事件时间窗 + 低位补涨逻辑） ═══ -->
+<h2>⑤ 未来可能强势板块</h2>
+
+<div class="card hl">
+<h3>液冷/散热/光通信上游 <span class="tag tg">未来强势候选</span></h3>
+<div class="kv"><b>资金潜伏</b><span class="v">意华高速连接器+液冷/宏盛液冷/瑞玛光通信散热/天通铌酸锂+光通信上游/黄河旋风金刚石散热——涨停6家但板块指数未动</span></div>
+<div class="kv"><b>美股映射</b><span class="v">COHR +4.16%（光器件）· VRT 液冷 · 散热链=AI 硬件确定性延伸</span></div>
+<div class="kv"><b>逻辑</b><span class="v">PCB 主升后市场找 AI 硬件下一站，散热/光通信是资金天然延伸方向；白河愁"产业链传导时序法"——设备/材料先行指标</span></div>
+<div class="kv"><b>验证</b><span class="v">明日若液冷/光通信首板 ≥3 家+行业资金转正=确认启动；否则仍潜伏</span></div>
+</div>
+
+<div class="card">
+<h3>存储链 <span class="tag ty">映射低吸</span></h3>
+<div class="kv"><b>美股</b><span class="v">SKHY +0.94%（海力士强）· MU -0.22% · WDC -2.98%——存储内部分化</span></div>
+<div class="kv"><b>知识库</b><span class="v">白河愁"存储 higher for longer——AI 把周期重构为长期紧缺"</span></div>
+<div class="kv"><b>处理</b><span class="v">美股映射只校准开盘段；SKHY 走强=A股存储模组（德明利/江波龙）低吸窗口</span></div>
+</div>
+
+<div class="card">
+<h3>半导体材料/设备 <span class="tag ty">低位待涨</span></h3>
+<div class="kv"><b>资金</b><span class="v">东方钽业涨停（半导体钽材）· 爱普/柘中半导体新材料涨停</span></div>
+<div class="kv"><b>位置</b><span class="v">半导体设备 ret20 -14.26% 深跌低位，国产替代逻辑未证伪</span></div>
+<div class="kv"><b>验证</b><span class="v">需行业资金流转正确认，当前仅个股异动</span></div>
+</div>
+
+
+<!-- ═══ ⑥ 排除板块（高位滞涨 / 主力净流出 / 缠论顶背驰 / 一日催化兑现） ═══ -->
+<h2>⑥ 排除板块</h2>
+
+<div class="card">
+<h3>农业链（种子/粮油/种植/氮肥）<span class="tag tr">排除</span></h3>
+<div class="kv"><b>为何排除</b><span class="v">ret20 居前（种子+27.74%）但 ret5 全线转弱（种子-8.51%/粮油-4.47%/种植-5.86%）=高位滞涨兑现中；白河愁 9/8 看多"农业食品轮动未尽"与盘面背离</span></div>
+<div class="kv"><b>反向失效</b><span class="v">若明日农业 ret5 转正且涨停 ≥3 家=排除作废</span></div>
+</div>
+<div class="card">
+<h3>资源小金属（钴/镍/钨/稀土）<span class="tag tr">排除</span></h3>
+<div class="kv"><b>为何排除</b><span class="v">ret20 全市场垫底（钴-15.96%/稀土-14.9%）+ MA20 下 + 今日续跌（钴-5.34%）——趋势性弱势</span></div>
+<div class="kv"><b>反向失效</b><span class="v">若稀土/钴 ret5 转正+资金流转正=排除作废</span></div>
+</div>
+<div class="card">
+<h3>高位 PCB 内部分化票（超声/凯盛）<span class="tag tr">排除</span></h3>
+<div class="kv"><b>为何排除</b><span class="v">超声 3 板封单衰减 69%（分歧）· 凯盛新能封单 826 万极小（弱板）——主线内弃高就低</span></div>
+<div class="kv"><b>反向失效</b><span class="v">若超声回封且封单转强=排除作废（概率低）</span></div>
+</div>
+
+
+<!-- ═══ ⑦ 点名个股分析（仅用户点名时输出；每只 .stock 卡 + 标注"点名分析非推荐"） ═══ -->
+<!-- 【组件规范】用户点名某股时：.stock 卡 .hd(.clickable data-copy + .tag tb"点名分析") +
+     .kv ≥4 行（基本面一句话/缠论结构/催化/预案）；未点名则整节输出一行 .small"本期未点名个股"。 -->
+<h2>⑦ 点名个股分析</h2>
+
+<div class="small">本期未点名个股（默认零个股推荐，仅板块分析）。若你输入个股代码/名称，将单独分析该票。</div>
+
+
+<!-- ═══ ⑧ 指数情景矩阵（5 行 A-E + 概率合计 100%） ═══ -->
+<h2>⑧ 指数情景矩阵</h2>
+
+<table><tr><th>情景</th><th>条件</th><th>概率</th><th>板块含义</th></tr>
+<tr><td>A 主线延续</td><td>PCB/电子续强（涨停≥8家）</td><td>40%</td><td class="up">PCB 主升延续，液冷/光通信扩散</td></tr>
+<tr><td>B 主线分歧</td><td>PCB 涨停 4-7 家+内部切换</td><td>30%</td><td>弃高就低，低位 PCB 补涨</td></tr>
+<tr><td>C 轮动扩散</td><td>PCB 退潮，电力/AI 接力</td><td>15%</td><td class="warn">电力/军工避险承接</td></tr>
+<tr><td>D 情绪降温</td><td>炸板率升+涨停<30家</td><td>10%</td><td class="dn">FOMC 前缩量，全部观望</td></tr>
+<tr><td>E 冰点回撤</td><td>指数破位+跌停潮</td><td>5%</td><td class="dn">防御（银行/高股息）</td></tr></table>
+<div class="small">概率合计 100% · "当日修复/反弹"类情景按 T+1 验证（当日反弹不算数）· FOMC 0917 前风险偏好仍受压制。</div>
+
+
+<!-- ═══ ⑨ 风险提示与应对 ═══ -->
+<h2>⑨ 风险提示与应对</h2>
+
+<div class="card"><div class="risk"><b class="cy">FOMC 0917 加息定价 88-90%</b>：落地前风险偏好压制，新板块仓位冻结至决议后（沿用昨日策略日报 D 窗口）。</div></div>
+<div class="card"><div class="risk"><b class="cy">缩量 1.63 万亿（-17%）</b>：修复日特征，量能不足时主线高位票接力风险大。</div></div>
+<div class="card"><div class="risk"><b class="cy">闽东电力澄清</b>：海上风电未开工未投产，电力高度票纯题材，断板风险。</div></div>
+<div class="card"><div class="risk"><b class="cy">超声封单衰减 69%</b>：PCB 内部分化，高位票（超声/凯盛）不接。</div></div>
+
+
+<!-- ═══ ⑩ 板块判断账本登记（强势/未来强/排除，rule=板块占位，T+1 结算） ═══ -->
+<h2>⑩ 板块判断 · 信念账本登记表</h2>
+
+<div class="card"><div class="kv"><b>主线判断</b><span class="v">PCB/电子元器件=主升主线（行业+概念双净流入，T+1 验证：明日 PCB 涨停是否延续）</span></div></div>
+<div class="card"><div class="kv"><b>未来强势</b><span class="v">液冷/散热/光通信上游（涨停6家未动板块）+ 存储链（SKHY 强）+ 半导体材料</span></div></div>
+<div class="card"><div class="kv"><b>排除</b><span class="v">农业链（ret5 转弱）/ 资源小金属（趋势弱势）/ 高位 PCB 分化票</span></div></div>
+<div class="small">板块判断已登记信念账本（rule=板块占位，for_date=0914），结算日=T+1（0915）。</div>
+
+
+<footer>
+<div class='footer'>本报告为历史数据模拟分析，仅供参考，不构成投资建议。板块分析不推荐个股。</div>
+<div class='footer'>数据源：morning_pack pack_0914 · 东财板块资金流 · fuyao 涨停/龙虎榜 · 财联社电报 · 缠论引擎 · 腾讯宏观。板块资金流 20:02 时点可用未降级。</div>
+<div class='footer'>自检：证据五表产出 ✓ · 主线四态归类 ✓ · 强势板块五维 ✓ · 未来强势 ✓ · 排除条件式 ✓ · 零个股推荐 ✓ · 情景矩阵 T+1 口径 ✓ · 账本登记 ✓</div>
+</footer>
+</div>
+<script>
+(function(){
+  var FALLBACK = function(text){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+  };
+  var copyText = function(text){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function(){ FALLBACK(text); });
+    } else { FALLBACK(text); }
+  };
+  var flash = function(el){
+    if (el.dataset.copied) return;
+    el.dataset.copied = '1';
+    var old = el.style.color;
+    el.style.color = '#39e58c';
+    el.title = '已复制';
+    setTimeout(function(){ el.style.color = old; el.removeAttribute('data-copied'); delete el.dataset.copied; }, 1000);
+  };
+  document.querySelectorAll('.stock .clickable').forEach(function(first){
+    first.addEventListener('click', function(){
+      copyText(first.getAttribute('data-copy') || first.innerText.replace(/\s+/g,' '));
+      flash(first);
+    });
+  });
+})();
+</script>
+</body>
+</html>

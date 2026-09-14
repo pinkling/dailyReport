@@ -33,6 +33,7 @@
   .pill{font-size:10.5px;padding:2px 9px;border-radius:20px;font-weight:700;flex-shrink:0}
   .pill.strategy{background:var(--neon);color:#04140b}
   .pill.review{background:var(--blue);color:#fff}
+  .pill.sector{background:var(--gold);color:#1a1400}
   .item .title{font-size:14.5px;font-weight:600;flex:1;line-height:1.4}
   .item .meta{display:flex;gap:10px;color:var(--sub);font-size:11.5px;margin-top:6px}
   .item.latest-item{border-color:var(--neon-line);background:linear-gradient(160deg,rgba(61,220,151,.07),var(--card) 55%)}
@@ -52,6 +53,7 @@
   <div class="tabs">
     <div class="tab active" data-type="strategy">📈 策略日报<span class="dev">移动端</span></div>
     <div class="tab" data-type="review">🖥️ 复盘日报<span class="dev">PC 端</span></div>
+    <div class="tab" data-type="sector">🧭 板块分析<span class="dev">随时</span></div>
   </div>
   <div class="list" id="list"></div>
   <footer>数据仅供参考，不构成投资建议</footer>
@@ -59,6 +61,7 @@
 
 <script>
 const REPORTS = [
+  {type:"sector", date:"20260914", time:"20:13", title:"板块分析日报 · 2026-09-14（周一）· PCB电子主线确认 × AI应用支线 × 电力轮动 × 农业排除", path:"reports/sector/20260914_pm.html"},
   {type:"review", date:"20260914", time:"19:30", title:"A股每日复盘报告 20260914 · 冰点转折确认/PCB潮爆发/黄河卖飞涨停/东山低开止损", path:"reports/review/20260914_pm.html"},
   {type:"strategy", date:"20260913", time:"07:16", target:"0914", title:"策略日报 · 0914（周一）· 冰点转折观察日（晨间修订版）", path:"reports/strategy/20260913.html"},
   {type:"strategy", date:"20260913", time:"23:37", target:"0914", title:"策略日报 · 0914（周一）· 冰点转折观察日（提前版）", path:"reports/strategy/20260913_pm.html"},
@@ -115,7 +118,7 @@ function render(){
   const card = r => `
     <a class="item" href="${r.path}">
       <div class="top">
-        <span class="pill ${r.type}">${r.type==="strategy"?"策略":"复盘"}</span>
+        <span class="pill ${r.type}">${{strategy:"策略",review:"复盘",sector:"板块"}[r.type]||r.type}</span>
         <span class="title">${r.title}</span>
       </div>
       <div class="meta">
