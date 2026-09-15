@@ -148,15 +148,25 @@ function render(){
   if(btn) btn.addEventListener("click",()=>{ expanded = !expanded; render(); });
 }
 
-// 风险节点截图：读 reports/risk_snaps/list.json 渲染图片墙（倒序）
+// 风险节点截图：读 reports/risk_snaps/list.json —— 默认只展示最新一张，展开看历史
 function renderRisk(){
   fetch("reports/risk_snaps/list.json").then(r=>r.json()).then(arr=>{
     if(!arr || !arr.length){ listEl.innerHTML = `<div class="empty">暂无风险节点截图（在平台 /risk 页点「📸 截图发布」生成）</div>`; return; }
-    listEl.innerHTML = arr.map(s=>`
+    arr.sort((a,b)=> (b.date+(b.file||"")).localeCompare(a.date+(a.file||"")));
+    const card = s => `
       <a class="item snap-item" href="${s.path}" target="_blank">
         <img class="snap-thumb" loading="lazy" src="${s.path}" alt="${s.name}">
         <div class="snap-meta">${s.name} · ${s.date}</div>
-      </a>`).join("");
+      </a>`;
+    let html = card(arr[0]).replace('class="item snap-item"', 'class="item snap-item latest-item"');
+    const history = arr.slice(1, 1+MAX_HISTORY);
+    if(arr.length > 1){
+      html += `<div class="toggle" id="toggleBtn">${expanded?"▲ 收起过往记录":"▼ 展开过往记录（"+history.length+"）"}</div>`;
+      if(expanded) html += history.map(card).join("");
+    }
+    listEl.innerHTML = html;
+    const btn = document.getElementById("toggleBtn");
+    if(btn) btn.addEventListener("click",()=>{ expanded = !expanded; render(); });
   }).catch(()=>{ listEl.innerHTML = `<div class="empty">暂无风险节点截图</div>`; });
 }
 
