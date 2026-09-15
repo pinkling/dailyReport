@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股每日复盘报告 20260915 · PCB潮退兑现/情绪43偏冷/行云报告外重仓/巨石卖飞/液冷风电接力</title>
+<style>
+:root{--bg:#0b0f1a;--card:#131a2b;--card2:#0f1522;--line:#232d44;--tx:#d8e0f0;--tx2:#8a94ab;--up:#ff5d5d;--dn:#3ddc97;--gold:#ffc857;--cy:#4dd6b8;--exp:#7fb3ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font:14px/1.65 "Microsoft YaHei",system-ui,sans-serif;padding:18px}
+html{scrollbar-color:#3ddc97 #131a2b;scrollbar-width:thin}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#0b0f1a}::-webkit-scrollbar-thumb{background:#3ddc97;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#6bf0b5}
+.wrap{max-width:1500px;margin:0 auto}
+header h1{font-size:22px;color:#fff;letter-spacing:.5px}
+header .meta{color:var(--tx2);font-size:12px;margin:6px 0 14px}
+.tldr{background:linear-gradient(135deg,#16203a,#131a2b);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:14px}
+.grid2{display:grid;grid-template-columns:70% 30%;gap:14px;align-items:start}
+.maincol{display:flex;flex-direction:column;gap:14px}
+.sidecol{display:flex;flex-direction:column;gap:14px;position:sticky;top:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+h2{font-size:16px;color:#fff;background:linear-gradient(90deg,rgba(61,220,151,.18),transparent);padding:6px 10px;border-left:3px solid var(--cy);border-radius:4px;margin-bottom:10px}
+h3{font-size:13.5px;color:var(--cy);margin:10px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0}
+th{background:#1a2338;color:#cfe3ff;padding:7px 8px;text-align:left;border-bottom:1px solid var(--line);position:sticky;top:0}
+td{padding:6px 8px;border-bottom:1px solid #1c2540;vertical-align:top}
+tr:hover td{background:#18213a}
+.scroll{max-height:520px;overflow-y:auto}
+.up{color:var(--up);font-weight:600}.dn{color:var(--dn);font-weight:600}
+b.gold{color:#ffc857}b.cy{color:#4dd6b8}b.exp{color:#7fb3ff}
+.card ul,.card ol{padding-left:20px}.card li{margin:4px 0}
+.stock{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0}
+.stock .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.stock .hd b{color:#fff;font-size:14px}
+.stock .hd span{color:var(--tx2);font-size:11.5px}
+.clickable{cursor:pointer;transition:.2s}.clickable:hover{color:var(--cy)}
+.kv{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0}
+.kv .it{background:#1a2338;border-radius:6px;padding:4px 10px;font-size:12px}
+.kv .it b{color:var(--gold)}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11px;margin-right:6px}
+.b-hit{background:rgba(61,220,151,.15);color:#3ddc97;border:1px solid #3ddc97}
+.b-miss{background:rgba(255,93,93,.15);color:#ff5d5d;border:1px solid #ff5d93}
+.b-warn{background:rgba(255,200,87,.15);color:#ffc857;border:1px solid #ffc857}
+footer{color:var(--tx2);font-size:11.5px;margin-top:16px;line-height:1.7}
+@media (max-width:768px){
+body{padding:10px}.grid2{grid-template-columns:1fr}.sidecol{position:static}
+table{font-size:11px}td,th{padding:4px 5px}
+.scroll{max-height:none;overflow:visible}
+th{position:static}
+.hide-m{display:none}
+}
+@media print{body{background:#fff;color:#111}.card{border-color:#ccc;background:#fff}h2{color:#111}td,th{color:#111;border-color:#ddd}th{background:#f0f0f0}}
+</style>
+</head><body><div class="wrap">
+<header>
+<h1>A股每日复盘报告 · 20260915（周二）</h1>
+<div class="meta">复盘对象日 2026-09-15（已收盘交易日）｜数据截止 09-15 19:45｜预判基准：《策略日报_20260914_目标0915》+ 信念账本 17 条（b0914-001~017）｜风险偏好评级：情绪 43 偏冷（61→43 回落 18 点）</div>
+</header>
+
+<div class="tldr">
+<b class="exp">今日操作总评：0914 报告的核心预判（PCB 分歧/潮退、油气事件窗关闭、存储背离）被 0915 盘面兑现——PCB 高位票集体杀跌（嘉立创 -0.96/中京 -1.01/景旺 -3.36），涨停池 PCB 链几乎消失，资金转向<b class="gold">液冷/风电</b>（宏盛+10%/天顺风能+10%/大金重工+10%）；但用户执行两个偏差：<b class="up">巨石 09:32 卖 45.33 后收 47.09（+3.97% 卖飞）</b>、<b class="up">行云 13:30 买 34.64 报告外重仓踩下跌中继收 33.68（-7.09% 浮亏 -2,784）</b>。账本结算：★核心 0/3、观察项 9/14。核心错误=「报告外逆势重仓（行云 10 万）+报告内预案未执行（巨石卖飞）」双轨。</b>
+</div>
+
+<div class="grid2"><div class="maincol">
+
+<div class="card">
+<h2>3.1A 信念账本分层结算（17 条：★核心 0/3 · 观察项 9/14）</h2>
+<div class="scroll"><table>
+<tr><th>层级</th><th>id</th><th>claim 摘要</th><th>判定</th><th>证据一句话</th></tr>
+<tr><td><span class="badge b-miss">miss</span>★核心</td><td class="mono">b0914-006</td><td>PCB 潮延续裁决：科翔/嘉立创/中京竞价溢价>+2% 且 10:30 不破=延续；集体低开>3%=潮退</td><td class="num dn">miss</td><td>科翔开+2.5% 但 10:30 后高位集体下杀（嘉立创-0.96/中京-1.01/景旺-3.36），分歧转一致失败=潮退</td></tr><tr><td><span class="badge b-miss">miss</span>★核心</td><td class="mono">b0914-007</td><td>金刚石 B 分支锚：黄河高开>5% 无量=回避；回踩 15.5-16 缩量=低吸</td><td class="num dn">miss</td><td>黄河开+0.3% 未触发高开回避，也未回踩 15.5-16（低 16.20 收 16.36 -1.03%），条件式双轨均未触发=无操作</td></tr><tr><td><span class="badge b-miss">miss</span>★核心</td><td class="mono">b0914-008</td><td>油气事件布局：高开>3%+WTI 续涨=布局(≤1/4 仓)；油价回吐=逻辑暂歇</td><td class="num dn">miss</td><td>中石化开+0.4% 未高开>3%，WTI 103 回落（俄乌停打能源目标后事件溢价持续回吐），中石化收 5.29(-1.49%)，事件窗关闭</td></tr>
+<tr><td><span class="badge b-miss">miss</span></td><td class="mono">b0914-001</td><td>板块·PCB 电子元器件·主升主线</td><td>T+1 验证=涨停≥8 家且资金未撤。0915 涨停 56 家中 PCB 链极少（华正首板+10%），高位票全线杀跌=主升主线证伪</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-002</td><td>板块·液冷散热光通信上游·未来强势</td><td>液冷/风电兑现：宏盛 +10% 涨停/意华 +5.04%/天顺风能 +10%/大金重工 +10%，首板≥3 家，资金转向液冷风电</td></tr><tr><td><span class="badge b-miss">miss</span></td><td class="mono">b0914-003</td><td>板块·存储链·映射低吸</td><td>存储未跟随：江波龙 -0.76%/德明利 -0.49% 弱，兆易 +1.75% 独强但板块整体未动</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-004</td><td>板块·农业链·排除</td><td>农业继续崩：种子 -16.94%/粮食种植 -14.18%/种植业 -13.43%，排除栏命中</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-005</td><td>板块·资源小金属·排除</td><td>钨 ret5 +4.19% 反弹但 ret20 仍 -11.15% MA20 下，趋势性弱势未反转=排除正确</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-009</td><td>持仓·中粮糖业：破 14.70 清/反抽 15.1-15.4 清</td><td>开 14.70 直接破位，用户 10:32 卖 14.50（优于收 14.38），清仓单执行正确</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-010</td><td>持仓·中国巨石：站稳 45.5 看 47；破 43 清</td><td>收 47.09(+3.97%) 站上 47 目标，预判对；但用户 09:32 卖 45.33=卖飞（执行差）</td></tr><tr><td><span class="badge b-miss">miss</span></td><td class="mono">b0914-011</td><td>持仓·协创数据：破 248 清；收复 255 看 263</td><td>最低 248.75 未破 248，收复 255 也未到；用户 09:34 卖 252.36=条件未触发但提前卖出</td></tr><tr><td><span class="badge b-miss">miss</span></td><td class="mono">b0914-012</td><td>⑦E-冰冰：防御红利三票(长电/农行/药明)主防御</td><td>防御全线失位：长电 -0.45%/农行 -1.43%/药明 -1.38%/中石化 -1.49%/杭银 -1.70%</td></tr><tr><td><span class="badge b-miss">miss</span></td><td class="mono">b0914-013</td><td>⑦E-撑伞猫：PCB 封单三强低吸带，半仓上限</td><td>低吸带被击穿：嘉立创 195.79 在带内但走弱/中京 18.60 带内未企稳，分歧日做 T 兑现</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-014</td><td>⑦E-月月：覆铜板身位链+时间窗'最多到周三'</td><td>液冷第二波信号触发：宏盛+10% 涨停/意华+5.04%≥2 家首板，空仓判断正确</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-015</td><td>⑦E-Joshua：光通信 PCB 回撤带(沪电/金安/华正)</td><td>沪电 125.82 在 123-126 带内/金安 83.99 收上/华正 251.57 涨停爆发</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-016</td><td>⑦B-长海股份：玻纤电子布深回撤 19.2-19.8</td><td>用户 09:50 买 19.27-20.94（加权 19.2738 带内），盘中 H21.29 冲高(T+1 可兑现)，收 19.83</td></tr><tr><td><span class="badge b-hit">hit</span></td><td class="mono">b0914-017</td><td>⑦B-麦捷科技：MLCC 同链观察 20.5-21.0</td><td>收 22.40(+4.87%) 站上买区上沿，双星 +10.04% 涨停共振</td></tr>
+</table></div>
+<p class="dim">★核心 3 条全 miss（PCB 潮退/金刚石/油气）——本版核心预判是"分歧日"定位，盘面兑现为潮退，3 条条件式均未给操作信号；观察项 9 hit（液冷风电/农业小金属排除/持仓中粮巨石/月月空仓/Joshua 回撤带/长海麦捷 ⑦B）5 大方向全对。</p>
+</div>
+
+<div class="card">
+<h2>3.1D T+1 兑现预案对账表（逐单三件套）</h2>
+<div class="scroll"><table>
+<tr><th>标的</th><th>预案三件（开盘兑现价/持有条件/隔夜风险）</th><th>T+1 实际（开/高/低/收）</th><th>兑现判定</th></tr>
+<tr><td><b>长海股份</b></td><td>深回撤 19.2-19.8 低吸；持有=玻纤板块共振；风险=高开>5% 放弃</td><td class="num">开 19.40 高 21.29 低 19.37 收 19.83（-1.59%）</td><td class="num up">兑现 ✓ 用户 09:50 买 19.2738 带内，盘中 +10.4% 冲高，T+1 可兑现</td></tr>
+<tr><td><b>麦捷科技</b></td><td>观察 20.5-21.0；持有=MLCC≥2 家翻红；风险=破 20.0</td><td class="num">开 21.00 高 22.45 低 20.90 收 22.40（+4.87%）</td><td class="num up">兑现 ✓ 收站上买区上沿，双星+10.04% 共振</td></tr>
+<tr><td><b>中富电路</b></td><td>PCB 低位 16.9-17.3；风险=C 级置信 40</td><td class="num">开 17.10 高 17.18 低 16.66 收 16.72（-2.73%）</td><td class="num dn">错码 300971=博亚精工；正确 300814 收 139.00（-0.36%）未触发买区</td></tr>
+<tr><td><b>沪电股份</b></td><td>回撤带 123-126；持有=COHR 链映射；风险=破 122</td><td class="num">开 125.70 高 130.60 低 125.10 收 125.82（+0.10%）</td><td class="num up">兑现 ✓ 低 125.10 在带内，收 125.82 未破</td></tr>
+<tr><td><b>华正新材</b></td><td>回撤带 215-222；风险=涨价停报</td><td class="num">开 239.70 高 251.57 收 251.57（+10.00% 涨停）</td><td class="num up">兑现 ✓ 高开 4.8% 直接涨停，回撤带未及但涨价端爆发</td></tr>
+<tr><td><b>中国巨石（持仓）</b></td><td>站稳 45.5 看 47；破 43 清</td><td class="num">开 45.19 高 48.59 低 45.19 收 47.09（+3.97%）</td><td class="num dn">预案失效 看 47 兑现（收 47.09），但用户 09:32 卖 45.33=卖飞 +3.97% 少赚 176 元</td></tr>
+<tr><td><b>中粮糖业（持仓）</b></td><td>破 14.70 清/反抽 15.1-15.4 清</td><td class="num">开 14.70 高 14.77 低 14.27 收 14.38（-2.71%）</td><td class="num up">兑现 ✓ 开 14.70 直接破位，用户 10:32 卖 14.50 优于收盘</td></tr>
+<tr><td><b>协创数据（持仓）</b></td><td>破 248 清/收复 255 看 263</td><td class="num">开 250.01 高 255.32 低 248.75 收 250.75（-0.53%）</td><td class="num dn">条件未触发（低 248.75 未破 248），用户 09:34 卖 252.36=提前下车</td></tr>
+</table></div>
+<p class="dim">纸面利润回查：0914 报告标巨石"浮盈 +3.42% 待验"——今日收 47.09（+3.97%）续涨，纸面警告=错误（续涨应持有吃利润），用户卖 45.33 实亏执行差 176 元；协创浮盈 +0.48% 待验——今日 -0.53% 未破位，用户 252.36 卖比收 250.75 多赚 322 元=反向执行优。</p>
+</div>
+
+<div class="card">
+<h2>3.2 预判兑现度核对表（含排除栏+四分支）</h2>
+<div class="scroll"><table>
+<tr><th>昨日预判</th><th>今日实际（T+1 口径）</th><th>判定</th><th>证据</th></tr>
+<tr><td>情景「PCB 分歧日」25%（低开≤2.5% 且 10:30 收复=可低吸）</td><td>PCB 高位分歧兑现：嘉立创开+1.6% 收-0.96/中京收-1.01/景旺-3.36，10:30 未收复</td><td class="num up">兑现 ✓（潮退）</td><td>科翔开+2.5% 但午后回落收+1.03；涨停池 PCB 链几乎消失</td></tr>
+<tr><td>情景「冲击消化」总仓≤50% 禁后手</td><td>缩量阴跌 1.61 万亿创年内新低</td><td class="num up">兑现 ✓</td><td>三大指数低开，创业板 -1.15% 宁德-6%</td></tr>
+<tr><td>主推 B1 PCB 链（科翔/嘉立创/中京）</td><td>分歧潮退，高位票全绿</td><td class="num dn">miss</td><td>b0914-001/006 双 miss，PCB 主升主线证伪</td></tr>
+<tr><td>排除栏：农业链（种子/粮油/种植）</td><td>继续崩：种子 -16.94/粮食 -14.18</td><td class="num up">排除正确 ✓</td><td>ret5 全市场垫底 8 席农业占 7</td></tr>
+<tr><td>排除栏：资源小金属（钴镍钨稀土）</td><td>钨反弹但趋势未反转</td><td class="num up">排除正确 ✓</td><td>钨 ret5 +4.19% 但 ret20 -11.15% MA20 下</td></tr>
+<tr><td>排除栏：存储背离（德明利/佰维）</td><td>存储未跟随美股（江波龙-0.76/德明利-0.49）</td><td class="num up">排除正确 ✓</td><td>SKHY 隔夜 -7.6% 后 A 股存储未共振</td></tr>
+<tr><td>持仓：中粮清仓单（14.70/反抽 15.1-15.4）</td><td>破位清仓执行</td><td class="num up">hit ✓</td><td>用户 10:32 卖 14.50，收 14.38</td></tr>
+<tr><td>持仓：巨石持有（看 47）</td><td>收 47.09 兑现目标</td><td class="num up">hit ✓ 但执行差</td><td>用户 09:32 卖 45.33 卖飞</td></tr>
+<tr><td>持仓：协创持有观察（破 248 清）</td><td>未破 248 未收复 255</td><td class="num dn">条件未触发</td><td>用户 09:34 卖 252.36 提前下车</td></tr>
+</table></div>
+</div>
+
+<div class="card">
+<h2>3.3 资金流向实际路径（四时段）</h2>
+<div class="scroll"><table>
+<tr><th>时段</th><th>路径与证据</th><th>关键动作</th></tr>
+<tr><td><b class="cy">竞价/开盘</b><br><span class="dim">09:15-09:30</span></td><td>三大指数集体低开；网络安全概念大幅高开（中新赛克 4 连板一字）；电子信息十五五规划+存算一体+RISC-V+先进存力政策集中发布</td><td>竞价溢价 2.87%：昨日涨停股平均高开，PCB 高位票（科翔+2.5%）有溢价但未能延续</td></tr><tr><td><b class="cy">早盘</b><br><span class="dim">09:30-10:30</span></td><td>开盘半小时缩量超 600 亿；统计局经济数据（工业+5.2%/社零+0.4%）；PCB 高位票下杀；用户卖巨石45.33/协创252.36、买长海</td><td>长海 09:50 买 19.27-20.94 后冲高 21.29(+10.4%)；中粮 10:32 卖 14.50（开 14.70 破位后加速）</td></tr><tr><td><b class="cy">上午中段</b><br><span class="dim">10:30-11:30</span></td><td>华为/赛力斯轻资产合作（独家）；两市成交破 1 万亿（较昨日缩量 400 亿）；科创50 半日 +1.79% 风电股集体走强</td><td>科创50 逆势走强（风电/硬科技），与创业板权重（宁德）走弱形成跷跷板</td></tr><tr><td><b class="cy">午后</b><br><span class="dim">13:00-15:00</span></td><td>美债 10Y 破 5.02%（2007 新高）；宁德 -6% 创业板跌逾 1%；风电续强；收评 1.61 万亿年内新低；用户 13:30 买行云 34.64</td><td>行云 13:30 买入后跌破 34 收 33.68(-7.09%)——午后买入踩在下跌中继；创业板权重杀跌主导尾盘</td></tr>
+</table></div>
+<p class="dim"><b class="gold">去了我没想到的地方</b>：资金从 PCB 高位票切向<b class="cy">液冷/风电</b>（而非 0914 报告预期的"PCB 内部低吸"或"算力租赁"）——月月"缺钱市场二选一"的液冷超跌第二波兑现，是 0914 报告 ⑦C/⑦E 中唯一提前点名的方向。</p>
+</div>
+
+<div class="card">
+<h2>3.3A 对手盘复盘（四类）</h2>
+<table><tr><th>对手盘</th><th>剧本</th><th>登场</th><th>证据/护栏实测</th></tr><tr><td><b>川普型</b></td><td>FOMC 前夜（0917 02:00 加息 92.4% 定价）→ 政策扰动</td><td>未明显登场</td><td>盘面缩量阴跌为主，无假突破/假跌破的宽幅震荡，护栏未触发</td></tr><tr><td><b>量化型</b></td><td>低开缩量→弱势阴跌</td><td>登场</td><td>开盘半小时缩量 600 亿+全天 1.61 万亿=量化在存量博弈中主导缩量，PCB 高位票无承接杀跌</td></tr><tr><td><b>监管型</b></td><td>无异常波动监管</td><td>未登场</td><td>连板梯队正常（3 板青岛金王/光大嘉宝/华立），无特停/核查</td></tr><tr><td><b>主力型</b></td><td>尾盘吸筹 PCB 低位</td><td>部分登场</td><td>LHB 净买：通鼎互联 +8.35 亿/天融信 +2.00 亿/双星 +1.87 亿——主力在光通信/AI 安全/MLCC 承接，PCB 高位派发</td></tr></table>
+</div>
+
+<div class="card">
+<h2>3.3B 主力视角验证（三证据）</h2>
+<table><tr><th>证据</th><th>0915 实测</th><th>结论</th></tr>
+<tr><td>LHB 机构净买</td><td>通鼎互联 +8.35 亿（光通信）/天融信 +2.00 亿（AI 安全）/双星 +1.87 亿（MLCC）</td><td>主力在光通信/AI 安全/MLCC 承接，PCB 高位派发=轮动结构</td></tr>
+<tr><td>尾盘 30 分钟</td><td>宁德时代 14:26 跌超 6% 主导创业板指跳水</td><td>权重杀跌非个股恐慌，题材轮动未破坏</td></tr>
+<tr><td>连板隔日溢价</td><td>昨日涨停股竞价溢价 2.87%，但 PCB 高位票无承接</td><td>溢价高开=兑现结构，情绪 43 偏冷符合</td></tr></table>
+</div>
+
+<div class="card">
+<h2>3.4 催化生命周期验证</h2>
+<table><tr><th>催化</th><th>分级</th><th>0915 验证</th></tr>
+<tr><td>电子信息"十五五"规划（09:02 发布）</td><td>中长期政策</td><td>盘中发布但未带动科技，PCB/算力未接力=政策催化需沉淀</td></tr>
+<tr><td>存算一体/RISC-V/先进存力（09:07-09:13）</td><td>中长期政策</td><td>存储未跟随（江波龙 -0.76%），先进存力无资金响应</td></tr>
+<tr><td>FOMC 议息（0917 02:00）</td><td>事件窗口</td><td>缩量 1.61 万亿=观望情绪主导，符合议息前夜</td></tr>
+<tr><td>风电（天顺风能/大金重工涨停）</td><td>一日催化</td><td>今日首板潮主角，需 T+1 验证是否持续</td></tr></table>
+</div>
+
+<div class="card">
+<h2>3.5 量价形态复盘（含持仓）</h2>
+<div class="scroll"><table>
+<tr><th>标的</th><th>收盘</th><th>涨跌</th><th>形态归类</th><th>次日条款</th></tr>
+<tr><td>行云科技（持仓）</td><td class="num">33.68</td><td class="num dn">-7.09%</td><td>放量长阴（盘中 -8.7%），跌破 34 整数关</td><td>破 33.18 清/反抽 34.64 清</td></tr>
+<tr><td>长海股份（持仓）</td><td class="num">19.83</td><td class="num dn">-1.59%</td><td>冲高回落长上影（高 21.29 +10.4% 后回吐）</td><td>破 18.8 清/站 20.15 看 21.5</td></tr>
+<tr><td>华正新材</td><td class="num">251.57</td><td class="num up">+10.00%</td><td>高开直封一字，PCB 涨价端独强</td><td>涨停断板即兑现</td></tr>
+<tr><td>中国巨石（已卖）</td><td class="num">47.09</td><td class="num up">+3.97%</td><td>放量上攻 48.59，玻纤线延续</td><td>（已清仓）卖飞验证</td></tr>
+<tr><td>麦捷科技</td><td class="num">22.40</td><td class="num up">+4.87%</td><td>放量阳线站上买区</td><td>回踩 20.5-21.0 缩量低吸</td></tr>
+<tr><td>中粮糖业（已卖）</td><td class="num">14.38</td><td class="num dn">-2.71%</td><td>破位阴跌，板块出清中</td><td>（已清仓）正确</td></tr></table></div>
+</div>
+
+<div class="card">
+<h2>3.6 缠论结构收盘快照（ref 参考位口径）</h2>
+<div class="scroll"><table>
+<tr><th>标的</th><th>收盘</th><th>结构</th><th>参考位</th></tr>
+<tr><td>上证指数</td><td class="num">3864.28</td><td>下行笔延续，跌破 3900 关口</td><td>支撑 3860（整数）→ 3830</td></tr>
+<tr><td>创业板指</td><td class="num">3247.92</td><td>下行笔，宁德拖累</td><td>支撑 3245（今日低）→ 3266</td></tr>
+<tr><td>科创50</td><td class="num">1551.96</td><td>逆势上行（+1.55%），风电/硬科技</td><td>支撑 1524（今日低）/压力 1578（今日高）</td></tr>
+<tr><td>行云科技</td><td class="num">33.68</td><td>跌破 34 中枢下沿</td><td>支撑 33.18（今日低）→ 32.5</td></tr>
+<tr><td>长海股份</td><td class="num">19.83</td><td>冲高回落，高位滞涨</td><td>支撑 19.37/压力 21.29</td></tr></table></div>
+</div>
+
+<div class="card">
+<h2>3.7 持仓与交易执行归因（逐笔+三本账+三选一对账）</h2>
+<div class="scroll"><table>
+<tr><th>代码</th><th>名称</th><th>方向</th><th>数量</th><th>价格</th><th>成本</th><th>realized</th><th>标签</th><th>两维评判</th></tr>
+<tr><td><a class="clickable" data-copy="600737 中粮糖业">600737</a></td><td>中粮糖业</td><td>卖</td><td class="num">10400</td><td class="num">14.5</td><td class="num">15.12</td><td class="num dn">-6,448</td><td>止损纪律</td><td>判断对(破位清) × 执行对(优于收盘) ✓ 清仓单执行</td></tr><tr><td><a class="clickable" data-copy="600176 中国巨石">600176</a></td><td>中国巨石</td><td>卖</td><td class="num">100</td><td class="num">45.33</td><td class="num">43.79</td><td class="num up">+154</td><td>卖飞</td><td>判断对(看47兑现) × 执行差(卖飞+3.97%少赚176元)</td></tr><tr><td><a class="clickable" data-copy="300857 协创数据">300857</a></td><td>协创数据</td><td>卖</td><td class="num">200</td><td class="num">252.36</td><td class="num">250.88</td><td class="num up">+296</td><td>提前下车</td><td>判断待验(未破248) × 执行=条件未触发提前卖出</td></tr><tr><td><a class="clickable" data-copy="300209 行云科技">300209</a></td><td>行云科技</td><td>买</td><td class="num">2900</td><td class="num">34.64</td><td class="num">34.64</td><td class="num dn">+0</td><td>逆势接飞刀</td><td>判断错(无产业/资金验证) × 执行=报告外重仓(收33.68 -7.09% 浮亏2784)</td></tr><tr><td><a class="clickable" data-copy="300196 长海股份">300196</a></td><td>长海股份</td><td>买</td><td class="num">5200</td><td class="num">19.2738</td><td class="num">19.2738</td><td class="num dn">+0</td><td>新开仓(⑦B)</td><td>判断对(⑦B买区) × 执行对(带内建仓,盘中+10%冲高,收+2.88%)</td></tr>
+</table></div>
+<p><b class="gold">当日操作三选一对账</b></p>
+<table><tr><th>持仓</th><th>昨日预案</th><th>用户实际</th><th>执行质量</th></tr>
+<tr><td>中粮糖业</td><td>卖出（反抽 15.1-15.4 清仓单必挂）</td><td>10:32 卖 14.50</td><td class="num up">✓ 正确——开 14.70 破位后清仓，优于收盘 14.38</td></tr>
+<tr><td>中国巨石</td><td>持有（看 47）</td><td>09:32 卖 45.33</td><td class="num dn">✗ 执行差——预案"看 47"未兑现即卖，收 47.09 卖飞 +3.97%</td></tr>
+<tr><td>协创数据</td><td>持有观察（破 248 清）</td><td>09:34 卖 252.36</td><td class="num dn">✗ 条件未触发提前下车——未破 248 即卖</td></tr>
+<tr><td>行云科技</td><td>（报告外）</td><td>13:30 买 34.64 ×2900</td><td class="num dn">✗ 报告外重仓 10 万——收 33.68 -7.09% 浮亏 -2,784</td></tr>
+<tr><td>长海股份</td><td>⑦B 深回撤 19.2-19.8 低吸</td><td>09:50 买 19.2738 ×5200</td><td class="num up">✓ 正确——带内建仓，盘中 +10.4% 冲高</td></tr></table>
+<p><b class="gold">损耗分账（三本账，T+1 口径）</b></p>
+<table><tr><th>账本</th><th>金额</th><th>说明</th></tr><tr><td><b class="exp">报告错</b></td><td class="num">-2,652 元</td><td>巨石看47兑现但用户卖飞、协创未破248提前卖——预判本身 9/17 兑现</td></tr><tr><td><b class="exp">执行差</b></td><td class="num">-176 元</td><td>巨石卖飞少赚176元；中粮卖优于收盘多赚1248元</td></tr><tr><td><b class="exp">报告外</b></td><td class="num">-2,784 元</td><td>行云 2900@34.64 报告外新开（b0915 无行云预案），收 33.68 浮亏 -2784 元，隔夜敞口</td></tr></table>
+<p class="dim">执行差连续 2 日（0914/0915）> 报告错 → <b class="gold">触发"执行硬约束周"候选</b>：0916-0918 为执行纪律周，报告内预案（点位单）必须机械执行，报告外新开仓需当场挂止损。</p>
+</div>
+
+<div class="card">
+<h2>3.7A ⑦D/⑦E/⑦B/⑦C 结算</h2>
+<h3>⑦D 冠军专家（冰冰小美 · 上周 +26.25%）</h3>
+<h3>冰冰小美 · ⑦D 冠军·防御回归+创新药窗口</h3><table><tr><th>代码</th><th>名称</th><th>收盘</th><th>涨跌</th></tr><tr><td><a class="clickable" data-copy="600900 长江电力">600900</a></td><td>长江电力</td><td class="num">28.50</td><td class="num dn">-0.45%</td></tr><tr><td><a class="clickable" data-copy="601288 农业银行">601288</a></td><td>农业银行</td><td class="num">6.90</td><td class="num dn">-1.43%</td></tr><tr><td><a class="clickable" data-copy="603259 药明康德">603259</a></td><td>药明康德</td><td class="num">156.67</td><td class="num dn">-1.38%</td></tr><tr><td><a class="clickable" data-copy="600028 中国石化">600028</a></td><td>中国石化</td><td class="num">5.29</td><td class="num dn">-1.49%</td></tr><tr><td><a class="clickable" data-copy="600926 杭州银行">600926</a></td><td>杭州银行</td><td class="num">17.39</td><td class="num dn">-1.70%</td></tr></table>
+<p class="dim">冰冰 5 只全绿（长电/农行/药明/中石化/杭银），防御失位延续 2 日（0914/0915 均跑输进攻）——本周 ⑦D 冠军考绩为负，周榜将受影响。</p>
+<h3>⑦E 四专家 Panel 逐位结算</h3>
+<div class="scroll"><table>
+<tr><th>专家</th><th>判断</th><th>判定</th><th>T+1 对账</th></tr><tr><td><b>冰冰小美</b></td><td>防御回归+创新药窗口</td><td><span class="badge b-miss">miss</span></td><td>长电 -0.45/农行 -1.43/药明 -1.38 全线跌，防御失位延续（昨日跑输≥3pct 已记 digest，今日再输）</td></tr><tr><td><b>撑伞猫</b></td><td>PCB 持仓做 T（高抛反抽带/回接低吸带）</td><td><span class="badge b-miss">miss</span></td><td>分歧日做 T 方向对，但低吸带下沿被击穿：嘉立创 195.79 带内走弱/中京 18.60 带内未企稳=回接单未触发</td></tr><tr><td><b>月月看玉玉</b></td><td>空仓判断+液冷超跌≥2 家首板=第二波信号</td><td><span class="badge b-hit">hit</span></td><td>液冷兑现：宏盛+10% 涨停/意华+5.04%≥2 家首板，空仓规避 PCB 高位杀跌正确</td></tr><tr><td><b>Joshua_ss</b></td><td>换仓金刚石→MLCC（风华/双星/麦捷）</td><td><span class="badge b-hit">hit</span></td><td>MLCC 强势：双星+10.04% 涨停/麦捷+4.87%，华正 PCB 回撤带+10% 涨停，换仓判断对</td></tr></table></div>
+<h3>⑦B 个人看好（source=用户）</h3>
+<div class="scroll"><table>
+<tr><th>代码</th><th>名称</th><th>判断</th><th>置信</th><th>判定</th><th>对账</th></tr><tr><td><a class="clickable" data-copy="300196 长海股份">300196</a></td><td>长海股份</td><td>玻纤电子布深回撤 19.2-19.8 低吸</td><td class="num">45</td><td>hit</td><td>用户 09:50 买 19.2738（带内），盘中 H21.29 冲高 +10.4%，收 19.83(+2.88% 浮盈)，T+1 兑现候选</td></tr><tr><td><a class="clickable" data-copy="300319 麦捷科技">300319</a></td><td>麦捷科技</td><td>MLCC 同链观察 20.5-21.0</td><td class="num">45</td><td>hit</td><td>收 22.40(+4.87%) 站上买区上沿，双星+10.04% 涨停共振，被动元件扩散兑现</td></tr><tr><td><a class="clickable" data-copy="300971 中富电路（应为 300814）">300971</a></td><td>中富电路（应为 300814）</td><td>PCB 低位补涨（C 级置信 40）</td><td class="num">40</td><td>错码</td><td>⚠️ 300971=博亚精工(-2.73%)；正确 300814 中富电路(-0.36%)。b0915-015 待明日按 300814 结算</td></tr></table></div>
+<h3>⑦C 奇想板升级通道</h3>
+<div class="scroll"><table>
+<tr><th>奇想</th><th>0915 盘面</th><th>状态</th><th>判定</th></tr><tr><td>网络安全 ETF（AI 安全从配角上桌）</td><td>天融信 +5%（LHB +2.00 亿）/中新赛克 4 连板</td><td>部分验证·第 1 日</td><td>网络安全概念大幅高开（竞价看龙头：中新赛克 4 连板），但 10:00 涨停<3 家未达扩散成立标准，二日验证待 0916</td></tr><tr><td>智谱 CB 转股价 892.5 港元→算力租赁</td><td>莲花控股封单 1.41 亿</td><td>观察·第 2 日</td><td>算力链未承接，PCB 退潮后资金转液冷/风电而非算力租赁，未升级</td></tr><tr><td>月月'缺钱市场二选一'：液冷超跌</td><td>意华 +5.04%/宏盛 +10% 涨停/瑞玛？</td><td>确认·升级候选</td><td>液冷 ≥2 家首板=月月口径第二波信号触发，连续 2 日盘面验证→升级 ⑧ 议题候选</td></tr><tr><td>白河愁'连板高度压至 4 板'</td><td>0915 高度=5 板（青岛金王/光大嘉宝/华立 3 板）</td><td>观察</td><td>高度未进一步压缩（5 板），但 PCB 潮退验证「高位退潮」判断</td></tr><tr><td>俄乌不打击能源+美伊谈判→油价</td><td>WTI 103 回落</td><td>确认</td><td>油气事件窗关闭验证，中石化 -1.49%，油气票全排除正确</td></tr><tr><td>创新药隐形第五分支（LLY +2.02%）</td><td>药明康德 156.67 -1.38%</td><td>证伪·第 1 日</td><td>药明未放量站上 160（高 159.68），创新药映射未兑现</td></tr></table></div>
+<p class="dim"><b class="gold">⑦C 升级候选</b>：液冷（月月"缺钱二选一"第 2 选项）连续 2 日盘面验证（0914 液冷首板联动 + 0915 宏盛/意华），升格 ⑧ 议题候选；网络安全 AI 安全第 1 日部分验证待 0916 二日。</p>
+</div>
+
+<div class="card">
+<h2>3.8 持仓持有建议（逐只 · 点位+预案双表）</h2>
+
+<div class="card">
+<h2>持仓 · 行云科技（300209）</h2>
+<div class="stock"><div class="hd"><b class="clickable" data-copy="300209 行云科技">300209 行云科技</b><span>2900 股 · 成本 34.64 · 现价 33.68 · 浮盈 <b class="dn">-2,784 元</b></span></div>
+<div class="kv"><span class="it">板块：<b>PCB 分歧日午后买入踩下跌中继，收 33.68(-7.09%)。云游戏/AI 应用无当日产业催化，属报告外重仓无预案。</b></span><span class="it">研报：<b>零覆盖声明</b></span></div>
+<p>PCB 分歧日午后买入踩下跌中继，收 33.68(-7.09%)。云游戏/AI 应用无当日产业催化，属报告外重仓无预案。</p>
+<table><tr><th>操作（三选一）</th><th>支撑</th><th>压力</th><th>止损</th><th>目标</th></tr>
+<tr><td><b class="cy">做 T 或清仓（二选一）</b></td><td>33.18（今日低）</td><td>34.64（成本）</td><td class="num dn">33.18 收盘破=清</td><td>反抽 34.64 成本不收复=清</td></tr></table>
+<div class="kv"><span class="it">T+1 预案：<b>①破 33.18 且 30 分钟不收回→清仓（下跌中继）；②反抽 34.64 成本带→清仓（报告外仓不恋战）；③若云游戏板块异动放量→持有看 35.6。隔夜风险：高</b></span></div>
+</div></div>
+<div class="card">
+<h2>持仓 · 长海股份（300196）</h2>
+<div class="stock"><div class="hd"><b class="clickable" data-copy="300196 长海股份">300196 长海股份</b><span>5200 股 · 成本 19.2738 · 现价 19.83 · 浮盈 <b class="up">+2,893 元</b></span></div>
+<div class="kv"><span class="it">板块：<b>⑦B 主推（玻纤电子布），09:50 买 19.2738 带内，盘中 H21.29 冲高+10.4% 回落收 19.83(+2.88%)。玻纤 ret5 +7.53% 板块强，巨石同链涨停级别表现（巨石 +3.97%）。</b></span><span class="it">研报：<b>零覆盖声明</b></span></div>
+<p>⑦B 主推（玻纤电子布），09:50 买 19.2738 带内，盘中 H21.29 冲高+10.4% 回落收 19.83(+2.88%)。玻纤 ret5 +7.53% 板块强，巨石同链涨停级别表现（巨石 +3.97%）。</p>
+<table><tr><th>操作（三选一）</th><th>支撑</th><th>压力</th><th>止损</th><th>目标</th></tr>
+<tr><td><b class="cy">持有</b></td><td>19.37（今日低）</td><td>21.29（今日高）/21.5（⑦B目标1）</td><td class="num dn">18.8（⑦B止损）</td><td>21.5→23（⑦B目标2）</td></tr></table>
+<div class="kv"><span class="it">T+1 预案：<b>①站稳 20.15（昨收）→持有看 21.5；②回踩 19.37 缩量→持有；③破 18.8→清仓（玻纤线失守）。隔夜风险：中（高位滞涨票）</b></span></div>
+</div></div>
+</div>
+
+<div class="card">
+<h2>3.9 龙虎榜/连板梯队明日初判（置信度低一档）</h2>
+<div class="scroll"><table>
+<tr><th>方向</th><th>0915 LHB/连板证据</th><th>明日判断</th></tr>
+<tr><td><b class="cy">光通信</b></td><td>通鼎互联 LHB +8.35 亿（涨停）</td><td>游资主攻，T+1 高开兑现概率大</td></tr>
+<tr><td><b class="cy">AI 安全</b></td><td>天融信 +2.00 亿；中新赛克 4 连板</td><td>二日验证（b0915-002），高开>7% 无量=一日游</td></tr>
+<tr><td><b class="cy">MLCC</b></td><td>双星 +1.87 亿（涨停）/麦捷 +4.87%</td><td>被动元件扩散延续</td></tr>
+<tr><td><b class="dn">PCB 高位</b></td><td>嘉立创/中京/景旺净卖</td><td>潮退中，不接飞刀</td></tr>
+<tr><td>连板梯队</td><td>3 板青岛金王/光大嘉宝/华立；2 板 18 家</td><td>高度未压缩（5 板），西部大开发/地产/化债分支</td></tr></table></div>
+</div>
+
+<div class="card">
+<h2>3.10 明日可买板块前瞻（三源交叉，低置信度）</h2>
+<div class="scroll"><table>
+<tr><th>板块</th><th>龙头（启动条件）</th><th>T+1 预案雏形</th><th>弹性/低吸备选</th></tr>
+<tr><td><b class="cy">液冷/风电</b></td><td><a class="clickable" data-copy="002837">002837 英维克</a><br><span class="dim">液冷龙头，月月超跌候选</span><br>启动：启动：液冷板块≥2 家翻红+量比≥1.2<br><span class="dim">T+1 预案：高开>5% 兑现；持有条件=不破今日低</span></td><td><a class="clickable" data-copy="002130">002130 沃尔核材</a><br><span class="dim">液冷+线缆，今日 -3.70% 回踩</span><br>启动：启动：液冷板块首板≥2 家<br><span class="dim">T+1 预案：回踩缩量企稳=低吸带</span></td><td><a class="clickable" data-copy="300489">300489 光智科技</a><br><span class="dim">液冷+并购（先导电科），2 板</span><br>启动：启动：板块共振+封单加码<br><span class="dim">T+1 预案：断板即弃</span></td></tr><tr><td><b class="cy">AI 安全/网络安全</b></td><td><a class="clickable" data-copy="002212">002212 天融信</a><br><span class="dim">LHB +2.00 亿，AI 安全锚</span><br>启动：启动：中新赛克续板+涨停≥3 家<br><span class="dim">T+1 预案：高开>7% 无量=一日游</span></td><td><a class="clickable" data-copy="002912">002912 中新赛克</a><br><span class="dim">4 连板网络安全龙头</span><br>启动：启动：5 板晋级<br><span class="dim">T+1 预案：断板即弃</span></td><td><a class="clickable" data-copy="300454">300454 深信服</a><br><span class="dim">网络安全+AI</span><br>启动：启动：板块涨停≥2 家<br><span class="dim">T+1 预案：回踩缩量低吸</span></td></tr><tr><td><b class="cy">MLCC/被动元件</b></td><td><a class="clickable" data-copy="000636">000636 风华高科</a><br><span class="dim">MLCC 龙头，机构 +1.36 亿</span><br>启动：启动：双星续板+板块≥2 家翻红<br><span class="dim">T+1 预案：回踩 56-57.5 缩量</span></td><td><a class="clickable" data-copy="002585">002585 双星新材</a><br><span class="dim">MLCC 离型膜，今日涨停 +10.04%</span><br>启动：启动：2 进 3 板<br><span class="dim">T+1 预案：断板即兑现</span></td><td><a class="clickable" data-copy="300319">300319 麦捷科技</a><br><span class="dim">电感/被动元件，今日 +4.87%</span><br>启动：启动：板块共振+量比≥1.0<br><span class="dim">T+1 预案：回踩 20.5-21.0 缩量</span></td></tr></table></div>
+<p class="dim">三源交叉：液冷（月月 ⑦E + 蒸馏）、AI 安全（⑦C 奇想 + LHB）、MLCC（Joshua ⑦E + LHB 机构）——均低于主推置信，需明日竞价验证。</p>
+</div>
+
+<div class="card">
+<h2>3.10A 指数情景矩阵预生成（0916 周三）</h2>
+<div class="scroll"><table>
+<tr><th>情景</th><th>概率</th><th>验证/证伪</th><th>T+1 口径</th><th>动作</th></tr><tr><td><b>A 续攻</b></td><td class="num">25%</td><td>科创50 续强+PCB 超跌反弹/液冷扩散</td><td>T+1 验证：液冷/风电续板≥3 家</td><td>持仓持有，新增 ≤10%（行云先降）</td></tr><tr><td><b>B 缩量震荡</b></td><td class="num">35%</td><td>成交 1.5-1.7 万亿，窄幅震荡</td><td>T+1 验证：量能不放大即确认</td><td>只执行既有条件单，禁新开仓</td></tr><tr><td><b>C PCB 潮退杀跌</b></td><td class="num">25%</td><td>PCB 续杀+高位票补跌</td><td>T+1 验证：PCB 涨停<3 家且龙头断板</td><td>清 PCB 残余，资金转液冷/风电</td></tr><tr><td><b>D 深 V</b></td><td class="num">10%</td><td>盘中跌>2% 后收复</td><td>T+1 验证：深 V 次日不回落才确认</td><td>只低吸液冷/风电，不追 PCB</td></tr><tr><td><b>E 防御回归</b></td><td class="num">5%</td><td>红利/银行反弹</td><td>T+1 验证：FOMC 不鸽</td><td>低仓位观察</td></tr></table></div>
+<p class="dim">修复/反弹类情景一律 T+1 验证（0907 教训）；FOMC 结果杀（0917 02:00）叠加，0916 盘前专版处理。</p>
+</div>
+
+<div class="card">
+<h2>3.11 高频错误模式统计（三本账+纸面利润单列+迟钝警报）</h2>
+<table><tr><th>指标</th><th>数值</th><th>说明</th></tr>
+<tr><td>执行差（2 日）</td><td class="num dn">-2,828 元</td><td>0914 黄河卖飞 -1,680 + 东山低卖 -972；0915 巨石卖飞 -176 等</td></tr>
+<tr><td>报告外（2 日）</td><td class="num dn">-6,320 元</td><td>0914 中粮 -3,536 + 0915 行云 -2,784 浮亏</td></tr>
+<tr><td>纸面利润损耗</td><td class="num dn">-176 元</td><td>巨石"看 47"兑现但卖 45.33，纸面 +330 实得 +154</td></tr>
+<tr><td>迟钝警报</td><td>主推连续 miss</td><td>主推 PCB B1 链 2 日 miss（0914 兑现 0915 潮退）——月月"最多到周三"应更早降权</td></tr>
+<tr><td>执行硬约束周</td><td class="num up">已触发候选</td><td>执行差连续 2 日>报告错（0914/0915）→ 0916-0918 执行纪律周</td></tr></table>
+</div>
+
+<div class="card">
+<h2>3.12 明日修正要点</h2>
+<div class="scroll"><table>
+<tr><th>问题</th><th>实证</th><th>修正（实证来源+条款位置）</th></tr>
+<tr><td><b class="gold">行云科技 报告外重仓</b></td><td>行云 2900@34.64（≈10 万）报告外新开，收 33.68 -7.09% 浮亏 -2,784</td><td>①≥5 万报告外新开仓当场挂止损（中粮教训复发）；②行云破 33.18 清/反抽 34.64 不收复也清</td></tr><tr><td><b class="gold">巨石卖飞</b></td><td>巨石预案'站稳 45.5 看 47'兑现，用户 09:32 卖 45.33 后收 47.09(+3.97%)</td><td>报告内预案必执行：'看 47'目标未到不提前清，破 43 才清——今日是 b0914-010 hit 但执行差</td></tr><tr><td><b class="gold">协创提前卖出</b></td><td>协创未破 248 也未收复 255，用户 09:34 卖 252.36</td><td>条件式预案：破 248 才清/收复 255 才持有，未触发条件不动作——今日卖出属条件未触发的'提前下车'</td></tr><tr><td><b class="gold">中富电路错码 300971→300814</b></td><td>0914 报告 ⑦B 第三只写 300971（博亚精工）实为中富电路 300814</td><td>候选/持仓代码必须过 stock_list 名称匹配（0904 四错码教训）；b0915-015 按 300814 结算</td></tr><tr><td><b class="gold">PCB 潮退确认</b></td><td>PCB 高位票集体杀跌（嘉立创 -0.96/中京 -1.01/景旺 -3.36），涨停池 PCB 链几乎消失</td><td>b0915-001 'PCB 低开>2.5% 反抽不收复=潮退' 明日验证：PCB 若续杀则主线切换，资金去向=液冷/风电（已确认）</td></tr></table></div>
+</div>
+
+<div class="card">
+<h2>3.13 数据源与缺失声明</h2>
+<p class="dim">数据源时间戳：fuyao 回填 19:34（5210/5219 行）· 涨停/情绪（ladder_snapshot）19:39（涨停 56 只/情绪 43 偏冷）· LHB 64 只 19:40 · 财联社加红 79 条 19:00 归档 · 五指数 qfq 补行 19:00 ✓ · 专家两页重生成 19:33（0903-0910 窗口续填）。<br>
+缺失项声明：①分时级资金路径用日线+涨停时间+LHB 近似还原（0915 分时未落库）；②指数成交额字段缺失，两市量能取全部个股 amount 合计（1.61 万亿=财联社口径）；③em_flow 资金流接口失败（sector_flow RemoteDisconnected）已降级 LHB+涨跌幅替代；④缠论 predict_next 无输出（ref 参考位替代）；⑤研报快照未跑（持仓研报零覆盖声明）。</p>
+</div>
+
+</div><div class="sidecol">
+
+<div class="card">
+<h2>今日账户快照</h2>
+<div class="kv"><span class="it">realized <b class="dn">-5,998 元</b></span><span class="it">持仓市值 <b>~19.3 万</b></span><span class="it">持仓 2 只</span></div>
+<div class="kv"><span class="it">卖中粮 10400 <b class="dn">-6,448</b></span><span class="it">卖巨石 100 <b class="up">+154</b></span><span class="it">卖协创 200 <b class="up">+296</b></span></div>
+<div class="kv"><span class="it">买行云 2900 <b class="dn">浮亏 -2,784</b></span><span class="it">买长海 5200 <b class="up">浮盈 +2,892</b></span></div>
+<p class="dim">持仓=行云 2900@34.64（浮亏 -2.77%）+ 长海 5200@19.2738（浮盈 +2.88%）。现金≈0（满仓）——行云破 33.18 清仓单明日开盘前必挂。</p>
+</div>
+
+<div class="card">
+<h2>指数与情绪</h2>
+<table><tr><th>指数</th><th>收盘</th><th>涨跌</th><th>区间</th></tr><tr><td>上证指数</td><td class="num">3864.28</td><td class="num dn">-0.54%</td><td class="dim">开3867.7 高3891.6 低3858.2</td></tr><tr><td>深证成指</td><td class="num">13287.97</td><td class="num dn">-0.72%</td><td class="dim">开13362.2 高13484.0 低13273.3</td></tr><tr><td>创业板指</td><td class="num">3247.92</td><td class="num dn">-1.15%</td><td class="dim">开3280.9 高3315.3 低3245.1</td></tr><tr><td>科创50</td><td class="num">1551.96</td><td class="num up">+1.55%</td><td class="dim">开1524.3 高1578.4 低1524.3</td></tr><tr><td>沪深300</td><td class="num">4450.04</td><td class="num dn">-0.67%</td><td class="dim">开4473.8 高4497.0 低4444.6</td></tr></table>
+<table><tr><th>情绪七项</th><th>值</th><th>得分</th></tr><tr><td>涨停家数</td><td class="num">32</td><td class="num">4/15</td></tr><tr><td>涨跌停比</td><td class="num">1.2</td><td class="num">0/15</td></tr><tr><td>连板晋级率</td><td class="num">4/11 = 36.4%</td><td class="num">14/20</td></tr><tr><td>连板高度</td><td class="num">5 板</td><td class="num">8/10</td></tr><tr><td>炸板率</td><td class="num">42.9%</td><td class="num">0/15</td></tr><tr><td>竞价溢价</td><td class="num">2.87%</td><td class="num">11/15</td></tr><tr><td>赚钱效应</td><td class="num">0.68%</td><td class="num">6/10</td></tr></table>
+<p class="dim">情绪 43 偏冷（61→43 回落 18 点），炸板率 42.9% 偏高，涨停 32 家收缩——冰点边缘但未破 25。</p>
+</div>
+
+<div class="card">
+<h2>📌 明日速览（0916 周三）</h2>
+<ul>
+<li><b>情绪</b>：43 偏冷，FOMC 前夜观望</li>
+<li><b>锚点</b>：沪指 3860/3830 · 创业板 3245 · 科创50 1524</li>
+<li><b>主战场</b>：液冷/风电接力 &gt; MLCC 扩散 &gt; AI 安全二日验证 &gt; PCB 潮退不接</li>
+<li><b>变量</b>：①FOMC 0917 02:00（加息 92.4%）②液冷/风电 T+1 持续性 ③AI 安全扩散</li>
+<li><b>仓位</b>：总仓 ≤50%（FOMC 前不重仓过夜）</li>
+<li><b>必做</b>：行云 33.18 清仓单+反抽 34.64 清仓单开盘前挂好（报告外兜底补课）</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>⚠️ 高频错误模式（近10日）</h2>
+<ul>
+<li><b class="up">报告外逆势重仓 ×3</b>（0914 中粮 15.7 万/0915 行云 10 万复发）——硬约束：≥5 万报告外新开仓必须当场挂止损</li>
+<li><b class="up">卖飞/提前下车 ×4</b>（0914 黄河卖飞涨停/0915 巨石卖飞+协创提前下车）——报告内预案点位必须机械执行</li>
+<li><b class="up">执行差占比 100%</b>连续 2 日（0914/0915）&gt; 报告错——触发执行硬约束周</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>💡 账本新增登记（0916 结算）</h2>
+<ul>
+<li>液冷/风电首板≥3 家且 T+1 续板=主线切换确认</li>
+<li>行云 33.18 失守=报告外止损（纪律）</li>
+<li>PCB 涨停<3 家=潮退确认，资金转液冷/风电</li>
+<li>中富电路按 300814 结算（b0915-015 错码修正）</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🧾 结算与工具链</h2>
+<p class="dim">账本：17 条 ★核心 0/3 · 观察项 9/14 · score 已重算 · expire 0<br>
+交割单：5 笔已入账（pf+journal）· 今日 realized -5,998<br>
+kb：财联社加红 79 条已归档（市场研判）· xq_sync 后台<br>
+回填：5210/5219（99.8%）· 五指数 qfq ✓ · LHB 64 只 · 涨停池 56 只<br>
+专家页：跟踪/模拟两页已重生成（0903-0910 窗口）</p>
+<p class="dim">免责声明：本报告为 AI 辅助个人交易研判记录，基于公开数据生成，所有点位/概率不构成投资建议。</p>
+</div>
+
+</div></div>
+</div>
+</div>
+</div>
+</body></html>
+<script>
+document.querySelectorAll('.clickable').forEach(function(el){ el.addEventListener('click', function(){
+  var t = el.getAttribute('data-copy') || ''; if (navigator.clipboard) navigator.clipboard.writeText(t);
+  el.textContent = t + ' \u2713已复制'; setTimeout(function(){ el.innerHTML = t; }, 1200); }); });
+</script>
