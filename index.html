@@ -35,6 +35,14 @@
   .pill.review{background:var(--blue);color:#fff}
   .pill.sector{background:var(--gold);color:#1a1400}
   .pill.risk{background:#c084fc;color:#1b0b33}
+  .pill.ai{background:#38bdf8;color:#04121f}
+  .ai-desc{font-size:12.5px;color:var(--sub);margin-top:8px;line-height:1.6}
+  .ai-btns{display:flex;gap:10px;margin-top:12px}
+  .ai-btn{flex:1;text-align:center;padding:11px 0;border-radius:10px;border:1px solid var(--neon-line);background:var(--neon-dim);color:var(--neon);font-size:14px;font-weight:700;text-decoration:none;cursor:pointer;user-select:none}
+  .ai-btn.primary{background:var(--neon);color:#04140b;border-color:var(--neon)}
+  .ai-btn:active{transform:scale(.98)}
+  .ai-note{font-size:11px;color:var(--sub);margin-top:10px;line-height:1.5}
+  .ai-note.ok{color:var(--neon)}
   .snap-item{padding:10px;overflow:hidden}
   .snap-thumb{width:100%;border-radius:8px;border:1px solid var(--line);display:block;background:#0f1626}
   .snap-meta{font-size:11.5px;color:var(--sub);margin-top:6px;text-align:center}
@@ -59,6 +67,7 @@
     <div class="tab" data-type="review">🖥️ 复盘日报<span class="dev">PC 端</span></div>
     <div class="tab" data-type="sector">🧭 板块分析<span class="dev">随时</span></div>
     <div class="tab" data-type="risk">📸 风险截图<span class="dev">最新</span></div>
+    <div class="tab" data-type="ai">🤖 AI包<span class="dev">投研参谋</span></div>
   </div>
   <div class="list" id="list"></div>
   <footer>数据仅供参考，不构成投资建议</footer>
@@ -138,6 +147,7 @@ const MAX_HISTORY = 10;
 
 function render(){
   if(cur === "risk"){ renderRisk(); return; }
+  if(cur === "ai"){ renderAI(); return; }
   const items = REPORTS.filter(r=>r.type===cur)
     .sort((a,b)=>b.date.localeCompare(a.date));
   if(!items.length){ listEl.innerHTML = `<div class="empty">暂无报告</div>`; return; }
@@ -186,6 +196,43 @@ function renderRisk(){
     const btn = document.getElementById("toggleBtn");
     if(btn) btn.addEventListener("click",()=>{ expanded = !expanded; render(); });
   }).catch(()=>{ listEl.innerHTML = `<div class="empty">暂无风险节点截图</div>`; });
+}
+
+// AI 数据包：读 mobile/mobile_pack_latest.md —— 展示生成信息 + 一键复制/下载
+function copyText(t){
+  if(navigator.clipboard && window.isSecureContext){ return navigator.clipboard.writeText(t); }
+  const ta=document.createElement("textarea"); ta.value=t;
+  ta.style.cssText="position:fixed;opacity:0"; document.body.appendChild(ta);
+  ta.focus(); ta.select(); document.execCommand("copy"); ta.remove();
+  return Promise.resolve();
+}
+function renderAI(){
+  fetch("mobile/mobile_pack_latest.md",{cache:"no-store"}).then(r=>{
+    if(!r.ok) throw new Error(r.status); return r.text();
+  }).then(t=>{
+    const gen=(t.match(/生成于 ([\d-]+)/)||[])[1]||"—";
+    const px=(t.match(/行情截止 ([\d-]+)/)||[])[1]||"—";
+    const kb=(t.match(/账本截止 ([\d-]+)）/)||[])[1]||"—";
+    const wk=Math.round(t.length/100)/10;
+    listEl.innerHTML=`
+      <div class="item latest-item">
+        <div class="top"><span class="pill ai">🤖 AI包</span><span class="title">移动端投研参谋 · 数据包</span></div>
+        <div class="meta"><span>生成 ${gen}</span><span>行情 ${px}</span><span>账本 ${kb}</span><span>约 ${wk} 万字</span></div>
+        <div class="ai-desc">全文粘贴给 Kimi / GLM / DeepSeek 等长上下文 AI 作第一条消息，之后直接提问个股/板块。包内含：操作纪律与建议五要素、规则实证命中率、实盘持仓、近期预判实录、专家蒸馏知识库、风险节点、标的行情与知识库原话。</div>
+        <div class="ai-btns">
+          <button class="ai-btn primary" id="aiCopy">📋 一键复制全文</button>
+          <a class="ai-btn" download="投研数据包_${gen}.md" href="mobile/mobile_pack_latest.md?v=${Date.now()}">⬇️ 下载 .md</a>
+        </div>
+        <div class="ai-note" id="aiNote">复制后到 AI App 粘贴发送即可；若在微信内打开按钮无效，请点右上角用系统浏览器打开本页。</div>
+      </div>`;
+    document.getElementById("aiCopy").addEventListener("click",()=>{
+      copyText(t).then(()=>{
+        const n=document.getElementById("aiNote");
+        n.textContent="✅ 已复制全文（约 "+wk+" 万字）——去 AI App 粘贴为第一条消息，之后直接提问";
+        n.classList.add("ok");
+      }).catch(()=>{ window.open("mobile/mobile_pack_latest.md","_blank"); });
+    });
+  }).catch(()=>{ listEl.innerHTML=`<div class="empty">暂无 AI 数据包（PC 端跑 mobile_pack.py 生成发布）</div>`; });
 }
 
 tabs.forEach(t=>t.addEventListener("click",()=>{
