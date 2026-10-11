@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data-Dense Dashboard · 高密度数据看板 — UI 风格 Demo</title>
+<style>
+:root{--d-bg:#f5f7fa;--d-bg2:#e9edf3;--d-fg:#1a2233;--d-sub:#64708a;--d-card:#ffffff;--d-line:#e3e8f0;--d-primary:#2563eb;--d-primary-fg:#ffffff;--d-accent:#7c3aed;--d-radius:10px;--d-btn-radius:8px;--d-font:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;--d-title-weight:800;--d-bar:#2563eb;--d-bar-track:#e9edf3}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--d-bg);color:var(--d-fg);font-family:var(--d-font);line-height:1.55;min-height:100vh;background-image:var(--d-bg-image,none);background-size:var(--d-bg-size,auto)}
+.d-dash{display:grid;grid-template-columns:188px 1fr;min-height:100vh;position:relative}
+.d-side{background:var(--d-side-bg,var(--d-bg2));border-right:var(--d-side-border,1px solid var(--d-line));padding:18px 13px;display:flex;flex-direction:column;gap:5px}
+.d-logo{font-weight:800;font-size:15.5px;padding:6px 10px 16px;font-family:var(--d-title-font,var(--d-font));letter-spacing:var(--d-logo-track,.03em)}
+.d-menu{display:flex;flex-direction:column;gap:4px}
+.d-menu span{padding:9px 12px;border-radius:var(--d-btn-radius,8px);font-size:13.5px;color:var(--d-sub);cursor:pointer;transition:all .15s;border:var(--d-border,none)}
+.d-menu span.on{background:var(--d-primary);color:var(--d-primary-fg,#fff);font-weight:600}
+.d-menu span:not(.on):hover{color:var(--d-fg)}
+.d-main{padding:20px 22px 24px;display:flex;flex-direction:column;gap:15px;min-width:0}
+.d-dhead{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.d-dhead h2{font-size:19px;font-weight:var(--d-title-weight,800);font-family:var(--d-title-font,var(--d-font));letter-spacing:var(--d-h1-track,-.01em)}
+.d-dhead p{font-size:12.5px;color:var(--d-sub);margin-top:2px}
+.d-chip{font-size:11.5px;padding:5px 12px;border-radius:var(--d-tag-radius,999px);background:var(--d-chip-bg,var(--d-bg2));color:var(--d-chip-fg,var(--d-sub));border:var(--d-chip-border,none);white-space:nowrap}
+.d-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.d-kpi{background:var(--d-card);border:var(--d-border,none);border-radius:var(--d-radius);padding:13px 15px;box-shadow:var(--d-shadow,none);backdrop-filter:var(--d-card-blur,none);-webkit-backdrop-filter:var(--d-card-blur,none)}
+.d-kpi .lb{font-size:12px;color:var(--d-sub);display:block;margin-bottom:6px}
+.d-kpi b{font-size:20.5px;font-weight:800;letter-spacing:-.01em;font-family:var(--d-num-font,var(--d-title-font,var(--d-font)));color:var(--d-card-fg,inherit)}
+.d-kpi i{display:block;font-style:normal;font-size:11.5px;margin-top:5px;color:var(--d-up,var(--d-accent))}
+.d-kpi i.down{color:var(--d-down,var(--d-sub))}
+.d-panels{display:grid;grid-template-columns:1.55fr 1fr;gap:12px}
+.d-panel{background:var(--d-card);border:var(--d-border,none);border-radius:var(--d-radius);padding:15px 16px;box-shadow:var(--d-shadow,none);min-width:0;backdrop-filter:var(--d-card-blur,none);-webkit-backdrop-filter:var(--d-card-blur,none)}
+.d-panel h4{font-size:13px;font-weight:700;margin-bottom:14px;font-family:var(--d-title-font,var(--d-font));color:var(--d-card-fg,inherit)}
+.d-bars{display:flex;align-items:flex-end;gap:6px;height:148px}
+.d-bars i{flex:1;background:var(--d-bar,var(--d-primary));border-radius:var(--d-bar-radius,4px 4px 0 0);opacity:.85;transition:opacity .15s}
+.d-bars i:nth-child(even){opacity:.42}
+.d-bars i:hover{opacity:1}
+.d-rows{display:flex;flex-direction:column;gap:13px}
+.d-row{display:grid;grid-template-columns:58px 1fr 42px;align-items:center;gap:9px;font-size:12.5px}
+.d-row .nm{color:var(--d-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-row .bar{height:7px;background:var(--d-bar-track,var(--d-bg2));border-radius:99px;overflow:hidden}
+.d-row .bar i{display:block;height:100%;background:var(--d-bar,var(--d-primary));border-radius:99px}
+.d-row .vl{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+
+
+.d-card,.d-kpi,.d-panel,.d-mhero,.d-mcell,.d-mrow,.d-side{background:var(--d-card);border:1px solid var(--d-line);box-shadow:none}
+.d-card:hover{border-color:var(--d-primary);transform:none}
+.d-bars i{background:linear-gradient(180deg,var(--d-primary),var(--d-accent));opacity:.9}
+.d-bars i:nth-child(even){opacity:.55}
+.d-kpi i{font-weight:600}
+
+
+.d-main{padding:16px 18px 18px;gap:12px}
+.d-kpi{padding:11px 13px}
+.d-kpi b{font-size:18.5px}
+.d-panel{padding:12px 14px}
+.d-bars{height:136px;gap:5px}
+.d-row{font-size:12px}
+
+</style>
+</head>
+<body>
+
+<div class="d-dash">
+  <aside class="d-side">
+    <div class="d-logo">◆ Nova</div>
+    <div class="d-menu">
+      <span class="on">▦ 业务概览</span><span>◔ 流量分析</span><span>◇ 用户画像</span><span>▤ 数据报表</span><span>⚙ 系统设置</span>
+    </div>
+  </aside>
+  <main class="d-main">
+    <header class="d-dhead">
+      <div><h2>业务概览</h2><p>最近 30 天 · 数据每日 08:00 更新</p></div>
+      <div class="d-chip">● 实时同步中</div>
+    </header>
+    <div class="d-kpis">
+      <div class="d-kpi"><span class="lb">总访问量</span><b>128.4K</b><i>+12.5% 环比</i></div>
+      <div class="d-kpi"><span class="lb">转化率</span><b>3.86%</b><i>+0.42% 环比</i></div>
+      <div class="d-kpi"><span class="lb">订单量</span><b>2,431</b><i class="down">-2.1% 环比</i></div>
+      <div class="d-kpi"><span class="lb">营收</span><b>¥86.2K</b><i>+8.9% 环比</i></div>
+    </div>
+    <div class="d-panels">
+      <div class="d-panel">
+        <h4>访问趋势（近 12 日）</h4>
+        <div class="d-bars"><i style="height:42%"></i><i style="height:58%"></i><i style="height:36%"></i><i style="height:74%"></i><i style="height:52%"></i><i style="height:88%"></i><i style="height:64%"></i><i style="height:46%"></i><i style="height:96%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:82%"></i></div>
+      </div>
+      <div class="d-panel">
+        <h4>渠道排行</h4>
+        <div class="d-rows">
+          <div class="d-row"><span class="nm">直接访问</span><div class="bar"><i style="width:86%"></i></div><span class="vl">42.1K</span></div>
+          <div class="d-row"><span class="nm">搜索引擎</span><div class="bar"><i style="width:64%"></i></div><span class="vl">31.8K</span></div>
+          <div class="d-row"><span class="nm">社交媒体</span><div class="bar"><i style="width:41%"></i></div><span class="vl">19.6K</span></div>
+          <div class="d-row"><span class="nm">合作渠道</span><div class="bar"><i style="width:23%"></i></div><span class="vl">9.4K</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
