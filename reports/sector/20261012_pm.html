@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>板块买入结论 · 2026-10-12 · 药店升级 × 客车/啤酒条件 × 农业链分化</title>
+<style>
+:root{
+  --paper:#F3EFE4; --ink:#141414; --red:#E23A2E; --blue:#1D4DB4; --yellow:#F5C400;
+  --gray:#6E6A60; --hair:rgba(20,20,20,.16);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#141414}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.52}
+.wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+@media(max-width:486px){.wrap{border-left:0;border-right:0}}
+
+/* ===== HERO ===== */
+.hero{background:var(--ink);color:var(--paper);padding:20px 18px 20px;border-bottom:3px solid var(--ink)}
+.hero-top{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.22em;font-weight:700;color:#BDB8AC}
+.hero-shapes{display:flex;align-items:flex-end;gap:10px;margin:16px 0 12px}
+.sh-circle{width:42px;height:42px;border-radius:50%;background:var(--red)}
+.sh-square{width:36px;height:36px;background:var(--blue)}
+.sh-tri{width:0;height:0;border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:36px solid var(--yellow)}
+.hero h1{font-size:40px;font-weight:900;letter-spacing:3px;line-height:1.12;margin:2px 0 8px}
+.hero-sub{font-size:12px;color:#BDB8AC;letter-spacing:.06em}
+.dist{display:flex;height:10px;margin:14px 0 0;gap:4px}
+.dist i{display:block;height:100%}
+.d1{flex:2;background:var(--red)}.d2{flex:2;background:var(--blue)}.d3{flex:3;background:var(--yellow)}.d4{flex:2;background:#fff}
+
+/* ===== LEGEND ===== */
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.lg{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:8px 10px;border:2.5px solid var(--ink);letter-spacing:.03em}
+.lg-red{background:var(--red);color:#fff}
+.lg-blue{background:var(--blue);color:#fff}
+.lg-yellow{background:var(--yellow);color:var(--ink)}
+.lg-out{background:#fff;color:var(--ink)}
+.lg small{font-weight:700;opacity:.85;font-size:10.5px}
+
+/* ===== BOARD ===== */
+.sec-title{display:flex;align-items:center;gap:10px;padding:16px 14px 8px}
+.sec-title .bar{width:26px;height:12px;background:var(--ink)}
+.sec-title h2{font-size:17px;font-weight:900;letter-spacing:.14em}
+.board{padding:0 14px 6px}
+.b-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:2px solid var(--ink);text-decoration:none;color:inherit}
+.b-row:first-of-type{border-top:2px solid var(--ink)}
+.b-num{width:30px;height:30px;flex:0 0 30px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.b-num.red{background:var(--red);color:#fff}.b-num.blue{background:var(--blue);color:#fff}.b-num.yel{background:var(--yellow);color:var(--ink)}.b-num.out{background:#fff;color:var(--ink)}
+.b-main{flex:1;min-width:0}
+.b-name{font-size:14.5px;font-weight:800}
+.b-lead{font-size:11.5px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 7px;border:2px solid var(--ink)}
+.b-chip.red{background:var(--red);color:#fff}.b-chip.blue{background:var(--blue);color:#fff}.b-chip.yel{background:var(--yellow);color:var(--ink)}.b-chip.out{background:#fff;color:var(--ink)}
+
+/* ===== CARDS ===== */
+.cards{padding:14px 14px 6px}
+.card{border:3px solid var(--ink);background:var(--paper);margin-bottom:18px;box-shadow:5px 5px 0 var(--ink);scroll-margin-top:10px}
+.c-head{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:3px solid var(--ink);background:#fff}
+.c-num{width:44px;height:44px;flex:0 0 44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+.c-num.red{background:var(--red);color:#fff}.c-num.blue{background:var(--blue);color:#fff}.c-num.yel{background:var(--yellow);color:var(--ink)}.c-num.out{background:var(--paper);color:var(--ink)}
+.c-title{flex:1;min-width:0}
+.c-title h3{font-size:18px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.c-title .st{font-size:10.5px;color:var(--gray);margin-top:2px;letter-spacing:.04em}
+.c-verdict{flex:0 0 auto;font-size:11.5px;font-weight:900;padding:6px 8px;border:2.5px solid var(--ink);letter-spacing:.05em}
+.c-verdict.red{background:var(--red);color:#fff}.c-verdict.blue{background:var(--blue);color:#fff}.c-verdict.yel{background:var(--yellow);color:var(--ink)}.c-verdict.out{background:#fff;color:var(--ink)}
+.c-line{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--hair)}
+.c-line b{font-weight:800}
+.t{padding:10px 12px;border-bottom:1px solid var(--hair)}
+.t:last-of-type{border-bottom:0}
+.t-main{display:flex;align-items:baseline;gap:7px}
+.t-name{font-size:15.5px;font-weight:900}
+.t-code{font-size:10.5px;color:var(--gray);letter-spacing:.06em}
+.t-tier{margin-left:auto;font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);flex:0 0 auto}
+.t-tier.main{background:var(--ink);color:var(--paper)}
+.t-tier.small,.t-tier.pos,.t-tier.alt,.t-tier.watch{background:transparent;color:var(--ink)}
+.t-tier.small{background:var(--yellow)}
+.t-act{font-size:12.5px;margin-top:3px;font-weight:700}
+.t-risk{font-weight:500;color:var(--gray)}
+.c-foot{background:var(--ink);color:#EDE9DE;padding:10px 12px;font-size:11.5px}
+.c-foot .row{display:flex;gap:6px}
+.c-foot .row+.row{margin-top:5px}
+.c-foot .k{flex:0 0 30px;font-weight:900;letter-spacing:.06em}
+.c-foot .k.g{color:var(--yellow)}
+.c-foot .k.b{color:#FF9A8F}
+.c-foot .v{flex:1}
+.c-foot .v li{list-style:none}
+.c-foot .v li+li{margin-top:2px}
+.c-foot .v li::before{content:"· ";color:#8F8A7E}
+
+/* ===== FOOTER ===== */
+.foot{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.foot .fh{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.foot .fh i{display:block;width:18px;height:10px;background:var(--blue)}
+.foot p{font-size:11px;color:#3E3B34;line-height:1.75}
+.foot p+p{margin-top:6px}
+.foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
+.endshapes .c{width:20px;height:20px;border-radius:50%;background:var(--red)}
+.endshapes .s{width:16px;height:16px;background:var(--blue)}
+.endshapes .t{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:17px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-top"><span>SECTOR CALLS</span><span>2026-10-12 MON</span></div>
+    <div class="hero-shapes"><span class="sh-circle"></span><span class="sh-square"></span><span class="sh-tri"></span></div>
+    <h1>板块买入结论</h1>
+    <div class="hero-sub">十板块（点名+增势全列）· 数据基准 10-12 收盘 · 条件触发式 · T+1 结算口径</div>
+    <div class="dist"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></div>
+  </header>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <span class="lg lg-red">推荐买入 <small>×1</small></span>
+    <span class="lg lg-blue">条件推荐 <small>×2</small></span>
+    <span class="lg lg-yellow">谨慎参与 <small>×5</small></span>
+    <span class="lg lg-out">观察不介入 <small>×1</small></span>
+  </div>
+
+  <!-- BOARD -->
+  <div class="sec-title"><span class="bar"></span><h2>结论总览</h2></div>
+  <nav class="board">
+    <a class="b-row" href="#c1"><span class="b-num red">01</span><span class="b-main"><span class="b-name">药店 / 医药商业</span><br><span class="b-lead">首选：益丰 24.2–24.5 回踩 · 破前高已兑现</span></span><span class="b-chip red">推荐买入</span></a>
+    <a class="b-row" href="#c2"><span class="b-num blue">02</span><span class="b-main"><span class="b-name">商用载客车</span><br><span class="b-lead">首选：宇通 27.4–27.9 回踩 · 站上 28.74=升级</span></span><span class="b-chip blue">条件推荐</span></a>
+    <a class="b-row" href="#c3"><span class="b-num blue">03</span><span class="b-main"><span class="b-name">啤酒</span><br><span class="b-lead">首选：珠江 8.75–8.9 回踩 · 惠泉加速末端防兑现</span></span><span class="b-chip blue">条件推荐</span></a>
+    <a class="b-row" href="#c4"><span class="b-num yel">04</span><span class="b-main"><span class="b-name">医药流通</span><br><span class="b-lead">首选：上海医药 16.6–16.8 · β 跟随不做主线</span></span><span class="b-chip yel">谨慎参与</span></a>
+    <a class="b-row" href="#c5"><span class="b-num yel">05</span><span class="b-main"><span class="b-name">农产品加工</span><br><span class="b-lead">首选：百洋 7.5–7.75 回踩 · 崩塌链不接</span></span><span class="b-chip yel">谨慎参与</span></a>
+    <a class="b-row" href="#c6"><span class="b-num yel">06</span><span class="b-main"><span class="b-name">水产饲料</span><br><span class="b-lead">首选：百洋（同带）· 海大 43.2–43.8 稳</span></span><span class="b-chip yel">谨慎参与</span></a>
+    <a class="b-row" href="#c7"><span class="b-num yel">07</span><span class="b-main"><span class="b-name">家纺</span><br><span class="b-lead">首选：罗莱 11.3–11.5 · 无催化短打不恋战</span></span><span class="b-chip yel">谨慎参与</span></a>
+    <a class="b-row" href="#c8"><span class="b-num yel">08</span><span class="b-main"><span class="b-name">多元金融</span><br><span class="b-lead">首选：江苏金租 6.98–7.08 · 论坛锚前了结</span></span><span class="b-chip yel">谨慎参与</span></a>
+    <a class="b-row" href="#c9"><span class="b-num out">09</span><span class="b-main"><span class="b-name">畜禽饲料</span><br><span class="b-lead">单票撑板块（剔除路德走平）· 不介入</span></span><span class="b-chip out">观察不介入</span></a>
+  </nav>
+
+  <!-- CARDS -->
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>逐板块结论</h2></div>
+  <div class="cards">
+
+    <!-- 01 药店/医药商业 -->
+    <article class="card" id="c1">
+      <div class="c-head">
+        <div class="c-num red">01</div>
+        <div class="c-title"><h3>药店 / 医药商业</h3><div class="st">up 首现 · 全链 6/7 红 · 政策β+防御</div></div>
+        <div class="c-verdict red">推荐买入</div>
+      </div>
+      <div class="c-line"><b>扩散初期 · 升级信号触发</b>——益丰盘中 25.30 破 10-09 前高 24.27；1013 站稳 24.27=升级确认。零涨停强度存疑（月月口径）如实并列。</div>
+      <div class="t"><div class="t-main"><span class="t-name">益丰药房</span><span class="t-code">603939</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 24.2–24.5 接 <span class="t-risk">｜破 23.6 撤 · 破前高已兑现=龙头升级</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">老百姓</span><span class="t-code">603883</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 13.7–13.9 <span class="t-risk">｜破 13.4 撤 · 距 60 日高 -0.7%</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">一心堂</span><span class="t-code">002727</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 11.2–11.4 <span class="t-risk">｜破 10.95 撤 · 今日领涨 +5.91%</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">大参林</span><span class="t-code">603233</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 18.6–18.9 <span class="t-risk">｜破 18.3 撤 · 贴 20 日高</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">华人健康</span><span class="t-code">301408</span><span class="t-tier pos">持仓</span></div><div class="t-act">持有验证 <span class="t-risk">｜止损 14.54（2400 股）</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>益丰站稳 24.27=升级确认（核心观察）｜全链首涨停=暴动级</li><li>政策β=生物医药纳入战新产业（10-11）</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>当进攻主线追（零涨停强度不足）｜忽略漱玉平民高位补跌</li><li>升级确认前放大仓位（维持配置级）</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 02 商用载客车 -->
+    <article class="card" id="c2">
+      <div class="c-head">
+        <div class="c-num blue">02</div>
+        <div class="c-title"><h3>商用载客车</h3><div class="st">问界出海催化 · 宇通天量 9.5 亿 · 距高 -17.8%</div></div>
+        <div class="c-verdict blue">条件推荐</div>
+      </div>
+      <div class="c-line"><b>修复启动（未确认）</b>——宇通 +3.85% 放量异动；站上 28.74=右侧升级 / 破 26.9=失败。零涨停=温和修复型（非梯队）。</div>
+      <div class="t"><div class="t-main"><span class="t-name">宇通客车</span><span class="t-code">600066</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 27.4–27.9 接 <span class="t-risk">｜破 26.9 撤 · 站上 28.74=右侧升级 · 出海+业绩双线</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">金龙汽车</span><span class="t-code">600686</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 10.9–11.1 <span class="t-risk">｜破 10.7 撤 · 跟随修复</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">曙光股份</span><span class="t-code">600303</span><span class="t-tier small">小仓</span></div><div class="t-act">高波动小票 · 分时小仓 ≤2% <span class="t-risk">｜破 3.0 撤</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>整车联动延续（问界出海·赛力斯方向）｜宇通 Q3 业绩窗（10 月底）</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>单日事件当趋势（判修复不判主线）｜追弱跟风（中通/安凯）</li><li>无视出口退税下调（2027 起 13%→9%）的中期影响</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 03 啤酒 -->
+    <article class="card" id="c3">
+      <div class="c-head">
+        <div class="c-num blue">03</div>
+        <div class="c-title"><h3>啤酒</h3><div class="st">全链 4 连阳 · accel 增强第 1 档 · 惠泉领涨</div></div>
+        <div class="c-verdict blue">条件推荐</div>
+      </div>
+      <div class="c-line"><b>温和修复中段</b>——权重低波修复（珠江贴 20 日高 9.01）；惠泉 5 日 +20% 触 12.63 新高回落（加速末端防兑现）。</div>
+      <div class="t"><div class="t-main"><span class="t-name">珠江啤酒</span><span class="t-code">002461</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 8.75–8.9 接 <span class="t-risk">｜破 8.6 撤 · 量价结构最稳 · 破 9.01=升级</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">燕京啤酒</span><span class="t-code">000729</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 11.2–11.4 <span class="t-risk">｜破 10.9 撤 · 贴 20 日高 11.60</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">青岛啤酒</span><span class="t-code">600600</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 50.8–51.3 <span class="t-risk">｜破 50.0 撤 · 低波大票</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">惠泉啤酒</span><span class="t-code">600573</span><span class="t-tier small">小仓</span></div><div class="t-act">加速末端 · 只做分时回踩小仓 ≤2% <span class="t-risk">｜防守位 11.6</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>线下消费数据延续（9 月支付 +3.1% 连续 3 月上行）</li><li>珠江 / 燕京破前高（9.01 / 11.60）=链升级信号</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>追惠泉加速末段（5 日 +20%）｜把啤酒当进攻主线</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 04 医药流通 -->
+    <article class="card" id="c4">
+      <div class="c-head">
+        <div class="c-num yel">04</div>
+        <div class="c-title"><h3>医药流通</h3><div class="st">批发 β 补涨 · 上海医药贴 60 日高</div></div>
+        <div class="c-verdict yel">谨慎参与</div>
+      </div>
+      <div class="c-line"><b>跟随修复（非发动机）</b>——链内进攻优先药店子分支；批发段只做突破位回踩与稳配置。</div>
+      <div class="t"><div class="t-main"><span class="t-name">上海医药</span><span class="t-code">601607</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 16.6–16.8 接 <span class="t-risk">｜破 16.2 撤 · 距 60 日高 -0.9%</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">国药股份</span><span class="t-code">600511</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 26.4–26.7 <span class="t-risk">｜破 26.0 撤</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">国药一致</span><span class="t-code">000028</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 19.9–20.1 <span class="t-risk">｜破 19.6 撤</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">润达医疗</span><span class="t-code">603108</span><span class="t-tier small">小仓</span></div><div class="t-act">小仓 ≤2% · 回踩 10.0–10.15 <span class="t-risk">｜破 9.8 撤</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>上海医药破 17.05=批发段升级信号｜链强度随药店（见 01）</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>当进攻主线（β 角色）｜接弱势票「便宜」（建发致新/药易购）</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 05 农产品加工 -->
+    <article class="card" id="c5">
+      <div class="c-head">
+        <div class="c-num yel">05</div>
+        <div class="c-title"><h3>农产品加工</h3><div class="st">分化剧烈：崩塌 vs 补涨 · 21.6 亿糖业天量</div></div>
+        <div class="c-verdict yel">谨慎参与</div>
+      </div>
+      <div class="c-line"><b>扩散后段 · 严格分层</b>——高位米链崩塌（金健 -8.43% 炸板 / 天马跌停）不接；只做糖与饲料原料低位层。</div>
+      <div class="t"><div class="t-main"><span class="t-name">百洋股份</span><span class="t-code">002696</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 7.5–7.75 接 <span class="t-risk">｜破 7.2 撤 · 2 连板 · 鱼粉涨价+青岛国资 · 龙虎榜 +0.45 亿</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">中粮糖业</span><span class="t-code">600737</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 15.4–15.7 <span class="t-risk">｜破 14.9 撤 · 天量后防守 · 距高 -19.6% 低位</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">祖名股份</span><span class="t-code">003030</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 25.0–25.5 <span class="t-risk">｜破 24.3 撤 · 低位豆制品</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">路德科技</span><span class="t-code">688156</span><span class="t-tier watch">观察</span></div><div class="t-act">仅观察 <span class="t-risk">｜科创巨振（22.47–26.62）· 不给买区</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>百洋 3 连板 / 中粮站稳 15.4=层延续｜农产品期货方向</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>接高位崩塌票（金健/天马）｜*ST 广糖当弹性</li><li>无视期货回落的追高</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 06 水产饲料 -->
+    <article class="card" id="c6">
+      <div class="c-head">
+        <div class="c-num yel">06</div>
+        <div class="c-title"><h3>水产饲料</h3><div class="st">百洋驱动 · 链内换手（天马跌停）</div></div>
+        <div class="c-verdict yel">谨慎参与</div>
+      </div>
+      <div class="c-line"><b>单核结构</b>——百洋 2 连板唯一正席（与农产品加工同带）；天马跌停=资金向低位集中。</div>
+      <div class="t"><div class="t-main"><span class="t-name">百洋股份</span><span class="t-code">002696</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 7.5–7.75 接 <span class="t-risk">｜破 7.2 撤 · 同 05 带位（跨板块同源）</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">海大集团</span><span class="t-code">002311</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 43.2–43.8 <span class="t-risk">｜破 42.0 撤 · 饲料大票量价温和</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">粤海饲料</span><span class="t-code">001313</span><span class="t-tier watch">观察</span></div><div class="t-act">弱（-2.48%）· 仅观察 <span class="t-risk">｜不介入</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>鱼粉价格=百洋逻辑核心｜百洋晋级裁决（与 05 联动）</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>接天马科技跌停左刀｜把 4 只小板块当独立行情</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 07 家纺 -->
+    <article class="card" id="c7">
+      <div class="c-head">
+        <div class="c-num yel">07</div>
+        <div class="c-title"><h3>家纺</h3><div class="st">双票放量修复 · 无本地催化（支线）</div></div>
+        <div class="c-verdict yel">谨慎参与</div>
+      </div>
+      <div class="c-line"><b>修复启动（支线定性）</b>——罗莱 / 水星量比 &gt;1.5 放量双阳；无催化=短打不恋战、事件锚前了结。</div>
+      <div class="t"><div class="t-main"><span class="t-name">罗莱生活</span><span class="t-code">002293</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 11.3–11.5 接 <span class="t-risk">｜破 11.0 撤 · 放量结构 · 距 60 日高 -4.5%</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">水星家纺</span><span class="t-code">603365</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 17.0–17.2 <span class="t-risk">｜破 16.5 撤 · 同步放量</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>罗莱破 12.10（60 日高）=扩散升级｜双 11 预售窗口（10 月下）</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>当消费主线（支线定性）｜无催化追高｜重仓小板块（流动性）</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 08 多元金融 -->
+    <article class="card" id="c8">
+      <div class="c-head">
+        <div class="c-num yel">08</div>
+        <div class="c-title"><h3>多元金融</h3><div class="st">弱修复 + 金融街论坛预期（10-19）</div></div>
+        <div class="c-verdict yel">谨慎参与</div>
+      </div>
+      <div class="c-line"><b>事件预期型</b>——江苏金租贴 60 日高结构最稳；10-19 金融街论坛（政策集中发布）=事件锚，前了结或持有看政策。</div>
+      <div class="t"><div class="t-main"><span class="t-name">江苏金租</span><span class="t-code">600901</span><span class="t-tier main">主推</span></div><div class="t-act">回踩 6.98–7.08 接 <span class="t-risk">｜破 6.9 撤 · 10 连阳缓涨贴 60 日高</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">渤海租赁</span><span class="t-code">000415</span><span class="t-tier alt">稳健</span></div><div class="t-act">回踩 4.05–4.12 <span class="t-risk">｜破 3.95 撤 · 放量修复首日（需承接确认）</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">陕国投A</span><span class="t-code">000563</span><span class="t-tier watch">观察</span></div><div class="t-act">弱修复 · 仅观察 <span class="t-risk">｜回踩 2.92–2.95 才可论</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>10-19 论坛政策发布=事件锚｜券商/银行联动（工具人属性）</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>把论坛预期当政策落地（买预期卖事实风险）｜追弱板块无结构票</li></ul></div>
+      </div>
+    </article>
+
+    <!-- 09 畜禽饲料 -->
+    <article class="card" id="c9">
+      <div class="c-head">
+        <div class="c-num out">09</div>
+        <div class="c-title"><h3>畜禽饲料</h3><div class="st">单票撑板块（剔除路德后走平）</div></div>
+        <div class="c-verdict out">观察不介入</div>
+      </div>
+      <div class="c-line"><b>数据诚实</b>——除路德科技 +11.4% 外全弱（新希望 -0.29 / 禾丰 -0.63）；饲料原料涨价=成本双刃，生猪期货续跌（-3%）。</div>
+      <div class="t"><div class="t-main"><span class="t-name">路德科技</span><span class="t-code">688156</span><span class="t-tier watch">观察</span></div><div class="t-act">仅观察（归属见 05） <span class="t-risk">｜科创巨振不给买区</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">天康生物</span><span class="t-code">002100</span><span class="t-tier watch">观察</span></div><div class="t-act">观察位 7.5–7.6 <span class="t-risk">｜量价未起 · 不下单</span></div></div>
+      <div class="c-foot">
+        <div class="row"><span class="k g">前提</span><ul class="v"><li>饲料原料价格与生猪期货（成本/需求双变量·方向相反）</li></ul></div>
+        <div class="row"><span class="k b">禁区</span><ul class="v"><li>把路德当板块行情（单票≠板块）｜接生猪链左侧</li></ul></div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <div class="fh"><i></i>口径与纪律</div>
+    <p>景气分=量价口径（0.6×当日涨跌+0.4×5 日动量·日内排名百分位），<b>非基本面景气</b>；本页推荐=条件触发式（若触 X 则 Y），非「建议买入」。</p>
+    <p>T+1 世界观：所有带位以 10-12 收盘为基准·daily low 硬核验（带内未触=miss 未及）；情绪 43 偏冷档=追价全禁·回踩带口径。</p>
+    <p>持仓联动：华人健康（止损 14.54）为现有持仓；满仓状态下新开须先释放接刀仓位（国芳/神农/特一）。</p>
+    <p class="src">数据：sector-strength-10d（10-12 21:31 全量候选版）+ kline_cache 收盘 + 涨停池 48 家 + 龙虎榜 + KB 专家原话（日期注明）｜存档：sector_analysis.json（10 条单板块）｜生成 2026-10-12 21:5x</p>
+  </div>
+
+  <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
+
+</div>
+</body>
+</html>
