@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>景气排查 · 1013（增强 7 板块·传媒系为主）</title>
+<style>
+:root{--bg:#0b1020;--card:#141b31;--card2:#1a2340;--line:#2b3a5c;--tx:#e8edf7;--sub:#8b97b8;--green:#39e58c;--red:#ff5d5d;--gold:#ffc53d;--blue:#5aa7ff;--purple:#b18cff}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65;padding-bottom:40px}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:#2b3a5c;border-radius:3px}
+.wrap{max-width:640px;margin:0 auto;padding:14px}
+h1{font-size:19px;line-height:1.45;margin:6px 0 4px}
+h2{font-size:15px;margin:20px 0 10px;padding:7px 10px;background:linear-gradient(90deg,#1a2f55,#141b31);border-left:3px solid var(--green);border-radius:4px}
+h3{font-size:14px;margin:13px 0 6px;color:var(--gold)}
+.meta{color:var(--sub);font-size:12px;margin:2px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.card.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(57,229,140,.15)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;margin:1px 3px 1px 0;max-width:100%;overflow-wrap:anywhere}
+.tg{background:rgba(57,229,140,.14);color:var(--green);border:1px solid rgba(57,229,140,.4)}
+.tr{background:rgba(255,93,93,.14);color:var(--red);border:1px solid rgba(255,93,93,.4)}
+.ty{background:rgba(255,197,61,.14);color:var(--gold);border:1px solid rgba(255,197,61,.4)}
+.tb{background:rgba(90,167,255,.14);color:var(--blue);border:1px solid rgba(90,167,255,.4)}
+.tp{background:rgba(177,140,255,.14);color:var(--purple);border:1px solid rgba(177,140,255,.4)}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;table-layout:fixed}
+th,td{border:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:top;word-break:break-all}
+th{background:var(--card2);color:var(--sub);font-weight:600}
+tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+.up{color:var(--green)}.dn{color:var(--red)}.warn{color:var(--gold)}
+.num{font-variant-numeric:tabular-nums}
+.small{font-size:11px;color:var(--sub)}
+.bsp{background:rgba(57,229,140,.07);border-left:3px solid var(--green);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.risk{background:rgba(255,93,93,.07);border-left:3px solid var(--red);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.note{background:rgba(255,197,61,.07);border-left:3px solid var(--gold);padding:6px 9px;border-radius:0 6px 6px 0;margin:7px 0;font-size:12px}
+.ignite{background:rgba(57,229,140,.09);border:1px dashed var(--green);border-radius:6px;padding:6px 9px;margin:6px 0;font-size:12px}
+.divider{height:1px;background:var(--line);margin:13px 0}
+.big{font-size:16px;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:480px){.grid2{grid-template-columns:1fr}}
+.stock{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin:10px 0}
+.stock.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(57,229,140,.15)}
+.stock .hd{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px}
+.stock .nm{font-size:15px;font-weight:700}
+.stock .cd{color:var(--sub);font-size:12px;margin-right:4px}
+.stock .hd .clickable{cursor:pointer}
+.stock .hd .clickable:active .nm{color:var(--green)}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:12px;margin-top:7px}
+.kv>b{color:var(--sub);font-weight:400;white-space:nowrap}
+.kv .v{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+@media (max-width:400px){.kv{grid-template-columns:1fr;gap:0 0}.kv b{white-space:normal;margin-top:4px}}
+.must{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:700;letter-spacing:1px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.tldr{background:linear-gradient(135deg,#132647,#0f1f3d);border:1px solid var(--blue);border-radius:10px;padding:12px;margin:12px 0}
+.tldr li{margin:6px 0 6px 18px;font-size:13px}
+.footer{margin-top:24px;padding:12px;background:var(--card2);border-radius:8px;font-size:11px;color:var(--sub)}
+
+/* V4.8 重点三色：金=关键点位数字 青=买卖动词 蓝=主推/专家引用 */
+b.gold{color:#ffc857}
+b.cy{color:#4dd6b8}
+b.exp{color:#7fb3ff}
+
+/* UI 对齐约束（V4.9）：卡内列表与正文对齐，禁浏览器默认 40px 缩进；h2 全篇唯一 */
+.card ul,.card ol{margin:6px 0;padding-left:20px}
+.card li{margin:4px 0}
+.tldr ol{padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- ═══ 【构建纪律】（板块分析版 V1 起生效——复用策略日报 V3.8B 版式基线） ═══
+     ① 本报告是"板块为主体"的分析，不推个股——任何地方出现个股代码，必须是：
+        数据举证（涨停池/龙虎榜成员名）或 用户点名分析，二者都必须有上下文说明，禁止裸列代码当推荐；
+     ② .kv 网格内只允许 <b>/<span class="v"> 成对出现：需要分隔时关闭kv→divider→重开kv；
+     ③ 板块卡 = .card > h3(板块名+定位tag) + .kv ≥3 行（定位/资金/证据/催化/结构）+ 末尾风险行；
+     ④ 三色纪律同策略日报：b.gold=关键数值 b.cy=买卖/动作动词 b.exp=板块/主线引用。
+═══════════════════════════════════════════════════════════ -->
+<div class="meta">板块分析 V3.0c · 景气排查扫描模式（第④触发 · 收盘后流程标配第五步） · 生成于 2026-10-13 21:5x</div>
+<h1>景气排查 · 2026-10-13（增强 7 板块 · 传媒系为主）</h1>
+<div class="meta">数据截至 2026-10-13 收盘 · sector-strength-10d refresh=1（updated 21:28）· 量价景气≠基本面景气</div>
+<div class="meta"><b style="color:var(--gold)">目标交易日 T+1 = 10-14（周二）· 对照 v1 扫描（今日盘后首版）：对 2 / 待验 2 / 错 0</b></div>
+
+<!-- ═══ 头部大数字卡（情绪闸门 + 主线定性） ═══ -->
+<div class="card hl">
+<div class="grid2">
+<div><b>情绪指数</b><br><span class="big up num">55 / 100</span><br><span class="small">修复中档（43→55）· 短线七项口径 45 下沿（分级）· 5 日趋势 V 型修复第一日</span></div>
+<div><b>主线定性</b><br><span class="big up num">传媒系轮动补涨</span><br><span class="small">高度压缩（3 板）+晋级率冰点=轮动非突破</span></div>
+</div>
+<div class="divider"></div>
+<div class="small"><b>连板高度 / 晋级率</b>：3 板（慈文/新经典/龙版并列）· 晋级率 27.8%（5/18 冰点线以下）· 炸板率 21.3%　<b>两市量能</b>：1.67 万亿（+8.4%）· 恐慌放量→V 型</div>
+<div class="divider"></div>
+<div class="small"><b class="warn">资金主线（主力净流入）</b>：印制电路板 +20.9 亿（超跌反抽非主线）· 集成电路制造 +20.5 亿 · 国防军工 +19.3 亿 · 传媒 +7.9 亿（up 母线）· 广告营销 +7.5 亿（up 唯一进榜）</div>
+</div>
+
+<!-- ═══ TLDR（板块三结论：今日强 / 未来强 / 排除） ═══ -->
+<div class="tldr"><b>TLDR（景气排查 · 增强板块 7 个全在传媒系+外围）</b><ol>
+<li><b>主线</b>：传媒系 5 板块集体增强（影视院线/电视广播/广告营销/文化传媒+游戏新入），慈文 3 连板+广电网 2 板+元隆雅图 2 板扩散——但连板高度仅 3 板=轮动补涨行情非主线突破；</li>
+<li><b>环境</b>：情绪 55（43→55 修复中档·短线七项口径 45 下沿）+晋级率 <b class="gold">27.8%</b> 冰点线以下+炸板率 21.3%——接力环境劣化，<b>追价条款全禁，只做回踩/低吸</b>；</li>
+<li><b>点名三只</b>：长电科技=桶②深跌回踩（Joshua 封测重估背书）· 先导智能=持仓止损预案（今日 -9.58% 长阴）· 昆船智能=桶③高位禁追仅观察。</li>
+</ol></div>
+
+<!-- ═══ ① 板块强弱全景榜（320 行业 ret5/ret20/dd60/MA20 分档 + 涨停题材聚合） ═══ -->
+<h2>① 板块强弱全景</h2>
+<table><colgroup><col style="width:22%"><col style="width:9%"><col style="width:10%"><col style="width:11%"><col style="width:10%"><col style="width:9%"><col></colgroup><tr><th>板块</th><th>trend</th><th>avg</th><th>accel</th><th>streak</th><th>pos5</th><th>⏳ 持续期</th></tr><tr><td><b>电视广播</b> <span class="tag tg">防追高过滤已过</span></td><td><span class="tag tg">up</span></td><td class="num">7.39</td><td class="num">-0.20</td><td class="num">5</td><td class="num">3</td><td><b class="gold">⏳ 2-4 日</b></td></tr><tr><td><b>文化传媒</b> <span class="tag tg">防追高过滤已过</span></td><td><span class="tag tg">up</span></td><td class="num">7.09</td><td class="num">-0.13</td><td class="num">5</td><td class="num">3</td><td><b class="gold">⏳ 4-7 日（出版侧高位竞争）</b></td></tr><tr><td><b>家纺</b> <span class="tag ty">新入</span></td><td><span class="tag tg">up</span></td><td class="num">6.35</td><td class="num">+1.79</td><td class="num">0</td><td class="num">3</td><td><b class="gold">⏳ 1-3 日</b></td></tr><tr><td><b>影视院线</b></td><td><span class="tag tg">up</span></td><td class="num">6.29</td><td class="num">+1.87</td><td class="num">3</td><td class="num">3</td><td><b class="gold">⏳ 4-7 日</b></td></tr><tr><td><b>广告营销</b> <span class="tag tg">防追高过滤已过</span></td><td><span class="tag tg">up</span></td><td class="num">6.14</td><td class="num">+0.71</td><td class="num">4</td><td class="num">3</td><td><b class="gold">⏳ 4-7 日</b></td></tr><tr><td><b>游戏</b> <span class="tag ty">新入</span></td><td><span class="tag tg">up</span></td><td class="num">5.19</td><td class="num">+2.85</td><td class="num">0</td><td class="num">3</td><td><b class="gold">⏳ 1-3 日</b></td></tr><tr><td><b>多元金融</b> <span class="tag ty">新入</span></td><td><span class="tag tg">up</span></td><td class="num">5.13</td><td class="num">+3.21</td><td class="num">0</td><td class="num">2</td><td><b class="gold">⏳ 1-3 日</b></td></tr></table><div class="note"><b>口径声明</b>：景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位 0-10），<b>非基本面景气</b>。universe=sector-strength-10d 矩阵 50 板块 trend=up 全集 7 个（updated 2026-10-13 21:28 refresh=1）。对照 v1（今日盘后首版）：影视院线判定维持加强/药店 strong 第 4 日未衰（up 让位传媒）/氨纶纺织化学未再确认/游戏·多元金融·家纺新入超预期——对 2 条、待验 2 条、错 0 条。</div>
+
+<!-- ═══ ② 板块主力资金流（东财行业/概念净流入榜，缺则声明降级） ═══ -->
+<h2>② 板块主力资金流</h2>
+<table><colgroup><col style="width:40%"><col style="width:18%"><col></colgroup>
+<tr><th>板块（东财行业 · 1013）</th><th>净流入</th><th>与 up 板块关系</th></tr>
+<tr><td>印制电路板（+6.08%）</td><td class="num up">+20.9 亿</td><td>非 up 板块 · 超跌反抽（v1 判定一日游风险）</td></tr>
+<tr><td>集成电路制造（-0.57%）</td><td class="num up">+20.5 亿</td><td>非 up · AI 硬件低位承接</td></tr>
+<tr><td>国防军工（+2.53%）</td><td class="num up">+19.3 亿</td><td>非 up · 独立主线</td></tr>
+<tr><td>传媒（+1.10%）</td><td class="num up">+7.9 亿</td><td><b>up 板块母线</b> · 影视/出版/广电资金证据</td></tr>
+<tr><td><b>广告营销（+1.75%）</b></td><td class="num up">+7.5 亿</td><td><b>up 板块 · 7 个 up 唯一进榜</b> = 资金证据最实</td></tr>
+</table>
+<div class="note">其余 6 个 up 板块（电视广播/文化传媒/家纺/影视院线/游戏/多元金融）未进东财 in/out 两榜=资金流中性或小容量，其中电视广播 streak5 但 em_flow 未连续净流入（发酵早期判定从严的原因）。</div>
+
+<!-- ═══ ③ 主线判定（涨停题材聚类 + 连板高度 + 龙虎榜归因 → 主线/支线/轮动/新发酵四态） ═══ -->
+<h2>③ 主线判定</h2>
+<div class="card hl"><h3>主线判定：传媒系轮动补涨（非主线突破） <span class="tag tg">发酵中段</span></h3>
+<div class="kv"><b>涨停结构</b><span class="v">涨停 67 家（58→67 回升）· 封板率 78% 健康 · 但连板高度仅 <b class="gold">3 板</b>（慈文/新经典/龙版并列）· 晋级率 27.8% 冰点</span><b>证据链</b><span class="v">D-1（1012）：出版/影视/广电 4 板块涨停潮 → D（1013）：慈文 3 板+广电网 2 板+元隆 2 板扩散 → D+1 观察：出版家族竞争+新华停牌变量</span><b>高度解读</b><span class="v">高度压缩=资金在传媒系内部轮动补涨（广电系/影视/广告轮流），非单一主线突破——对应操作=<b class="cy">低吸轮动位而非追高位身位</b></span></div></div>
+<div class="card"><h3>次线：药店链 strong 第 4 日（up 让位传媒） <span class="tag tb">退居二线</span></h3>
+<div class="kv"><b>状态</b><span class="v">药店 strong streak3 accel +2.69 未衰 · 但今日涨停 0 家=暴动阈值未触发 · 零涨停连续第 3 日=发酵强度存疑临界（复盘日报同源）</span></div></div>
+
+<!-- ═══ ④ 今日强势板块深度（逐板块 .card：定位/资金/证据链/催化生命周期/结构/对手盘/情景） ═══ -->
+<h2>④ 今日强势板块深度</h2>
+<div class="card hl"><h3>影视院线 <span class="tag tg">短期支线对待（发酵中段·⏳4-7 日）</span></h3><table><colgroup><col style="width:34%"><col style="width:12%"><col></colgroup><tr><th>标的</th><th>桶位</th><th>三件套</th></tr><tr><td><b>华策影视</b> <span class="small">300133</span></td><td><span class="tag tg">桶①</span></td><td>回踩带 8.60-8.90 · 止损 8.05 · 周期 2-4 日 · 量比 1.87 健康跟涨</td></tr><tr><td><b>中国电影</b> <span class="small">600977</span></td><td><span class="tag tb">桶②</span></td><td>低吸带 13.90-14.20 · 止损 13.10 · 周期 3-5 日 · 大票强者（市值超限强者保留）</td></tr><tr><td><b>上海电影</b> <span class="small">601595</span></td><td><span class="tag tb">桶②</span></td><td>低吸带 25.0-25.6 · 止损 23.60 · 周期 3-5 日 · ret20+34% 只低吸不追价</td></tr><tr><td><b>慈文传媒</b> <span class="small">002343</span></td><td><span class="tag tr">桶③</span></td><td>3 连板禁追 · 持仓者兑现预案 8.10 上方减半、破 6.70 清</td></tr></table><div class="bsp">四桶 4 票：桶①1/桶②2/桶③1 · 可进入，只做回踩与低吸，3 板身位禁追</div></div>
+<div class="card"><h3>电视广播 <span class="tag tg">短期支线（发酵早期·⏳2-4 日）</span></h3><table><colgroup><col style="width:34%"><col style="width:12%"><col></colgroup><tr><th>标的</th><th>桶位</th><th>三件套</th></tr><tr><td><b>电广传媒</b> <span class="small">000917</span></td><td><span class="tag tg">桶①</span></td><td>回踩带 7.15-7.25 · 止损 6.52 · 周期 2-4 日 · 传媒+广电双属性卡位</td></tr><tr><td><b>贵广网络</b> <span class="small">600996</span></td><td><span class="tag tb">桶②</span></td><td>低吸带 6.75-6.90 · 止损 6.40 · 周期 2-4 日</td></tr><tr><td><b>新媒股份</b> <span class="small">300770</span></td><td><span class="tag tb">桶②</span></td><td>回踩带 35.3-35.8 · 止损 33.60 · 周期 3-5 日 · 大票稳健口径</td></tr><tr><td><b>广电网络</b> <span class="small">600831</span></td><td><span class="tag tr">桶③</span></td><td>2 连板禁追 · 小仓 ≤2% 或仅兑现预案 · LHB 净 0 亿游资力度</td></tr></table><div class="bsp">四桶 4 票：桶①1/桶②2/桶③1 · streak5 全场最长但 em_flow 未连续流入，低吸优先</div></div>
+<div class="card"><h3>广告营销 <span class="tag tg">短期支线（发酵中·⏳4-7 日）</span></h3><table><colgroup><col style="width:34%"><col style="width:12%"><col></colgroup><tr><th>标的</th><th>桶位</th><th>三件套</th></tr><tr><td><b>元隆雅图</b> <span class="small">002878</span></td><td><span class="tag tg">桶①</span></td><td>低吸带 13.40-13.80 · 止损 12.55 · 周期 2-4 日 · 2 板次日回踩口径</td></tr><tr><td><b>省广集团</b> <span class="small">002400</span></td><td><span class="tag tb">桶②</span></td><td>低吸带 6.40-6.55 · 止损 6.05 · 周期 2-4 日 · 二线跟涨</td></tr><tr><td><b>蓝色光标</b> <span class="small">300058</span></td><td><span class="tag ty">桶④</span></td><td>ret20 -8.4 量价走弱 MA20 下 · 出列不给买区</td></tr></table><div class="bsp">四桶 3 票：桶①1/桶②1/桶④1 · 板块净流入 7.5 亿全场第 11（7 个 up 唯一进资金流榜）</div></div>
+<div class="card"><h3>游戏/多元金融/家纺 <span class="tag tg">streak0 新入待确认（⏳1-3 日快票口径）</span></h3><table><colgroup><col style="width:34%"><col style="width:12%"><col></colgroup><tr><th>标的</th><th>桶位</th><th>三件套</th></tr><tr><td><b>名臣健康</b> <span class="small">002919</span></td><td><span class="tag tr">桶③</span></td><td>游戏 · 量比 2.14 · 小仓 ≤2% · 严格止损 17.2</td></tr><tr><td><b>新力金融</b> <span class="small">600318</span></td><td><span class="tag tr">桶③</span></td><td>多元金融 · 2 日 +14.9% 脉冲 · 追价禁令 · 仅兑现预案</td></tr><tr><td><b>罗莱生活</b> <span class="small">002293</span></td><td><span class="tag tb">桶②</span></td><td>家纺 · 低吸带 11.30-11.55 · 止损 10.70 · 周期 2-4 日 · streak0 降档</td></tr></table><div class="bsp">三板块 streak0 新入 · 1014 不确认（板块涨停 ≥2 家）即出列 · 快票不恋战</div></div>
+<div class="card"><h3>文化传媒（出版侧） <span class="tag tg">高位竞争段（⏳4-7 日·桶①为空属正常）</span></h3><table><colgroup><col style="width:34%"><col style="width:12%"><col></colgroup><tr><th>标的</th><th>桶位</th><th>三件套</th></tr><tr><td><b>新经典</b> <span class="small">603096</span></td><td><span class="tag tr">桶③</span></td><td>3 连板 · 出版家族身位 · 禁追 · 仅兑现预案</td></tr><tr><td><b>龙版传媒</b> <span class="small">605577</span></td><td><span class="tag tr">桶③</span></td><td>3 连板 ret20+52% 全场最高 · 防兑现三联判命中 · 禁追</td></tr></table><div class="bsp">桶①为空如实输出 · 出版侧 3 板身位拥挤+丽人/新经典一字竞争+新华停牌变量</div></div>
+
+<!-- ═══ ⑤ 未来可能强势板块（预期差四步 + 美股映射 + 事件时间窗 + 低位补涨逻辑） ═══ -->
+<h2>⑤ 未来可能强势板块</h2>
+<div class="card"><h3>影视院线 · 催化锚 10/23 <span class="tag tb">发酵期窗口</span></h3>
+<div class="kv"><b>催化</b><span class="v">博纳 AI 院线电影《三星堆·未来往事》<b class="gold">10/23 定档</b>（药韭 1011 蒸馏）+ 爱奇艺 AI 剧 Q4 上线——当前至 10/22 为发酵期+催化空窗</span><b>参与</b><span class="v">回踩/低吸带见 ④ 影视院线桶位 · <b class="cy">10/22 前了结短线仓</b></span><b>证伪</b><span class="v">慈文 1014 炸板或晋级率续降 &lt;25% = 判定作废</span></div></div>
+<div class="card"><h3>广告营销 · 双 11 投放季前移 <span class="tag tb">催化日历真实</span></h3>
+<div class="kv"><b>催化</b><span class="v">双 11 预售约 <b class="gold">10/20</b> 前后启动=营销投放季前移（催化日历>一锤子事件）</span><b>参与</b><span class="v">元隆雅图 13.40-13.80 / 省广 6.40-6.55 低吸 · 双 11 预售启动前了结</span><b>证伪</b><span class="v">元隆 1014 炸板或板块资金流转负</span></div></div>
+<div class="card"><h3>游戏/多元金融/家纺 · streak0 新入 <span class="tag ty">待确认</span></h3>
+<div class="kv"><b>条件</b><span class="v">1014 板块涨停 ≥2 家或板块涨幅前 20%=确认转观察；不确认即出列（v1 纺织化学先例：未确认）</span><b>纪律</b><span class="v">持续期 1-3 日快票口径 · <b class="cy">禁包装成波段机会</b>（V3.0c 口径纪律）</span></div></div>
+
+<!-- ═══ ⑥ 排除板块（高位滞涨 / 主力净流出 / 缠论顶背驰 / 一日催化兑现） ═══ -->
+<h2>⑥ 排除板块</h2>
+<div class="card"><h3>房地产系全链 <span class="tag tr">down streak3-4</span></h3>
+<div class="kv"><b>证据</b><span class="v">房地产服务/商业地产/产业地产 trend=down streak3-4 · accel -1.2~-3.6 · last5 深回落（9.7→1.5）</span><b>结论</b><span class="v">退潮段 <b class="cy">出列不给买区</b>（v1 判定维持）</span></div></div>
+<div class="card"><h3>生物制品/疫苗/体外诊断 <span class="tag tr">down streak2-4</span></h3>
+<div class="kv"><b>证据</b><span class="v">医药内部结构切换：药店/流通强 vs 生物制药退（疫苗 accel -3.55 / 体外诊断 -3.68 / 生物制品 -4.48）</span><b>结论</b><span class="v">退潮段出列 · 持有者反弹减仓</span></div></div>
+<div class="card"><h3>PCB 超跌反抽 <span class="tag ty">一日游风险</span></h3>
+<div class="kv"><b>证据</b><span class="v">印制电路板今日涨幅 +6.08%/净流入 20.9 亿全场第一，但 v1 已判「近十板超跌反抽·行业资金未确认」——撑伞猫：追高即接第二刀</span><b>结论</b><span class="v">仅兑现预案 · <b class="cy">禁追</b>（昨日杀跌今日回补的 V 型板块，一日游概率高）</span></div></div>
+
+<!-- ═══ ⑦ 点名个股分析（仅用户点名时输出；每只 .stock 卡 + 标注"点名分析非推荐"） ═══ -->
+<!-- 【组件规范】用户点名某股时：.stock 卡 .hd(.clickable data-copy + .tag tb"点名分析") +
+     .kv ≥4 行（基本面一句话/缠论结构/催化/预案）；未点名则整节输出一行 .small"本期未点名个股"。 -->
+<h2>⑦ 点名个股分析</h2>
+<div class="stock hl"><div class="hd"><span class="cd">600584</span><span class="nm clickable" data-copy="长电科技600584">长电科技</span><span class="tag tg">点名分析·非推荐</span></div><div class="kv"><b>现价</b><span class="v">60.16（+0.28%）· 流通市值 1077 亿</span><b>定位</b><span class="v">封测龙头 · dd60 <b class="gold">-42.7%</b> 深跌 · 距 80 日高 -47% · 今日 57.40-61.19 长下影止跌</span><b>产业逻辑</b><span class="v">Joshua 10/13 KB 原话：<b class="exp">「我完全有理由开始建仓长电科技……封测环节被低估了」</b>（芯片复杂化+谷歌/博通 ASIC 链+希瓦看晶圆制造佐证）</span><b>技术面</b><span class="v">MA5/10/20/30 全压上方（61.95/65.37/67.13/68.99）· 3 日量阶 1.15/0.75/0.94 未放量 · C3 深跌段第一根长下影</span><b>预案</b><span class="v"><b class="cy">回踩带 58.5-59.5</b> · 止损 <b class="gold">56.5</b>（今日低点下方）· 周期 5-8 日 · 右侧替代=<b class="cy">收盘站上 61 再跟</b> · 持有江丰电子注意半导体合计仓位</span><b>账本</b><span class="v">b1013-016（for_date 1014 · daily low 硬核验）</span></div></div>
+<div class="stock"><div class="hd"><span class="cd">300450</span><span class="nm clickable" data-copy="先导智能300450">先导智能</span><span class="tag tr">点名分析·非推荐</span></div><div class="kv"><b>现价</b><span class="v">34.25（<b class="dn">-9.58%</b> 放量长阴）· 流通市值 534 亿 · 持仓 1400 股@35.70</span><b>今日</b><span class="v">-9.58% 长阴吃掉 10/8 阳线大半 · 量 43.5 亿 · 3 日量阶 2.4/2.0/1.9 高位持续放量</span><b>产业逻辑</b><span class="v">门捷列夫框架：储能景气没问题，但「增量资金的来源有问题」→ 反弹减仓框架</span><b>预案</b><span class="v"><b class="cy">破 33.30（今日低点）减半 · 破 32.70（MA20）清仓</b> · 反弹站回 <b class="gold">36.40</b> 上方转持有 · 禁长阴次日抄底加仓</span><b>风险</b><span class="v">锂电设备非传媒系——1014 资金若续向传媒集中，反弹窗口被压缩=止损预案优先级提高</span><b>账本</b><span class="v">b1013-017（for_date 1014）</span></div></div>
+<div class="stock"><div class="hd"><span class="cd">301311</span><span class="nm clickable" data-copy="昆船智能301311">昆船智能</span><span class="tag tr">点名分析·非推荐</span></div><div class="kv"><b>现价</b><span class="v">19.68（+7.25%）· 流通市值 47 亿 · 换手 14.9%</span><b>今日</b><span class="v">冲 20.50 回落长上影 · ret20 <b class="gold">+42.9%</b> 高位 · PE 负（订单兑现未验证）</span><b>判定</b><span class="v">防兑现三联判命中（高位+放量分歧+盈利缺失）= <b class="cy">禁追价</b></span><b>预案</b><span class="v">观察为主 · 若坚持参与仅小仓 ≤2%：低吸带 <b class="gold">17.8-18.3</b> · 止损 16.9 · 产业进度条未验证不给趋势仓（门捷列夫框架）</span><b>账本</b><span class="v">b1013-018（for_date 1014）</span></div></div>
+
+<!-- ═══ ⑧ 指数情景矩阵（5 行 A-E + 概率合计 100%） ═══ -->
+<h2>⑧ 指数情景矩阵</h2>
+<table><colgroup><col style="width:14%"><col style="width:40%"><col style="width:12%"><col></colgroup>
+<tr><th>情景</th><th>条件</th><th>概率</th><th>板块含义</th></tr>
+<tr><td><b>A 修复延续</b></td><td>创业板不回吐今日下影 + 晋级率回升 &gt;35%</td><td class="num">35%</td><td>传媒系持续期上限（6-7 日）· 回踩带普遍有效</td></tr>
+<tr><td><b>B 横盘轮动</b></td><td>情绪 50 附近震荡 · 量能 1.6-1.7 万亿</td><td class="num">35%</td><td>板块快速轮动 · 快票口径 · streak0 板块仍难确认</td></tr>
+<tr><td><b>C CPI 鹰派</b></td><td>今晚 20:30 美国 9 月 CPI 超预期</td><td class="num">20%</td><td>风险偏好再压 · 传媒回踩带下沿跌破=禁接</td></tr>
+<tr><td><b>D 二次探底</b></td><td>阿斯麦/台积电财报不及预期 + KOSPI 续杀</td><td class="num">8%</td><td>全场降仓 · 3 板身位踩踏 · 只留现金与防御</td></tr>
+<tr><td><b>E 长阴反包</b></td><td>先导类长阴票批量收复（超跌修复加速）</td><td class="num">2%</td><td>锂电设备/存储链反弹 · 先导止损线作废转持有</td></tr>
+</table>
+
+<!-- ═══ ⑨ 风险提示与应对 ═══ -->
+<h2>⑨ 风险提示与应对</h2>
+<div class="card"><h3>高风险 <span class="tag tr">高</span></h3>
+<div class="kv"><b>AI 硬件二次探底</b><span class="v">阿斯麦/台积电本周财报不及预期=风险偏好再压，传媒主线连带杀估值（冰冰提示）；隔夜 KOSPI -5%（SK 海力士 -10%）存储链全球杀跌未止</span></div></div>
+<div class="card"><h3>中风险 <span class="tag ty">中</span></h3>
+<div class="kv"><b>3 板集体炸板</b><span class="v">晋级率 27.8% 冰点若 1014 续降，慈文/新经典/龙版连锁炸板=传媒高位身位踩踏</span><b>新华复牌变量</b><span class="v">停牌期间利空高位利好低位，复牌日=板块身位重排风险</span></div></div>
+<div class="card"><h3>低风险 <span class="tag tb">低</span></h3>
+<div class="kv"><b>新入板块一日游</b><span class="v">家纺/游戏/多元金融 streak0 新入，一日游概率约 50%（纺织化学先例未获确认）</span></div></div>
+
+<!-- ═══ ⑩ 板块判断账本登记（强势/未来强/排除，rule=板块占位，T+1 结算） ═══ -->
+<h2>⑩ 板块判断 · 信念账本登记表</h2>
+<table><colgroup><col style="width:11%"><col style="width:30%"><col><col style="width:11%"><col style="width:11%"></colgroup>
+<tr><th>编号</th><th>subject</th><th>claim 摘要</th><th>for_date</th><th>rule</th></tr>
+<tr><td>b1013-014</td><td>板块·传媒系·持续期</td><td>预计维持增强档 4-7 个交易日；3 板集体炸板或晋级率 &lt;25% 则缩至 1-2 日；10/23 催化提前发酵则延至 8-10 日</td><td>1016</td><td>景气排查占位</td></tr>
+<tr><td>b1013-015</td><td>板块·游戏/多元金融/家纺 streak0 确认</td><td>1014 需量价确认（涨停 ≥2 家）不确认即出列；扩散确认则本判断作废转升级</td><td>1014</td><td>景气排查占位</td></tr>
+<tr><td>b1013-016</td><td>长电科技 封测重估回踩带</td><td>回踩带 58.5-59.5（daily low 硬核验）· 止损 56.5 · 右侧=收 61 再跟 · 周期 5-8 日</td><td>1014</td><td>板块占位预期</td></tr>
+<tr><td>b1013-017</td><td>先导智能 持仓止损预案</td><td>1400 股@35.70 · 破 33.30 减半/破 32.70 清仓 · 收复 36.40 转持有 · 禁长阴次日抄底</td><td>1014</td><td>动词规范</td></tr>
+<tr><td>b1013-018</td><td>昆船智能 高位博弈口径</td><td>ret20+43% 高位禁追 · 若参与小仓 ≤2% 低吸 17.8-18.3 止损 16.9 · 不参与纯观察</td><td>1014</td><td>景气排查占位</td></tr>
+</table>
+<div class="note"><b>组合纪律</b>：用户 1013 已满仓 6 票（中一/江丰/大参林/宇通/先导/国药一致），任何新增买入须先挂止损单释放仓位，禁止叠加仓位；执行硬约束周延续——超带顶 &gt;1% 买入=执行差双倍计。</div>
+
+<footer>
+<div>免责声明：本报告为个人复盘研究记录，非投资建议。所有带位/止损为条件触发式表述，不构成买卖承诺。</div>
+<div>数据源：sector-strength-10d（refresh=1 · updated 1013 21:28）· 东财 em_flow（1013 in/out 榜）· 东财 push2ex 涨停池 67 家+LHB 65 只 · 本地 kline API（qfq 收盘 · MA/MACD/ret5/ret20/dd60 自算）· 腾讯 qt 快照（流通市值）· 知识库七专家原话（撑伞猫 1013/月月 1010/Joshua 1013/冰冰 1013/柴柴 1013/门捷列夫 1011/惑惑 1011）+药韭蒸馏 1011。</div>
+<div>自检：数据包+新鲜度核查 ✅ · 口径声明（量价≠基本面）✅ · trend=up 入池 up 全列 ✅ · 四桶齐全+桶不串用 ✅ · 桶①为空如实输出（出版侧）✅ · 前三板块四块齐全 ✅ · 七专家 KB 原话+分歧点 ✅ · 持续期三问+dur_days 标记 ✅ · 账本 5 条（含持续期 1 条）✅ · 错码防线（昆船 600715→301311 修正）✅ · 绝对化表述 0 ✅</div>
+</footer>
+</div>
+<script>
+(function(){
+  var FALLBACK = function(text){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+  };
+  var copyText = function(text){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(function(){ FALLBACK(text); });
+    } else { FALLBACK(text); }
+  };
+  var flash = function(el){
+    if (el.dataset.copied) return;
+    el.dataset.copied = '1';
+    var old = el.style.color;
+    el.style.color = '#39e58c';
+    el.title = '已复制';
+    setTimeout(function(){ el.style.color = old; el.removeAttribute('data-copied'); delete el.dataset.copied; }, 1000);
+  };
+  document.querySelectorAll('.stock .clickable').forEach(function(first){
+    first.addEventListener('click', function(){
+      copyText(first.getAttribute('data-copy') || first.innerText.replace(/\s+/g,' '));
+      flash(first);
+    });
+  });
+})();
+</script>
+</body>
+</html>
