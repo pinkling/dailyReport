@@ -94,32 +94,24 @@ th,td{color:#111;border-color:#ddd}th{background:#f0f0f0}
 .ep-main{font-size:13px;line-height:1.7;font-weight:600}
 .ep-cond{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:12px;color:var(--sub)}
 
-/* ═══ 风格皮肤：功能全景式（feature-rich-showcase · 引擎 clean）═══ */
+/* ═══ 风格皮肤：OLED 纯黑模式（dark-mode-oled · 引擎 oled）═══ */
 :root{
-  --bg:#ffffff;
-  --card:rgba(255,255,255,.72);
-  --card2:rgba(255,255,255,.55);
-  --card-solid:#ffffff;
-  --line:rgba(20,24,31,.18);
-  --line2:rgba(20,24,31,.26);
-  --tx:#14181f;
-  --sub:#4a5261;
+  --bg:#000000;
+  --card:#0b0b0d;
+  --card2:rgba(255,255,255,.035);
+  --card-solid:#0b0b0d;
+  --line:#232327;
+  --line2:#232327;
+  --tx:#f5f5f7;
+  --sub:#9a9aa3;
   --green:#39e58c;
   --red:#ff5d5d;
-  --gold:#7c3aed;
-  --blue:#4f46e5;
-  --purple:#b18cff;
-  --blur:6px;
+  --gold:#30d158;
+  --blue:#4d9fff;
+  --purple:#4d9fff;
+  --blur:18px;
 }
-h1{color:var(--tx);text-shadow:none}
-h2{color:var(--tx)}
-th{color:var(--tx)}
-.stock .nm{color:var(--tx)}
-.stock .hd .clickable:active .nm{color:var(--green)}
-b.gold{color:var(--gold)}
-html{scrollbar-color:var(--sub) var(--card-solid)}
-::-webkit-scrollbar-thumb{background:var(--sub)}
-.tldr{background:linear-gradient(135deg,rgba(58,110,200,.10),rgba(255,255,255,.30))}
+body::before{opacity:.55}
 .fab { position: fixed; right: 16px; z-index: 90; border: 1px solid var(--line, #2a3040); background: var(--card, #161b26); color: var(--fg, #ccd); border-radius: 20px; padding: 8px 14px; font-size: 13px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.35); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 .fab-dir { bottom: 20px; }
 .fab-top { bottom: 64px; width: 40px; height: 40px; padding: 0; border-radius: 50%; font-size: 16px; }
