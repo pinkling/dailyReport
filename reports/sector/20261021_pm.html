@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>景气排行 · 1021</title>
+<style>
+:root{
+  --paper:#F3EFE4; --ink:#141414; --red:#E23A2E; --blue:#1D4DB4; --yellow:#F5C400;
+  --gray:#6E6A60; --hair:rgba(20,20,20,.16); --green:#1F8A4C;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#141414}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.52}
+.wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+@media(max-width:486px){.wrap{border-left:0;border-right:0}}
+.hero{background:var(--ink);color:var(--paper);padding:20px 18px 20px;border-bottom:3px solid var(--ink)}
+.hero-top{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.22em;font-weight:700;color:#BDB8AC}
+.hero-shapes{display:flex;align-items:flex-end;gap:10px;margin:16px 0 12px}
+.sh-circle{width:42px;height:42px;border-radius:50%;background:var(--red)}
+.sh-square{width:36px;height:36px;background:var(--blue)}
+.sh-tri{width:0;height:0;border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:36px solid var(--yellow)}
+.hero h1{font-size:34px;font-weight:900;letter-spacing:3px;line-height:1.12;margin:2px 0 8px}
+.hero-sub{font-size:12px;color:#BDB8AC;letter-spacing:.06em}
+.dist{display:flex;height:10px;margin:14px 0 0;gap:4px}
+.dist i{display:block;height:100%}
+.d1{flex:2;background:var(--red)}.d2{flex:2;background:var(--blue)}.d3{flex:3;background:var(--yellow)}.d4{flex:2;background:#fff}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.lg{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:8px 10px;border:2.5px solid var(--ink);letter-spacing:.03em}
+.lg-red{background:var(--red);color:#fff}
+.lg-blue{background:var(--blue);color:#fff}
+.lg-yel{background:var(--yellow);color:var(--ink)}
+.lg-out{background:#fff;color:var(--ink)}
+.lg small{font-weight:700;opacity:.85;font-size:10.5px}
+.sec-title{display:flex;align-items:center;gap:10px;padding:16px 14px 8px}
+.sec-title .bar{width:26px;height:12px;background:var(--ink)}
+.sec-title h2{font-size:17px;font-weight:900;letter-spacing:.14em}
+.board{padding:0 14px 6px}
+.b-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:2px solid var(--ink);text-decoration:none;color:inherit}
+.b-row:first-of-type{border-top:2px solid var(--ink)}
+.b-num{width:30px;height:30px;flex:0 0 30px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.b-num.red{background:var(--red);color:#fff}.b-num.blue{background:var(--blue);color:#fff}.b-num.yel{background:var(--yellow);color:var(--ink)}.b-num.out{background:#fff;color:var(--ink)}
+.b-main{flex:1;min-width:0}
+.b-name{font-size:14.5px;font-weight:800}
+.b-lead{display:block;font-size:11.5px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 7px;border:2px solid var(--ink)}
+.b-chip.red{background:var(--red);color:#fff}.b-chip.blue{background:var(--blue);color:#fff}.b-chip.yel{background:var(--yellow);color:var(--ink)}.b-chip.out{background:#fff;color:var(--ink)}
+.cards{padding:14px 14px 6px}
+.card{border:3px solid var(--ink);background:var(--paper);margin-bottom:18px;box-shadow:5px 5px 0 var(--ink);scroll-margin-top:10px}
+.c-head{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:3px solid var(--ink);background:#fff}
+.c-num{width:44px;height:44px;flex:0 0 44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+.c-num.red{background:var(--red);color:#fff}.c-num.blue{background:var(--blue);color:#fff}.c-num.yel{background:var(--yellow);color:var(--ink)}.c-num.out{background:var(--paper);color:var(--ink)}
+.c-title{flex:1;min-width:0}
+.c-title h3{font-size:18px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.c-title .st{font-size:10.5px;color:var(--gray);margin-top:2px;letter-spacing:.04em}
+.c-verdict{flex:0 0 auto;font-size:11.5px;font-weight:900;padding:6px 8px;border:2.5px solid var(--ink);letter-spacing:.05em}
+.c-verdict.red{background:var(--red);color:#fff}.c-verdict.blue{background:var(--blue);color:#fff}.c-verdict.yel{background:var(--yellow);color:var(--ink)}.c-verdict.out{background:#fff;color:var(--ink)}
+.c-line{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--hair)}
+.c-line b{font-weight:800}
+.t{padding:10px 12px;border-bottom:1px solid var(--hair)}
+.t:last-of-type{border-bottom:0}
+.t-main{display:flex;align-items:baseline;gap:7px}
+.t-name{font-size:15.5px;font-weight:900}
+.t-code{font-size:10.5px;color:var(--gray);letter-spacing:.06em}
+.t-tier{margin-left:auto;font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);flex:0 0 auto}
+.t-tier.red{background:var(--red);color:#fff}
+.t-tier.blue{background:var(--blue);color:#fff}
+.t-tier.yel{background:var(--yellow);color:var(--ink)}
+.t-tier.watch{background:transparent;color:var(--ink)}
+.t-act{font-size:12.5px;margin-top:3px;font-weight:700}
+.t-risk{font-weight:500;color:var(--gray)}
+.c-dur{padding:7px 12px;font-size:11.5px;font-weight:800;border-bottom:1px solid var(--hair);background:rgba(245,196,0,.16)}
+.c-foot{background:var(--ink);color:#EDE9DE;padding:10px 12px;font-size:11.5px}
+.c-foot .row{display:flex;gap:6px}
+.c-foot .row+.row{margin-top:5px}
+.c-foot .k{flex:0 0 30px;font-weight:900;letter-spacing:.06em}
+.c-foot .k.g{color:var(--yellow)}
+.c-foot .k.b{color:#FF9A8F}
+.c-foot .v{flex:1}
+.c-foot .v li{list-style:none}
+.c-foot .v li+li{margin-top:2px}
+.c-foot .v li::before{content:"· ";color:#8F8A7E}
+.mood{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 14px 0}
+.mood .mi{border:2.5px solid var(--ink);padding:8px 10px;font-size:12px;font-weight:800;background:#fff}
+.mood .mi small{display:block;font-weight:700;font-size:10.5px;color:var(--gray);margin-top:2px}
+.exp{border:3px solid var(--ink);background:#fff;margin:0 14px 18px;box-shadow:5px 5px 0 var(--ink)}
+.exp .ex-h{padding:9px 12px;border-bottom:2px solid var(--ink);font-size:12px;font-weight:900;letter-spacing:.08em;background:var(--paper)}
+.exp .ex-r{display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--hair);font-size:11.5px}
+.exp .ex-r:last-child{border-bottom:0}
+.exp .ex-n{flex:0 0 52px;font-weight:900}
+.exp .ex-q{flex:1;color:#3E3B34}
+.exp .ex-q em{font-style:normal;font-weight:800}
+.foot{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.foot .fh{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.foot .fh i{display:block;width:18px;height:10px;background:var(--blue)}
+.foot p{font-size:11px;color:#3E3B34;line-height:1.75}
+.foot p+p{margin-top:6px}
+.foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
+/* 长文段落（结论/预案/清单/风险）——V3.0g 新增，承接 conclusion/plan/consider/avoid/risks */
+.prose{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.prose .ph{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.prose .ph i{display:block;width:18px;height:10px;background:var(--red)}
+.prose p{font-size:12px;color:#2B2924;line-height:1.78}
+.prose p+p{margin-top:7px}
+.prose .pt{font-weight:900;font-size:12.5px;display:block;margin-bottom:3px}
+.prose ol,.prose ul{margin:0;padding-left:18px}
+.prose li{font-size:12px;line-height:1.72;color:#2B2924;margin:3px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 14px 0}
+.two .box{border:3px solid var(--ink);background:#fff;padding:10px 10px 12px}
+.two .box.b2{border-color:var(--blue)}
+.two .bh{font-weight:900;font-size:12px;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid var(--ink)}
+.two .box.b2 .bh{border-bottom-color:var(--blue);color:var(--blue)}
+.two li{font-size:11.5px;line-height:1.6;margin:4px 0;color:#2B2924}
+.riskbox{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px}
+.riskbox .rl{display:flex;gap:8px;font-size:11.5px;line-height:1.65;padding:5px 0;border-bottom:1px dashed var(--hair)}
+.riskbox .rl:last-child{border-bottom:0}
+.riskbox .lv{flex:0 0 30px;font-weight:900}
+.riskbox .lv.h{color:var(--red)}.riskbox .lv.m{color:#B8860B}
+b.up{color:var(--red);font-weight:800}
+b.dn{color:var(--green);font-weight:800}
+b.amt{font-weight:800}
+.endshapes .c{width:20px;height:20px;border-radius:50%;background:var(--red)}
+.endshapes .s{width:16px;height:16px;background:var(--blue)}
+.endshapes .t{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:17px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top"><span>通信设备/终端/工程 3 条同源 · 桶①集中在端侧与天线 · 光模块龙头仍在 MA20 下方 18%</span><span>2026-10-21 WED</span></div>
+    <div class="hero-shapes"><span class="sh-circle"></span><span class="sh-square"></span><span class="sh-tri"></span></div>
+    <h1>up 7 条一日全换：机器人上游 → 通信链+材料</h1>
+    <div class="hero-sub">全市场扫描（up 7 / strong 19 / down 16 / steady 8） · 数据基准 10-21 收盘 · 条件触发式 · T+1 结算口径</div>
+    <div class="dist"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></div>
+  </header>
+
+  <div class="legend">
+    <span class="lg lg-red">桶① 可入主推 <small>×7</small></span>
+    <span class="lg lg-blue">桶② 稳健低吸 <small>×4</small></span>
+    <span class="lg lg-yel">桶③ 谨慎博弈 <small>×2</small></span>
+    <span class="lg lg-out">桶④ 出列 <small>×1</small></span>
+  </div>
+
+  <div class="mood">
+    <span class="mi">涨停·跌停 50 / 5<small>54/7 → 50/5 双降，赚钱效应 +3.38% 仍正</small></span>
+    <span class="mi">晋级率 28.6%<small>4/14 腰斩（54.5%→28.6%）· 跌回 30% 冰点线下</small></span>
+    <span class="mi">连板高度 4 板 3 家<small>海洋王/东安动力/大业股份 · 高度抱团</small></span>
+    <span class="mi">量能 1.4292 万亿<small>沪深口径 · -268 亿连续两日缩量</small></span>
+  </div>
+
+  <div class="sec-title"><span class="bar"></span><h2>结论总览</h2></div>
+  <nav class="board">
+    <a class="b-row" href="#s1"><span class="b-num red">01</span><span class="b-main"><span class="b-name">通信链 · 3 条 up</span><br><span class="b-lead">移远通信 · 端侧模组龙头</span></span><span class="b-chip red">可入主推</span></a>
+    <a class="b-row" href="#s2"><span class="b-num blue">02</span><span class="b-main"><span class="b-name">塑料制品 · 材料</span><br><span class="b-lead">唯科科技 · 精密注塑+机器人结构件</span></span><span class="b-chip blue">稳健低吸</span></a>
+    <a class="b-row" href="#s3"><span class="b-num yel">03</span><span class="b-main"><span class="b-name">小金属 · 单票驱动</span><br><span class="b-lead">云南锗业 · 锗/红外材料</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s4"><span class="b-num out">04</span><span class="b-main"><span class="b-name">样本薄/退潮</span><br><span class="b-lead">吉林化纤 · 桶①但孤票</span></span><span class="b-chip out">出列</span></a>
+  </nav>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>逐板块四桶</h2></div>
+  <div class="cards">
+    <article class="card" id="s1">
+      <div class="c-head"><div class="c-num red">01</div><div class="c-title"><h3>通信链 · 3 条 up</h3><div class="st">本期唯一可参与主线）</div></div><div class="c-verdict red">可入主推</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 3–7 个交易日</b>（至 10-27 ~ 11-03 前后 · 断点=桶①5 只中 ≥3 只跌破 5 日线 / 移远 3 板失败 / 通信设备板块跌出 up）</div>
+      <div class="t"><div class="t-main"><span class="t-name">移远通信</span><span class="t-tier red">桶①</span></div><div class="t-act">端侧模组龙头 <span class="t-risk">｜2 板收 83.72(+10.00%)/44.5 亿 · 封单仅 0.08 亿（最大 3.90 亿 · 衰减 98%）=封板质量差/位置 100%——回踩 77.77-80.00（今低+5 日线 72.75）可接，跌破 72.75 失效</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">通宇通讯</span><span class="t-tier red">桶①</span></div><div class="t-act">卫星/基站天线 <span class="t-risk">｜首板收 32.09(+10.01%)/15.2 亿 · 封单 0.61 亿（最大 5.55 亿 · 衰减 89%）——首板次日期望仅 +0.67%，只做回踩 29.74-30.50（MA20+今低），不追板</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">美格智能</span><span class="t-tier red">桶①</span></div><div class="t-act">无线模组 <span class="t-risk">｜+7.09%/11.5 亿 · 未涨停=弹性余量，回踩 5 日线可接</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">烽火通信</span><span class="t-tier blue">桶②</span></div><div class="t-act">运营商资本开支 <span class="t-risk">｜+1.17%/15.9 亿 · 收 31.05 距 MA20 36.18 差 14.2%=反弹非趋势，只做 5 日线（30.10）附近低吸</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">中际旭创</span><span class="t-tier yel">桶③</span></div><div class="t-act">光模块龙头 <span class="t-risk">｜-0.17%/166.1 亿天量 · 距 MA20 792.34 差 18.4%=趋势未修复——只做博弈仓 ≤2%，破 642.33 止损</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 15 票：桶①5/桶②5/桶③5 —— up 三条同源（通信设备 2.77/通信终端 3.83/通信工程 4.44），5 日爬升 5.31/7.78/5.31 为全场最快；但主升在端侧与天线，光模块龙头仍在 20 日线下方</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s2">
+      <div class="c-head"><div class="c-num blue">02</div><div class="c-title"><h3>塑料制品 · 材料</h3><div class="st">up 爬升最快）</div></div><div class="c-verdict blue">稳健低吸</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 2–5 个交易日</b>（至 10-24 ~ 10-29 · 断点=唯科/天洋双双跌破 5 日线 / 板块跌出 up）</div>
+      <div class="t"><div class="t-main"><span class="t-name">唯科科技</span><span class="t-tier red">桶①</span></div><div class="t-act">精密注塑+机器人结构件 <span class="t-risk">｜收 90.62(+3.99%)/8.1 亿 · 未涨停=弹性余量，回踩 84.28-86.19（5 日线/今低）可接，单票 ≤3%</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">天洋新材</span><span class="t-tier red">桶①</span></div><div class="t-act">热熔胶/光伏胶膜 <span class="t-risk">｜首板收 10.09(+10.03%)/6.5 亿 · 封单 0.34 亿（最大 2.15 亿 · 衰减 84%）——首板次日只做回踩不追板</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">肯特股份</span><span class="t-tier blue">桶②</span></div><div class="t-act">改性塑料 <span class="t-risk">｜-6.78%/7.6 亿=放量下跌，等企稳（5 日线站回）再看</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">瑞丰高材</span><span class="t-tier out">桶④</span></div><div class="t-act">桶④出列 <span class="t-risk">｜+7.99%/7.6 亿 但未站上 MA20=反弹非趋势，不参与</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 8 票：桶①2/桶②3/桶④出列 3 —— up avg 5.38、accel +4.17、5 日爬升 4.28（全场第二快），但个股容量小、题材属性弱</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s3">
+      <div class="c-head"><div class="c-num yel">03</div><div class="c-title"><h3>小金属 · 单票驱动</h3><div class="st">博弈属性）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1–3 个交易日</b>（断点=云南锗业跌破 78.92（今日低）/ 板块成交额腰斩）</div>
+      <div class="t"><div class="t-main"><span class="t-name">云南锗业</span><span class="t-tier yel">桶③</span></div><div class="t-act">锗/红外材料 <span class="t-risk">｜收 84.06(+6.51%)/57.2 亿 · 位置 82% · 仍在 MA20 86.89 下方——博弈仓 ≤2%，破 82.58（今日低）止损</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">华阳新材</span><span class="t-tier red">桶①</span></div><div class="t-act">贵金属回收 <span class="t-risk">｜收 5.20(+1.17%)/2.8 亿 · 站上 MA20 4.81，回踩 5 日线 5.14 小仓试</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">西部材料</span><span class="t-tier blue">桶②</span></div><div class="t-act">钛/稀有金属加工 <span class="t-risk">｜收 30.22(-0.13%)/7.1 亿 · MA20 31.84 下方，回踩 29.90（5 日线）可低吸</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 6 票：桶①1/桶②2/桶③2 —— up avg 3.60、爬升 5.90（全场最快），但云南锗业单票 57.2 亿占板块成交额约七成=单票驱动</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s4">
+      <div class="c-head"><div class="c-num out">04</div><div class="c-title"><h3>样本薄/退潮</h3><div class="st"></div></div><div class="c-verdict out">出列</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>不适用</b>（样本不足或已处退潮段，本期不给持续期）</div>
+      <div class="t"><div class="t-main"><span class="t-name">吉林化纤</span><span class="t-tier red">桶①</span></div><div class="t-act">桶①但孤票 <span class="t-risk">｜+0.78%/4.0 亿——粘胶仅 2 只成分，不构成板块机会</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">四川九洲</span><span class="t-tier blue">桶②</span></div><div class="t-act">黑电里唯一像样的 <span class="t-risk">｜0.00%/1.1 亿=无资金，观察不参与</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>粘胶 up 7.62 但 n=2（吉林化纤+ST 海龙）样本过薄；黑电 avg 6.82 但 6 只里 0 只桶①、3 只出列；down 16 条含电信运营商（爬升 -9.63 断崖）/出版（20 日 +18.46 退潮残骸）/游戏/广告</li></ul></div></div>
+    </article>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--ink)"></i>一句话总判</div>
+      <p>主线换血日（创业板 <b class="dn">-1.62%</b> 破 1020 低·宁德 <b class="dn">-12.03%</b> 单票拖累约 2.4pct·涨停 50/跌停 5·晋级率腰斩至 28.6%·炸板率 34.9%→27.5% 改善）：up 7 条从「机器人上游制造」整体换血为「通信链 3 条（通信设备/通信终端/通信工程及服务）+ 材料 3 条（粘胶/其他塑料/其他小金属）+ 其他黑色家电」，与 1020 的 up 7 条零重合=一日全换；但 PCB/元件/半导体不在 up 之列——AI 硬件属「资金先动、景气未确认」，与策略日报「修复第 1 日」定性一致</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--red)"></i>核心结论与前三板块深度</div>
+      <p>前三板块判定（up 7 条入池；粘胶 n=2 样本过薄、黑电 0 只桶①，均不列为深度对象）：</p>
+      <p>① 通信链（通信设备 avg 2.77 + 通信终端 3.83 + 通信工程 4.44，三条同源，可参与度最高）</p>
+      <p>桶①5 只：移远通信 603236（2 板·<b class=\"amt\">44.5 亿</b>·端侧模组·封单 <b class=\"amt\">0.08 亿</b>/最大 <b class=\"amt\">3.90 亿</b>=衰减 98%）、通宇通讯 002792（首板·<b class=\"amt\">15.2 亿</b>·卫星天线·封单 <b class=\"amt\">0.61 亿</b>/最大 <b class=\"amt\">5.55 亿</b>=衰减 89%）、美格智能 002881（<b class="up">+7.09%</b>·<b class=\"amt\">11.5 亿</b>）、广和通 300638（<b class="up">+1.81%</b>·<b class=\"amt\">5.9 亿</b>）、海能达 002583（<b class="up">+3.00%</b>·<b class=\"amt\">3.0 亿</b>）——桶①五只封单质量普遍偏弱，是「有资金但不敢封」的形态</p>
+      <p>桶②5 只：烽火通信 600498（<b class=\"amt\">15.9 亿</b>·运营商资本开支）、恒宝股份 002104、长进光子 688635、菲菱科思 301191、司南导航 688592</p>
+      <p>桶③5 只：中际旭创 300308（<b class=\"amt\">166.1 亿</b>·<b class="dn">-0.17%</b>）、新易盛 300502（<b class=\"amt\">128.5 亿</b>·<b class="dn">-1.36%</b>）、亨通光电 600487（<b class=\"amt\">71.8 亿</b>·<b class="dn">-1.19%</b>）、天孚通信 300394（<b class=\"amt\">71.5 亿</b>·<b class="up">+5.10%</b>）、光库科技 300620（<b class=\"amt\">39.3 亿</b>·<b class="up">+9.44%</b>）——光模块龙头全部在 20 日线下方（中际 646.77 vs MA20 792.34），属深跌反弹而非趋势修复</p>
+      <p>——判定：发酵中（3 日连续上榜 + 爬升加速 + 桶① 5 只），但主升在「端侧/天线/通信服务」不在光模块</p>
+      <p>② 其他塑料制品（up avg 5.38 + accel 4.17·爬升 4.28）</p>
+      <p>桶①2 只：唯科科技 301196（<b class="up">+3.99%</b>·<b class=\"amt\">8.1 亿</b>）、天洋新材 603330（首板 <b class="up">+10.03%</b>·<b class=\"amt\">6.5 亿</b>）；桶②3 只：肯特股份 301591（<b class="dn">-6.78%</b>·<b class=\"amt\">7.6 亿</b>）、华信新材、祥源新材</p>
+      <p>——判定：发酵初期（新面孔为主·容量小·题材属性弱于通信链）</p>
+      <p>③ 其他小金属（avg 3.60 + accel 2.43·爬升 5.90）</p>
+      <p>桶①1 只：华阳新材 600281（<b class="up">+1.17%</b>·<b class=\"amt\">2.8 亿</b>）；桶②3 只：西部材料 002149（<b class=\"amt\">7.1 亿</b>）、长裕集团 603407；桶③2 只：云南锗业 002428（<b class="up">+6.51%</b>·<b class=\"amt\">57.2 亿</b>·高位博弈）、宜安科技</p>
+      <p>——判定：发酵中偏后段（云南锗业单票放 <b class=\"amt\">57.2 亿</b>=资金集中度过高，一旦断板全链降温）</p>
+      <p>下坡线：down 16 条=电信运营商（爬升 -9.63 断崖）/铁路运输/影视院线/出版（20 日 +18.46 的退潮残骸）/高速公路/啤酒/预加工食品/水电/其他化学原料/港口/游戏/广告营销/畜禽饲料/普钢/医药商业；黑电 6 只无桶①、出列 3 只=题材空转。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--blue)"></i>操作预案 · 给明日策略日报的输入</div>
+      <p>给明日（1022）策略日报的输入：</p>
+      <p>①主线口径对齐=「AI 硬件修复」与「景气 up」并不完全重合：up 7 条里通信链 3 条但主体是端侧/天线/通信服务（移远 2 板 <b class=\"amt\">44.5 亿</b>/通宇首板 <b class=\"amt\">15.2 亿</b>/美格 <b class="up">+7.09%</b>），光模块与 PCB 均未进 up（中际 646.77 距 MA20 792.34 差 18.4%、沪电 114.97 距 MA20 118.31 差 2.8%）——故 ⑦ 池取「已放量的二线与器件」（沪电/天孚/生益/德明利），不取龙头追高。</p>
+      <p>②桶①可入主推（次日只做回踩/右侧确认）：移远通信 603236（2 板·回踩 77.77-80.00·跌破 5 日线 72.75 失效）、通宇通讯 002792（首板·回踩 29.74-30.50·跌破 27.93 失效）、唯科科技 301196（回踩 84.28-86.19）、华阳新材 600281（回踩 5.14）；单票 ≤3%。</p>
+      <p>③桶③只做博弈仓（≤2% + 严格止损）：中际旭创（破 642.33 止损）、天孚通信（破 197.68 止损）、光库科技（破 244.36 止损）、云南锗业（破 82.58 止损）。</p>
+      <p>④禁买清单：粘胶（n=2 样本过薄·吉林化纤孤票）、黑电（0 只桶①·创维/九联/高斯贝尔出列）、down 16 条（电信运营商爬升 -9.63/出版退潮/游戏广告）、4 板簇（撑伞猫「最后一个右侧买点性价比不高」）。</p>
+      <p>⑤反例条件：若 1022 通信设备桶① 5 只中 ≥3 只跌破 5 日线，则「通信链 up」为一日游，全链降档至观察；若光模块龙头（中际/新易盛）站回 5 日线，则桶③升级为桶②并加仓。</p>
+  </div>
+
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--yellow)"></span><h2>四专家推演</h2></div>
+  <div class="exp">
+    <div class="ex-h">四专家推演 · KB 原话（前三板块共用）</div>
+    <div class="ex-r"><span class="ex-n">撑伞猫</span><span class="ex-q"><em>不接 4 板 · 只做二板以下犯上</em> — 大概率是最后一个右侧买点，性价比不算高，且大概率要断一个，就不推荐了（KB 2026-10-21 19:44《10.21 复盘》）<br>四板三只都要换手，判断「最后一个右侧买点性价比不高」→ 本期通信链的移远（2 板）与通宇（首板）正好落在他的可参与身位；4 板簇（海洋王/东安/大业）一律不接</span></div>
+    <div class="ex-r"><span class="ex-n">白河愁</span><span class="ex-q"><em>反弹未确认 · 只认四项条件</em> — 广度明显收窄，量能是缩量下跌，封板接力也显著降温。这三项都不支持“反弹已经顺畅延续”的判断（KB 2026-10-21 18:59）<br>广度由 3778 家降至 1981 家、缩量下跌、晋级率近乎腰斩——三项都不支持「反弹已顺畅延续」；通信链要升级为主线需满足：上涨家数连续改善+量能回升+晋级率修复+创业板与权重不再拖累</span></div>
+    <div class="ex-r"><span class="ex-n">药门小韭菜</span><span class="ex-q"><em>博弈行情 · PCB/光通信可能反弹</em> — 个人这边觉得还是以博弈行情为主，这种向下斜率不具备反转的筹码条件（KB 2026-10-21 22:00《1021 信息梳理》）<br>定性为博弈行情，「这种向下斜率不具备反转的筹码条件」；次日观察清单点名 PCB（PTFE 方向）与光通信可能反弹、OAI 数采、机器人已涨两天半若普反「可能不是很友好」</span></div>
+    <div class="ex-r"><span class="ex-n">惑惑</span><span class="ex-q"><em>节点决定晋级率</em> — 现在，节点很重要很重要，不论是对于题材还是连板（KB 2026-10-21 19:39《10.22p前》）<br>「时间线上越往后拖，抱团和科技的拉扯就会越大」「节点很重要很重要」——通信链能否延续，取决于明日是否被视为「启动节点」；共识能舒服买入的那天，次日通常没有隔夜溢价</span></div>
+    <div class="ex-r"><span class="ex-n">分歧</span><span class="ex-q">分歧点：撑伞猫（只做 2 板以下/首板）与惑惑（节点认同度决定晋级）对通信链延续性判断不同——前者看身位赔率，后者看节点共识；白河愁给的是「四项条件未满足前不确认」，药韭给的是「博弈行情+PCB/光通信可能反弹」。共识=不追高、只做回踩；分歧=通信链是「新主线起点」还是「一轮博弈反弹」。</span></div>
+  </div>
+  <div class="exp">
+    <div class="ex-h">补充引用 · KB 原话（非七专家名单）</div>
+    <div class="ex-r"><span class="ex-n">月月看玉玉</span><span class="ex-q"><em>本场静默</em> — （静默）<br>1021 无新帖（雪球 5615096986 当日未发文）——其「看 A 买 A / 身位裁决」框架本期无新增口径，不代编</span></div>
+    <div class="ex-r"><span class="ex-n">柴柴</span><span class="ex-q"><em>本场静默</em> — （静默）<br>1021 无新帖——提价链口径仅可沿用 1020（CCL/电子布），本期不给新结论</span></div>
+    <div class="ex-r"><span class="ex-n">冰冰小美</span><span class="ex-q"><em>本场静默</em> — （静默）<br>1021 无新帖——宏观链与风格窗口口径未更新，不代编</span></div>
+  </div>
+
+  <div class="sec-title"><span class="bar" style="background:var(--blue)"></span><h2>需要考虑 / 需要避免</h2></div>
+  <div class="two">
+    <div class="box"><div class="bh">需要考虑</div><ul><li>up 7 条一日全换（与 1020 零重合）——换血而非扩散，说明资金在做方向选择而不是加仓</li><li>通信链 3 条同源（设备/终端/工程服务），5 日爬升 5.31/7.78/5.31 为全场最快，是本期唯一有「链」结构的 up</li><li>桶①集中在端侧与天线（移远 2 板 <b class=\"amt\">44.5 亿</b>/通宇首板 <b class=\"amt\">15.2 亿</b>/美格 <b class="up">+7.09%</b>），不是光模块——与策略日报「只做二线与器件」一致</li><li>其他塑料 accel +4.17、小金属爬升 5.90：材料端在低位启动，属新面孔方向</li><li>down 16 条里出版（20 日 +18.46/5 日 -1.64）与电信运营商（爬升 -9.63）确认退潮，资金腾挪方向明确</li></ul></div>
+    <div class="box b2"><div class="bh">需要避免</div><ul><li>粘胶（up 第一但仅 2 只成分：吉林化纤+ST 海龙）——样本过薄，不构成板块机会</li><li>其他黑色家电（avg 6.82 但 0 只桶①、3 只出列：创维/九联/高斯贝尔）——景气分高而无资金</li><li>4 板簇（海洋王/东安动力/大业股份）+ 东安已澄清不从事飞行汽车整车——最高身位是兑现压力最大处</li><li>光模块龙头追高（中际 <b class=\"amt\">166.1 亿</b> <b class="dn">-0.17%</b>/新易盛 <b class=\"amt\">128.5 亿</b> <b class="dn">-1.36%</b>，均在 MA20 下方 18%+）</li><li>down 16 条全线（电信运营商/出版/游戏/广告营销/高速公路/啤酒）</li><li>云南锗业单票博弈以外的跟风票（板块成交额 <b class=\"amt\">57.2 亿</b>里七成在它一只）</li></ul></div>
+  </div>
+  <div class="riskbox"><div class="bh" style="font-weight:900;font-size:12px;margin-bottom:6px">风险提示</div>
+    <div class="rl"><span class="lv h">高</span><span>up 7 条一日全换=资金没有沉淀，通信链若明日不能延续即为一日游（断点=桶①5 只中 ≥3 只跌破 5 日线）</span></div>
+    <div class="rl"><span class="lv h">高</span><span>光模块龙头仍在 MA20 下方 18%+（中际 646.77 vs 792.34）——AI 硬件只有反弹没有趋势，博弈仓必须严格止损</span></div>
+    <div class="rl"><span class="lv m">中</span><span>量能连续两日缩量（1.456→<b class=\"amt\">1.4292 万亿</b>），缩量下 up 板块的持续性天然弱于放量期</span></div>
+    <div class="rl"><span class="lv m">中</span><span>云南锗业单票占板块成交额约七成——一旦断板，小金属 up 直接失效</span></div>
+    <div class="rl"><span class="lv m">中</span><span>创业板破 1020 低（2694.71 &lt; 2707.49）且宁德 <b class="dn">-12.03%</b>，指数环境对高 Beta 小票不利</span></div>
+  </div>
+
+
+  <footer class="foot">
+    <div class="fh"><i></i>口径声明</div>
+    <p>① 景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位），<b>非基本面景气</b>；全部价位为<b>条件触发</b>（回踩带/低吸带/右侧确认），非现价指令——条件不成立即放弃，禁止带外追价。</p>
+    <p>② 数据基准 = 20261021 收盘（sector-strength-10d refresh=1）；T+1 结算口径 · daily low 硬核验。</p>
+    <p>③ 四桶分级：可入主推（红）＞稳健低吸（蓝）＞谨慎博弈（黄）＞出列（白）；⏳ 持续期=资金×题材×叙事三合评估，禁超档包装。仅供个人复盘参考，非投资建议。</p>
+    <div class="src">['sa20261020-scan', 'b1022-001', 'b1022-005', 'b1021-006'] · 生成 2026-10-21 23:09 · 口径声明：景气分=量价口径（5/10 日四态），不等于基本面景气；up 7 条里粘胶 n=2、黑电 0 只桶①，均不列为深度对象。AI 硬件（PCB/元件/半导体）未进 up——资金先动、景气未确认，与策略日报「修复第 1 日」一致。</div>
+  </footer>
+
+  <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
+</div>
+</body>
+</html>
