@@ -94,32 +94,32 @@ th,td{color:#111;border-color:#ddd}th{background:#f0f0f0}
 .ep-main{font-size:13px;line-height:1.7;font-weight:600}
 .ep-cond{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:12px;color:var(--sub)}
 
-/* ═══ 风格皮肤：转化优化式（conversion-optimized · 引擎 clean）═══ */
+/* ═══ 风格皮肤：高管决策看板（executive-dashboard · 引擎 darksoft）═══ */
 :root{
-  --bg:#fffdf9;
-  --card:rgba(255,255,255,.72);
-  --card2:rgba(255,255,255,.55);
-  --card-solid:#ffffff;
-  --line:rgba(20,24,31,.18);
-  --line2:rgba(20,24,31,.26);
-  --tx:#14181f;
-  --sub:#4a5261;
+  --bg:#0d1524;
+  --card:#131e34;
+  --card2:rgba(255,255,255,.035);
+  --card-solid:#131e34;
+  --line:#22304e;
+  --line2:#22304e;
+  --tx:#f0f4fb;
+  --sub:#93a3c0;
   --green:#39e58c;
   --red:#ff5d5d;
-  --gold:#b45309;
-  --blue:#ff5a1f;
-  --purple:#ff5a1f;
-  --blur:6px;
+  --gold:#c9a227;
+  --blue:#3b82f6;
+  --purple:#3b82f6;
+  --blur:18px;
 }
-h1{color:var(--tx);text-shadow:none}
-h2{color:var(--tx)}
-th{color:var(--tx)}
-.stock .nm{color:var(--tx)}
-.stock .hd .clickable:active .nm{color:var(--green)}
-b.gold{color:var(--gold)}
-html{scrollbar-color:var(--sub) var(--card-solid)}
-::-webkit-scrollbar-thumb{background:var(--sub)}
-.tldr{background:linear-gradient(135deg,rgba(58,110,200,.10),rgba(255,255,255,.30))}
+body::before{opacity:.55}
+:root{--sk-r:12px;--sk-r2:8px}
+.card,.tldr,.stock,table,.kv,.risk,.sec{border-radius:var(--sk-r)!important}
+.badge,.tag,button{border-radius:var(--sk-r2)!important}
+h1{font-weight:800!important;letter-spacing:-.02em}
+h2{font-weight:800!important;border-left:5px solid var(--blue);padding-left:10px}
+h1,h2{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif!important}
+body{background-image:radial-gradient(120% 80% at 100% 0%,rgba(20,32,58,0.6) 0%,transparent 58%)!important}
+th{background:rgba(0,0,0,.045)!important}
 .fab { position: fixed; right: 16px; z-index: 90; border: 1px solid var(--line, #2a3040); background: var(--card, #161b26); color: var(--fg, #ccd); border-radius: 20px; padding: 8px 14px; font-size: 13px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.35); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 .fab-dir { bottom: 20px; }
 .fab-top { bottom: 64px; width: 40px; height: 40px; padding: 0; border-radius: 50%; font-size: 16px; }
