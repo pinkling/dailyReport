@@ -162,6 +162,24 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 .pct { font-size: 10px; font-weight: 400; white-space: nowrap; }
 .pct.up { color: var(--red, #ff5d5d); }
 .pct.dn { color: var(--green, #39e58c); }
+.sec-hd[data-sec] { cursor: pointer; }
+.sec-hd[data-sec]:hover { opacity: .85; }
+.sec-badge { display: inline-block; margin-left: 8px; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: rgba(127,127,127,.16); border: 1px solid var(--line, #2a3244); vertical-align: middle; }
+.sec-modal { position: fixed; inset: 0; z-index: 90; background: rgba(6,9,16,.62); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.sec-modal[hidden] { display: none; }
+.sec-panel { background: var(--card, #141926); border: 1px solid var(--line, #2a3244); border-radius: 14px; max-width: 720px; width: 100%; max-height: 82vh; overflow: auto; padding: 14px 16px; box-shadow: 0 18px 48px rgba(0,0,0,.45); }
+.sec-hd2 { font-size: 14px; font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.sec-close { background: rgba(127,127,127,.14); border: 1px solid var(--line, #2a3244); color: inherit; border-radius: 8px; width: 28px; height: 28px; cursor: pointer; font-size: 13px; }
+.sec-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.sec-tbl th { text-align: left; padding: 5px 7px; color: var(--sub, #8b97b8); font-weight: 600; border-bottom: 1px solid var(--line, #2a3244); white-space: nowrap; }
+.sec-tbl td { padding: 7px; border-bottom: 1px dashed rgba(127,127,127,.22); vertical-align: top; line-height: 1.6; }
+.sec-tbl .cd2 { font-family: ui-monospace, monospace; white-space: nowrap; }
+.role, .fit { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; white-space: nowrap; }
+.r-龙一 { background: #a03028; color: #fff; } .r-龙二 { background: #b45309; color: #fff; } .r-中军 { background: #1f5f8a; color: #fff; } .r-跟风 { background: rgba(127,127,127,.22); } .r-标杆 { background: rgba(127,127,127,.22); }
+.f-核心贴合 { background: rgba(160,48,40,.16); color: #ff8a7a; border: 1px solid rgba(160,48,40,.4); } .f-逻辑适配 { background: rgba(31,95,138,.18); color: #7ec2ff; border: 1px solid rgba(31,95,138,.45); } .f-资金驱动 { background: rgba(138,112,36,.2); color: #ffd166; border: 1px solid rgba(138,112,36,.5); }
+.sec-note { margin-top: 10px; font-size: 11.5px; color: var(--sub, #8b97b8); line-height: 1.7; }
+@media (max-width: 560px) { .sec-tbl th:nth-child(1), .sec-tbl td:nth-child(1) { display: none; } }
+@media print { .sec-badge { display: none; } .sec-modal { display: none !important; } .sec-hd[data-sec] { cursor: default; } }
 @media print { .fab, .toc-panel, .toc-mask { display: none !important; } details.endnote { display: block !important; } }
 @media print { .wrap { max-width:100%; } .card, .stock { break-inside: avoid; } .footer-block { break-inside: avoid; } }
 </style>
@@ -400,20 +418,76 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 <span style="display:inline-block;font-weight:700;font-size:13px;padding:2px 10px;border-radius:999px;margin-right:8px;background:#8a7024;color:#fff">市况 B · 缩量轮动市 · 快升通道已触发（趋势观察档）</span><span style="font-size:12.5px;opacity:.94">20 日均量 1.67 万亿（在缩水）｜1023 放量 1.96 万亿（比 20 日均值高 18%）｜创业板 +4.16% 且收在全天最高附近｜1023 出现「放量反转」形态（放量大涨+收高）→ 今天按趋势观察档出预案：接力位可以进观察名单、可以给买入区；等「连续 2 天成交 ≥2.2 万亿+站稳 5 日线」才算确认转正</span>
 </div>
 <div class="card">
-<h3>A · 机器人链（39 家涨停 · 首板潮次日 · 本期主战场）</h3>
+<h3 class="sec-hd" data-sec="1" role="button" title="点击查看板块成员梯队">A · 机器人链（39 家涨停 · 首板潮次日 · 本期主战场） <span class="sec-badge">成员 5 ▾</span></h3>
 <div class="kv"><b>队伍排布</b><span class="v">6 板双标：海洋王（封单 0.03 亿·只剩峰值 1%）/大业（0.95 亿·剩 7%）——想买买不到也不敢接｜2 板 9 家：襄阳轴承 000678（13.23·深市代码勿抄错）/兆威机电/埃斯顿（涨停 29.18）/林州重机（一字）等｜首板 70 家里机器人约 20 家：万向钱潮（封 1.61 亿全场最实）/大洋电机（尾盘涨停打开过=有分歧）｜大票：汇川 +7.19%/三花 +6.66%/埃斯顿涨停</span><b>为什么能进主推</b><span class="v"><b class="exp">轮动市规则：主推位只收「首板潮当日/次日」</b>——昨天就是首板潮日（15→39 家扩散加速），今天是次日=合法窗口；<b class="cy">大票跟涨判据成立</b>（成交 8 亿以上的汇川/三花/埃斯顿全红=真主线，不是小票脉冲）；撑伞猫「双宿双生」（大业/海洋王成对）印证梯队强势</span><b>怎么判定对错</b><span class="v">①1026 机器人链涨停 ≥20 家=扩散继续（趋势档确认）②15-20 家=降档（只留 2 板回踩）③&lt;15 家且大票翻绿=扩散失败（全部转卖出计划）</span><b>风险与反例</b><span class="v"><b class="dn">6 板禁碰</b>（买单快空+大业收过监管函）；一字板买不到；昨天涨停打开过的票（大洋）=买卖有分歧，要等「重新封住」确认；指数若缩量回踩，题材股跌起来比指数狠——买入区就是为此准备的</span></div>
 </div>
+<div class="sec-modal" id="sec-modal-1" hidden>
+<div class="sec-panel">
+<div class="sec-hd2">A · 机器人链（39 家涨停 · 首板潮次日 · 本期主战场）<button type="button" class="sec-close" data-sec-close="1" aria-label="关闭">✕</button></div>
+<table class="sec-tbl">
+<colgroup><col style="width:9%"><col style="width:11%"><col style="width:11%"><col style="width:14%"><col style="width:55%"></colgroup>
+<tr><th>梯队</th><th>贴合</th><th>代码</th><th>名称</th><th>一句话逻辑</th></tr>
+<tr><td><span class="role r-龙一">龙一</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">603278</td><td>大业股份</td><td>6 板标杆（人形机器人在册·胎圈钢丝）；封单 0.95 亿/峰值 1.3 亿——禁碰，只作链强弱温度计</td></tr>
+<tr><td><span class="role r-龙二">龙二</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">003021</td><td>兆威机电</td><td>灵巧手+微型传动（在册·2→3 板）；封单 1.26 亿最实——3 板=接力位，只观察回踩</td></tr>
+<tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">300124</td><td>汇川技术</td><td>15 亿级成交大票 +7.19%——大票跟随判据成立的主力证据</td></tr>
+<tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">002249</td><td>大洋电机</td><td>首板→2 板炸板（在册·电机）——池票，断板反核与回踩带口径见 ⑦</td></tr>
+<tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-逻辑适配">逻辑适配</span></td><td class="cd2">000559</td><td>万向钱潮</td><td>人形机器人在册但主业汽车零部件——首板封 1.61 亿全场最实；彩票仓口径</td></tr>
+</table>
+<div class="sec-note">概念核验（同花顺人形机器人 886069·478 只成分）：以上 5 只全在册。⚠ 涨停池里的海洋王（照明+「羊」字辈）与襄阳轴承（轴承+湖北国资）不在该概念成分内——属资金情绪票，不入本板块成员表，防「羊头狗肉」。</div>
+</div>
+</div>
 <div class="card">
-<h3>B · 封测/数字芯片（长电 must 入池 · 板块连涨 3 天）</h3>
+<h3 class="sec-hd" data-sec="2" role="button" title="点击查看板块成员梯队">B · 封测/数字芯片（长电 must 入池 · 板块连涨 3 天） <span class="sec-badge">成员 4 ▾</span></h3>
 <div class="kv"><b>队伍排布</b><span class="v">长电科技 59.78（+1.32%·成交 56.7 亿·Q3 净利 +59.99%·2026 投资计划上调到 182 亿）；华天 +4.12%；通富跟涨；景气榜「数字芯片设计」连续 3 天爬升</span><b>为什么值得 must</b><span class="v">「业绩爆表+股价红」全市场只有封测这一家（别的业绩票全部利好出尽下跌）——这个唯一性已连续 2 天验证；昨天的报告承诺「1026 后可入池」，兑现；科创50 率先站上 5 日线=半导体温度计回升，互证</span><b>怎么判定对错</b><span class="v">回踩 57.98-59.18 区间企稳=买入；站上 60.50（昨天最高）=追 1/4 仓；跌破 55.67（昨天最低）=逻辑失效</span><b>风险与反例</b><span class="v">三季报收官周=业绩兑现盘多（长电自己的利好已出，后面靠资金不靠消息）；若 AI 硬件 4 项解除条件全部达成，资金可能转向光模块龙头，分流封测关注度</span></div>
 </div>
-<div class="card">
-<h3>C · 消费零售（百货/旅游零售进景气榜 · 只观察）</h3>
-<div class="kv"><b>队伍排布</b><span class="v">上海九百 3 板一字（11.00·买不到）；百货零售/旅游零售进景气 up 榜；医疗美容 5 日 +7.38 全场第 1（持仓新产业属这条线）</span><b>定位</b><span class="v">防御属性的消费线在情绪修复日跟涨——若 1026 机器人链歇脚，消费是接棒候选之一；但一字板高度标没有参与价值</span><b>怎么判定对错</b><span class="v">上海九百开板=消费线出现分歧；景气榜连续第 2 天在榜+零售涨停 ≥5 家=支线升级</span><b>风险与反例</b><span class="v">消费线没有量能支撑时多为轮动一日游（1021 通信链前车之鉴）；只给观察位不给买入区</span></div>
+<div class="sec-modal" id="sec-modal-2" hidden>
+<div class="sec-panel">
+<div class="sec-hd2">B · 封测/数字芯片（长电 must 入池 · 板块连涨 3 天）<button type="button" class="sec-close" data-sec-close="2" aria-label="关闭">✕</button></div>
+<table class="sec-tbl">
+<colgroup><col style="width:9%"><col style="width:11%"><col style="width:11%"><col style="width:14%"><col style="width:55%"></colgroup>
+<tr><th>梯队</th><th>贴合</th><th>代码</th><th>名称</th><th>一句话逻辑</th></tr>
+<tr><td><span class="role r-龙一">龙一</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">600584</td><td>长电科技</td><td>封测龙头+Q3 净利 +59.99%+逆势 2 连红——must 入池（57.98-59.18）</td></tr>
+<tr><td><span class="role r-龙二">龙二</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">002185</td><td>华天科技</td><td>封测 +4.12% 跟随——昨日炸板警戒：资金只在长电一只票上聚集过</td></tr>
+<tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">002156</td><td>通富微电</td><td>封测三巨头之一，跟随确认板块温度</td></tr>
+<tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-逻辑适配">逻辑适配</span></td><td class="cd2">001309</td><td>德明利</td><td>属存储芯片（886042 在册）——与封测同属半导体但业务不同环节，只作同链观察不混入封测主逻辑</td></tr>
+</table>
+<div class="sec-note">贴合分层示范：德明利与封测同链不同业务——若标题写「端侧 AI」却推它就是羊头狗肉；本板块主题=封测，存储只标「逻辑适配」降权处理。</div>
+</div>
 </div>
 <div class="card">
-<h3>D · AI 硬件排除维持（解除 2/4）＋防御禁入主推</h3>
+<h3 class="sec-hd" data-sec="3" role="button" title="点击查看板块成员梯队">C · 消费零售（百货/旅游零售进景气榜 · 只观察） <span class="sec-badge">成员 3 ▾</span></h3>
+<div class="kv"><b>队伍排布</b><span class="v">上海九百 3 板一字（11.00·买不到）；百货零售/旅游零售进景气 up 榜；医疗美容 5 日 +7.38 全场第 1（持仓新产业属这条线）</span><b>定位</b><span class="v">防御属性的消费线在情绪修复日跟涨——若 1026 机器人链歇脚，消费是接棒候选之一；但一字板高度标没有参与价值</span><b>怎么判定对错</b><span class="v">上海九百开板=消费线出现分歧；景气榜连续第 2 天在榜+零售涨停 ≥5 家=支线升级</span><b>风险与反例</b><span class="v">消费线没有量能支撑时多为轮动一日游（1021 通信链前车之鉴）；只给观察位不给买入区</span></div>
+</div>
+<div class="sec-modal" id="sec-modal-3" hidden>
+<div class="sec-panel">
+<div class="sec-hd2">C · 消费零售（百货/旅游零售进景气榜 · 只观察）<button type="button" class="sec-close" data-sec-close="3" aria-label="关闭">✕</button></div>
+<table class="sec-tbl">
+<colgroup><col style="width:9%"><col style="width:11%"><col style="width:11%"><col style="width:14%"><col style="width:55%"></colgroup>
+<tr><th>梯队</th><th>贴合</th><th>代码</th><th>名称</th><th>一句话逻辑</th></tr>
+<tr><td><span class="role r-龙一">龙一</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">600838</td><td>上海九百</td><td>百货零售 3 板一字（F52 零售业）——标杆禁碰，开板=消费线分歧信号</td></tr>
+<tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-逻辑适配">逻辑适配</span></td><td class="cd2">300832</td><td>新产业</td><td>医疗美容景气第 1（5 日 +7.38）的上游 IVD——持仓兑现优先（58.50）</td></tr>
+<tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-资金驱动">资金驱动</span></td><td class="cd2">001216</td><td>华瓷股份</td><td>陶瓷制造业（C30）——与零售无业务关系，纯情绪+资金票；本板块唯一资金驱动配额</td></tr>
+</table>
+<div class="sec-note">行业归属核验（stock_industry 表）：上海九百=F52 零售业（贴合）/华瓷=C30 陶瓷制造业——涨停理由是消费电子+海外产能，与零售无业务关系，纯情绪+资金票，故标「资金驱动」且每板块限 1 只，防羊头狗肉。</div>
+</div>
+</div>
+<div class="card">
+<h3 class="sec-hd" data-sec="4" role="button" title="点击查看板块成员梯队">D · AI 硬件排除维持（解除 2/4）＋防御禁入主推 <span class="sec-badge">成员 4 ▾</span></h3>
 <div class="kv"><b>排除依据更新</b><span class="v">昨天定的 4 项解除条件现在完成 <b class="up">2 项</b>：光模块 3 家齐红 ✓+费半转正 ✓；还差中际站回 631.62 ✗ 新易盛站回 283.86 ✗</span><b>解除路径</b><span class="v">两项均线条件后续达成+已达成两项维持=解除——<b class="cy">禁买生效期间，持仓的协创数据也按「只卖不买」处理</b></span><b>防御禁入实证</b><span class="v"><b class="dn">工行昨天 -3.14%/农行 -2.84%</b>——昨天报告「防御是唯一有资金的方向」当天被打脸（大银行创新高是成长股崩塌的被动结果；判断它「最安全」的时点=情绪最恐慌的时点=行情末端）；防御=降仓位，不是买银行</span><b>风险与反例</b><span class="v">若 1026 费半续涨 &gt;2% 且光模块集体站回 5 日线，解除后资金或从机器人链分流——两条线跷跷板，是 A 段的对手盘</span></div>
+</div>
+<div class="sec-modal" id="sec-modal-4" hidden>
+<div class="sec-panel">
+<div class="sec-hd2">D · AI 硬件排除维持（解除 2/4）＋防御禁入主推<button type="button" class="sec-close" data-sec-close="4" aria-label="关闭">✕</button></div>
+<table class="sec-tbl">
+<colgroup><col style="width:9%"><col style="width:11%"><col style="width:11%"><col style="width:14%"><col style="width:55%"></colgroup>
+<tr><th>梯队</th><th>贴合</th><th>代码</th><th>名称</th><th>一句话逻辑</th></tr>
+<tr><td><span class="role r-龙一">龙一</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">300308</td><td>中际旭创</td><td>CPO 光模块龙头（在册）——解除条件锚：站回 631.62（5 日线）</td></tr>
+<tr><td><span class="role r-龙二">龙二</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">300502</td><td>新易盛</td><td>CPO（在册）——解除条件锚：站回 283.86</td></tr>
+<tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">300394</td><td>天孚通信</td><td>光器件（CPO 在册）+1.93%——曾否认 CPO 提产传闻=叙事待重建</td></tr>
+<tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">002463</td><td>沪电股份</td><td>PCB（885959 在册）——PCB 线温度计</td></tr>
+</table>
+<div class="sec-note">本板块=排除栏：成员表只用于观察解除条件（中际/新易盛两项均线），禁买维持。4 只全部概念核验在册（CPO 886033/PCB 885959）。</div>
+</div>
 </div>
 
 <!-- ⑥C2 市值档位 -->
@@ -626,6 +700,33 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
     var el = document.getElementById(a.getAttribute('href').slice(1));
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     closeToc();
+  });
+})();
+
+/* 板块成员弹层（⑥ 板块策略 · 点击板块标题） */
+(function () {
+  function openSec(n) {
+    var m = document.getElementById('sec-modal-' + n);
+    if (m) { m.hidden = false; document.body.style.overflow = 'hidden'; }
+  }
+  function closeSec(n) {
+    var m = document.getElementById('sec-modal-' + n);
+    if (m) { m.hidden = true; document.body.style.overflow = ''; }
+  }
+  document.querySelectorAll('.sec-hd[data-sec]').forEach(function (h) {
+    h.addEventListener('click', function () { openSec(h.getAttribute('data-sec')); });
+  });
+  document.querySelectorAll('[data-sec-close]').forEach(function (b) {
+    b.addEventListener('click', function () { closeSec(b.getAttribute('data-sec-close')); });
+  });
+  document.querySelectorAll('.sec-modal').forEach(function (m) {
+    m.addEventListener('click', function (e) { if (e.target === m) { m.hidden = true; document.body.style.overflow = ''; } });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e && e.key === 'Escape') {
+      document.querySelectorAll('.sec-modal:not([hidden])').forEach(function (m) { m.hidden = true; });
+      document.body.style.overflow = '';
+    }
   });
 })();
 </script>
