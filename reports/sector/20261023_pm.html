@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>景气排查 · 1023（深 V 修复日）</title>
+<style>
+:root{
+  --paper:#F3EFE4; --ink:#141414; --red:#E23A2E; --blue:#1D4DB4; --yellow:#F5C400;
+  --gray:#6E6A60; --hair:rgba(20,20,20,.16); --green:#1F8A4C;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#141414}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.52}
+.wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+@media(max-width:486px){.wrap{border-left:0;border-right:0}}
+.hero{background:var(--ink);color:var(--paper);padding:20px 18px 20px;border-bottom:3px solid var(--ink)}
+.hero-top{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.22em;font-weight:700;color:#BDB8AC}
+.hero-shapes{display:flex;align-items:flex-end;gap:10px;margin:16px 0 12px}
+.sh-circle{width:42px;height:42px;border-radius:50%;background:var(--red)}
+.sh-square{width:36px;height:36px;background:var(--blue)}
+.sh-tri{width:0;height:0;border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:36px solid var(--yellow)}
+.hero h1{font-size:34px;font-weight:900;letter-spacing:3px;line-height:1.12;margin:2px 0 8px}
+.hero-sub{font-size:12px;color:#BDB8AC;letter-spacing:.06em}
+.dist{display:flex;height:10px;margin:14px 0 0;gap:4px}
+.dist i{display:block;height:100%}
+.d1{flex:2;background:var(--red)}.d2{flex:2;background:var(--blue)}.d3{flex:3;background:var(--yellow)}.d4{flex:2;background:#fff}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.lg{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:8px 10px;border:2.5px solid var(--ink);letter-spacing:.03em}
+.lg-red{background:var(--red);color:#fff}
+.lg-blue{background:var(--blue);color:#fff}
+.lg-yel{background:var(--yellow);color:var(--ink)}
+.lg-out{background:#fff;color:var(--ink)}
+.lg small{font-weight:700;opacity:.85;font-size:10.5px}
+.sec-title{display:flex;align-items:center;gap:10px;padding:16px 14px 8px}
+.sec-title .bar{width:26px;height:12px;background:var(--ink)}
+.sec-title h2{font-size:17px;font-weight:900;letter-spacing:.14em}
+.board{padding:0 14px 6px}
+.b-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:2px solid var(--ink);text-decoration:none;color:inherit}
+.b-row:first-of-type{border-top:2px solid var(--ink)}
+.b-num{width:30px;height:30px;flex:0 0 30px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.b-num.red{background:var(--red);color:#fff}.b-num.blue{background:var(--blue);color:#fff}.b-num.yel{background:var(--yellow);color:var(--ink)}.b-num.out{background:#fff;color:var(--ink)}
+.b-main{flex:1;min-width:0}
+.b-name{font-size:14.5px;font-weight:800}
+.b-lead{display:block;font-size:11.5px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 7px;border:2px solid var(--ink)}
+.b-chip.red{background:var(--red);color:#fff}.b-chip.blue{background:var(--blue);color:#fff}.b-chip.yel{background:var(--yellow);color:var(--ink)}.b-chip.out{background:#fff;color:var(--ink)}
+.cards{padding:14px 14px 6px}
+.card{border:3px solid var(--ink);background:var(--paper);margin-bottom:18px;box-shadow:5px 5px 0 var(--ink);scroll-margin-top:10px}
+.c-head{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:3px solid var(--ink);background:#fff}
+.c-num{width:44px;height:44px;flex:0 0 44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+.c-num.red{background:var(--red);color:#fff}.c-num.blue{background:var(--blue);color:#fff}.c-num.yel{background:var(--yellow);color:var(--ink)}.c-num.out{background:var(--paper);color:var(--ink)}
+.c-title{flex:1;min-width:0}
+.c-title h3{font-size:18px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.c-title .st{font-size:10.5px;color:var(--gray);margin-top:2px;letter-spacing:.04em}
+.c-verdict{flex:0 0 auto;font-size:11.5px;font-weight:900;padding:6px 8px;border:2.5px solid var(--ink);letter-spacing:.05em}
+.c-verdict.red{background:var(--red);color:#fff}.c-verdict.blue{background:var(--blue);color:#fff}.c-verdict.yel{background:var(--yellow);color:var(--ink)}.c-verdict.out{background:#fff;color:var(--ink)}
+.c-line{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--hair)}
+.c-line b{font-weight:800}
+.t{padding:10px 12px;border-bottom:1px solid var(--hair)}
+.t:last-of-type{border-bottom:0}
+.t-main{display:flex;align-items:baseline;gap:7px}
+.t-name{font-size:15.5px;font-weight:900}
+.t-code{font-size:10.5px;color:var(--gray);letter-spacing:.06em}
+.t-tier{margin-left:auto;font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);flex:0 0 auto}
+.t-tier.red{background:var(--red);color:#fff}
+.t-tier.blue{background:var(--blue);color:#fff}
+.t-tier.yel{background:var(--yellow);color:var(--ink)}
+.t-tier.watch{background:transparent;color:var(--ink)}
+.t-act{font-size:12.5px;margin-top:3px;font-weight:700}
+.t-risk{font-weight:500;color:var(--gray)}
+.c-dur{padding:7px 12px;font-size:11.5px;font-weight:800;border-bottom:1px solid var(--hair);background:rgba(245,196,0,.16)}
+.c-foot{background:var(--ink);color:#EDE9DE;padding:10px 12px;font-size:11.5px}
+.c-foot .row{display:flex;gap:6px}
+.c-foot .row+.row{margin-top:5px}
+.c-foot .k{flex:0 0 30px;font-weight:900;letter-spacing:.06em}
+.c-foot .k.g{color:var(--yellow)}
+.c-foot .k.b{color:#FF9A8F}
+.c-foot .v{flex:1}
+.c-foot .v li{list-style:none}
+.c-foot .v li+li{margin-top:2px}
+.c-foot .v li::before{content:"· ";color:#8F8A7E}
+.mood{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 14px 0}
+.mood .mi{border:2.5px solid var(--ink);padding:8px 10px;font-size:12px;font-weight:800;background:#fff}
+.mood .mi small{display:block;font-weight:700;font-size:10.5px;color:var(--gray);margin-top:2px}
+/* 前十板块景气榜（V3.0h）——热度分+趋势四态+持续期一行一块 */
+.top10{margin:10px 14px 0;border:3px solid var(--ink);background:#fff;box-shadow:5px 5px 0 var(--ink)}
+.top10 .t10-cap{padding:7px 10px;font-size:10px;font-weight:700;color:var(--gray);border-bottom:2px solid var(--ink);background:var(--paper);letter-spacing:.04em}
+.top10 .t10-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--hair);font-size:12px}
+.top10 .t10-row:last-child{border-bottom:0}
+.top10 .t10-rk{flex:0 0 18px;font-weight:900;color:var(--gray);font-size:11px}
+.top10 .t10-name{flex:1;min-width:0;font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top10 .t10-heat{flex:0 0 34px;text-align:center;font-weight:900;font-size:12px;border:2px solid var(--ink);padding:1px 0;color:var(--ink)}
+.top10 .t10-trend{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);white-space:nowrap}
+.top10 .t10-trend.up{background:var(--red);color:#fff;border-color:var(--red)}
+.top10 .t10-trend.strong{background:var(--yellow);color:var(--ink);border-color:var(--ink)}
+.top10 .t10-trend.down{background:var(--green);color:#fff;border-color:var(--green)}
+.top10 .t10-trend.steady{background:#fff;color:var(--gray)}
+.top10 .t10-dur{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#B8860B;white-space:nowrap}
+.exp{border:3px solid var(--ink);background:#fff;margin:0 14px 18px;box-shadow:5px 5px 0 var(--ink)}
+.exp .ex-h{padding:9px 12px;border-bottom:2px solid var(--ink);font-size:12px;font-weight:900;letter-spacing:.08em;background:var(--paper)}
+.exp .ex-r{display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--hair);font-size:11.5px}
+.exp .ex-r:last-child{border-bottom:0}
+.exp .ex-n{flex:0 0 52px;font-weight:900}
+.exp .ex-q{flex:1;color:#3E3B34}
+.exp .ex-q em{font-style:normal;font-weight:800}
+.foot{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.foot .fh{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.foot .fh i{display:block;width:18px;height:10px;background:var(--blue)}
+.foot p{font-size:11px;color:#3E3B34;line-height:1.75}
+.foot p+p{margin-top:6px}
+.foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
+/* 长文段落（结论/预案/清单/风险）——V3.0g 新增，承接 conclusion/plan/consider/avoid/risks */
+.prose{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.prose .ph{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.prose .ph i{display:block;width:18px;height:10px;background:var(--red)}
+.prose p{font-size:12px;color:#2B2924;line-height:1.78}
+.prose p+p{margin-top:7px}
+.prose .pt{font-weight:900;font-size:12.5px;display:block;margin-bottom:3px}
+.prose ol,.prose ul{margin:0;padding-left:18px}
+.prose li{font-size:12px;line-height:1.72;color:#2B2924;margin:3px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 14px 0}
+.two .box{border:3px solid var(--ink);background:#fff;padding:10px 10px 12px}
+.two .box.b2{border-color:var(--blue)}
+.two .bh{font-weight:900;font-size:12px;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid var(--ink)}
+.two .box.b2 .bh{border-bottom-color:var(--blue);color:var(--blue)}
+.two li{font-size:11.5px;line-height:1.6;margin:4px 0;color:#2B2924}
+.riskbox{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px}
+.riskbox .rl{display:flex;gap:8px;font-size:11.5px;line-height:1.65;padding:5px 0;border-bottom:1px dashed var(--hair)}
+.riskbox .rl:last-child{border-bottom:0}
+.riskbox .lv{flex:0 0 30px;font-weight:900}
+.riskbox .lv.h{color:var(--red)}.riskbox .lv.m{color:#B8860B}
+b.up{color:var(--red);font-weight:800}
+b.dn{color:var(--green);font-weight:800}
+b.amt{font-weight:800}
+.endshapes .c{width:20px;height:20px;border-radius:50%;background:var(--red)}
+.endshapes .s{width:16px;height:16px;background:var(--blue)}
+.endshapes .t{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:17px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top"><span>SECTOR SCAN · JINGQI</span><span>2026-10-23 FRI</span></div>
+    <div class="hero-shapes"><span class="sh-circle"></span><span class="sh-square"></span><span class="sh-tri"></span></div>
+    <h1>up 5 条全是超跌补涨 · 唯一双全是数字芯片设计</h1>
+    <div class="hero-sub">全市场扫描（up 5 / strong 35 / down 8 / steady 2 · 1024 周六补跑 1023 收盘口径） · 数据基准 10-23 收盘 · 条件触发式 · T+1 结算口径</div>
+    <div class="dist"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></div>
+  </header>
+
+  <div class="legend">
+    <span class="lg lg-red">桶① 可入主推 <small>×1</small></span>
+    <span class="lg lg-blue">桶② 稳健低吸 <small>×9</small></span>
+    <span class="lg lg-yel">桶③ 谨慎博弈 <small>×8</small></span>
+    <span class="lg lg-out">桶④ 出列 <small>×3</small></span>
+  </div>
+
+  <div class="mood">
+    <span class="mi">涨停·跌停 82 / 7<small>33/55 → 82/7·涨跌停比 0.6→11.7</small></span>
+    <span class="mi">晋级率 36.4%<small>12/33·重返冰点线上（昨 25.0%）</small></span>
+    <span class="mi">连板高度 6 板 2 家<small>大业 0.95 亿 / 海洋王 0.03 亿·封单衰减 95.6%</small></span>
+    <span class="mi">量能 1.9563 万亿<small>10 月最大·放量 +4276 亿（+28%）·放量上涨</small></span>
+  </div>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>前十板块景气榜</h2></div>
+  <div class="top10">
+    <div class="t10-cap">近10日板块景气排行 · 今日热度分 0-10（0.6×当日涨幅+0.4×五日动量·量价口径非基本面）· 趋势四态 · ⏳持续期预估（宁短勿长）</div>
+    <div class="t10-row"><span class="t10-rk">1</span><span class="t10-name">LED</span><span class="t10-heat" style="background:var(--red);color:#fff">9.1</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳1-3日</span></div>
+    <div class="t10-row"><span class="t10-rk">2</span><span class="t10-name">百货零售</span><span class="t10-heat" style="background:rgba(226,58,46,.30)">7.5</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳1-2日</span></div>
+    <div class="t10-row"><span class="t10-rk">3</span><span class="t10-name">旅游零售</span><span class="t10-heat" style="background:rgba(226,58,46,.30)">7.1</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳1-2日</span></div>
+    <div class="t10-row"><span class="t10-rk">4</span><span class="t10-name">数字芯片设计</span><span class="t10-heat" style="background:var(--red);color:#fff">9.9</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳1-1日</span></div>
+    <div class="t10-row"><span class="t10-rk">5</span><span class="t10-name">光伏加工设备</span><span class="t10-heat" style="background:var(--red);color:#fff">8.4</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳1-2日</span></div>
+    <div class="t10-row"><span class="t10-rk">6</span><span class="t10-name">数字媒体</span><span class="t10-heat" style="background:var(--red);color:#fff">9.5</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">7</span><span class="t10-name">调味发酵品</span><span class="t10-heat" style="background:rgba(226,58,46,.30)">7.5</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">8</span><span class="t10-name">其他黑色家电</span><span class="t10-heat" style="background:var(--red);color:#fff">9.7</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">9</span><span class="t10-name">印刷</span><span class="t10-heat" style="background:var(--red);color:#fff">8.6</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">10</span><span class="t10-name">垂直应用软件</span><span class="t10-heat" style="background:var(--red);color:#fff">9.7</span><span class="t10-trend strong">🔥 高位</span></div>
+  </div>
+
+  <div class="sec-title"><span class="bar"></span><h2>结论总览</h2></div>
+  <nav class="board">
+    <a class="b-row" href="#s1"><span class="b-num yel">01</span><span class="b-main"><span class="b-name">LED · 热度 9.1</span><br><span class="b-lead">利亚德 · 20cm 涨停 42.2 亿（Micro LED+物理 AI 双主题）</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s2"><span class="b-num blue">02</span><span class="b-main"><span class="b-name">百货零售 · 热度 7.5</span><br><span class="b-lead">中百集团 · 5.7 亿 +4.20%</span></span><span class="b-chip blue">稳健低吸</span></a>
+    <a class="b-row" href="#s3"><span class="b-num blue">03</span><span class="b-main"><span class="b-name">旅游零售 · 热度 7.1</span><br><span class="b-lead">中国中免 · 10.8 亿 +2.23%</span></span><span class="b-chip blue">稳健低吸</span></a>
+    <a class="b-row" href="#s4"><span class="b-num red">04</span><span class="b-main"><span class="b-name">数字芯片 · 连续 3 日增强</span><br><span class="b-lead">兆易创新 · 129.1 亿 +5.51%</span></span><span class="b-chip red">可入主推</span></a>
+    <a class="b-row" href="#s5"><span class="b-num blue">05</span><span class="b-main"><span class="b-name">光伏设备 · 热度 8.4</span><br><span class="b-lead">迈为股份 · 9.8 亿 +4.05%</span></span><span class="b-chip blue">稳健低吸</span></a>
+  </nav>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>逐板块四桶</h2></div>
+  <div class="cards">
+    <article class="card" id="s1">
+      <div class="c-head"><div class="c-num yel">01</div><div class="c-title"><h3>LED · 热度 9.1</h3><div class="st">头牌过热本业温和）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 2-4 个交易日</b>（至 10-27~10-29 前后 · 反例=海洋王断板引发链内踩踏、或利亚德破 6.10（昨收））</div>
+      <div class="t"><div class="t-main"><span class="t-name">利亚德</span><span class="t-tier yel">桶③</span></div><div class="t-act">20cm 涨停 42.2 亿（Micro LED+物理 AI 双主题） <span class="t-risk">｜近 5 日 +62.7% 过热 · 禁追 · 持仓者兑现口径=破 6.10（昨收）</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">三安光电</span><span class="t-tier blue">桶②</span></div><div class="t-act">8.3 亿 +2.43% <span class="t-risk">｜站 5 日线 9.93 · LED 本业大票超跌（近 20 日 -21.3%） · 回踩 9.80-9.95 · 止损 9.43</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">木林森</span><span class="t-tier blue">桶②</span></div><div class="t-act">6.3 亿 +1.87% <span class="t-risk">｜站 5 日线 10.56 · 回踩 10.56-10.70 · 止损 10.05</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">海洋王</span><span class="t-tier yel">桶③</span></div><div class="t-act">6 板 +9.99% 17.3 亿 <span class="t-risk">｜封单 0.03 亿=衰减 95.6%+1022 监管函 · 禁追 · 只做断板后反核</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">星光股份</span><span class="t-tier out">桶④</span></div><div class="t-act">-7.78% 断板 <span class="t-risk">｜出列不抄底</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 5 票：桶①0/桶②2/桶③2/桶④1 —— 41 只成分 34 红=广度全榜第一，但涨幅头牌全是机器人链映射（利亚德 20cm 42 亿/海洋王 6 板封单衰减 95.6%），LED 本业（三安/木林森）温和补涨</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s2">
+      <div class="c-head"><div class="c-num blue">02</div><div class="c-title"><h3>百货零售 · 热度 7.5</h3><div class="st">爬升减速）</div></div><div class="c-verdict blue">稳健低吸</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-3 个交易日</b>（至 10-26~10-28 前后 · 反例=双涨停次日双双断板=一日游确认）</div>
+      <div class="t"><div class="t-main"><span class="t-name">中百集团</span><span class="t-tier blue">桶②</span></div><div class="t-act">5.7 亿 +4.20% <span class="t-risk">｜站 5 日线 5.84 · 低位（近 20 日 -6.9%） · 回踩 5.84-5.96 · 止损 5.54</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">汇嘉时代</span><span class="t-tier blue">桶②</span></div><div class="t-act">4.3 亿 +5.11% <span class="t-risk">｜5/10/20 日线全上方（7.94/7.85/7.65） · 回踩 7.94-8.10 · 止损 7.65</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">新华百货</span><span class="t-tier yel">桶③</span></div><div class="t-act">涨停 +9.98% 6.6 亿 <span class="t-risk">｜近 20 日 +25.5% 高位 · 禁追</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">百大集团</span><span class="t-tier yel">桶③</span></div><div class="t-act">涨停 +9.96% 4.7 亿 <span class="t-risk">｜低位首板 · 禁追 · 回踩 10.53（5 日线）再议</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">东百集团</span><span class="t-tier out">桶④</span></div><div class="t-act">用户持仓 <span class="t-risk">｜-0.12% 破 5 日线 8.67 · 弱于板块 · 守 7.93（当日低）</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 5 票：桶①0/桶②2/桶③2/桶④1 —— 41 只成分 37 红+双涨停（新华百货/百大集团），但爬升动能为负=修复第二日动能存疑；资金为游资级（单票 3-6 亿）</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s3">
+      <div class="c-head"><div class="c-num blue">03</div><div class="c-title"><h3>旅游零售 · 热度 7.1</h3><div class="st">全库最窄板块）</div></div><div class="c-verdict blue">稳健低吸</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-3 个交易日</b>（至 10-26~10-28 前后 · 反例=中免破 49.31（5 日线）即失速）</div>
+      <div class="t"><div class="t-main"><span class="t-name">中国中免</span><span class="t-tier blue">桶②</span></div><div class="t-act">10.8 亿 +2.23% <span class="t-risk">｜站 5 日线 49.31 · 回踩 49.31-49.80 · 止损 48.27 · 站回 50.48（20 日线）转右侧</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">珠免集团</span><span class="t-tier yel">桶③</span></div><div class="t-act">1.1 亿 +1.89% <span class="t-risk">｜4.32 元小票 · 5 日线下方 · 仅观察</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 2 票：桶①0/桶②1/桶③1/桶④0 —— 成分仅 2 只=中免个体修复而非板块行情；中免距 20 日线 50.48 仅 0.9%，站回即右侧确认</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s4">
+      <div class="c-head"><div class="c-num red">04</div><div class="c-title"><h3>数字芯片 · 连续 3 日增强</h3><div class="st">连续 3 日增强）</div></div><div class="c-verdict red">可入主推</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 2-4 个交易日</b>（至 10-27~10-29 前后 · 反例=长鑫破 41.07（5 日线）或量能缩 30% 以上）</div>
+      <div class="t"><div class="t-main"><span class="t-name">兆易创新</span><span class="t-tier red">桶①</span></div><div class="t-act">129.1 亿 +5.51% <span class="t-risk">｜站 5/10 日线（284.33/289.13） · 存储 NOR+利基 DRAM 涨价直接受益 · 回踩 284-289 · 止损 268.30 · 周期 1-3 日</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">德明利</span><span class="t-tier blue">桶②</span></div><div class="t-act">79.6 亿 +3.22% <span class="t-risk">｜b1022 带 224.35-233.00 未及（当日低 233.07 差 0.07 元） · 回踩 233-236 · 止损 222.00</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">澜起科技</span><span class="t-tier blue">桶②</span></div><div class="t-act">77.6 亿 +2.66%（当日除息） <span class="t-risk">｜站 5 日线 173.64 · 回踩 173.6-175.1 · 止损 166.91</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">长鑫科技</span><span class="t-tier yel">桶③</span></div><div class="t-act">198.0 亿天量 +7.93% <span class="t-risk">｜10/20 日线（43.53/49.30）仍下方=深跌反弹未确认 · 天量分歧禁追</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">寒武纪</span><span class="t-tier yel">桶③</span></div><div class="t-act">125.3 亿 +5.46% <span class="t-risk">｜Q3 +148% 业绩兑现 · 高位巨量禁追</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 5 票：桶①1/桶②2/桶③2/桶④0 —— 57 只成分全红+连续 3 日增强+爬升加速度 7.96 全榜最高=本期唯一「广度+持续」双全；但热度口径已标「末日情绪极值」（长鑫 198 亿天量），只做回踩禁追高</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s5">
+      <div class="c-head"><div class="c-num blue">05</div><div class="c-title"><h3>光伏设备 · 热度 8.4</h3><div class="st">小容量）</div></div><div class="c-verdict blue">稳健低吸</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 2-4 个交易日</b>（至 10-27~10-29 前后 · 反例=迈为破 137.99（5 日线）或板块跌出增强）</div>
+      <div class="t"><div class="t-main"><span class="t-name">迈为股份</span><span class="t-tier blue">桶②</span></div><div class="t-act">9.8 亿 +4.05% <span class="t-risk">｜站 5 日线 137.99 · 10 日线 142.75 下方 · 回踩 137.99 · 止损 124.80（当日振幅 10.8% 止损宽度超规 · 按半仓执行）</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">捷佳伟创</span><span class="t-tier blue">桶②</span></div><div class="t-act">4.3 亿 +2.83% <span class="t-risk">｜5/10 日线密集（50.23/50.33） · 回踩 50.23-50.33 · 止损 47.88（-7.1%）</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">帝尔激光</span><span class="t-tier yel">桶③</span></div><div class="t-act">+3.08% <span class="t-risk">｜10 日线 89.15 下方 · 反弹未确认 · 仅观察</span></div></div>
+      <div class="t"><div class="t-main"><span class="t-name">ST京机</span><span class="t-tier out">桶④</span></div><div class="t-act">ST 硬排除 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 4 票：桶①0/桶②2/桶③1/桶④1 —— 9 只成分 8 红、景气分连续 5 日爬升（2.0→8.4），成分近 20 日 -18%~-29% 深跌=纯超跌修复；板块仅 9 只票容量小</li></ul></div></div>
+    </article>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--ink)"></i>一句话总判</div>
+      <p>创业板深 V <b class="up">+4.16%</b> 收 2684.10（量 <b class=\"amt\">1.9563 万亿</b>=10 月最大·涨停 82/跌停 7·晋级率 36.4% 重返冰点线上）：up 5 条全部为「超跌补涨」性质（LED/百货零售/旅游零售/数字芯片设计/光伏加工设备），与 1022 up 6 仅留存 LED+数字芯片设计 2 条（留存率 33%）；唯一「广度+持续」双全=数字芯片设计（连续 3 日增强+57 只成分全红），唯一的情绪极值警告也在它（长鑫 <b class=\"amt\">198 亿</b>天量·末日情绪极值口径）</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--red)"></i>核心结论与前三板块深度</div>
+      <p>五条增强板块逐条排查（四桶，每板块 ≤5 只）：</p>
+      <p>① LED（热度 9.1·近 5 日均分 6.03·41 只成分 34 红=广度全榜第一）——桶①0/桶②2/桶③2/桶④1</p>
+      <p>实为「机器人+物理 AI 容器」：利亚德 20cm 涨停 <b class=\"amt\">42 亿</b>（Micro LED+物理 AI 双主题）、海洋王 6 板（封单仅 <b class=\"amt\">0.03 亿</b>=衰减 95.6%+1022 监管函）、星光股份 <b class="dn">-7.78%</b> 断板；LED 本业（三安光电 <b class="up">+2.43%</b>/木林森 <b class="up">+1.87%</b>）温和补涨</p>
+      <p>桶②三安光电 600703（回踩 9.80-9.95·止损 9.43）｜木林森 002745（回踩 10.56-10.70·止损 10.05）</p>
+      <p>桶③利亚德（20cm 首板禁追·持仓者破 6.10 兑现）｜海洋王（6 板禁追·断板反核口径）｜桶④星光股份（断板出列）</p>
+      <p>小结=头牌全是机器人链映射票且处高潮位，本业低位才是可做部分</p>
+      <p>② 百货零售（热度 7.5·41 只成分 37 红·爬升减速）——桶①0/桶②2/桶③2/桶④1</p>
+      <p>双涨停（新华百货 <b class="up">+9.98%</b>/百大集团 <b class="up">+9.96%</b>）+政策底（国常会生育友好）+低位消费修复；零售大盘普涨（中百 <b class="up">+4.20%</b>/汇嘉 <b class="up">+5.11%</b>/永辉 <b class="up">+1.03%</b>）</p>
+      <p>桶②中百集团 000759（回踩 5.84-5.96·止损 5.54）｜汇嘉时代 603101（回踩 7.94-8.10·止损 7.65）</p>
+      <p>桶③新华百货（近 20 日 <b class="up">+25.5%</b> 高位·禁追）｜百大集团（首板禁追）｜桶④东百集团（用户持仓·破 5 日线 8.67·守 7.93）</p>
+      <p>小结=游资级资金（单票 3-<b class=\"amt\">6 亿</b>）+爬升动能减速，按低位补涨对待不当主线</p>
+      <p>③ 旅游零售（热度 7.1·成分仅 2 只=全库最窄板块）——桶①0/桶②1/桶③1/桶④0</p>
+      <p>中国中免独走：<b class="up">+2.23%</b> <b class=\"amt\">10.78 亿</b>·站 5 日线 49.31·距 20 日线 50.48 仅差 0.9%（站回=右侧确认）</p>
+      <p>桶②中国中免 601888（回踩 49.31-49.80·止损 48.27）｜桶③珠免集团（小票仅观察）</p>
+      <p>小结=中免个体修复而非板块行情，容量太小续航天然弱</p>
+      <p>④ 数字芯片设计（热度 9.9·连续 3 日增强·57 只成分全红·爬升加速度 7.96 全榜最高）——桶①1/桶②2/桶③2/桶④0</p>
+      <p>深 V 主攻方向实锤：存储涨价（佰维 DRAM/NAND 显著上涨）+业绩（寒武纪 Q3 <b class="up">+148%</b>）双驱；长鑫科技 <b class="up">+7.93%</b> <b class=\"amt\">198 亿</b>天量、兆易 <b class="up">+5.51%</b> <b class=\"amt\">129 亿</b>、寒武纪 <b class="up">+5.46%</b> <b class=\"amt\">125 亿</b></p>
+      <p>桶①兆易创新 603986（回踩 284-289=5 日线至 10 日线·止损 268.30·周期 1-3 日）</p>
+      <p>桶②德明利 001309（回踩 233-236·止损 222.00）｜澜起科技 688008（回踩 173.6-175.1·止损 166.91）</p>
+      <p>桶③长鑫科技（<b class=\"amt\">198 亿</b>天量分歧·10/20 日线仍下方·禁追）｜寒武纪（业绩兑现+高位巨量·禁追）</p>
+      <p>小结=本期唯一「广度+持续」双全，但热度口径已标「末日情绪极值」——只做回踩禁追高</p>
+      <p>⑤ 光伏加工设备（热度 8.4·9 只成分 8 红·连续 5 日爬升 2.0→8.4）——桶①0/桶②2/桶③1/桶④1</p>
+      <p>超跌五连爬（成分近 20 日 <b class="dn">-18%</b>~<b class="dn">-29%</b> 深跌后修复）：迈为 <b class="up">+4.05%</b> <b class=\"amt\">9.77 亿</b>/帝尔 <b class="up">+3.08%</b>/捷佳 <b class="up">+2.83%</b>/晶盛 <b class="up">+2.04%</b></p>
+      <p>桶②迈为股份 300751（回踩 137.99=5 日线·止损 124.80=当日低·振幅 10.8% 止损超规按半仓）｜捷佳伟创 300724（回踩 50.23-50.33·止损 47.88）</p>
+      <p>桶③帝尔激光（10 日线下方·仅观察）｜桶④ST京机（ST 硬排除）</p>
+      <p>小结=起势第 5 日但板块仅 9 只票容量小，跟随超跌修复主线做二线</p>
+      <p>前三板块发酵/兑现判定：LED=发酵（本业 34/41 红扩散）与兑现（头牌高潮位）并存的双层结构——可做本业回踩、禁碰头牌；百货零售=发酵初期但爬升动能为负=偏脆——只低吸；旅游零售=不构成板块发酵（成分 2 只），中免个体修复——回踩口径。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--blue)"></i>操作预案 · 给明日策略日报的输入</div>
+      <p>给下个交易日（1026 周一）策略日报的输入：</p>
+      <p>①增强板块清单（5 条，各带持续期）：LED（约 2-4 日·机器人容器·本业低位可回踩）｜百货零售（约 1-3 日·双涨停+政策底·只低吸）｜旅游零售（约 1-3 日·中免独走·窄板块）｜数字芯片设计（约 2-4 日·存储+业绩双驱·连续 3 日增强·禁追只回踩）｜光伏加工设备（约 2-4 日·超跌五连爬·容量小）</p>
+      <p>②前三板块判定与参与方式：LED=发酵（本业扩散 34/41 红）+兑现（头牌高潮位）双层·回踩再入（三安 9.80-9.95/木林森 10.56-10.70·头牌禁追）；百货零售=发酵初期偏脆（爬升减速）·低吸中百 5.84-5.96/汇嘉 7.94-8.10；旅游零售=中免个体修复·回踩 49.31-49.80·站回 50.48 转右侧</p>
+      <p>③可入票 Top5（代码+带位+止损+周期）：兆易创新 603986（回踩 284-289·止损 268.30·1-3 日）｜德明利 001309（回踩 233-236·止损 222.00·1-3 日）｜中百集团 000759（回踩 5.84-5.96·止损 5.54·1-3 日）｜三安光电 600703（回踩 9.80-9.95·止损 9.43·1-3 日）｜汇嘉时代 603101（回踩 7.94-8.10·止损 7.65·1-3 日）</p>
+      <p>⚠️ 仓位前提：当前股票仓位 98.8% 超限（复盘裁定下周一先降到 60% 以下）——上表全部排在「先降仓」之后。</p>
+  </div>
+
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--yellow)"></span><h2>七专家推演</h2></div>
+  <div class="exp">
+    <div class="ex-h">七专家推演 · KB 原话（前三板块共用）</div>
+    <div class="ex-r"><span class="ex-n">撑伞猫</span><span class="ex-q"><em>机器人=修复载体 · 指数底未确认</em> — 「机器人类似于前面的ai应用，是最有流动性的方向，指数下杀时抗压能力最强，修复时相对主动」（雪球 2026-10-23 14:13）<br>本期 LED 的真主语就是机器人链（利亚德/海洋王=容器票）；「低位已经被做了，二板睿赛二选一隔夜」（14:44）=接力资金只做链内低位二板、不做高位。全部回踩带的生效前提是「后面指数延续修复再考虑，今天我不确定指数这个底稳不稳」（14:17）——创业板若回落破 2650，全部带位作废。</span></div>
+    <div class="ex-r"><span class="ex-n">柴柴</span><span class="ex-q"><em>超跌反弹结构 · 去弱留强</em> — 「看盘面啊，这一轮涨的都是超跌的货。类似7月，超跌的有些翻倍……前一轮下跌表现好的小PCB反而不行，反而开始补跌。去弱留强就行了，不要自己猜测」（雪球 2026-10-23 22:31）<br>本期 5 条增强全部是「超跌的货」（芯片设计/光伏成分近 20 日 -18%~-37%）——反弹第一波未走完但必须去弱留强：留连续 3 日增强的数字芯片设计、去爬升减速的百货零售。指数空间锚=「2850 前基本安全」（22:24）；「做最高位大业，别做低位」（22:33）是打板仓口径，不适用本扫描回踩带。</span></div>
+    <div class="ex-r"><span class="ex-n">冰冰</span><span class="ex-q"><em>波动率死海 · 叙事闭环回顾</em> — 「回顾8-18到10-23，发生了什么。市场（创业板）3749-2494，起于宇树科技ipo，终于宇树科技一周上涨40+%。产业叙事被市场融资涸泽而渔，叠加长期资金提前离开市场，击垮场内存量持仓信心」（雪球 2026-10-23 16:33）<br>「起于宇树终于宇树」=机器人叙事闭环——LED 作为机器人容器的高度完全依赖宇树链续命（宇树 1023 20cm 涨停·6 日 +54%）；「长期资金提前离开」=本轮修复是存量资金行为，全部板块持续期按打折口径给（本期 dur 全部 ≤4 日的原因）。</span></div>
+    <div class="ex-r"><span class="ex-n">惑惑</span><span class="ex-q"><em>AI 泡沫论未变</em> — 「全都是泡沫，只一刹的花火，你所有承诺，全部都太脆弱。ai本是泡沫，如果能够看破，有什么难过。别向我承诺最后一跌了」（雪球 2026-10-23 12:36）<br>对数字芯片设计（AI 硬件映射）构成直接负面——其口径下本轮芯片反弹=泡沫修复而非景气反转，只能按超跌脉冲对待（与持续期 1-4 日一致）；15:17 深 V 后「嘻嘻」=情绪松动但不改空头框架。</span></div>
+    <div class="ex-r"><span class="ex-n">月月</span><span class="ex-q"><em>本场静默 · 不代编</em> — （2026-10-23 全天无帖）<br>静默原因=1023 全天未发言；情绪周期/看 A 买 A 框架本期无增量可引，禁止代编。</span></div>
+    <div class="ex-r"><span class="ex-n">Joshua</span><span class="ex-q"><em>本场静默 · 不代编</em> — （2026-10-23 全天无帖）<br>静默原因=1023 全天未发言；产业链/回撤低吸框架对本期超跌板块的口径待其复帖后引用。</span></div>
+    <div class="ex-r"><span class="ex-n">门捷列夫</span><span class="ex-q"><em>本场静默 · 不代编</em> — （2026-10-23 全天无帖）<br>静默原因=1023 全天未发言；产业进度条框架对存储涨价链的判定待其复帖后引用。</span></div>
+    <div class="ex-r"><span class="ex-n">分歧</span><span class="ex-q">分歧点：柴柴（超跌反弹未完·2850 前安全）与惑惑（AI 本是泡沫·最后一跌）对反弹性质直接对立；撑伞猫条件式乐观（机器人最强但指数底未确认）；冰冰中性偏冷静（叙事闭环=持续期打折）。共识底线=无人否认「超跌修复」在进行中，分歧全在高度与久期；月月/Joshua/门捷列夫三位静默=周六无增量观点。</span></div>
+  </div>
+  <div class="exp">
+    <div class="ex-h">补充引用 · KB 原话（非七专家名单）</div>
+    <div class="ex-r"><span class="ex-n">三石而立orz</span><span class="ex-q"><em>放量上涨确认</em> — 「两市成交了<b class=\"amt\">1.96万亿</b>，久违的成交量放大上涨行情，前几周一直是缩量缩量缩量，突然放量下跌，然后缩量缩量缩量，再一次放量下跌」（雪球 2026-10-23）<br>量能视角：1.9563 万亿=10 月最大且是「放量上涨」而非「放量下跌」——修复真实性的最强单一证据。</span></div>
+    <div class="ex-r"><span class="ex-n">药门小韭菜</span><span class="ex-q"><em>超跌承接情绪样本</em> — 「ABF这种强现实强预期的也能杀那么狠么。等会我接点吧」（雪球 2026-10-23·华正新材）<br>材料端超跌承接的散户情绪样本——与柴柴「涨的都是超跌的货」互证：本轮资金审美=超跌+强现实，正是本期 5 条增强的共同画像。</span></div>
+  </div>
+
+  <div class="sec-title"><span class="bar" style="background:var(--blue)"></span><h2>需要考虑 / 需要避免</h2></div>
+  <div class="two">
+    <div class="box"><div class="bh">需要考虑</div><ul><li>深 V 修复第一日方向分歧极大：历史上「跌停 55 家、次日大涨」仅 3 例其中 2 例次日回吐（复盘日报口径）——全部增强板块判定已降一档，周一竞价溢价是第一校准锚</li><li>5 条增强的热度口径全部标「5 日爬升成熟段·位置偏高扣减」=本质是超跌补涨（柴柴口径），不是产业景气反转——热度分高≠基本面好（调味发酵品 8.4/印刷 8.6 同理）</li><li>数字芯片设计连续 3 日增强+57 只成分全红=本期唯一「广度+持续」双全；但长鑫 <b class=\"amt\">198 亿</b>天量=情绪极值特征，该板块只做回踩</li><li>仓位前提：股票仓位 98.8% 超限（复盘裁定下周一先降到 60% 以下）——四桶全部带位排在「先降仓」之后执行</li><li>1022 增强 6 条今日留存 2 条（33%）——单日增强不构成持续性证据，连续 2 日以上增强才算入池观察（数字芯片设计是唯一）</li><li>强势对照：strong 高位 35 个（其他黑色家电 9.7/垂直应用软件 9.7/数字媒体 9.5 等）=修复扩散面大但已不爬升，追高既无带位也无持续期</li></ul></div>
+    <div class="box b2"><div class="bh">需要避免</div><ul><li>不做高位头牌追价：利亚德（近 5 日 <b class="up">+62.7%</b>·5 日线距现价 <b class="dn">-22.7%</b>）/海洋王（6 板封单衰减 95.6%+监管函）/寒武纪（高位 <b class=\"amt\">125 亿</b>巨量）——高潮位票只给兑现预案不给买入带</li><li>不做长鑫科技天量追价：<b class=\"amt\">198 亿</b>成交=单日爆量分歧（资金续航口径=脆弱），等回踩 5 日线 41.07 再议</li><li>不抄桶④出列票：星光股份（<b class="dn">-7.78%</b> 断板）/ST京机（ST 硬排除）/东百集团破 5 日线（持仓按持仓纪律处理不按板块纪律）</li><li>不追百货涨停票开盘：新华百货/百大集团涨停次日溢价无保障（板块爬升动能为负），只做桶②低吸带</li><li>不把「热度分高」当基本面：景气分=0.6×当日涨幅+0.4×五日动量的量价口径（印刷 8.6/调味发酵品 8.4 均无产业催化）</li><li>不做带外追价：全部带位按「回踩触发」执行，跳空高开超过带顶即放弃（b1022 德明利带未及 0.07 元实证：追价=执行差双倍计）</li></ul></div>
+  </div>
+  <div class="riskbox"><div class="bh" style="font-weight:900;font-size:12px;margin-bottom:6px">风险提示</div>
+    <div class="rl"><span class="lv h">高</span><span>深 V 次日分歧极大（历史 3 样本 2 例回吐）：5 条增强可能周一集体失效（1022→1023 留存率 33% 已实证换手速度）</span></div>
+    <div class="rl"><span class="lv h">高</span><span>情绪极值特征齐备：长鑫 <b class=\"amt\">198 亿</b>天量+利亚德 20cm <b class=\"amt\">42 亿</b>+6 板海洋王封单衰竭 95.6%——高潮兑现随时发生</span></div>
+    <div class="rl"><span class="lv h">高</span><span>仓位 98.8% 超限未降：一切机会排序在「先降仓至 60%」之后，违反=连续第 6 日超限</span></div>
+    <div class="rl"><span class="lv m">中</span><span>银行 <b class="dn">-3.14%</b> 风格切换未确认：若周一银行/防御回流（工行收回 8.40 上方），题材增强板块集体承压</span></div>
+    <div class="rl"><span class="lv m">中</span><span>「跌停 55 家→涨停 82 家」单日跨度 10 月最大：情绪摆动未收敛，1027 前任何板块判定置信度自动降一档</span></div>
+  </div>
+
+
+  <footer class="foot">
+    <div class="fh"><i></i>口径声明</div>
+    <p>① 景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位），<b>非基本面景气</b>；全部价位为<b>条件触发</b>（回踩带/低吸带/右侧确认），非现价指令——条件不成立即放弃，禁止带外追价。</p>
+    <p>② 数据基准 = 20261023 收盘（sector-strength-10d refresh=1）；T+1 结算口径 · daily low 硬核验。</p>
+    <p>③ 四桶分级：可入主推（红）＞稳健低吸（蓝）＞谨慎博弈（黄）＞出列（白）；⏳ 持续期=资金×题材×叙事三合评估，禁超档包装。仅供个人复盘参考，非投资建议。</p>
+    <div class="src">sa20261022-scan · 复盘日报_20261023 · sector-strength-10d（updated 2026-10-24 21:35·1023 收盘口径）· cache.db 1023 收盘行情 · b1022 扫描带位对账 · KB 雪球原话（撑伞猫/柴柴/冰冰/惑惑 10 · 生成 2026-10-24 22:17 · 景气排查标准 UI（V3.0d）+ 前十景气榜（V3.0h）</div>
+  </footer>
+
+  <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
+</div>
+</body>
+</html>
