@@ -111,6 +111,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans G
 .foot p{font-size:11px;color:#3E3B34;line-height:1.75}
 .foot p+p{margin-top:6px}
 .foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.copybar{margin:18px 14px 8px;border:2.5px solid var(--ink);background:#fff;padding:12px 12px 10px}
+.cb-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:13.5px;font-weight:900;letter-spacing:.02em}
+.cb-n{font-size:11.5px;font-weight:800;color:var(--red);letter-spacing:.04em}
+.btn-copy{margin-top:10px;width:100%;border:2.5px solid var(--ink);background:var(--yellow);color:var(--ink);font-size:14px;font-weight:900;letter-spacing:.06em;padding:11px 12px;cursor:pointer;font-family:inherit;box-shadow:4px 4px 0 var(--ink);transition:transform .06s,box-shadow .06s}
+.btn-copy:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cb-codes{margin-top:10px;padding:9px 10px;border:1.5px dashed var(--hair);font-family:Consolas,Menlo,monospace;font-size:11.5px;line-height:1.75;color:var(--gray);word-break:normal;overflow-wrap:anywhere;max-height:96px;overflow:auto;user-select:all;-webkit-user-select:all}
+.cb-tip{margin-top:8px;font-size:11px;color:var(--gray);letter-spacing:.02em}
+@media(max-width:486px){.copybar{margin:14px 10px 8px}}
+
 .endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
 /* 长文段落（结论/预案/清单/风险）——V3.0g 新增，承接 conclusion/plan/consider/avoid/risks */
 .prose{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
@@ -192,41 +201,41 @@ b.amt{font-weight:800}
     <article class="card" id="s1">
       <div class="c-head"><div class="c-num yel">01</div><div class="c-title"><h3>百货零售 · 热度 9.5</h3><div class="st">最脆）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
       <div class="c-dur">⏳ 预计还可延续 <b>约 1-1 个交易日</b>（明天不接力即退潮 · 反例=上海九百开板 或 板块红盘率跌破 50%）</div>
-      <div class="t"><div class="t-main"><span class="t-name">徐家汇</span><span class="t-tier blue">桶②</span></div><div class="t-act">2.4 亿 +3.13% <span class="t-risk">｜收在全天最高 · 回踩 7.02-7.20 · 止损 7.02（持仓 1,400 股）</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">东百集团</span><span class="t-tier blue">桶②</span></div><div class="t-act">11.3 亿 +7.77% <span class="t-risk">｜回踩 8.70-8.80（5 日线） · 止损 8.37</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">大商股份</span><span class="t-tier blue">桶②</span></div><div class="t-act">14.61-14.80 回踩带 <span class="t-risk">｜止损 14.20 · 成交仅 1.0 亿</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">百大集团</span><span class="t-tier yel">桶③</span></div><div class="t-act">6.4 亿 +3.89% <span class="t-risk">｜位置近前高 · 只做兑现预案不给买入带</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">上海九百</span><span class="t-tier out">桶④</span></div><div class="t-act">4 板涨停封 1.36 亿/峰 2.21 亿（衰减 38%） <span class="t-risk">｜禁碰 · 只作板块温度计</span></div></div>
+      <div class="t" data-code="002561"><div class="t-main"><span class="t-name">徐家汇</span><span class="t-tier blue">桶②</span></div><div class="t-act">2.4 亿 +3.13% <span class="t-risk">｜收在全天最高 · 回踩 7.02-7.20 · 止损 7.02（持仓 1,400 股）</span></div></div>
+      <div class="t" data-code="600693"><div class="t-main"><span class="t-name">东百集团</span><span class="t-tier blue">桶②</span></div><div class="t-act">11.3 亿 +7.77% <span class="t-risk">｜回踩 8.70-8.80（5 日线） · 止损 8.37</span></div></div>
+      <div class="t" data-code="600694"><div class="t-main"><span class="t-name">大商股份</span><span class="t-tier blue">桶②</span></div><div class="t-act">14.61-14.80 回踩带 <span class="t-risk">｜止损 14.20 · 成交仅 1.0 亿</span></div></div>
+      <div class="t" data-code="600865"><div class="t-main"><span class="t-name">百大集团</span><span class="t-tier yel">桶③</span></div><div class="t-act">6.4 亿 +3.89% <span class="t-risk">｜位置近前高 · 只做兑现预案不给买入带</span></div></div>
+      <div class="t" data-code="600838"><div class="t-main"><span class="t-name">上海九百</span><span class="t-tier out">桶④</span></div><div class="t-act">4 板涨停封 1.36 亿/峰 2.21 亿（衰减 38%） <span class="t-risk">｜禁碰 · 只作板块温度计</span></div></div>
       <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 5 票：桶①0/桶②3/桶③1/桶④1 —— 41 只成分 29 红=71%，上海九百 4 板涨停（封 1.36 亿/峰 2.21 亿·衰减 38%）、东百 +7.77%（11.3 亿）领涨；但 dur 只有 1 日、末日情绪极值口径</li></ul></div></div>
     </article>
 
     <article class="card" id="s2">
       <div class="c-head"><div class="c-num yel">02</div><div class="c-title"><h3>保险 · 热度 8.62</h3><div class="st">5/5 全红）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
       <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（历史上银行单日涨 &gt;3% 次日继续跑赢仅 41% · 反例=银行回落 ≥1% 且创业板反弹）</div>
-      <div class="t"><div class="t-main"><span class="t-name">中国太保</span><span class="t-tier red">桶①</span></div><div class="t-act">13.5 亿 +3.50% <span class="t-risk">｜收在全天最高 · 回踩 28.65-29.00 · 止损 28.65</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">中国平安</span><span class="t-tier blue">桶②</span></div><div class="t-act">36.7 亿 +1.66% <span class="t-risk">｜回踩 51.20-51.54 · 止损 51.20</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">中国人寿</span><span class="t-tier blue">桶②</span></div><div class="t-act">8.5 亿 +1.74% <span class="t-risk">｜回踩 34.28-34.50 · 止损 34.28</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">新华保险</span><span class="t-tier out">桶④</span></div><div class="t-act">+0.86% 弱于板块 <span class="t-risk">｜10 日线 52.02 未站上</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">中国人保</span><span class="t-tier out">桶④</span></div><div class="t-act">+0.82% <span class="t-risk">｜10 日线 7.45 仍在下方</span></div></div>
+      <div class="t" data-code="601601"><div class="t-main"><span class="t-name">中国太保</span><span class="t-tier red">桶①</span></div><div class="t-act">13.5 亿 +3.50% <span class="t-risk">｜收在全天最高 · 回踩 28.65-29.00 · 止损 28.65</span></div></div>
+      <div class="t" data-code="601318"><div class="t-main"><span class="t-name">中国平安</span><span class="t-tier blue">桶②</span></div><div class="t-act">36.7 亿 +1.66% <span class="t-risk">｜回踩 51.20-51.54 · 止损 51.20</span></div></div>
+      <div class="t" data-code="601628"><div class="t-main"><span class="t-name">中国人寿</span><span class="t-tier blue">桶②</span></div><div class="t-act">8.5 亿 +1.74% <span class="t-risk">｜回踩 34.28-34.50 · 止损 34.28</span></div></div>
+      <div class="t" data-code="601336"><div class="t-main"><span class="t-name">新华保险</span><span class="t-tier out">桶④</span></div><div class="t-act">+0.86% 弱于板块 <span class="t-risk">｜10 日线 52.02 未站上</span></div></div>
+      <div class="t" data-code="601319"><div class="t-main"><span class="t-name">中国人保</span><span class="t-tier out">桶④</span></div><div class="t-act">+0.82% <span class="t-risk">｜10 日线 7.45 仍在下方</span></div></div>
       <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 5 票：桶①1/桶②2/桶④2 —— 5 只成分全部红盘，太保 +3.50%（13.5 亿）、平安 +1.66%（36.7 亿）；与银行（98% 红盘）同步，是今日最干净的一条</li></ul></div></div>
     </article>
 
     <article class="card" id="s3">
       <div class="c-head"><div class="c-num yel">03</div><div class="c-title"><h3>聚氨酯 · 热度 8.09</h3><div class="st">与油气同源）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
       <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（反例=油价回落或万华跌破 66.49）</div>
-      <div class="t"><div class="t-main"><span class="t-name">万华化学</span><span class="t-tier blue">桶②</span></div><div class="t-act">12.4 亿 +1.12% <span class="t-risk">｜Q3 净利 +84.38% · 回踩 66.49-66.76 · 止损 66.49</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">汇得科技</span><span class="t-tier blue">桶②</span></div><div class="t-act">0.5 亿 +3.81% <span class="t-risk">｜回踩 17.83-18.20 · 止损 17.83</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">美瑞新材</span><span class="t-tier out">桶④</span></div><div class="t-act">0.3 亿 +1.57% <span class="t-risk">｜容量太小</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">美思德</span><span class="t-tier out">桶④</span></div><div class="t-act">0.2 亿 +0.67% <span class="t-risk">｜容量太小</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">红宝丽</span><span class="t-tier out">桶④</span></div><div class="t-act">0.9 亿 -0.64% <span class="t-risk">｜已转跌</span></div></div>
+      <div class="t" data-code="600309"><div class="t-main"><span class="t-name">万华化学</span><span class="t-tier blue">桶②</span></div><div class="t-act">12.4 亿 +1.12% <span class="t-risk">｜Q3 净利 +84.38% · 回踩 66.49-66.76 · 止损 66.49</span></div></div>
+      <div class="t" data-code="603192"><div class="t-main"><span class="t-name">汇得科技</span><span class="t-tier blue">桶②</span></div><div class="t-act">0.5 亿 +3.81% <span class="t-risk">｜回踩 17.83-18.20 · 止损 17.83</span></div></div>
+      <div class="t" data-code="300848"><div class="t-main"><span class="t-name">美瑞新材</span><span class="t-tier out">桶④</span></div><div class="t-act">0.3 亿 +1.57% <span class="t-risk">｜容量太小</span></div></div>
+      <div class="t" data-code="603041"><div class="t-main"><span class="t-name">美思德</span><span class="t-tier out">桶④</span></div><div class="t-act">0.2 亿 +0.67% <span class="t-risk">｜容量太小</span></div></div>
+      <div class="t" data-code="002165"><div class="t-main"><span class="t-name">红宝丽</span><span class="t-tier out">桶④</span></div><div class="t-act">0.9 亿 -0.64% <span class="t-risk">｜已转跌</span></div></div>
       <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 5 票：桶②2/桶④3 —— 7 只成分 5 红，万华化学 +1.12%（12.4 亿·Q3 净利 +84.38%）、汇得科技 +3.81%；与中石油创 18 年新高同属低估值补涨</li></ul></div></div>
     </article>
 
     <article class="card" id="s4">
       <div class="c-head"><div class="c-num yel">04</div><div class="c-title"><h3>旅游零售 · 热度 9.06</h3><div class="st">容量 2 只）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
       <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（容量太小不构成板块行情 · 只看不做）</div>
-      <div class="t"><div class="t-main"><span class="t-name">中国中免</span><span class="t-tier blue">桶②</span></div><div class="t-act">7.8 亿 +1.58% <span class="t-risk">｜站上 5 日线 49.63 · 回踩 49.79-50.20 · 止损 49.48</span></div></div>
-      <div class="t"><div class="t-main"><span class="t-name">珠免集团</span><span class="t-tier out">桶④</span></div><div class="t-act">0.6 亿 +0.69% <span class="t-risk">｜容量太小不参与</span></div></div>
+      <div class="t" data-code="601888"><div class="t-main"><span class="t-name">中国中免</span><span class="t-tier blue">桶②</span></div><div class="t-act">7.8 亿 +1.58% <span class="t-risk">｜站上 5 日线 49.63 · 回踩 49.79-50.20 · 止损 49.48</span></div></div>
+      <div class="t" data-code="600185"><div class="t-main"><span class="t-name">珠免集团</span><span class="t-tier out">桶④</span></div><div class="t-act">0.6 亿 +0.69% <span class="t-risk">｜容量太小不参与</span></div></div>
       <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 2 票：桶②1/桶④1 —— 只有中免 +1.58%（7.8 亿）和珠免 +0.69% 两只成分，2/2 红盘但撑不起「板块增强」叙事</li></ul></div></div>
     </article>
   </div>
@@ -296,15 +305,45 @@ b.amt{font-weight:800}
   </div>
 
 
+  <div class="copybar" id="copybar">
+    <div class="cb-h">📋 一键复制全部个股编码<span class="cb-n">17 只（已去重）</span></div>
+    <button class="btn-copy" type="button" id="copyAllBtn">复制全部编码</button>
+    <div class="cb-codes" id="copyCodes">002561 600693 600694 600865 600838 601601 601318 601628 601336 601319 600309 603192 300848 603041 002165 601888 600185</div>
+    <div class="cb-tip">复制后粘进行情软件即可建自选股；若浏览器拦截剪贴板，可直接点上面这行文本全选复制。</div>
+  </div>
+
   <footer class="foot">
     <div class="fh"><i></i>口径声明</div>
     <p>① 景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位），<b>非基本面景气</b>；全部价位为<b>条件触发</b>（回踩带/低吸带/右侧确认），非现价指令——条件不成立即放弃，禁止带外追价。</p>
     <p>② 数据基准 = 20261026 收盘（sector-strength-10d refresh=1）；T+1 结算口径 · daily low 硬核验。</p>
     <p>③ 四桶分级：可入主推（红）＞稳健低吸（蓝）＞谨慎博弈（黄）＞出列（白）；⏳ 持续期=资金×题材×叙事三合评估，禁超档包装。仅供个人复盘参考，非投资建议。</p>
-    <div class="src">sa20261023-scan · 复盘日报_20261026 · sector-strength-10d（updated 2026-10-26 20:00 force 重算 · 320 行业）· cache.db 1026 收盘行情（5,222 行）· fuyao 涨停池 59 / 跌停 27 / · 生成 2026-10-26 20:14 · 景气排查标准 UI（V3.0d）+ 前十景气榜（V3.0h）</div>
+    <div class="src">sa20261023-scan · 复盘日报_20261026 · sector-strength-10d（updated 2026-10-26 20:00 force 重算 · 320 行业）· cache.db 1026 收盘行情（5,222 行）· fuyao 涨停池 59 / 跌停 27 / · 生成 2026-10-26 23:00 · 景气排查标准 UI（V3.0d）+ 前十景气榜（V3.0h）</div>
   </footer>
 
   <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
 </div>
+<script>
+(function () {
+  var box = document.getElementById('copyCodes');
+  var btn = document.getElementById('copyAllBtn');
+  if (!box || !btn) return;
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', 'readonly');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  btn.addEventListener('click', function () {
+    var text = (box.textContent || '').trim();
+    if (!text || text === '（未识别到个股代码）') return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = '✅ 已复制 ' + text.split(/\s+/).length + ' 只'; })
+        .catch(function () { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; });
+    } else { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; }
+  });
+})();
+</script>
 </body>
 </html>
