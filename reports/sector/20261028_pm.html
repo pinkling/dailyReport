@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>1028 景气排查：强的是高位，增强的是冷门</title>
+<style>
+:root{
+  --paper:#F3EFE4; --ink:#141414; --red:#E23A2E; --blue:#1D4DB4; --yellow:#F5C400;
+  --gray:#6E6A60; --hair:rgba(20,20,20,.16); --green:#1F8A4C;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#141414}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.52}
+.wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+@media(max-width:486px){.wrap{border-left:0;border-right:0}}
+.hero{background:var(--ink);color:var(--paper);padding:20px 18px 20px;border-bottom:3px solid var(--ink)}
+.hero-top{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.22em;font-weight:700;color:#BDB8AC}
+.hero-shapes{display:flex;align-items:flex-end;gap:10px;margin:16px 0 12px}
+.sh-circle{width:42px;height:42px;border-radius:50%;background:var(--red)}
+.sh-square{width:36px;height:36px;background:var(--blue)}
+.sh-tri{width:0;height:0;border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:36px solid var(--yellow)}
+.hero h1{font-size:34px;font-weight:900;letter-spacing:3px;line-height:1.12;margin:2px 0 8px}
+.hero-sub{font-size:12px;color:#BDB8AC;letter-spacing:.06em}
+.dist{display:flex;height:10px;margin:14px 0 0;gap:4px}
+.dist i{display:block;height:100%}
+.d1{flex:2;background:var(--red)}.d2{flex:2;background:var(--blue)}.d3{flex:3;background:var(--yellow)}.d4{flex:2;background:#fff}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.lg{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:8px 10px;border:2.5px solid var(--ink);letter-spacing:.03em}
+.lg-red{background:var(--red);color:#fff}
+.lg-blue{background:var(--blue);color:#fff}
+.lg-yel{background:var(--yellow);color:var(--ink)}
+.lg-out{background:#fff;color:var(--ink)}
+.lg small{font-weight:700;opacity:.85;font-size:10.5px}
+.sec-title{display:flex;align-items:center;gap:10px;padding:16px 14px 8px}
+.sec-title .bar{width:26px;height:12px;background:var(--ink)}
+.sec-title h2{font-size:17px;font-weight:900;letter-spacing:.14em}
+.board{padding:0 14px 6px}
+.b-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:2px solid var(--ink);text-decoration:none;color:inherit}
+.b-row:first-of-type{border-top:2px solid var(--ink)}
+.b-num{width:30px;height:30px;flex:0 0 30px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.b-num.red{background:var(--red);color:#fff}.b-num.blue{background:var(--blue);color:#fff}.b-num.yel{background:var(--yellow);color:var(--ink)}.b-num.out{background:#fff;color:var(--ink)}
+.b-main{flex:1;min-width:0}
+.b-name{font-size:14.5px;font-weight:800}
+.b-lead{display:block;font-size:11.5px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 7px;border:2px solid var(--ink)}
+.b-chip.red{background:var(--red);color:#fff}.b-chip.blue{background:var(--blue);color:#fff}.b-chip.yel{background:var(--yellow);color:var(--ink)}.b-chip.out{background:#fff;color:var(--ink)}
+.cards{padding:14px 14px 6px}
+.card{border:3px solid var(--ink);background:var(--paper);margin-bottom:18px;box-shadow:5px 5px 0 var(--ink);scroll-margin-top:10px}
+.c-head{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:3px solid var(--ink);background:#fff}
+.c-num{width:44px;height:44px;flex:0 0 44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+.c-num.red{background:var(--red);color:#fff}.c-num.blue{background:var(--blue);color:#fff}.c-num.yel{background:var(--yellow);color:var(--ink)}.c-num.out{background:var(--paper);color:var(--ink)}
+.c-title{flex:1;min-width:0}
+.c-title h3{font-size:18px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.c-title .st{font-size:10.5px;color:var(--gray);margin-top:2px;letter-spacing:.04em}
+.c-verdict{flex:0 0 auto;font-size:11.5px;font-weight:900;padding:6px 8px;border:2.5px solid var(--ink);letter-spacing:.05em}
+.c-verdict.red{background:var(--red);color:#fff}.c-verdict.blue{background:var(--blue);color:#fff}.c-verdict.yel{background:var(--yellow);color:var(--ink)}.c-verdict.out{background:#fff;color:var(--ink)}
+.c-line{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--hair)}
+.c-line b{font-weight:800}
+.t{padding:10px 12px;border-bottom:1px solid var(--hair)}
+.t:last-of-type{border-bottom:0}
+.t-main{display:flex;align-items:baseline;gap:7px}
+.t-name{font-size:15.5px;font-weight:900}
+.t-code{font-size:10.5px;color:var(--gray);letter-spacing:.06em}
+.t-tier{margin-left:auto;font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);flex:0 0 auto}
+.t-tier.red{background:var(--red);color:#fff}
+.t-tier.blue{background:var(--blue);color:#fff}
+.t-tier.yel{background:var(--yellow);color:var(--ink)}
+.t-tier.watch{background:transparent;color:var(--ink)}
+.t-act{font-size:12.5px;margin-top:3px;font-weight:700}
+.t-risk{font-weight:500;color:var(--gray)}
+.c-dur{padding:7px 12px;font-size:11.5px;font-weight:800;border-bottom:1px solid var(--hair);background:rgba(245,196,0,.16)}
+.c-foot{background:var(--ink);color:#EDE9DE;padding:10px 12px;font-size:11.5px}
+.c-foot .row{display:flex;gap:6px}
+.c-foot .row+.row{margin-top:5px}
+.c-foot .k{flex:0 0 30px;font-weight:900;letter-spacing:.06em}
+.c-foot .k.g{color:var(--yellow)}
+.c-foot .k.b{color:#FF9A8F}
+.c-foot .v{flex:1}
+.c-foot .v li{list-style:none}
+.c-foot .v li+li{margin-top:2px}
+.c-foot .v li::before{content:"· ";color:#8F8A7E}
+.mood{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 14px 0}
+.mood .mi{border:2.5px solid var(--ink);padding:8px 10px;font-size:12px;font-weight:800;background:#fff}
+.mood .mi small{display:block;font-weight:700;font-size:10.5px;color:var(--gray);margin-top:2px}
+/* 前十板块景气榜（V3.0h）——热度分+趋势四态+持续期一行一块 */
+.top10{margin:10px 14px 0;border:3px solid var(--ink);background:#fff;box-shadow:5px 5px 0 var(--ink)}
+.top10 .t10-cap{padding:7px 10px;font-size:10px;font-weight:700;color:var(--gray);border-bottom:2px solid var(--ink);background:var(--paper);letter-spacing:.04em}
+.top10 .t10-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--hair);font-size:12px}
+.top10 .t10-row:last-child{border-bottom:0}
+.top10 .t10-rk{flex:0 0 18px;font-weight:900;color:var(--gray);font-size:11px}
+.top10 .t10-name{flex:1;min-width:0;font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top10 .t10-heat{flex:0 0 34px;text-align:center;font-weight:900;font-size:12px;border:2px solid var(--ink);padding:1px 0;color:var(--ink)}
+.top10 .t10-trend{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);white-space:nowrap}
+.top10 .t10-trend.up{background:var(--red);color:#fff;border-color:var(--red)}
+.top10 .t10-trend.strong{background:var(--yellow);color:var(--ink);border-color:var(--ink)}
+.top10 .t10-trend.down{background:var(--green);color:#fff;border-color:var(--green)}
+.top10 .t10-trend.steady{background:#fff;color:var(--gray)}
+.top10 .t10-dur{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#B8860B;white-space:nowrap}
+.exp{border:3px solid var(--ink);background:#fff;margin:0 14px 18px;box-shadow:5px 5px 0 var(--ink)}
+.exp .ex-h{padding:9px 12px;border-bottom:2px solid var(--ink);font-size:12px;font-weight:900;letter-spacing:.08em;background:var(--paper)}
+.exp .ex-r{display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--hair);font-size:11.5px}
+.exp .ex-r:last-child{border-bottom:0}
+.exp .ex-n{flex:0 0 52px;font-weight:900}
+.exp .ex-q{flex:1;color:#3E3B34}
+.exp .ex-q em{font-style:normal;font-weight:800}
+.foot{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.foot .fh{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.foot .fh i{display:block;width:18px;height:10px;background:var(--blue)}
+.foot p{font-size:11px;color:#3E3B34;line-height:1.75}
+.foot p+p{margin-top:6px}
+.foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.copybar{margin:18px 14px 8px;border:2.5px solid var(--ink);background:#fff;padding:12px 12px 10px}
+.cb-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:13.5px;font-weight:900;letter-spacing:.02em}
+.cb-n{font-size:11.5px;font-weight:800;color:var(--red);letter-spacing:.04em}
+.btn-copy{margin-top:10px;width:100%;border:2.5px solid var(--ink);background:var(--yellow);color:var(--ink);font-size:14px;font-weight:900;letter-spacing:.06em;padding:11px 12px;cursor:pointer;font-family:inherit;box-shadow:4px 4px 0 var(--ink);transition:transform .06s,box-shadow .06s}
+.btn-copy:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cb-codes{margin-top:10px;padding:9px 10px;border:1.5px dashed var(--hair);font-family:Consolas,Menlo,monospace;font-size:11.5px;line-height:1.75;color:var(--gray);word-break:normal;overflow-wrap:anywhere;max-height:96px;overflow:auto;user-select:all;-webkit-user-select:all}
+.cb-tip{margin-top:8px;font-size:11px;color:var(--gray);letter-spacing:.02em}
+@media(max-width:486px){.copybar{margin:14px 10px 8px}}
+
+.endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
+/* 长文段落（结论/预案/清单/风险）——V3.0g 新增，承接 conclusion/plan/consider/avoid/risks */
+.prose{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.prose .ph{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.prose .ph i{display:block;width:18px;height:10px;background:var(--red)}
+.prose p{font-size:12px;color:#2B2924;line-height:1.78}
+.prose p+p{margin-top:7px}
+.prose .pt{font-weight:900;font-size:12.5px;display:block;margin-bottom:3px}
+.prose ol,.prose ul{margin:0;padding-left:18px}
+.prose li{font-size:12px;line-height:1.72;color:#2B2924;margin:3px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 14px 0}
+.two .box{border:3px solid var(--ink);background:#fff;padding:10px 10px 12px}
+.two .box.b2{border-color:var(--blue)}
+.two .bh{font-weight:900;font-size:12px;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid var(--ink)}
+.two .box.b2 .bh{border-bottom-color:var(--blue);color:var(--blue)}
+.two li{font-size:11.5px;line-height:1.6;margin:4px 0;color:#2B2924}
+.riskbox{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px}
+.riskbox .rl{display:flex;gap:8px;font-size:11.5px;line-height:1.65;padding:5px 0;border-bottom:1px dashed var(--hair)}
+.riskbox .rl:last-child{border-bottom:0}
+.riskbox .lv{flex:0 0 30px;font-weight:900}
+.riskbox .lv.h{color:var(--red)}.riskbox .lv.m{color:#B8860B}
+b.up{color:var(--red);font-weight:800}
+b.dn{color:var(--green);font-weight:800}
+b.amt{font-weight:800}
+.endshapes .c{width:20px;height:20px;border-radius:50%;background:var(--red)}
+.endshapes .s{width:16px;height:16px;background:var(--blue)}
+.endshapes .t{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:17px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top"><span>2026-10-28 收盘 · 320 行业 22:09 刷新</span><span>2026-10-28 WED</span></div>
+    <div class="hero-shapes"><span class="sh-circle"></span><span class="sh-square"></span><span class="sh-tri"></span></div>
+    <h1>up 3 / strong 19 / down 16 · Top10 机器人链占 8 席但全是 strong</h1>
+    <div class="hero-sub">全市场扫描（up 3 / strong 19 / down 16 / steady 12 · 320 行业 22:09 刷新） · 数据基准 10-28 收盘 · 条件触发式 · T+1 结算口径</div>
+    <div class="dist"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></div>
+  </header>
+
+  <div class="legend">
+    <span class="lg lg-red">桶① 可入主推 <small>×0</small></span>
+    <span class="lg lg-blue">桶② 稳健低吸 <small>×2</small></span>
+    <span class="lg lg-yel">桶③ 谨慎博弈 <small>×0</small></span>
+    <span class="lg lg-out">桶④ 出列 <small>×0</small></span>
+  </div>
+
+  <div class="mood">
+    <span class="mi">涨停·跌停 70 / 6<small>42/23 → 70/6·跌停腰斩</small></span>
+    <span class="mi">炸板 69 家<small>炸板率 49.6%·涨停一半守不住</small></span>
+    <span class="mi">晋级率 19.0%<small>8/42·仍在冰点线 30% 下方</small></span>
+    <span class="mi">连板高度 5 板 1 家<small>襄阳轴承·3 板 2 家（光洋/青岛）·2 板 5 家</small></span>
+  </div>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>前十板块景气榜</h2></div>
+  <div class="top10">
+    <div class="t10-cap">近10日板块景气排行 · 今日热度分 0-10（0.6×当日涨幅+0.4×五日动量·量价口径非基本面）· 趋势四态 · ⏳持续期预估（宁短勿长）</div>
+    <div class="t10-row"><span class="t10-rk">1</span><span class="t10-name">机器人</span><span class="t10-heat" style="background:var(--red);color:#fff">10.0</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳0-0</span></div>
+    <div class="t10-row"><span class="t10-rk">2</span><span class="t10-name">机床工具</span><span class="t10-heat" style="background:var(--red);color:#fff">9.97</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳2-3日</span></div>
+    <div class="t10-row"><span class="t10-rk">3</span><span class="t10-name">电机</span><span class="t10-heat" style="background:var(--red);color:#fff">9.94</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳0-0</span></div>
+    <div class="t10-row"><span class="t10-rk">4</span><span class="t10-name">底盘与发动机系统</span><span class="t10-heat" style="background:var(--red);color:#fff">9.91</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">5</span><span class="t10-name">工控设备</span><span class="t10-heat" style="background:var(--red);color:#fff">9.88</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">6</span><span class="t10-name">模拟芯片设计</span><span class="t10-heat" style="background:var(--red);color:#fff">9.84</span><span class="t10-trend steady">—</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">7</span><span class="t10-name">自动化设备</span><span class="t10-heat" style="background:var(--red);color:#fff">9.81</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">8</span><span class="t10-name">其他自动化设备</span><span class="t10-heat" style="background:var(--red);color:#fff">9.78</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">9</span><span class="t10-name">金属制品</span><span class="t10-heat" style="background:var(--red);color:#fff">9.75</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳2-3日</span></div>
+    <div class="t10-row"><span class="t10-rk">10</span><span class="t10-name">汽车电子电气系统</span><span class="t10-heat" style="background:var(--red);color:#fff">9.72</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳2-3日</span></div>
+  </div>
+
+  <div class="sec-title"><span class="bar"></span><h2>结论总览</h2></div>
+  <nav class="board">
+    <a class="b-row" href="#s1"><span class="b-num yel">01</span><span class="b-main"><span class="b-name">聚氨酯 · avg 5.52</span><br><span class="b-lead">万华化学 600309 · 回踩 68.69-69.00 接 1/3</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s2"><span class="b-num yel">02</span><span class="b-main"><span class="b-name">氟化工 · avg 3.96</span><br><span class="b-lead">中欣氟材 002915 · 首板</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s3"><span class="b-num yel">03</span><span class="b-main"><span class="b-name">纺织服装设备 · avg 6.38</span><br><span class="b-lead">精工科技 002006 · +3.8%</span></span><span class="b-chip yel">谨慎博弈</span></a>
+  </nav>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>逐板块四桶</h2></div>
+  <div class="cards">
+    <article class="card" id="s1">
+      <div class="c-head"><div class="c-num yel">01</div><div class="c-title"><h3>聚氨酯 · avg 5.52</h3><div class="st">个股没动 · 唯一「等回踩」成立）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（反例=万华破 68.13 或板块红盘率跌破 50%）</div>
+      <div class="t" data-code=""><div class="t-main"><span class="t-name">万华化学 600309</span><span class="t-tier out">桶④</span></div><div class="t-act">回踩 68.69-69.00 接 1/3 <span class="t-risk">｜止损 68.13 · 今日最低 69.77 未及</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 5 票：桶①0/桶②1/桶③0/桶④4 —— 4/5 红但均只 +0.47%，万华 +0.18%（15.67 亿）是唯一有量的；板块 10 日分 5.52→8.44 在升，龙头没启动</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s2">
+      <div class="c-head"><div class="c-num yel">02</div><div class="c-title"><h3>氟化工 · avg 3.96</h3><div class="st">accel 全场最高）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（反例=中欣断板且巨化仍不涨=只有小票的假增强）</div>
+      <div class="t" data-code=""><div class="t-main"><span class="t-name">中欣氟材 002915</span><span class="t-tier out">桶④</span></div><div class="t-act">首板 <span class="t-risk">｜回踩 15.50-16.00 才接 · 不追板</span></div></div>
+      <div class="t" data-code=""><div class="t-main"><span class="t-name">永和股份 605020</span><span class="t-tier blue">桶②</span></div><div class="t-act">+3.0% <span class="t-risk">｜2.31 亿 · 桶②</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 6 票：桶①1/桶②2/桶③1/桶④2 —— 5/6 红、均 +2.61%；中欣氟材涨停（PEEK 线），但龙头巨化 -0.1% 不动</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s3">
+      <div class="c-head"><div class="c-num yel">03</div><div class="c-title"><h3>纺织服装设备 · avg 6.38</h3><div class="st">换龙头）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（反例=杰克断板且无新龙头接棒（昨天就是这么判错的））</div>
+      <div class="t" data-code=""><div class="t-main"><span class="t-name">精工科技 002006</span><span class="t-tier blue">桶②</span></div><div class="t-act">+3.8% <span class="t-risk">｜1.39 亿 · 桶②位置低</span></div></div>
+      <div class="t" data-code=""><div class="t-main"><span class="t-name">杰克科技 603337</span><span class="t-tier out">桶④</span></div><div class="t-act">涨停 15.98 亿 <span class="t-risk">｜只做回踩不追</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 6 票：桶①0/桶②2/桶③1/桶④3 —— 5/6 红、均 +3.46%；杰克科技涨停 15.98 亿（人形机器人+缝纫机）</li></ul></div></div>
+    </article>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--ink)"></i>一句话总判</div>
+      <p>V 型反转日：创业板 &lt;b&gt;<b class="up">+3.40%</b>&lt;/b&gt; 收 2634.76（收复 5 日线 2616.43）、成交 &lt;b&gt;<b class=\"amt\">1.63 万亿</b>&lt;/b&gt;（放量 1,<b class=\"amt\">700 亿</b>）、涨停 70 / 跌停 6 / 炸板 &lt;b&gt;69&lt;/b&gt;、连板仅 8 家（晋级率 19.0%）。up 只剩 3 条（纺织服装设备 9.28 / 聚氨酯 8.44 / 氟化工 8.25），而今日 Top10 有 8 席是机器人链、trend &lt;b&gt;全是 strong&lt;/b&gt; ——&lt;b&gt;强的是已经涨上去的，增强的是没人看的&lt;/b&gt;；recommended（增强且未追高）=&lt;b&gt;0 个&lt;/b&gt;。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--red)"></i>核心结论与前三板块深度</div>
+      <p>三条增强 + 三条最强（风险四桶，每板块 ≤5 只，成分红盘率自算 5-7 只）：</p>
+      <p>① 纺织服装设备（up·avg 6.38·今日 9.28·dur 1-2·&lt;b&gt;5/6 红 avg <b class="up">+3.46%</b>&lt;/b&gt;）——桶①0/桶②2/桶③1/桶④3</p>
+      <p>杰克科技 603337 <b class="up">+10.00%</b>（&lt;b&gt;<b class=\"amt\">15.98 亿</b>&lt;/b&gt;·人形机器人+缝纫机双题材）｜上工申贝 <b class="up">+2.7%</b>（<b class=\"amt\">1.71 亿</b>）｜精工科技 <b class="up">+3.8%</b>（<b class=\"amt\">1.39 亿</b>）｜中捷资源 <b class="up">+3.1%</b>（<b class=\"amt\">0.46 亿</b>）｜乐惠国际 <b class="up">+2.5%</b>（<b class=\"amt\">0.28 亿</b>）｜ST 标准 <b class="dn">-1.3%</b>（<b class=\"amt\">0.09 亿</b>）</p>
+      <p>桶②精工科技 002006（位置低·<b class=\"amt\">1.39 亿</b>）｜上工申贝 600843｜桶③杰克科技（涨停 <b class=\"amt\">15.98 亿</b>·高位）｜桶④ST 标准（无量）/中捷资源/乐惠国际</p>
+      <p>小结=&lt;b&gt;昨天把它出列是本期唯一判错的一条&lt;/b&gt;——「成分少 + 冲高回落」不等于没戏，它换了个龙头（杰克科技）重新起来；教训=出列只看当日形态、没看有没有新龙头接棒</p>
+      <p>② 聚氨酯（up·avg 5.52·今日 8.44·昨 7.97·dur 1-2·&lt;b&gt;4/5 红但均只 <b class="up">+0.47%</b>&lt;/b&gt;）——桶①0/桶②1/桶③0/桶④4</p>
+      <p>万华化学 <b class="up">+0.18%</b>（<b class=\"amt\">15.67 亿</b>·最低 69.77 未及回踩带）｜沧州大化 <b class="up">+1.0%</b>（<b class=\"amt\">0.69 亿</b>）｜红宝丽 <b class="up">+0.7%</b>（<b class=\"amt\">0.93 亿</b>）｜齐翔腾达 <b class="up">+0.9%</b>｜滨化 <b class="dn">-0.4%</b>（<b class=\"amt\">2.34 亿</b>）</p>
+      <p>桶②万华 600309（回踩 68.69-69.00 仍有效·止损 68.13）｜桶④其余 4 只量能全 &lt;<b class=\"amt\">1 亿</b>，不做扩散</p>
+      <p>小结=&lt;b&gt;板块分在升（5.52→8.44）、龙头没启动（<b class="up">+0.18%</b>）&lt;/b&gt;——这是本期唯一「等回踩」逻辑成立的方向</p>
+      <p>③ 氟化工（up·avg 3.96·今日 8.25·昨 5.53·&lt;b&gt;一天跳升 2.72、accel 2.53 全场最高&lt;/b&gt;·dur 1-2·5/6 红 avg <b class="up">+2.61%</b>）——桶①1/桶②2/桶③1/桶④2</p>
+      <p>中欣氟材 002915 <b class="up">+10.00%</b>（<b class=\"amt\">1.9 亿</b>·PEEK 材料+氟化工）｜永和股份 <b class="up">+3.0%</b>（<b class=\"amt\">2.31 亿</b>）｜新奥股份 <b class="up">+1.2%</b>｜金石资源 <b class="up">+1.1%</b>（<b class=\"amt\">0.77 亿</b>）｜三美 <b class="up">+0.4%</b>（<b class=\"amt\">2.81 亿</b>）｜&lt;b&gt;巨化股份 <b class="dn">-0.1%</b>（<b class=\"amt\">5.8 亿</b>）&lt;/b&gt;</p>
+      <p>桶①中欣氟材（首板·PEEK 线）｜桶②永和股份 605020 / 金石资源 603505｜桶③三美（<b class=\"amt\">2.81 亿</b>但滞涨）｜桶④巨化（龙头不动）、新奥</p>
+      <p>小结=&lt;b&gt;涨的是 PEEK 小票，不是氟化工本体&lt;/b&gt;——龙头巨化 <b class="dn">-0.1%</b>、<b class=\"amt\">5.8 亿</b>量能没起来，只能做中欣回踩，不做板块扩散</p>
+      <p>④ 机器人（今日第 1·strong·avg 8.1·dur 0-0·&lt;b&gt;7/7 全红 avg <b class="up">+10.43%</b>&lt;/b&gt;·链内 34 家涨停占全场 48.6%）——桶①0/桶②1/桶③4/桶④2</p>
+      <p>襄阳轴承 5 板（封 <b class=\"amt\">2.92 亿</b>）｜万向钱潮 涨停（&lt;b&gt;LHB 净买 <b class=\"amt\">2.82 亿</b>&lt;/b&gt;）｜福莱新材 8 天 5 板（<b class=\"amt\">24.45 亿</b>）｜伟创电气 <b class="up">+18.8%</b>（<b class=\"amt\">7.81 亿</b>）｜五洲新春/光洋股份 涨停｜大洋电机 <b class="up">+4.2%</b>（<b class=\"amt\">29.55 亿</b>）</p>
+      <p>桶②大洋电机 002249（机构 <b class=\"amt\">3.01 亿</b>+游资同向）｜桶③襄阳（只做分歧回封）/福莱/万向/伟创｜桶④高位断板股</p>
+      <p>小结=&lt;b&gt;trend=strong 不是 up = 中后段&lt;/b&gt;；34 家涨停但连板只 8 家、炸板 69 家——&lt;b&gt;宽度不是高度，追高赔率极差&lt;/b&gt;</p>
+      <p>⑤ 机床工具（今日第 2·strong·avg 6.44·昨 7.38 跳升·dur 2-3·&lt;b&gt;6/6 全红 avg <b class="up">+5.70%</b> 且无炸板&lt;/b&gt;）——桶①1/桶②2/桶③2/桶④1</p>
+      <p>宇晶股份 <b class="up">+10.0%</b>（<b class=\"amt\">2.12 亿</b>·机器人+碳化硅设备）｜纽威数控 <b class="up">+7.8%</b>（<b class=\"amt\">1.65 亿</b>）｜共进股份 <b class="up">+6.6%</b>（<b class=\"amt\">9.59 亿</b>）｜秦川 <b class="up">+3.6%</b>｜科德 <b class="up">+3.4%</b>｜亚威 <b class="up">+2.8%</b></p>
+      <p>桶①宇晶股份 002943｜桶②纽威 688697 / 科德 688305｜桶③共进（<b class=\"amt\">9.59 亿</b>但非纯机床）｜桶④亚威</p>
+      <p>小结=&lt;b&gt;机器人链的「设备端」，质量比整机端干净&lt;/b&gt;（全红、无炸板），但 dur 2-3 日已过半</p>
+      <p>⑥ 电机（今日第 3·strong·avg 8.27·dur 0-0·5/6 红 avg <b class="up">+4.10%</b>）——桶①0/桶②2/桶③2/桶④2</p>
+      <p>大洋电机 <b class="up">+4.2%</b>（<b class=\"amt\">29.55 亿</b>）｜卧龙电驱 <b class="up">+4.6%</b>（<b class=\"amt\">18.2 亿</b>）｜东贝集团 <b class="up">+9.9%</b>（<b class=\"amt\">1.99 亿</b>）｜江苏雷利 <b class="up">+3.9%</b>｜神力 <b class="up">+2.1%</b>｜方正 <b class="dn">-0.1%</b></p>
+      <p>桶②大洋 / 卧龙 600580｜桶③东贝（涨停但 <b class=\"amt\">1.99 亿</b>量小）｜桶④方正电机（<b class="dn">-0.1%</b>·<b class=\"amt\">11.75 亿</b>滞涨）</p>
+      <p>小结=机器人「执行器端」，大洋是链内唯一机构+游资同向的票</p>
+      <p>&lt;b&gt;出列&lt;/b&gt;：模拟芯片设计（今日 Top6 但无 trend 支撑、无增强）、金属制品（机械归类、无主线逻辑）、百货零售（掉 up→strong、东百 <b class="dn">-6.08%</b>）。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--blue)"></i>操作预案 · 给明日策略日报的输入</div>
+      <p>【给明日策略日报的三行输入】</p>
+      <p>① &lt;b&gt;聚氨酯（唯一「板块在升+个股没动」）&lt;/b&gt;：万华化学回踩 &lt;b&gt;68.69-69.00&lt;/b&gt; 接 1/3（今天最低 69.77 差 1.1% 没给），破 68.13 放弃；&lt;b&gt;不扩散&lt;/b&gt;到沧州大化/红宝丽（量能全 &lt;<b class=\"amt\">1 亿</b>）。</p>
+      <p>② &lt;b&gt;机器人链只做设备端、不做整机端&lt;/b&gt;：机床工具 6/6 全红无炸板（宇晶 <b class="up">+10%</b>/纽威 <b class="up">+7.8%</b>/科德 <b class="up">+3.4%</b>，回踩接）；整机端（襄阳 5 板/福莱 8 天 5 板/万向首板）&lt;b&gt;只做断板补涨、禁追板&lt;/b&gt;——炸板 69 家、连板 8 家的环境下追板=送钱。</p>
+      <p>③ &lt;b&gt;氟化工看龙头不动就不追&lt;/b&gt;：巨化 <b class="dn">-0.1%</b>（<b class=\"amt\">5.8 亿</b>）没起来，涨的是中欣氟材（PEEK 线）——只做中欣回踩 15.50-16.00，不做三美/金石扩散。</p>
+      <p>&lt;b&gt;出列（禁入）&lt;/b&gt;：纺织服装设备涨停板（杰克 <b class=\"amt\">15.98 亿</b>首板，昨日出列今日最强，但明日只做回踩不追）、模拟芯片设计（Top6 无增强）、百货零售（东百 <b class="dn">-6.08%</b> 已破位）。</p>
+  </div>
+
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--yellow)"></span><h2>四专家推演</h2></div>
+  <div class="exp">
+    <div class="ex-h">四专家推演 · KB 原话（前三板块共用）</div>
+    <div class="ex-r"><span class="ex-n">柴柴</span><span class="ex-q"><em>机器人没有核心、只有宽度 · 已满仓</em> — 「机器人其实没有核心一说，基本上就是拉到快异动下一批…剩下的以前炒过的全部都要来一遍，还真不是传统的核心聚焦打法」（雪球 2026-10-28 11:25）；「目前仓位：满仓」（12:31）<br>对应本次：机器人链 34 家涨停就是「平铺」而不是核心聚焦——&lt;b&gt;选票该选刚启动的设备端（宇晶/纽威），不是最高位的襄阳 5 板&lt;/b&gt;。他的右侧确认线是 2695（周五高点），比我们的 2616/2682 更靠上。</span></div>
+    <div class="ex-r"><span class="ex-n">撑伞猫</span><span class="ex-q"><em>不做 · 明日做断板补涨博弈</em> — 「首板要延后一天，今天不行，明天六板出来资金做新题材参与」（11:34）；「九百让了，首板几乎全是机器人，襄阳不可能今天断，所以你要延后一日，做断板补涨博弈」（11:39）<br>对应本次：明日机器人链的锚是襄阳 6 板——&lt;b&gt;它断板=资金转新题材（我们该跟设备端），不断=机器人继续但只做补涨&lt;/b&gt;。他自己的持仓炸了 5 个 20cm，说明这套「延后一日」的纪律代价是不赚快钱。</span></div>
+    <div class="ex-r"><span class="ex-n">药门小韭菜</span><span class="ex-q"><em>空仓 · 观察位换到金安国纪</em> — 「空仓吧哈哈哈哈…投资还是要去通胀的地方做的」（08:34）；「金安国际要打破出业绩就死的循环了么？20w 手封单，大资金有态度了」（09:16）<br>对应本次：她的观察位是 &lt;b&gt;PCB/覆铜板（金安国纪）&lt;/b&gt;而不是氟化工——今天 PCB 6/6 全红（斯迪克 +20%、金安涨停），说明「业绩+封单」这条线比「趋势标签」更早反应。</span></div>
+    <div class="ex-r"><span class="ex-n">惑惑</span><span class="ex-q"><em>出手 · 多只 20cm 持仓被炸</em> — 「不同板块的后排还在猛拉的同时前排炸的稀烂且没人回封」（13:54）；「手里炸了 5 个 20 了，干脆把 30 的一起炸了吧」（14:24）<br>对应本次：&lt;b&gt;炸板 69 家、后排补涨&lt;/b&gt;就是今天的主结构——前排（襄阳/福莱）质量差，赚钱的是后排首板。这条与「机床工具 6/6 全红无炸板」互相印证：设备端比整机端干净。</span></div>
+    <div class="ex-r"><span class="ex-n">分歧</span><span class="ex-q">四位均为当日实盘发声（雪球 1028 抓取 94 条已入库，浏览器补抓 21:46-21:54）——柴柴/撑伞猫/惑惑为原话引用，药门为观察位口径；原话用于校准方向，不直接当买入依据。</span></div>
+  </div>
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--blue)"></span><h2>需要考虑 / 需要避免</h2></div>
+  <div class="two">
+    <div class="box"><div class="bh">需要考虑</div><ul><li>&lt;b&gt;trend=up ≠ 当日强&lt;/b&gt;：3 条 up 里聚氨酯只涨 0.47%、氟化工涨 2.61%，真正强的是 Top10 那些 strong 板块</li><li>&lt;b&gt;昨天把纺织服装设备出列是唯一判错&lt;/b&gt;：今天它 up 第 1、杰克科技涨停 <b class=\"amt\">15.98 亿</b>——「成分少+冲高回落」不等于没戏，要看有没有新龙头接棒</li><li>Top10 里 8 席是机器人链但全是 strong 不是 up：&lt;b&gt;强在高位=中后段&lt;/b&gt;，今天追高的人平均亏（炸板 69 家）</li><li>氟化工一天从 5.53 跳到 8.25（accel 2.53 最高），但龙头巨化 <b class="dn">-0.1%</b> 不动——涨的是 PEEK 小票，不是氟化工本体</li><li>recommended=0：系统没有筛出「增强+未追高」的标的，说明今天没有低吸型景气机会，只有回踩型</li></ul></div>
+    <div class="box b2"><div class="bh">需要避免</div><ul><li>不追襄阳轴承 5 板：封 <b class=\"amt\">2.92 亿</b>但 dur 0-0、连板只有 8 家，断板即杀</li><li>不追福莱新材：8 天 5 板、<b class=\"amt\">24.45 亿</b>成交，接力赔率极差</li><li>不买纺织服装设备的 ST 标准（<b class=\"amt\">0.09 亿</b>无量）、中捷资源（<b class=\"amt\">0.46 亿</b>）</li><li>不做氟化工扩散：巨化不动，扩到三美/金石只是跟风</li><li>不买机器人「补涨首板」：今天首板 62 家里 34 家是机器人，明天大概率不接力</li><li>不碰模拟芯片设计：今日 Top6 但无 trend 支撑、无增强</li></ul></div>
+  </div>
+  <div class="riskbox"><div class="bh" style="font-weight:900;font-size:12px;margin-bottom:6px">风险提示</div>
+    <div class="rl"><span class="lv h">高</span><span>炸板 69 家 / 涨停 70 家（炸板率 49.6%）：涨停一半守不住，追高即亏</span></div>
+    <div class="rl"><span class="lv h">高</span><span>连板仅 8 家、晋级率 19.0%：宽度恢复但高度没恢复，接力环境极差</span></div>
+    <div class="rl"><span class="lv h">高</span><span>仓位 99.86% 满仓过议息夜（10-29 02:00）：任何板块带位都排在「先降仓」之后</span></div>
+    <div class="rl"><span class="lv m">中</span><span>机器人链 trend=strong（avg 8.1、dur 0-0）：不是起势段，是高位强势段</span></div>
+    <div class="rl"><span class="lv m">中</span><span>recommended=0：无「增强+未追高」标的，景气层面今天没有低吸机会</span></div>
+  </div>
+
+
+  <div class="copybar" id="copybar">
+    <div class="cb-h">📋 一键复制全部个股编码<span class="cb-n">0 只（已去重）</span></div>
+    <button class="btn-copy" type="button" id="copyAllBtn">复制全部编码</button>
+    <div class="cb-codes" id="copyCodes">（未识别到个股代码）</div>
+    <div class="cb-tip">复制后粘进行情软件即可建自选股；若浏览器拦截剪贴板，可直接点上面这行文本全选复制。</div>
+  </div>
+
+  <footer class="foot">
+    <div class="fh"><i></i>口径声明</div>
+    <p>① 景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位），<b>非基本面景气</b>；全部价位为<b>条件触发</b>（回踩带/低吸带/右侧确认），非现价指令——条件不成立即放弃，禁止带外追价。</p>
+    <p>② 数据基准 = 20261028 收盘（sector-strength-10d refresh=1）；T+1 结算口径 · daily low 硬核验。</p>
+    <p>③ 四桶分级：可入主推（红）＞稳健低吸（蓝）＞谨慎博弈（黄）＞出列（白）；⏳ 持续期=资金×题材×叙事三合评估，禁超档包装。仅供个人复盘参考，非投资建议。</p>
+    <div class="src">盘面=cache.db（fuyao 5,221/5,223·21:01）；板块强度=THS 320 行业（&lt;b&gt;22:09 刷新&lt;/b&gt;·up 3/strong 19/down 16/steady 12，矩阵列 50）；涨停池=fuyao（70/6/69）；成分红盘率=自算（腾讯批量，每板块 5-7 · 生成 2026-10-28 22:29 · recommended=0（无「增强+未追高」）——今天没有可以低吸的景气标的，只有回踩型机会</div>
+  </footer>
+
+  <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
+</div>
+<script>
+(function () {
+  var box = document.getElementById('copyCodes');
+  var btn = document.getElementById('copyAllBtn');
+  if (!box || !btn) return;
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', 'readonly');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  btn.addEventListener('click', function () {
+    var text = (box.textContent || '').trim();
+    if (!text || text === '（未识别到个股代码）') return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = '✅ 已复制 ' + text.split(/\s+/).length + ' 只'; })
+        .catch(function () { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; });
+    } else { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; }
+  });
+})();
+</script>
+</body>
+</html>
