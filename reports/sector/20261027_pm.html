@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>1027 景气排查：二次探底日，up 8 条里 4 条在跌</title>
+<style>
+:root{
+  --paper:#F3EFE4; --ink:#141414; --red:#E23A2E; --blue:#1D4DB4; --yellow:#F5C400;
+  --gray:#6E6A60; --hair:rgba(20,20,20,.16); --green:#1F8A4C;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#141414}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.52}
+.wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+@media(max-width:486px){.wrap{border-left:0;border-right:0}}
+.hero{background:var(--ink);color:var(--paper);padding:20px 18px 20px;border-bottom:3px solid var(--ink)}
+.hero-top{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.22em;font-weight:700;color:#BDB8AC}
+.hero-shapes{display:flex;align-items:flex-end;gap:10px;margin:16px 0 12px}
+.sh-circle{width:42px;height:42px;border-radius:50%;background:var(--red)}
+.sh-square{width:36px;height:36px;background:var(--blue)}
+.sh-tri{width:0;height:0;border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:36px solid var(--yellow)}
+.hero h1{font-size:34px;font-weight:900;letter-spacing:3px;line-height:1.12;margin:2px 0 8px}
+.hero-sub{font-size:12px;color:#BDB8AC;letter-spacing:.06em}
+.dist{display:flex;height:10px;margin:14px 0 0;gap:4px}
+.dist i{display:block;height:100%}
+.d1{flex:2;background:var(--red)}.d2{flex:2;background:var(--blue)}.d3{flex:3;background:var(--yellow)}.d4{flex:2;background:#fff}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.lg{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:8px 10px;border:2.5px solid var(--ink);letter-spacing:.03em}
+.lg-red{background:var(--red);color:#fff}
+.lg-blue{background:var(--blue);color:#fff}
+.lg-yel{background:var(--yellow);color:var(--ink)}
+.lg-out{background:#fff;color:var(--ink)}
+.lg small{font-weight:700;opacity:.85;font-size:10.5px}
+.sec-title{display:flex;align-items:center;gap:10px;padding:16px 14px 8px}
+.sec-title .bar{width:26px;height:12px;background:var(--ink)}
+.sec-title h2{font-size:17px;font-weight:900;letter-spacing:.14em}
+.board{padding:0 14px 6px}
+.b-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:2px solid var(--ink);text-decoration:none;color:inherit}
+.b-row:first-of-type{border-top:2px solid var(--ink)}
+.b-num{width:30px;height:30px;flex:0 0 30px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.b-num.red{background:var(--red);color:#fff}.b-num.blue{background:var(--blue);color:#fff}.b-num.yel{background:var(--yellow);color:var(--ink)}.b-num.out{background:#fff;color:var(--ink)}
+.b-main{flex:1;min-width:0}
+.b-name{font-size:14.5px;font-weight:800}
+.b-lead{display:block;font-size:11.5px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 7px;border:2px solid var(--ink)}
+.b-chip.red{background:var(--red);color:#fff}.b-chip.blue{background:var(--blue);color:#fff}.b-chip.yel{background:var(--yellow);color:var(--ink)}.b-chip.out{background:#fff;color:var(--ink)}
+.cards{padding:14px 14px 6px}
+.card{border:3px solid var(--ink);background:var(--paper);margin-bottom:18px;box-shadow:5px 5px 0 var(--ink);scroll-margin-top:10px}
+.c-head{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:3px solid var(--ink);background:#fff}
+.c-num{width:44px;height:44px;flex:0 0 44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+.c-num.red{background:var(--red);color:#fff}.c-num.blue{background:var(--blue);color:#fff}.c-num.yel{background:var(--yellow);color:var(--ink)}.c-num.out{background:var(--paper);color:var(--ink)}
+.c-title{flex:1;min-width:0}
+.c-title h3{font-size:18px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.c-title .st{font-size:10.5px;color:var(--gray);margin-top:2px;letter-spacing:.04em}
+.c-verdict{flex:0 0 auto;font-size:11.5px;font-weight:900;padding:6px 8px;border:2.5px solid var(--ink);letter-spacing:.05em}
+.c-verdict.red{background:var(--red);color:#fff}.c-verdict.blue{background:var(--blue);color:#fff}.c-verdict.yel{background:var(--yellow);color:var(--ink)}.c-verdict.out{background:#fff;color:var(--ink)}
+.c-line{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--hair)}
+.c-line b{font-weight:800}
+.t{padding:10px 12px;border-bottom:1px solid var(--hair)}
+.t:last-of-type{border-bottom:0}
+.t-main{display:flex;align-items:baseline;gap:7px}
+.t-name{font-size:15.5px;font-weight:900}
+.t-code{font-size:10.5px;color:var(--gray);letter-spacing:.06em}
+.t-tier{margin-left:auto;font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);flex:0 0 auto}
+.t-tier.red{background:var(--red);color:#fff}
+.t-tier.blue{background:var(--blue);color:#fff}
+.t-tier.yel{background:var(--yellow);color:var(--ink)}
+.t-tier.watch{background:transparent;color:var(--ink)}
+.t-act{font-size:12.5px;margin-top:3px;font-weight:700}
+.t-risk{font-weight:500;color:var(--gray)}
+.c-dur{padding:7px 12px;font-size:11.5px;font-weight:800;border-bottom:1px solid var(--hair);background:rgba(245,196,0,.16)}
+.c-foot{background:var(--ink);color:#EDE9DE;padding:10px 12px;font-size:11.5px}
+.c-foot .row{display:flex;gap:6px}
+.c-foot .row+.row{margin-top:5px}
+.c-foot .k{flex:0 0 30px;font-weight:900;letter-spacing:.06em}
+.c-foot .k.g{color:var(--yellow)}
+.c-foot .k.b{color:#FF9A8F}
+.c-foot .v{flex:1}
+.c-foot .v li{list-style:none}
+.c-foot .v li+li{margin-top:2px}
+.c-foot .v li::before{content:"· ";color:#8F8A7E}
+.mood{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 14px 0}
+.mood .mi{border:2.5px solid var(--ink);padding:8px 10px;font-size:12px;font-weight:800;background:#fff}
+.mood .mi small{display:block;font-weight:700;font-size:10.5px;color:var(--gray);margin-top:2px}
+/* 前十板块景气榜（V3.0h）——热度分+趋势四态+持续期一行一块 */
+.top10{margin:10px 14px 0;border:3px solid var(--ink);background:#fff;box-shadow:5px 5px 0 var(--ink)}
+.top10 .t10-cap{padding:7px 10px;font-size:10px;font-weight:700;color:var(--gray);border-bottom:2px solid var(--ink);background:var(--paper);letter-spacing:.04em}
+.top10 .t10-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--hair);font-size:12px}
+.top10 .t10-row:last-child{border-bottom:0}
+.top10 .t10-rk{flex:0 0 18px;font-weight:900;color:var(--gray);font-size:11px}
+.top10 .t10-name{flex:1;min-width:0;font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top10 .t10-heat{flex:0 0 34px;text-align:center;font-weight:900;font-size:12px;border:2px solid var(--ink);padding:1px 0;color:var(--ink)}
+.top10 .t10-trend{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);white-space:nowrap}
+.top10 .t10-trend.up{background:var(--red);color:#fff;border-color:var(--red)}
+.top10 .t10-trend.strong{background:var(--yellow);color:var(--ink);border-color:var(--ink)}
+.top10 .t10-trend.down{background:var(--green);color:#fff;border-color:var(--green)}
+.top10 .t10-trend.steady{background:#fff;color:var(--gray)}
+.top10 .t10-dur{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#B8860B;white-space:nowrap}
+.exp{border:3px solid var(--ink);background:#fff;margin:0 14px 18px;box-shadow:5px 5px 0 var(--ink)}
+.exp .ex-h{padding:9px 12px;border-bottom:2px solid var(--ink);font-size:12px;font-weight:900;letter-spacing:.08em;background:var(--paper)}
+.exp .ex-r{display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--hair);font-size:11.5px}
+.exp .ex-r:last-child{border-bottom:0}
+.exp .ex-n{flex:0 0 52px;font-weight:900}
+.exp .ex-q{flex:1;color:#3E3B34}
+.exp .ex-q em{font-style:normal;font-weight:800}
+.foot{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.foot .fh{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.foot .fh i{display:block;width:18px;height:10px;background:var(--blue)}
+.foot p{font-size:11px;color:#3E3B34;line-height:1.75}
+.foot p+p{margin-top:6px}
+.foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.copybar{margin:18px 14px 8px;border:2.5px solid var(--ink);background:#fff;padding:12px 12px 10px}
+.cb-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:13.5px;font-weight:900;letter-spacing:.02em}
+.cb-n{font-size:11.5px;font-weight:800;color:var(--red);letter-spacing:.04em}
+.btn-copy{margin-top:10px;width:100%;border:2.5px solid var(--ink);background:var(--yellow);color:var(--ink);font-size:14px;font-weight:900;letter-spacing:.06em;padding:11px 12px;cursor:pointer;font-family:inherit;box-shadow:4px 4px 0 var(--ink);transition:transform .06s,box-shadow .06s}
+.btn-copy:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cb-codes{margin-top:10px;padding:9px 10px;border:1.5px dashed var(--hair);font-family:Consolas,Menlo,monospace;font-size:11.5px;line-height:1.75;color:var(--gray);word-break:normal;overflow-wrap:anywhere;max-height:96px;overflow:auto;user-select:all;-webkit-user-select:all}
+.cb-tip{margin-top:8px;font-size:11px;color:var(--gray);letter-spacing:.02em}
+@media(max-width:486px){.copybar{margin:14px 10px 8px}}
+
+.endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
+/* 长文段落（结论/预案/清单/风险）——V3.0g 新增，承接 conclusion/plan/consider/avoid/risks */
+.prose{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.prose .ph{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.prose .ph i{display:block;width:18px;height:10px;background:var(--red)}
+.prose p{font-size:12px;color:#2B2924;line-height:1.78}
+.prose p+p{margin-top:7px}
+.prose .pt{font-weight:900;font-size:12.5px;display:block;margin-bottom:3px}
+.prose ol,.prose ul{margin:0;padding-left:18px}
+.prose li{font-size:12px;line-height:1.72;color:#2B2924;margin:3px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 14px 0}
+.two .box{border:3px solid var(--ink);background:#fff;padding:10px 10px 12px}
+.two .box.b2{border-color:var(--blue)}
+.two .bh{font-weight:900;font-size:12px;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid var(--ink)}
+.two .box.b2 .bh{border-bottom-color:var(--blue);color:var(--blue)}
+.two li{font-size:11.5px;line-height:1.6;margin:4px 0;color:#2B2924}
+.riskbox{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px}
+.riskbox .rl{display:flex;gap:8px;font-size:11.5px;line-height:1.65;padding:5px 0;border-bottom:1px dashed var(--hair)}
+.riskbox .rl:last-child{border-bottom:0}
+.riskbox .lv{flex:0 0 30px;font-weight:900}
+.riskbox .lv.h{color:var(--red)}.riskbox .lv.m{color:#B8860B}
+b.up{color:var(--red);font-weight:800}
+b.dn{color:var(--green);font-weight:800}
+b.amt{font-weight:800}
+.endshapes .c{width:20px;height:20px;border-radius:50%;background:var(--red)}
+.endshapes .s{width:16px;height:16px;background:var(--blue)}
+.endshapes .t{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:17px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top"><span>2026-10-27 收盘 · 320 行业 19:35 刷新</span><span>2026-10-27 TUE</span></div>
+    <div class="hero-shapes"><span class="sh-circle"></span><span class="sh-square"></span><span class="sh-tri"></span></div>
+    <h1>up 8 / strong 18 / down 16 · 唯一真红的是百货零售 7/8</h1>
+    <div class="hero-sub">全市场扫描（up 8 / strong 18 / down 16 · 320 行业 19:35 刷新） · 数据基准 10-27 收盘 · 条件触发式 · T+1 结算口径</div>
+    <div class="dist"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></div>
+  </header>
+
+  <div class="legend">
+    <span class="lg lg-red">桶① 可入主推 <small>×0</small></span>
+    <span class="lg lg-blue">桶② 稳健低吸 <small>×4</small></span>
+    <span class="lg lg-yel">桶③ 谨慎博弈 <small>×3</small></span>
+    <span class="lg lg-out">桶④ 出列 <small>×2</small></span>
+  </div>
+
+  <div class="mood">
+    <span class="mi">涨停·跌停 42 / 23<small>59/27 → 42/23·涨跌停比 2.2→1.8</small></span>
+    <span class="mi">晋级率 20.3%<small>12/59·仍在冰点线 30% 下方</small></span>
+    <span class="mi">连板高度 5 板 1 家<small>上海九百·4 板 3 家（襄阳/赛福天/多伦）</small></span>
+    <span class="mi">量能 1.46 万亿<small>缩 1,491 亿·跌不出量</small></span>
+  </div>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>前十板块景气榜</h2></div>
+  <div class="top10">
+    <div class="t10-cap">近10日板块景气排行 · 今日热度分 0-10（0.6×当日涨幅+0.4×五日动量·量价口径非基本面）· 趋势四态 · ⏳持续期预估（宁短勿长）</div>
+    <div class="t10-row"><span class="t10-rk">1</span><span class="t10-name">电机</span><span class="t10-heat" style="background:var(--red);color:#fff">10.0</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">2</span><span class="t10-name">百货零售</span><span class="t10-heat" style="background:var(--red);color:#fff">9.97</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳1-1日</span></div>
+    <div class="t10-row"><span class="t10-rk">3</span><span class="t10-name">粘胶</span><span class="t10-heat" style="background:var(--red);color:#fff">9.94</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳3-4日</span></div>
+    <div class="t10-row"><span class="t10-rk">4</span><span class="t10-name">股份制银行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.91</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">5</span><span class="t10-name">城商行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.88</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">6</span><span class="t10-name">银行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.84</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">7</span><span class="t10-name">农商行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.81</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">8</span><span class="t10-name">零售</span><span class="t10-heat" style="background:var(--red);color:#fff">9.78</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳1-1日</span></div>
+    <div class="t10-row"><span class="t10-rk">9</span><span class="t10-name">国有大型银行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.75</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+    <div class="t10-row"><span class="t10-rk">10</span><span class="t10-name">商用载客车</span><span class="t10-heat" style="background:var(--red);color:#fff">9.72</span><span class="t10-trend strong">🔥 高位</span><span class="t10-dur">⏳—</span></div>
+  </div>
+
+  <div class="sec-title"><span class="bar"></span><h2>结论总览</h2></div>
+  <nav class="board">
+    <a class="b-row" href="#s1"><span class="b-num yel">01</span><span class="b-main"><span class="b-name">百货零售 · avg 5.94</span><br><span class="b-lead">东百集团 · 14.46 亿 +7.65%</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s2"><span class="b-num yel">02</span><span class="b-main"><span class="b-name">休闲食品 · avg 6.93</span><br><span class="b-lead">青岛食品 · 2.21 亿 2 板 +9.99%</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s3"><span class="b-num yel">03</span><span class="b-main"><span class="b-name">聚氨酯 · avg 5.06</span><br><span class="b-lead">万华化学 · 31.98 亿 +3.96%</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s4"><span class="b-num yel">04</span><span class="b-main"><span class="b-name">4 个板块出列</span><br><span class="b-lead">中信证券 · 出列</span></span><span class="b-chip yel">谨慎博弈</span></a>
+  </nav>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>逐板块四桶</h2></div>
+  <div class="cards">
+    <article class="card" id="s1">
+      <div class="c-head"><div class="c-num yel">01</div><div class="c-title"><h3>百货零售 · avg 5.94</h3><div class="st">发酵第 3 日）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-1 个交易日</b>（明天不接力即退潮 · 反例=上海九百开板 或 板块红盘率跌破 50%）</div>
+      <div class="t" data-code="600693"><div class="t-main"><span class="t-name">东百集团</span><span class="t-tier blue">桶②</span></div><div class="t-act">14.46 亿 +7.65% <span class="t-risk">｜回踩 9.20-9.40 · 止损 8.70（唯一有换手）</span></div></div>
+      <div class="t" data-code="600694"><div class="t-main"><span class="t-name">大商股份</span><span class="t-tier blue">桶②</span></div><div class="t-act">0.86 亿 +0.73% <span class="t-risk">｜回踩 15.00-15.05 · 止损 14.94（量太小只作备选）</span></div></div>
+      <div class="t" data-code="600785"><div class="t-main"><span class="t-name">新华百货</span><span class="t-tier yel">桶③</span></div><div class="t-act">8.23 亿首板 +9.97% <span class="t-risk">｜明日看晋级，断板即弃</span></div></div>
+      <div class="t" data-code="600838"><div class="t-main"><span class="t-name">上海九百</span><span class="t-tier out">桶④</span></div><div class="t-act">5 板封 1.50 亿/峰 2.74 亿衰减 45% <span class="t-risk">｜禁碰只作温度计</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 4 票：桶①0/桶②2/桶③1/桶④1 —— 8 只成分 7 红（88%），茂业 +10.10、上海九百 5 板、新华百货 +9.97、东百 +7.65%；但 dur 1-1 日已到末段</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s2">
+      <div class="c-head"><div class="c-num yel">02</div><div class="c-title"><h3>休闲食品 · avg 6.93</h3><div class="st">龙头已死）</div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（3 只 2 板里断 2 只即退潮 · 反例=盐津继续破位或青岛食品开板）</div>
+      <div class="t" data-code="001219"><div class="t-main"><span class="t-name">青岛食品</span><span class="t-tier blue">桶②</span></div><div class="t-act">2.21 亿 2 板 +9.99% <span class="t-risk">｜回踩 14.51-14.80 · 止损 14.51</span></div></div>
+      <div class="t" data-code="001318"><div class="t-main"><span class="t-name">阳光乳业</span><span class="t-tier yel">桶③</span></div><div class="t-act">5.57 亿 2 板 +10.00% <span class="t-risk">｜高位放量，只做分歧回封</span></div></div>
+      <div class="t" data-code="002820"><div class="t-main"><span class="t-name">桂发祥</span><span class="t-tier yel">桶③</span></div><div class="t-act">3.77 亿 2 板 +10.01% <span class="t-risk">｜同上</span></div></div>
+      <div class="t" data-code="002847"><div class="t-main"><span class="t-name">盐津铺子</span><span class="t-tier out">桶④</span></div><div class="t-act">-7.83% 龙头破位，是板块顶部信号 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 4 票：桶①0/桶②1/桶③2/桶④1 —— 3/8 红盘但 3 只涨停（桂发祥/阳光乳业/青岛食品），龙头盐津铺子 -7.83% 破位；涨停全是低价小票</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s3">
+      <div class="c-head"><div class="c-num yel">03</div><div class="c-title"><h3>聚氨酯 · avg 5.06</h3><div class="st"></div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>约 1-2 个交易日</b>（万华破 68.13 即结束 · 反例=万华跌回 68.13 下方）</div>
+      <div class="t" data-code="600309"><div class="t-main"><span class="t-name">万华化学</span><span class="t-tier blue">桶②</span></div><div class="t-act">31.98 亿 +3.96% <span class="t-risk">｜回踩 68.69-69.00 接 1/3 · 止损 68.13</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>四桶 1 票：桶②1 —— 万华 +3.96%（31.98 亿）突破 68.13 独强，另 6 只全绿（滨化 -8.37%）；只能当个股做不能当方向押</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s4">
+      <div class="c-head"><div class="c-num yel">04</div><div class="c-title"><h3>4 个板块出列</h3><div class="st"></div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>0（已兑现）</b>（不再跟踪 · 反例=次日板块红盘率回到 ≥60% 再重新入池）</div>
+      <div class="t" data-code="600030"><div class="t-main"><span class="t-name">中信证券</span><span class="t-tier out">桶④</span></div><div class="t-act">出列 <span class="t-risk">｜-2.49% 37.54 亿带头杀</span></div></div>
+      <div class="t" data-code="601601"><div class="t-main"><span class="t-name">中国太保</span><span class="t-tier out">桶④</span></div><div class="t-act">出列 <span class="t-risk">｜-1.14%，昨日 5/5 全红今日 0/5</span></div></div>
+      <div class="t" data-code="601888"><div class="t-main"><span class="t-name">中国中免</span><span class="t-tier out">桶④</span></div><div class="t-act">出列 <span class="t-risk">｜-1.22% 跌破 50.80</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>证券 0/6 红 avg -2.19%、保险 0/5 红 avg -0.42%、旅游零售 0/2 红 avg -1.07%、纺织服装设备 1/3 红 avg -1.38% —— trend=up 是 10 日趋势惯性，当日全线走弱</li></ul></div></div>
+    </article>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--ink)"></i>一句话总判</div>
+      <p>二次探底日：创业板 <b class="dn">-3.41%</b> 收 2548.15（收盘=全天最低）、科创50 <b class="dn">-4.81%</b>，成交 <b class=\"amt\">1.46 万亿</b>（缩 1,<b class=\"amt\">491 亿</b>），涨停 42 / 跌停 23 / 炸板 28、晋级率 20.3%、站上 MA20 仅 14.6%。up 8 条里 &lt;b&gt;4 条今日其实在跌&lt;/b&gt;（证券 <b class="dn">-2.19%</b>、旅游零售 <b class="dn">-1.07%</b>、保险 <b class="dn">-0.42%</b>、聚氨酯 <b class="dn">-1.10%</b>），真正红的只有百货零售（7/8 红）、零售（4/5）、休闲食品（3 只涨停）——&lt;b&gt;trend=up 是 10 日趋势标签，不是当日强弱，必须叠加当日红盘率过滤&lt;/b&gt;。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--red)"></i>核心结论与前三板块深度</div>
+      <p>八条增强板块逐条排查（风险四桶，每板块 ≤5 只）：</p>
+      <p>① 百货零售（avg 5.94·dur 1-1·&lt;b&gt;7/8 红盘 avg <b class="up">+5.11%</b>&lt;/b&gt;）——桶①0/桶②2/桶③1/桶④1</p>
+      <p>涨停群：茂业商业 <b class="up">+10.10%</b>（<b class=\"amt\">1.18 亿</b>）、上海九百 <b class="up">+10.00%</b>（5 板·封 <b class=\"amt\">1.50 亿</b>）、新华百货 <b class="up">+9.97%</b>（<b class=\"amt\">8.23 亿</b>）、东百集团 <b class="up">+7.65%</b>（<b class=\"amt\">14.46 亿</b>）</p>
+      <p>桶②东百集团 600693（回踩 9.20-9.40·止损 8.70·但 <b class=\"amt\">14.46 亿</b>放量位置偏高）｜大商股份 600694（回踩 15.00-15.05·止损 14.94·量只有 <b class=\"amt\">0.86 亿</b>）</p>
+      <p>桶③新华百货 600785（首板·<b class=\"amt\">8.23 亿</b>换手充分但明日看晋级）｜桶④上海九百（5 板·封 <b class=\"amt\">1.50 亿</b>/峰 <b class=\"amt\">2.74 亿</b>衰减 45%·禁碰只作温度计）</p>
+      <p>小结=&lt;b&gt;唯一「板块红 + 个股强 + 有换手」三条件齐的方向&lt;/b&gt;，但 dur 1-1 日已到末段，明天不进则退</p>
+      <p>② 零售（avg 5.51·dur 1-1·4/5 红盘 avg <b class="up">+5.37%</b>）——与百货零售高度重叠（东百/新华/茂业同票）</p>
+      <p>桶①0/桶②1/桶③1/桶④0：桶②步步高 002251（<b class="up">+0.60%</b>·<b class=\"amt\">2.67 亿</b>·位置低）｜桶③茂业商业（首板 <b class=\"amt\">1.18 亿</b>量太小）</p>
+      <p>小结=同一批票换了个板块名，不重复下注</p>
+      <p>③ 休闲食品（avg 6.93·dur 1-2·&lt;b&gt;3/8 红盘但 3 只涨停&lt;/b&gt;）——最分裂的一条</p>
+      <p>涨停：桂发祥 <b class="up">+10.01%</b>（<b class=\"amt\">3.77 亿</b>·2 板）、阳光乳业 <b class="up">+10.00%</b>（<b class=\"amt\">5.57 亿</b>·2 板）、青岛食品 <b class="up">+9.99%</b>（<b class=\"amt\">2.21 亿</b>·2 板）；但龙头盐津铺子 &lt;b&gt;<b class="dn">-7.83%</b>&lt;/b&gt;、三只松鼠 <b class="dn">-3.16%</b></p>
+      <p>桶①0/桶②1/桶③2/桶④1：桶②青岛食品 001219（回踩 14.51-14.80·止损 14.51）｜桶③阳光乳业（<b class=\"amt\">5.57 亿</b>放量·2 板高位）｜桶④盐津铺子（<b class="dn">-7.83%</b> 破位，龙头倒下=板块顶部信号）</p>
+      <p>小结=&lt;b&gt;首板潮式扩散但龙头已死&lt;/b&gt;——涨停的都是低价小票，这是游资在低价股里做最后的接力</p>
+      <p>④ 证券（avg 6.03·0/6 红·avg <b class="dn">-2.19%</b>）——桶①0/桶②0/桶③0/桶④6：全板块翻绿，中信证券 <b class="dn">-2.49%</b>（<b class=\"amt\">37.54 亿</b>）、东财 <b class="dn">-2.37%</b>（<b class=\"amt\">28.23 亿</b>）</p>
+      <p>小结=「增强」标签纯属 10 日趋势惯性，&lt;b&gt;今日是券商带头杀&lt;/b&gt;，出列</p>
+      <p>⑤ 保险（avg 5.96·0/5 红·avg <b class="dn">-0.42%</b>）——桶④5：太保 <b class="dn">-1.14%</b>、新华 <b class="dn">-0.95%</b>、平安 <b class="dn">-0.02%</b>、人寿/人保 0.00</p>
+      <p>小结=&lt;b&gt;只强一天&lt;/b&gt;，昨日 5/5 全红 → 今日 0/5，防御的第一波结束</p>
+      <p>⑥ 旅游零售（avg 6.07·0/2 红）——桶④2：中免 <b class="dn">-1.22%</b>（<b class=\"amt\">5.61 亿</b>·跌破 50.80 支撑）、珠免 <b class="dn">-0.92%</b></p>
+      <p>小结=2 只成分的「增强」不构成方向</p>
+      <p>⑦ 聚氨酯（avg 5.06·3/7 红·avg <b class="dn">-1.10%</b>）——桶①0/桶②1/桶③0/桶④6</p>
+      <p>万华化学 <b class="up">+3.96%</b>（<b class=\"amt\">31.98 亿</b>·站上 68.13 突破）独强，华鲁 <b class="up">+1.19%</b>、卫星 <b class="up">+0.20%</b>；滨化 &lt;b&gt;<b class="dn">-8.37%</b>&lt;/b&gt;、红宝丽 <b class="dn">-2.57%</b></p>
+      <p>桶②万华化学 600309（回踩 68.69-69.00·止损 68.13）</p>
+      <p>小结=&lt;b&gt;万华一只票撑起整个板块&lt;/b&gt;，其余 6 只全绿——只能当个股做，不能当方向押</p>
+      <p>⑧ 纺织服装设备（avg 5.78·1/3 红）——杰克科技 <b class="up">+2.78%</b>（<b class=\"amt\">20.44 亿</b>）独强，但高开 45.00 收 44.39 走弱</p>
+      <p>小结=成分太少且当日冲高回落，出列</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--blue)"></i>操作预案 · 给明日策略日报的输入</div>
+      <p>【给明日策略日报的三行输入】</p>
+      <p>① &lt;b&gt;百货零售（唯一三条件齐）&lt;/b&gt;：只做东百集团回踩 9.20-9.40（<b class=\"amt\">14.46 亿</b>放量是唯一有换手的），5 板上海九百只作温度计不下注；板块 dur 已到 1-1 日末段，明日不红即退潮。</p>
+      <p>② &lt;b&gt;休闲食品（分裂型首板潮）&lt;/b&gt;：龙头盐津 <b class="dn">-7.83%</b> 已破位，涨停全是低价小票——&lt;b&gt;只做青岛食品回踩 14.51-14.80，不做 2 板接力&lt;/b&gt;；若明日 3 只 2 板有 2 只断板，此线视为退潮。</p>
+      <p>③ &lt;b&gt;聚氨酯只剩万华&lt;/b&gt;：万华 70.33 突破 68.13 后回踩 68.69-69.00 接 1/3，破 68.13 放弃；板块另 6 只全绿，不做扩散。</p>
+      <p>&lt;b&gt;出列（禁入）&lt;/b&gt;：证券（0/6 红、带头杀）、保险（只强一天）、旅游零售（2 只成分假增强）、纺织服装设备（冲高回落）。</p>
+  </div>
+
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--yellow)"></span><h2>四专家推演</h2></div>
+  <div class="exp">
+    <div class="ex-h">四专家推演 · KB 原话（前三板块共用）</div>
+    <div class="ex-r"><span class="ex-n">撑伞猫</span><span class="ex-q"><em>量能不到 2 万亿 · 不做突破不做低吸 · 空仓</em> — 「量能萎缩…暂时不做低吸」（框架库 1026 版·门槛 2 万亿）<br>今日成交 1.46 万亿，距他 2 万亿门槛差 5,400 亿，第一条就不过。百货零售的 5 板与 4 板在他眼里属「回流段」不是「加速段」，三板不打——&lt;b&gt;本期四条方向全部在他的射程外&lt;/b&gt;。</span></div>
+    <div class="ex-r"><span class="ex-n">冰冰小美</span><span class="ex-q"><em>防御占优但强度衰减 · 给风格窗口不给票</em> — 「利率上行 + 通胀顽固 → 红利/实物防御占优、成长承压；银行煤炭补跌才是转攻信号」（框架库）<br>货币金融 35% 红盘（全市场最高）、制造业 10%、信息技术 4%——&lt;b&gt;防御占优成立&lt;/b&gt;；但工行涨幅 3.13%→0.47%、保险 5/5 红→0/5，&lt;b&gt;防御的第一波已经在衰减&lt;/b&gt;，百货零售是这波的最后一站。</span></div>
+    <div class="ex-r"><span class="ex-n">柴柴</span><span class="ex-q"><em>2500-2600 第三档 · 分批不一次打满</em> — 「2700/2600/2500 三档，2500 打满」（10 月切换后口径）<br>创业板 2548.15 落入 2500-2600 第三档，按档位表该上仓位；但他的纪律是「破位再跌 5% 才是真破位」（2548→2420），&lt;b&gt;现在只是「进入档位区」不是「打满信号」&lt;/b&gt;。</span></div>
+    <div class="ex-r"><span class="ex-n">门捷列夫学徒</span><span class="ex-q"><em>产业进度无变化 · 空仓观察</em> — 「产业没啥好写的 = 空仓观察也 OK」（框架库）<br>本期四条增强全在消费/防御端，与他的 AI 产业进度条无关；设备链今日再杀（华海清科 -8.33%），&lt;b&gt;他的框架今天只能空仓&lt;/b&gt;。</span></div>
+    <div class="ex-r"><span class="ex-n">分歧</span><span class="ex-q">四位均为框架推演（xq_sync 今日新增 52 条已入库，但当日帖未逐条精读）——原话仅作口径校准，不作选股依据。</span></div>
+  </div>
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--blue)"></span><h2>需要考虑 / 需要避免</h2></div>
+  <div class="two">
+    <div class="box"><div class="bh">需要考虑</div><ul><li>up 8 条里 &lt;b&gt;4 条当日其实在跌&lt;/b&gt;（证券 <b class="dn">-2.19%</b> / 旅游零售 <b class="dn">-1.07%</b> / 保险 <b class="dn">-0.42%</b> / 聚氨酯 <b class="dn">-1.10%</b>）——trend=up 是 10 日趋势标签，必须叠加当日红盘率才能当买入依据</li><li>唯一三条件齐（板块红 + 个股强 + 有换手）的是百货零售：7/8 红盘、3 只涨停、东百 <b class=\"amt\">14.46 亿</b>换手充分；其余 7 条都有硬伤</li><li>防御第一波已在衰减：保险 5/5 全红（1026）→ 0/5（1027）、工行涨幅 3.13%→0.47%、农行 1.95%→0.95%——百货零售是这波的最后一站，不是新起点</li><li>休闲食品是「龙头死、小票活」的分裂结构：盐津铺子 <b class="dn">-7.83%</b> 破位，涨停全是 2 板低价小票——这是游资在低价股做最后接力，不是板块启动</li><li>聚氨酯只剩万华一只（<b class="up">+3.96%</b>·<b class=\"amt\">31.98 亿</b>），另 6 只全绿含滨化 <b class="dn">-8.37%</b>——单票撑板块，只能当个股做</li><li>up 8 条 dur 全部 1-2 日、全部标注「5 日爬升成熟段·随时兑现防守」，本期没有一条处在起势段——这是退潮日的典型特征</li></ul></div>
+    <div class="box b2"><div class="bh">需要避免</div><ul><li>不追 5 板上海九百：封单 <b class=\"amt\">1.50 亿</b> / 峰 <b class=\"amt\">2.74 亿</b>（衰减 45%），开板即分歧，与 1026 的 4 板同一模式</li><li>不买证券：0/6 全绿、中信 <b class="dn">-2.49%</b>（<b class=\"amt\">37.54 亿</b>）带头杀——「增强」标签纯属 10 日趋势惯性</li><li>不买保险：昨日 5/5 全红今日 0/5 红，只强一天；防御第二波要等银行重新放量</li><li>不买旅游零售：仅 2 只成分，「板块增强」是统计假象，容量撑不起仓位</li><li>不追东百集团高开：<b class="up">+7.65%</b> 后成交 <b class=\"amt\">14.46 亿</b>，明日高开 &gt;3% 不接，只等回踩 9.20-9.40</li><li>不碰 2 板以下低价食品小票的接力：桂发祥/阳光乳业/青岛食品都是 2 板，龙头已倒，接力风险大于收益</li></ul></div>
+  </div>
+  <div class="riskbox"><div class="bh" style="font-weight:900;font-size:12px;margin-bottom:6px">风险提示</div>
+    <div class="rl"><span class="lv h">高</span><span>收盘价 = 全天最低（创业板 2548.15 / 上证 3648.30）+ 成交再缩 1,<b class=\"amt\">491 亿</b>：无承接盘，明日低开概率高</span></div>
+    <div class="rl"><span class="lv h">高</span><span>站上 MA20 仅 14.6%（昨 22.6%）：一天掉 8 个点，中期趋势已破</span></div>
+    <div class="rl"><span class="lv h">高</span><span>仓位 99.43%（第 7 次超限）+ 单票华正 34.5%：任何板块带位都排在「先降仓」之后</span></div>
+    <div class="rl"><span class="lv h">高</span><span>trend=up 标签失真：8 个 up 板块里 4 个今日在跌（证券 <b class="dn">-2.19%</b>），不能直接当买入依据</span></div>
+    <div class="rl"><span class="lv m">中</span><span>美联储议息 10-29 凌晨 + 三季报 10-31 截止：事件密度最高的两天在前方</span></div>
+    <div class="rl"><span class="lv m">中</span><span>机器人链 4 板群（襄阳/赛福天/多伦）与正裕/林州跌停同日出现：同板块内部冰火两重天，容错率归零</span></div>
+  </div>
+
+
+  <div class="copybar" id="copybar">
+    <div class="cb-h">📋 一键复制全部个股编码<span class="cb-n">12 只（已去重）</span></div>
+    <button class="btn-copy" type="button" id="copyAllBtn">复制全部编码</button>
+    <div class="cb-codes" id="copyCodes">600693 600694 600785 600838 001219 001318 002820 002847 600309 600030 601601 601888</div>
+    <div class="cb-tip">复制后粘进行情软件即可建自选股；若浏览器拦截剪贴板，可直接点上面这行文本全选复制。</div>
+  </div>
+
+  <footer class="foot">
+    <div class="fh"><i></i>口径声明</div>
+    <p>① 景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位），<b>非基本面景气</b>；全部价位为<b>条件触发</b>（回踩带/低吸带/右侧确认），非现价指令——条件不成立即放弃，禁止带外追价。</p>
+    <p>② 数据基准 = 20261027 收盘（sector-strength-10d refresh=1）；T+1 结算口径 · daily low 硬核验。</p>
+    <p>③ 四桶分级：可入主推（红）＞稳健低吸（蓝）＞谨慎博弈（黄）＞出列（白）；⏳ 持续期=资金×题材×叙事三合评估，禁超档包装。仅供个人复盘参考，非投资建议。</p>
+    <div class="src">盘面=cache.db（fuyao 5,222/5,227·19:49）；板块强度=THS 320 行业（19:35 刷新·up 8/strong 18/down 16）；涨停池=东财（42/23/28）；成分红盘率=自算（板块成分手写核验） · 生成 2026-10-28 08:27 · trend=up 是 10 日趋势标签，不是当日强弱；本期必须叠加当日红盘率过滤</div>
+  </footer>
+
+  <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
+</div>
+<script>
+(function () {
+  var box = document.getElementById('copyCodes');
+  var btn = document.getElementById('copyAllBtn');
+  if (!box || !btn) return;
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', 'readonly');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  btn.addEventListener('click', function () {
+    var text = (box.textContent || '').trim();
+    if (!text || text === '（未识别到个股代码）') return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = '✅ 已复制 ' + text.split(/\s+/).length + ' 只'; })
+        .catch(function () { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; });
+    } else { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; }
+  });
+})();
+</script>
+</body>
+</html>
