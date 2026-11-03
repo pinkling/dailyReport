@@ -21,8 +21,8 @@
   header{background:linear-gradient(160deg,#0e3a26 0%,#0b0f1a 70%);padding:26px 14px 18px;border-bottom:1px solid var(--neon-line);text-align:center}
   header h1{font-size:21px;letter-spacing:1px}
   header .sub{color:var(--sub);font-size:12px;margin-top:4px}
-  .tabs{display:flex;gap:8px;margin:18px 0 12px}
-  .tab{flex:1;text-align:center;padding:11px 0;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:14.5px;font-weight:600;cursor:pointer;transition:.15s;user-select:none}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 12px}
+  .tab{flex:1 1 auto;min-width:92px;text-align:center;padding:11px 0;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--sub);font-size:14.5px;font-weight:600;cursor:pointer;transition:.15s;user-select:none}
   .tab.active{background:var(--neon-dim);border-color:var(--neon-line);color:var(--neon);box-shadow:0 0 12px rgba(61,220,151,.12)}
   .tab .dev{display:block;font-size:10px;font-weight:400;color:var(--sub);margin-top:1px}
   .list{margin-top:6px}
