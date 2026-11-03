@@ -34,6 +34,7 @@
   .pill.strategy{background:var(--neon);color:#04140b}
   .pill.review{background:var(--blue);color:#fff}
   .pill.sector{background:var(--gold);color:#1a1400}
+  .pill.picks{background:#f472b6;color:#2a0616}
   .pill.risk{background:#c084fc;color:#1b0b33}
   .pill.ai{background:#38bdf8;color:#04121f}
   .ai-desc{font-size:12.5px;color:var(--sub);margin-top:8px;line-height:1.6}
@@ -66,6 +67,7 @@
     <div class="tab active" data-type="strategy">📈 策略日报<span class="dev">移动端</span></div>
     <div class="tab" data-type="review">🖥️ 复盘日报<span class="dev">PC 端</span></div>
     <div class="tab" data-type="sector">🧭 板块分析<span class="dev">随时</span></div>
+    <div class="tab" data-type="picks">🎯 板块选股<span class="dev">盘前</span></div>
     <div class="tab" data-type="risk">📸 风险截图<span class="dev">最新</span></div>
     <div class="tab" data-type="ai">🤖 AI包<span class="dev">投研参谋</span></div>
   </div>
@@ -75,6 +77,7 @@
 
 <script>
 const REPORTS = [
+  {type:"picks", date:"20261103", time:"08:18", target:"1103", title:"板块选股作战单 · R1103 · 晨间修订", path:"reports/picks/20261103.html"},
   {type:"strategy", date:"20261103", time:"07:43", target:"1103", title:"策略日报 20261103_目标1103", path:"reports/strategy/20261103.html"},
   {type:"review", date:"20261102", time:"22:10", title:"A股每日复盘报告 · 20261102", path:"reports/review/20261102_pm.html"},
   {type:"strategy", date:"20261102", time:"00:07", target:"1102", title:"策略日报 20261102_目标1102", path:"reports/strategy/20261102_pm.html"},
@@ -225,7 +228,7 @@ function render(){
   const card = r => `
     <a class="item" href="${r.path}">
       <div class="top">
-        <span class="pill ${r.type}">${{strategy:"策略",review:"复盘",sector:"板块",risk:"截图"}[r.type]||r.type}</span>
+        <span class="pill ${r.type}">${{strategy:"策略",review:"复盘",sector:"板块",picks:"选股",risk:"截图"}[r.type]||r.type}</span>
         <span class="title">${r.title}</span>
       </div>
       <div class="meta">
