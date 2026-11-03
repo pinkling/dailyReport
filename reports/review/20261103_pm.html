@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A股每日复盘报告 · 20261103</title>
+<style>
+
+/* ═══ 玻璃拟态基线 · 复盘日报（2026-10-09 V1，B2 改版） ═══
+   规范要点：暗色底+低饱和光斑 → 半透明白卡+backdrop blur+1px 白描边；正文对比度 ≥4.5:1；
+   @supports 回退实色；红涨绿跌/版式铁律不变。 */
+:root{--bg:#0a0e18;--card:rgba(255,255,255,.09);--card2:rgba(255,255,255,.06);--card-solid:#141b2c;--line:rgba(255,255,255,.16);--line2:rgba(255,255,255,.22);--tx:#e9eef6;--tx2:#97a3bb;--up:#ff5d5d;--dn:#3ddc97;--gold:#ffc857;--cy:#4dd6b8;--exp:#7fb3ff;--blur:18px}
+*{margin:0;padding:0;box-sizing:border-box}
+*:focus-visible{outline:2px solid rgba(255,200,87,.7);outline-offset:2px;border-radius:4px}
+html{scrollbar-color:#3ddc97 #131a2b;scrollbar-width:thin}
+body{background:var(--bg);color:var(--tx);font:14px/1.65 "Microsoft YaHei",system-ui,sans-serif;padding:18px;position:relative}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+ radial-gradient(640px 460px at 12% 8%,rgba(64,120,220,.16),transparent 70%),
+ radial-gradient(720px 520px at 88% 88%,rgba(35,190,150,.11),transparent 70%),
+ radial-gradient(520px 400px at 68% 18%,rgba(130,105,255,.09),transparent 70%)}
+::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:#0b0f1a}::-webkit-scrollbar-thumb{background:rgba(61,220,151,.75);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#6bf0b5}
+.wrap{max-width:1500px;margin:0 auto}
+header h1{font-size:22px;color:#fff;letter-spacing:.5px;text-shadow:0 2px 18px rgba(64,120,220,.35)}
+header .meta{color:var(--tx2);font-size:12px;margin:6px 0 14px}
+.tldr{background:linear-gradient(135deg,rgba(255,200,87,.09),rgba(255,255,255,.04));border:1px solid rgba(255,200,87,.35);border-left:4px solid var(--gold);border-radius:14px;padding:12px 16px;margin-bottom:14px;font-size:14px;backdrop-filter:blur(var(--blur)) saturate(150%);-webkit-backdrop-filter:blur(var(--blur)) saturate(150%)}
+.grid2{display:grid;grid-template-columns:70% 30%;gap:14px;align-items:start}
+.maincol{display:flex;flex-direction:column;gap:14px}
+.sidecol{display:flex;flex-direction:column;gap:14px;position:sticky;top:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;backdrop-filter:blur(var(--blur)) saturate(150%);-webkit-backdrop-filter:blur(var(--blur)) saturate(150%);box-shadow:0 8px 32px rgba(0,0,0,.28);transition:border-color .2s}
+.card:hover{border-color:var(--line2)}
+.card.hl{border-color:rgba(255,200,87,.5);box-shadow:0 0 0 1px rgba(255,200,87,.22),0 8px 32px rgba(0,0,0,.28)}
+h2{font-size:15px;margin:16px 0 10px;padding:7px 10px;background:linear-gradient(90deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-left:3px solid var(--cy);border-radius:9px;color:#fff}
+h3{font-size:13.5px;color:var(--cy);margin:10px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0;table-layout:fixed}
+th{background:rgba(255,255,255,.055);color:#d5e2f5;padding:7px 8px;text-align:left;border-bottom:1px solid var(--line2);position:sticky;top:0;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.055);vertical-align:top;overflow-wrap:anywhere;word-break:break-word}
+tr:hover td{background:rgba(255,255,255,.035)}
+.scroll{max-height:520px;overflow-y:auto}
+.up{color:var(--up);font-weight:600}.dn{color:var(--dn);font-weight:600}
+b.gold{color:#ffc857}b.cy{color:#4dd6b8}b.exp{color:#7fb3ff}
+.card ul,.card ol{padding-left:20px}.card li{margin:4px 0}
+.big{font-size:16px;font-weight:700}
+.stock{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;transition:border-color .2s}
+.stock:hover{border-color:rgba(255,200,87,.35)}
+.stock .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.stock .hd b,.stock .hd .nm{color:#fff;font-size:14px}
+.stock .hd span{color:var(--tx2);font-size:11.5px}
+.stock .cd{color:var(--gold);font-family:Consolas,monospace;margin-right:4px}
+.stock .hd .clickable{cursor:pointer;transition:.2s}
+.stock .hd .clickable:hover .nm{color:var(--cy)}
+.stock .hd .clickable:active .nm{color:var(--dn)}
+.stock .hd .cp-hint{color:var(--tx2);font-size:10.5px;margin-left:6px}
+.clickable{cursor:pointer;transition:.2s}.clickable:hover{color:var(--cy)}
+.ignite{background:rgba(77,214,184,.07);border-left:3px solid var(--cy);border-radius:8px;padding:6px 10px;margin:6px 0;font-size:12px}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:12.5px;margin:6px 0}
+.kv .it{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:9px;padding:4px 10px;font-size:12px}
+.kv .it b{color:var(--gold)}
+.kv b{color:var(--gold);white-space:nowrap}
+.kv .v{min-width:0}
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11px;margin-right:6px}
+.tag.tr{background:rgba(255,93,93,.16);color:#ff7373;border:1px solid rgba(255,93,93,.55)}
+.tag.tg{background:rgba(255,200,87,.16);color:#ffc857;border:1px solid rgba(255,200,87,.5)}
+.tag.tb{background:rgba(77,214,184,.16);color:#4dd6b8;border:1px solid rgba(77,214,184,.5)}
+.tag.tp{background:rgba(127,179,255,.16);color:#7fb3ff;border:1px solid rgba(127,179,255,.5)}
+.tag.must{font-weight:700;box-shadow:0 0 8px rgba(255,93,93,.5)}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11px;margin-right:6px}
+.b-hit{background:rgba(255,93,93,.16);color:#ff7373;border:1px solid rgba(255,93,93,.55)}/*红=利好/命中*/
+.b-miss{background:rgba(61,220,151,.16);color:#3ddc97;border:1px solid rgba(61,220,151,.55)}/*绿=利空/证伪*/
+.b-warn{background:rgba(255,200,87,.16);color:#ffc857;border:1px solid rgba(255,200,87,.5)}
+.dim{color:var(--tx2)}
+.mono{font-family:Consolas,monospace}
+.risk{background:rgba(255,93,93,.07);border:1px solid rgba(255,93,93,.35);border-radius:12px;padding:10px 12px;margin:8px 0;font-size:12.5px}
+.note{background:rgba(77,214,184,.06);border-left:3px solid var(--cy);border-radius:9px;padding:8px 12px;margin:8px 0;font-size:12.5px}
+.bsp{background:rgba(255,200,87,.06);border-left:3px solid var(--gold);border-radius:9px;padding:8px 12px;margin:8px 0;font-size:12.5px}
+footer{color:var(--tx2);font-size:11.5px;margin-top:16px;line-height:1.7;border-top:1px solid var(--line);padding-top:10px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+.card,.tldr,.stock,.fab,.toc-panel,th{background:var(--card-solid)}
+.kv .it,.note,.bsp,.ignite{background:#182136}
+}
+@media (max-width:768px){
+body{padding:10px}.grid2{grid-template-columns:1fr}.sidecol{position:static}
+table{font-size:11px}td,th{padding:4px 5px}
+.scroll{max-height:none;overflow:visible}
+th{position:static}
+.hide-m{display:none}
+}
+@media print{body{background:#fff;color:#111}body::before{display:none}
+.card,.tldr,.stock,.kv .it,.note,.bsp,.ignite,th{background:#fff;border-color:#ccc;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+h2{background:#f0f2f6;color:#111;border-color:#ccc}td,th{color:#111;border-color:#ddd}
+header h1{color:#111;text-shadow:none}
+}
+
+.footer-block { margin: 4px 0 10px; font-size: 12px; color: var(--dim, #889); line-height: 1.7; }
+.footer-block > b { display: block; margin-bottom: 2px; color: var(--fg, #ccd); }
+.footer-list { margin: 0; padding-left: 18px; }
+.footer-list li { margin: 1px 0; word-break: break-all; }
+.fab { position: fixed; right: 16px; z-index: 90; border: 1px solid var(--line, #2a3040); background: var(--card, #161b26); color: var(--fg, #ccd); border-radius: 20px; padding: 8px 14px; font-size: 13px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.35); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.fab-dir { bottom: 20px; }
+.fab-top { bottom: 64px; width: 40px; height: 40px; padding: 0; border-radius: 50%; font-size: 16px; }
+.fab:hover { border-color: var(--gold, #d4a017); color: var(--gold, #d4a017); }
+html, body { overflow-x: hidden; }
+.toc-mask { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 98; }
+.toc-mask.show { display: block; }
+.toc-panel { position: fixed; top: 0; right: 0; transform: translateX(105%); width: 300px; max-width: 82vw; height: 100vh; background: var(--card, #161b26); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); border-left: 1px solid var(--line, #2a3040); z-index: 99; transition: transform .25s ease; display: flex; flex-direction: column; }
+.toc-panel.open { transform: none; }
+.toc-hd { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line, #2a3040); font-size: 15px; }
+.toc-close { background: none; border: none; color: var(--fg, #ccd); font-size: 16px; cursor: pointer; padding: 4px 8px; }
+.toc-body { overflow-y: auto; flex: 1; padding: 8px 0; }
+.toc-list { margin: 0; padding: 0 8px; list-style: none; }
+.toc-list li { border-bottom: 1px dashed var(--line, #222836); }
+.toc-list a { display: block; padding: 9px 10px; color: var(--fg, #ccd); text-decoration: none; font-size: 13px; line-height: 1.5; }
+.toc-list a:hover { color: var(--gold, #d4a017); background: rgba(255,255,255,.03); }
+details.appendix > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: var(--tx2, #8a94ab); padding: 2px 0; }
+details.appendix > summary::-webkit-details-marker { display: none; }
+details.appendix > summary::before { content: '▸'; transition: transform .2s; display: inline-block; }
+details.appendix[open] > summary::before { transform: rotate(90deg); }
+details.appendix[open] > summary { color: var(--fg, #ccd); }
+details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 14px 0 4px; padding-bottom: 4px; border-bottom: 1px dashed var(--line, #232d44); }
+@media print { .wrap { max-width:100%; } .card { break-inside: avoid; } .footer-block { break-inside: avoid; } .fab, .toc-panel, .toc-mask { display: none !important; } details.appendix { display: block !important; } details.appendix > summary { color:#111; } }
+.pf-badge { margin-left:4px; }
+</style>
+</head>
+<body>
+<div id="app">
+<div class="wrap">
+<button type="button" class="fab fab-dir" id="fabDir" aria-label="打开目录">☰ 目录</button>
+<button type="button" class="fab fab-top" id="fabTop" aria-label="回到顶部" title="回到顶部">↑</button>
+<div class="toc-mask" id="tocMask"></div>
+<aside class="toc-panel" id="tocPanel" role="dialog" aria-modal="true" aria-label="报告目录">
+  <div class="toc-hd"><b>📑 目录</b><button type="button" class="toc-close" id="tocClose" aria-label="关闭">✕</button></div>
+  <nav class="toc-body"><ol class="toc-list"></ol></nav>
+</aside>
+<header>
+<h1>A股每日复盘报告 · 2026-11-03（周二）</h1>
+<div class="meta">复盘对象日 1103 · 收盘后全量 · T+1 结算日 = 1104（周三）</div>
+</header>
+
+<div class="card hl"><div class="tldr">
+<ol><li><b class="exp"><b>今天怎么走的</b>：AI 硬件业绩杀。创业板低开 <b class="dn">-1.18%</b>（2429.77），盘中翻红到 2471.90，午后加速下杀收 <b class="dn">2391.65（-2.73%）失守 2400</b>；科创50 <b class="dn">-3.81%</b> 创本轮新低，上证 -0.82% 收 3608.10、<b class="up">上证50 逆势 +0.21%</b>。成交 <b class="gold">1.7003 万亿</b>（缩量 828 亿）；涨 <b class="up">2,022</b> / 跌 <b class="dn">3,045</b>；涨停 <b class="dn">52</b>（昨 131）/ 跌停 17；情绪 <b class="dn">87 → 45</b>。账户 <b class="dn">-5,689.54（-4.31%）</b>，跑输创业板 1.58pct。</b></li><li><b class="exp"><b>今天做对了什么</b>：①<b class="up">卖出端三笔全优于报告价</b>——昆船 16.93/18.05 卖 1,400 股（报告挂 15.60）、中远 17.82 卖 200 股；②<b class="up">中远「逻辑反转即走」判断对</b>，躲过 -5.58%；③<b class="up">禁买 PCB 的判断对</b>——生益、景旺、深南集体跌停。</b></li><li><b class="exp"><b>今天错在哪</b>：①<b class="dn">仓位反向上行</b>——报告要求 ≤50%，实际 99.5%（第 2 日严重违规）；②<b class="dn">买入 34,980 = 卖出 27,826 的 126%</b>（R1 上限 50%，超 2.5 倍）；③<b class="dn">两只新买全在报告外</b>：生益 100 股（PCB·禁买链，当日跌停）、旗天 3,400 股（追当日高点 -3.9%）；④<b class="dn">协创破 142.40 收盘确认清，未执行</b>，收盘 138.02、浮亏 -5,281（占总资产 -4.2%）。</b></li><li><b class="exp"><b>明日（1104）看三件事</b>：①<b class="gold">协创 138.02 已破止损，竞价清是唯一动作</b>（600 股 = 65.5% 总资产，这是账户最大的单点风险）；②中船系/海洋经济能否接力（昆船 +18.08%、发改委「十五五」海洋经济发布会）；③<b class="warn">四只宽基 ETF 同日成交破百亿（2024-09-24 以来首次）</b>——托的是指数不是情绪，科技硬件止跌前不抢反弹。</b></li></ol>
+</div></div>
+
+<div class="grid2"><div class="maincol">
+
+<!-- 3.1D T+1 对账 -->
+<div class="card">
+<h2 id="sec-01">3.1D T+1 兑现预案对账表（逐单三件套核对）</h2>
+<table>
+<colgroup><col style="width:15%"><col style="width:30%"><col style="width:33%"><col style="width:22%"></colgroup>
+<tr><th>标的</th><th>预案三件套（昨日报告）</th><th>T+1 实际</th><th>兑现判定</th></tr>
+<tr>
+  <td>指数·创业板（b1103-001）</td><td>高开 <b>+0.4%~+1.2%</b>（2468-2490）｜站住 2480=延续｜高开 &gt;1.5%=兑现窗口｜低开 &lt;-0.5%（2446 下方）=亢奋次日失败，当日不接票</td><td>开 <b class="dn">2429.77（-1.18%）</b>——直接落入「失败」档；盘中翻红到 <b>2471.90</b>（+0.54%，刚好摸到 2468 下沿），午后杀到 2376.39，收 <b class="dn">2391.65（-2.73%）</b></td>
+  <td><span class="badge b-miss">方向错 + 幅度错 3.1pct</span> <span class="dim"><b class="up">作废条款救了半条命</b>：报告写「低开 &lt;-0.5%=不接票」，9:25 就触发——用户 9:53 仍买生益、13:07 买旗天。<b class="cy">条款给了没人执行</b></span></td>
+</tr>
+<tr>
+  <td>持仓·昆船智能 1,900 股</td><td><b>09:15 竞价挂 15.60 直接清 1,900 股</b>（第 5 日·「不再给任何持有理由」）</td><td>开 15.82（平开）→ 下探 15.20 → <b class="up">10:51 封 20cm 涨停 18.98</b> → 收 <b class="up">18.68（+18.08%）</b>，振幅 23.89%、成交 6.35 亿、换手 14.92%</td>
+  <td><span class="badge b-miss">报告指令错（中船系+海洋经济政策）·用户分两笔卖在高位</span> <span class="dim">中船系 +4.02%（海洋经济发布会）：按 15.60 全清收 29,640；实际 16.93×900 + 18.05×500 + 剩 500 市值 9,340 = <b class="up">33,602</b>，多 <b class="up">3,962</b>——<b>不听报告今天对了，但剩 500 股仍是漏单</b></span></td>
+</tr>
+<tr>
+  <td>持仓·协创数据 600 股</td><td>高开 ≥+3%（155 上方）整只兑现｜平开或低开持有，<b>破 146.82（成本）收盘确认清</b>｜破 142.40 无条件清</td><td>开 <b>150.00</b>（平开，未达 155）→ 全天最高 150.00（开盘即最高）→ 一路下杀到 137.00，收 <b class="dn">138.02（-8.24%）</b>，31.47 亿</td>
+  <td><span class="badge b-miss">未执行止损（收盘确认制当日无法执行）</span> <span class="dim">成本 146.82 → 收盘 138.02，浮亏 <b class="dn">-5,281</b>；其中 146.82→142.40（-2,653）是正常波动、142.40→138.02（<b class="dn">-2,628</b>）是「收盘确认制」的制度性延后——<b class="cy">止损条款写了「收盘确认」，就等于放弃了当日止损</b></span></td>
+</tr>
+<tr>
+  <td>持仓·中远海能 200 股</td><td><b>09:15 竞价挂 19.00 清 200 股</b>（=昨收 -1.9%，保本偏亏 59 元）</td><td>开 <b class="dn">18.10（-6.51%）</b>→ 高 18.47 → 低 17.71 → 收 <b class="dn">18.28（-5.58%）</b>；用户 09:35 卖 17.82</td>
+  <td><span class="badge b-warn">预案价不可成交（自相矛盾）·用户市价处理</span> <span class="dim">报告一边预判「中远竞价低开 ≥2%=hit」，一边把卖价挂在 -1.9%——<b class="dn">挂单永远不可能成交</b>。用户 17.82 卖出，比收盘 18.28 少 <b class="dn">92</b>，比开盘 18.10 少 56。<b>结论对（逻辑反转要走）、执行价设计错</b></span></td>
+</tr>
+<tr>
+  <td>⑦ 池·光线传媒（A 锚）</td><td>回踩 11.75-11.95 接 1/5｜或站上 12.35 + 传媒 ≥3 家红 + 量比 ≥1.0｜破 11.20 放弃</td><td>开 12.20 → 低 <b>11.96</b>（距带顶 11.95 仅 0.01）→ 高 12.30 → 收 <b class="dn">12.06（-1.15%）</b></td>
+  <td><span class="badge b-warn">带内触发 ✓（差 0.01·容差内）·未执行</span> <span class="dim">按 11.95 接 1/5（约 2.4 万）收盘 12.06 = 浮盈 +220；<b class="cy">又是「带位给到了没买」</b></span></td>
+</tr>
+<tr>
+  <td>⑦ 池·捷成股份（B 锚）</td><td>回踩 5.30-5.42 接 1/5｜或 5.55-5.65 站稳 + AI 应用 ≥3 家红 + 量比 ≥1.0｜破 5.10 放弃</td><td>开 5.68 → 低 <b>5.55</b>（触或口径下沿）→ 高 5.81 → 收 <b class="dn">5.57（-1.24%）</b>；AI 应用红盘仅 21%</td>
+  <td><span class="badge b-hit">带未触发（或口径条件不成立）</span> <span class="dim">价格到了但「AI 应用 ≥3 家红盘」不成立（64 红 / 238 跌）——<b class="up">条件式条款起了作用，不接是对的</b></span></td>
+</tr>
+<tr>
+  <td>⑦ 池·泸州老窖 / 锦江酒店 / 中远海控</td><td>泸州 78.20-78.90 或站上 80.50｜锦江 19.60-19.90 或 20.30-20.45｜海控 17.60-17.79 或站上 18.10｜各破位放弃</td><td>泸州低 79.48（未到深带）→ 收 <b class="up">80.80（+1.29%）站上 80.50</b>；锦江低 20.38（进或口径）→ 收 <b class="up">20.83（+1.26%）</b>；海控低 <b class="dn">17.28</b>（进带后破 17.35 放弃线）→ 收 17.81（-0.89%）</td>
+  <td><span class="badge b-hit">2 触发（或口径）·1 破位</span> <span class="dim"><b class="gold">池内防守腿（泸州/锦江）今天是唯一逆势的一对</b>；海控带内触发后破放弃线——按收盘确认制不接，避免 -3.0% 的日内浮亏</span></td>
+</tr>
+<tr>
+  <td>仓位 · b1103-002（★核心）</td><td>清昆船 + 清中远后总仓 ≤70%；协创兑现后 ≤10%</td><td>收盘 <b class="dn">99.5%</b>（125,751/126,348）——不仅没降，比昨日 94.1% 还高 5.4pct；买入 34,980 / 卖出 27,826 = <b class="dn">126%</b></td>
+  <td><span class="badge b-miss">严重违反（第 2 日）</span> <span class="dim">R1（买入 ≤卖出×50% → 上限 13,913）实际 34,980 = <b class="dn">上限的 251%</b>；昨日 587% → 今日 126%，<b>绝对数只降了一半，仍远超上限</b></span></td>
+</tr>
+</table>
+<p class="note"><b>纸面回查</b>：昨日涨停 131 只今日红盘 <b>75/142（52.8%）</b>、均 <b class="up">+1.87%</b>、连板晋级 <b>3/11=27.3%</b>——<b class="dn">晋级率跌破 30% 冰点线，一日游确认</b>。「1 板次日开盘 +1.39%」的期望表今日仍成立（竞价溢价 2.29%），但收盘只剩 +1.87% 且集中在少数票——<b class="cy">开盘溢价给到了，接力的人被埋了</b>。</p>
+</div>
+
+<!-- 3.3 资金四时段 -->
+<div class="card">
+<h2 id="sec-02">3.3 资金流向实际路径（四时段）</h2>
+<table>
+<colgroup><col style="width:13%"><col style="width:52%"><col style="width:35%"></colgroup>
+<tr><th>时段</th><th>路径与证据</th><th>判读</th></tr>
+<tr><td>竞价 9:15-9:25</td><td>创业板 <b class="dn">2429.77（-1.18%）</b>、科创50 1184.53（-1.04%）、上证 3624.58（-0.37%）——全线低开；生益 80.00（-2.53%）、中远 18.10（-6.51%）、昆船 15.82 平开</td><td><b class="cy">竞价就把「兑现日」写死了</b>：外围费半 -3.37% 传导过来，AI 硬件全部低开。报告预案里「低开 &lt;-0.5%=当日不接票」在 9:25 就触发，但没人按它做</td></tr>
+<tr><td>早盘 9:30-10:30</td><td>创业板下探 -2.4%（2376 附近）后快速拉起，10:00 前后翻红到 <b>2471.90（+0.54%）</b>；中船系异动：昆船 10:51 封 20cm 涨停 18.98；电池/固态电池走强</td><td><b class="gold">早盘是「假修复」</b>：翻红的动力来自中船系/电池/养殖这些低位方向，而 AI 硬件（中际旭创 -12.69%、天孚 -12.80%）全程没有反抽——<b>指数翻红≠主线修复</b></td></tr>
+<tr><td>午后 13:00-14:30</td><td>抛压加速：科创50 跌超 5%（最低 1132.33）、创业板跌近 3%、沪指破 3600（最低 3580.38）、北证50 -4.02%；下跌个股一度近 3,600 只</td><td><b class="dn">午后是融资盘被动平仓时段</b>：两融余额已从 3.03 万亿降到 2.46 万亿，AI 硬件的跌停潮（生益/景旺/深南/德明利/光迅）就是强平的结果——<b>不是估值问题，是筹码问题</b></td></tr>
+<tr><td>尾盘 14:30-15:00</td><td>大资金入场：四只宽基 ETF 同日成交破百亿（上证50ETF、创业板ETF、沪深300ETF、科创50ETF，2024-09-24 以来首次）；<b class="up">上证50 翻红 +0.21%</b>，沪指收 3608.10 收复 3600</td><td><b class="cy">托的是指数，不是情绪</b>：ETF 承接让指数收在半山腰，但个股跌停 17 家、炸板 34 家——<b>尾盘买的是「指数的下限」，不是「个股的反弹」</b></td></tr>
+</table>
+<p class="dim">量能异动：全市场 <b class="gold">1.7003 万亿</b>（缩量 828 亿·-4.6%）——反弹次日量能没接力，存量资金只够做高低切。行业分化极端：<b class="up">鸡肉 +2.87%／养殖 +2.70%／医美 +2.69%／保险 +2.66%／茅指数 +2.13%／航空机场 +1.94%</b>；<b class="dn">百元股 -6.21%／CPO -5.99%／高带宽内存 -5.45%／光通信 -5.44%／元件 -5.25%／半导体 -5.15%／存储 -4.86%</b>。<b class="cy">同一天里「百元股 -6.21%」与「养殖 +2.70%」并存——这是典型的高低位再平衡，不是普跌</b>。</p>
+</div>
+
+<!-- 3.3A/3.3B -->
+<div class="card">
+<h2 id="sec-03">3.3A 对手盘复盘（四类）· 3.3B 主力视角验证</h2>
+<table>
+<colgroup><col style="width:16%"><col style="width:44%"><col style="width:40%"></colgroup>
+<tr><th>对手盘</th><th>登场证据</th><th>护栏实测</th></tr>
+<tr><td>被动平仓盘（两融）——今日最大的卖方</td><td>两融余额 3.03 万亿 → <b class="dn">2.46 万亿</b>；AI 硬件跌停潮：生益、景旺、深南、德明利、光迅；中际旭创 -12.69%（293 亿成交全场第一、单日蒸发 822 亿）</td><td>护栏实测：报告写「情绪 87 亢奋次日防兑现」——<b class="up">方向对</b>，但没写「融资盘强平」这条传导链，所以低估了幅度（-2.73% vs 预测 +0.4~+1.2%）</td></tr>
+<tr><td>ETF 承接盘（国家队/险资）——尾盘托底</td><td>四只宽基 ETF 同日成交破百亿（2024-09-24 以来首次）：科创50ETF 225 亿、创业板ETF 195 亿、沪深300ETF 190 亿、上证50ETF 破百亿；上证50 逆势 +0.21%</td><td>护栏实测：「政策底加固下限不加固上限」的判断对——<b class="cy">ETF 托住 3600，但托不住 3,000 只个股</b></td></tr>
+<tr><td>并购套利/外资——Marvell 收购 Lumentum 引发重估</td><td>Marvell 以 1,150 亿美元全股票收购 Lumentum（溢价 23.9%）；Lumentum -18.59%、Marvell -12.72%、费半 -3.37%、KOSPI -3.59%；MSCI 口径净流出 396.9 亿</td><td>护栏实测：报告只把它当「光模块事件催化」写在电报里，<b class="dn">没升级为「产业链重估」风险项</b>——今日最大判读落差</td></tr>
+<tr><td>高低切资金（游资/量化）——去低位方向</td><td>电池 +25.3 亿、茅指数 +20.9 亿、钠离子 +18.2 亿、锂矿 +16.3 亿；养殖 +2.70%、白酒 +0.92%、保险 +2.66%、中船系 +4.02%（昆船 +18.08%）</td><td>护栏实测：「不做指数、只做个股；不追涨、只接回踩」——<b class="up">池内防守腿（泸州/锦江）今日是唯一逆势的一对</b>，说明结构判断有效，仓位判断无效</td></tr>
+</table>
+<p class="note"><b>主力三证据</b>：① <b>量</b>——1.7003 万亿缩量 828 亿，反弹次日没有增量，「存量博弈只够高低切」；② <b>价</b>——上证50 +0.21% vs 创业板 -2.73%，<b>权重与小盘的分化是本周最大</b>，收在振幅下沿的指数（创业板收 2391.65，位于 2376.39-2471.90 的 16% 位置）；③ <b>结构</b>——涨停 52 家里首板 34、连板 18，高度 4 板（阳光照明/东方海洋），<b class="cy">钱在「低位+政策」里抱团（中船系/电池/养殖），不在高位科技里接力</b>。结论：这不是全面撤退，是<b class="gold">一次由融资盘强平触发、由 ETF 承接托底的高低位再平衡</b>。</p>
+</div>
+
+<!-- 3.4 + 3.5 -->
+<div class="card">
+<h2 id="sec-04">3.4 催化生命周期验证 · 3.5 量价形态复盘（含持仓）</h2>
+<table>
+<colgroup><col style="width:20%"><col style="width:26%"><col style="width:54%"></colgroup>
+<tr><th>催化</th><th>分级</th><th>今日走势与修正</th></tr>
+<tr><td>Marvell 收购 Lumentum（1,150 亿美元·11-02 晚）</td><td>节点型（已兑现利空）</td><td><b class="dn">这是今日下跌的总开关</b>：市场担心国内模组厂议价环境收紧，Lumentum -18.59%、Marvell -12.72%、费半 -3.37%，A 股 CPO -5.99%/光通信 -5.44% 全额传导</td></tr>
+<tr><td>生益科技 Q3 净利 34.40 亿（+238.40%）却跌停</td><td>业绩杀（新变量）</td><td><b class="dn">业绩越好跌得越狠</b>：应收账款 169.47 亿（较年初 +77.9%）、存货 93.90 亿（+62.3%）、大股东 10 亿可交换债进入换股期——<b class="cy">这是「筹码出清」而非「景气恶化」的典型形态</b></td></tr>
+<tr><td>SFISF 第三次操作 1,000 亿落地（11-03）</td><td>节点型（卖事实）</td><td>31 家机构投标、中标费率 10bp，国泰海通中标 100 亿——<b>券商 +0.73% 但净流出 11.8 亿，落地即卖事实成立</b></td></tr>
+<tr><td>发改委「十五五」海洋经济发布会（11-03 上午）</td><td>中期（新主线候选）</td><td>中船系 <b class="up">+4.02%</b> 逆势领涨：昆船 +18.08%（10:51 封 20cm 后打开）、中国船舶 +3.49%；叠加造船排产覆盖到 2028-2030、三季报中国船舶净利 +129.67%</td></tr>
+<tr><td>固态电池材料融资 + 「十五五」电网投资超 5 万亿</td><td>中期（低位方向）</td><td>电池 <b class="up">+25.3 亿净流入</b>全场第一、宁德 +3.8%、尚水智能 20cm——低位+政策+业绩三合一，是资金新的落脚点</td></tr>
+</table>
+<table>
+<colgroup><col style="width:14%"><col style="width:24%"><col style="width:22%"><col style="width:40%"></colgroup>
+<tr><th>标的</th><th>量价形态</th><th>分类</th><th>次日条款</th></tr>
+<tr><td>协创数据</td><td><b class="dn">-8.24%</b> 收 138.02（开 150.00=最高→低 137.00），31.47 亿放量下跌</td><td>放量破位·开盘即最高</td><td>MA5 <b class="gold">153.93</b> 在上方 10.3%、MA20 198.23 上方 30%——<b>趋势彻底走坏</b>；止损 137.00，破位即清</td></tr>
+<tr><td>昆船智能</td><td><b class="up">+18.08%</b> 收 18.68（开 15.82→低 15.20→高 18.98 涨停后打开），6.35 亿、换手 14.92%、振幅 23.89%</td><td>低位放量长阳·政策驱动</td><td>MA5 17.48 已站上、MA10 18.75/MA20 18.95 在上方——<b>一日反包不等于趋势反转</b>；止盈 17.80（MA5 上方）</td></tr>
+<tr><td>生益科技</td><td><b class="dn">-10.00% 跌停</b> 收 73.87（开 80.00→高 80.33→低 73.87），77.1 亿天量</td><td>业绩杀·跌停封死</td><td>MA5 <b class="dn">87.91</b> 在上方 19%、距 9/16 高点 154.48 已腰斩 52%——<b>不接跌停，等 3 日不破低点</b></td></tr>
+<tr><td>旗天科技</td><td><b class="up">+2.53%</b> 收 7.69（开 7.37→高 8.15→低 7.32），6.53 亿；<b class="dn">长上影 6%</b></td><td>冲高回落·长上影</td><td>买在 8.00（距当日高 8.15 仅 -1.8%）；MA5 7.27 在下方 5.8%——<b>上影线是当天多头失败的直接证据</b></td></tr>
+<tr><td>中远海能</td><td><b class="dn">-5.58%</b> 收 18.28（开 18.10→高 18.47→低 17.71），12.95 亿</td><td>缺口补跌·逻辑反转</td><td>已清仓（17.82）；<b class="cy">油运赚的是运价，运价跟着地缘走——油价崩 7.55% 就是买入理由消失</b></td></tr>
+<tr><td>泸州老窖</td><td><b class="up">+1.29%</b> 收 80.80（开 79.64→高 81.04→低 79.48），16.48 亿（昨 33.54 亿）</td><td>缩量上涨·防守腿</td><td>MA5 75.38 在下方 7.2% 支撑；<b class="up">在科技崩塌日逆势收红，容器的避险属性今天才真正体现</b></td></tr>
+</table>
+</div>
+
+<!-- 3.6 缠论 -->
+<div class="card">
+<h2 id="sec-05">3.6 缠论结构收盘快照（ref 参考位口径）</h2>
+<table>
+<colgroup><col style="width:20%"><col style="width:26%"><col style="width:54%"></colgroup>
+<tr><th>标的</th><th>结构</th><th>ref 参考位</th></tr>
+<tr><td>创业板指</td><td>2391.65（<b class="dn">-2.73%</b>）失守 2400，创 2025-08-12 以来新低；MA5 <b>2483.27</b> 在上方 3.7%／MA10 2555.84／MA20 2730.18；收在振幅 16% 位置（近最低）</td><td>ref：<b class="gold">2376.39（今日低）</b> / 2400（整数关·已失守） / 2483.27（MA5） / 2300（下一档）</td></tr>
+<tr><td>上证指数</td><td>3608.10（<b class="dn">-0.82%</b>），盘中破 3600 至 <b>3580.38</b>（破 1102 低 3594.77），尾盘收回；MA5 3635.61 在上方 0.76%</td><td>ref：<b class="gold">3580.38（今日低）</b> / 3600（整数关·收回） / 3635.61（MA5） / 3574（周线前低）</td></tr>
+<tr><td>科创50</td><td>1151.28（<b class="dn">-3.81%</b>）续创本轮调整新低，MA5 1204.01 在上方 4.4%；半导体权重是主要拖累</td><td>ref：1132.33（今日低） / 1151.28（收盘） / 1204.01（MA5）——<b class="dn">下方无近端支撑，只能看 1100 整数关</b></td></tr>
+</table>
+<p class="dim">结构结论：<b class="dn">三大指数全部跌破 MA5、创业板失守 2400、科创50 创新低</b>——1102 的「止跌」在 1103 被证伪，<b>现在是「下跌中继」而不是「二次探底」</b>。确认修复需要三个条件同时出现：①创业板站回 2400；②AI 硬件（CPO/PCB/存储）红盘率 ≥50%；③成交重回 1.9 万亿以上。<b class="cy">三条里今天一条都没有</b>。</p>
+</div>
+
+<!-- 3.7 交易归因 -->
+<div class="card">
+<h2 id="sec-06">3.7 持仓与交易执行归因（逐笔+三本账+三选一对账）</h2>
+<p class="note"><b>昨日三选一 vs 今日实际</b>：报告给的是「昆船竞价 15.60 清 1,900 股 / 协创高开 ≥155 兑现、平开持有 / 中远竞价 19.00 清 200 股 / 清完后仓位 ≤70%、兑现后 ≤10%」。实际是：<b class="up">昆船分两笔 16.93/18.05 卖 1,400 股（比报告价高 8.5%/15.7%）</b>、<b class="dn">协创没动（-8.24%）</b>、<b class="warn">中远 17.82 卖（挂单价不可成交）</b>、<b class="dn">新买生益 100 股 + 旗天 3,400 股（全部报告外）</b>。六笔交易把仓位从 94.1% 推到 <b class="dn">99.5%</b>——<b class="cy">「先卖后买」做成了「卖了再买更多」</b>。</p>
+<table>
+<colgroup><col style="width:14%"><col style="width:20%"><col style="width:22%"><col style="width:14%"><col style="width:30%"></colgroup>
+<tr><th>标的</th><th>操作</th><th>成交 vs 当日区间</th><th>标签</th><th>两维归因</th></tr>
+<tr><td>昆船智能 900 股</td><td>10:22 卖 16.93（15,237）</td><td>当日区间 15.20-18.98；卖在当日涨幅 +7.0% 位置</td>
+  <td><span class="tag tb">优于报告价（+8.5%）</span></td><td>报告挂 15.60 全清；用户 10:22 卖 16.93——<b class="up">多收 1,197</b>。第 6 天漏单，但今天是<b>正收益的漏单</b>：<b class="cy">纪律错、结果对，不做结果豁免</b></td></tr>
+<tr><td>昆船智能 500 股</td><td>10:41 卖 18.05（9,025）</td><td>距涨停价 18.98 仅 -4.9%；收盘 18.68</td>
+  <td><span class="tag tb">优于报告价（+15.7%）</span></td><td>在 20cm 涨停打开后卖在 18.05，<b class="up">是今日全场最好的一笔</b>；但 1,900 股只卖了 1,400，剩余 500 股仍在</td></tr>
+<tr><td>中远海能 200 股</td><td>09:35 卖 17.82（3,564）</td><td>开盘 18.10（-6.51%）；收盘 18.28</td>
+  <td><span class="tag tb">执行预案（挂单价不可成交）</span></td><td>报告挂 19.00，在 -6.5% 的开盘价上<b class="dn">不可能成交</b>——预判低开 ≥2% 却挂 -1.9%，自相矛盾。用户 17.82 市价处理，比开盘少 56、比收盘少 92；<b>方向 100% 对，价位设计归报告</b></td></tr>
+<tr><td>生益科技 100 股</td><td>09:53 买 77.64（7,764）</td><td>当日高 80.33、低 73.87（跌停）；收 73.87（浮亏 <b class="dn">-382</b>）</td>
+  <td><span class="tag tb">违反禁买清单</span></td><td>报告「禁买清单」明写 PCB 禁买，<b class="dn">生益是 PCB 龙头</b>。9:53 正是创业板翻红、板块最像修复的时刻——<b class="cy">买在假修复的顶点</b>；Q3 净利 +238% 却跌停，业绩杀不接是常识</td></tr>
+<tr><td>旗天科技 3,400 股</td><td>13:07 买 1,800@8.00 + 1,600@8.01（27,216）</td><td>当日高 8.15、收 7.69（浮亏 <b class="dn">-1,080</b>）；长上影 6%</td>
+  <td><span class="tag tb">报告外追高</span></td><td>13:07 是午后杀跌开始后的时点，买在当日最高区（8.00 vs 高 8.15）；旗天不在 ⑦/⑦D/⑦E 任何清单，属<b>纯报告外</b>。<b class="dn">27,216 = 卖出总额的 98%，把降仓计划彻底做反</b></td></tr>
+<tr><td>协创数据 600 股</td><td>未交易（持有）</td><td>收 138.02（-8.24%）；破 142.40 止损线</td>
+  <td><span class="tag tb">未执行止损</span></td><td>报告两条卖出线：①高开 ≥155 兑现（开 150.00，未触发）②破 146.82 收盘确认清（收盘 138.02，已触发）。<b class="cy">「收盘确认」= 当日无法执行，只能次日竞价——这是条款设计问题，不是用户犹豫</b>；但明日竞价清是唯一动作</td></tr>
+</table>
+<table>
+<colgroup><col style="width:20%"><col style="width:26%"><col style="width:54%"></colgroup>
+<tr><th>三本账</th><th>金额（T+1 实现口径）</th><th>明细</th></tr>
+<tr><td class="dn">报告错（指令/价位设计）</td><td class="num dn"><b class="dn">约 -2,684 元</b></td><td>协创「收盘确认制」延后 142.40→138.02 = -2,628；中远挂单 19.00 不可成交、实际比开盘少 56；昆船清仓指令与中船系行情相反（若执行少赚 3,962，用户规避，单列不计入）</td></tr>
+<tr><td class="dn">执行差（仓位/买端）</td><td class="num dn"><b class="dn">违规金额 34,980</b></td><td>仓位 99.5%（要求 ≤50%）；买入 34,980 = 卖出 27,826 的 126%（R1 上限 50% → 上限 13,913，超 151%）；昆船余 500 股第 6 日未清</td></tr>
+<tr><td class="dn">报告外（买入端）</td><td class="num dn"><b class="dn">-1,462 元（浮亏）</b></td><td>生益 -382（禁买链）+ 旗天 -1,080（追高）= -1,462，全部为报告外新开仓；<b>不做结果豁免</b></td></tr>
+<tr><td class="up">跑赢部分（卖端）</td><td class="num up"><b class="up">+1,197 元</b></td><td>昆船 16.93（vs 报告 15.60）多收 1,197；昆船 18.05 那笔再 +1,225——<b class="up">卖出端今日是全场最强项</b></td></tr>
+</table>
+<p class="dim"><b>踏空归责</b>：⑦ 池三只给了或口径触发（泸州站上 80.50、锦江 20.38 进带、光线 11.96 差 0.01 进带），一只都没买；买的是清单外的生益和旗天。<b class="cy">今天不是「带位不给」，是「给了不买、不给了乱买」</b>——与 1102「带内不敢买」相比，今天多了一层「买错方向」。按纪律，两只报告外票明日必须优先处理（生益跌停、旗天长上影）。</p>
+</div>
+
+<!-- 3.7A ⑦ 系 -->
+<div class="card">
+<h2 id="sec-07">3.7A ⑦D/⑦E/⑦B/⑦C 结算</h2>
+<table>
+<colgroup><col style="width:18%"><col style="width:44%"><col style="width:38%"></colgroup>
+<tr><th>单元</th><th>今日 T+1 表现</th><th>判定</th></tr>
+<tr><td>⑦ 池（5 只）</td><td>组均 <b class="dn">-0.15%</b> vs 创业板 -2.73%（<b class="up">跑赢 2.58pct</b>）：泸州 <b class="up">+1.29</b>｜锦江 <b class="up">+1.26</b>｜海控 -0.89｜光线 -1.15｜捷成 -1.24。带位触发 3/5（泸州/锦江或口径、光线差 0.01）</td>
+  <td><span class="badge b-hit">选股对（防守腿救命）+ 带位 3/5 触发</span></td>
+</tr>
+<tr><td>⑦D 冠军·撑伞猫（1.5·轻仓做结构 1/4）</td><td>量能 <b>1.7003 万亿</b> &lt; 2 万亿门槛（差 3,000 亿）→ 框架判定「只做结构」正确；唯一出手捷成 5.57（<b class="dn">-1.24%</b>）——1/4 仓、跑赢创业板 1.49pct</td>
+  <td><span class="badge b-hit">框架 hit（量能门槛再次保护）·标的微亏</span></td>
+</tr>
+<tr><td>⑦E 撑伞猫（1.5）</td><td>判定句「量能不到 2 万亿只做结构」今日延续（1.70 万亿）→ 轨一 hit；捷成 -1.24%（-0.31pct 等权）→ 轨二小亏</td>
+  <td><span class="badge b-warn">框架 hit · 标的 miss</span></td>
+</tr>
+<tr><td>⑦E 月月（1.3）/ 白河愁（0.7）</td><td>两位同选光线传媒（「强度本体 / IP 席位」）：光线 <b class="dn">-1.15%</b>，但同链 AI 应用 -1.57%、伴生首板普遍 -3~5%——<b class="up">本体跑赢伴生，选票逻辑成立</b></td>
+  <td><span class="badge b-hit">框架 hit + 标的微亏（相对胜）</span></td>
+</tr>
+<tr><td>⑦E 冰冰（1.3）</td><td>中远海控 17.81（<b class="dn">-0.89%</b>）：成本受益腿在油运崩盘日只跌 0.89%（油运 -5.58%），<b class="up">方向对</b></td>
+  <td><span class="badge b-hit">框架 hit（成本 vs 运价的分腿判断对）</span></td>
+</tr>
+<tr><td>⑦E 木反玄（核心 8 席）</td><td>粤传媒 <b class="up">+1.46%</b>（高 10.88 未封二板）——「二板接力」未成立，但标的收红</td>
+  <td><span class="badge b-warn">框架 miss（二板未成）·标的 hit（运气）</span></td>
+</tr>
+<tr><td>⑦E 柴柴（0.9）</td><td>「无提价证据不出手」——AI 应用 -1.57%、光线 -1.15%，<b class="up">不买是对的</b></td>
+  <td><span class="badge b-hit">框架 hit（不出手=避开下跌）</span></td>
+</tr>
+<tr><td>⑦E 三石而立orz（核心 8 席·无新增）</td><td>KB 零条、按规则不给推演票；今日创业板 -2.73%——<b class="up">「无话可说时不说话」本身就是对的</b></td>
+  <td><span class="badge b-hit">框架 hit（不代发言）</span></td>
+</tr>
+<tr><td>⑦B 个人看好</td><td><b class="dn">连续第 10 个交易日无输入</b>，用户盘感样本停在 n=86（58.8%）</td>
+  <td><span class="badge b-warn">空缺</span></td>
+</tr>
+<tr><td>⑦C 奇想板（上期 4 条）</td><td>①「AI 漫剧是分发者赚钱」— 漫剧仅 2 家涨停，<b class="up">兑现</b>；②「油价崩与油轮触雷是一枚硬币」— 油运 -5.58%，<b class="up">兑现</b>；③「120 只首板=还没带走就被留下」— 晋级率 27.3%，<b class="up">精确兑现</b>；④「工行 3 万亿是成绩单」— 银行 -0.56%，兑现</td>
+  <td><span class="badge b-hit">4/4 兑现（本周最佳）</span></td>
+</tr>
+</table>
+</div>
+
+<!-- 3.8 持仓建议双表 -->
+<div class="card">
+<h2 id="sec-08">② 3.8 持仓持有建议（逐只 · 三选一+点位+T+1 预案双表）</h2>
+<div class="stock">
+  <div class="hd"><span class="clickable" data-copy="300857 协创数据"><span class="cd">300857</span><span class="nm">协创数据</span></span><span>协创数据 600 股（成本 146.82）</span></div>
+  <table>
+  <colgroup><col style="width:17%"><col style="width:17%"><col style="width:15%"><col style="width:15%"><col style="width:18%"><col style="width:18%"></colgroup>
+  <tr><th>操作</th><th>支撑</th><th>压力</th><th>止损</th><th>目标</th><th>隔夜风险</th></tr>
+  <tr><td class="dn"><b>清仓（1104 竞价直接清）</b></td><td>137.00（今日低）</td><td>146.82（成本）/ 153.93（MA5）</td><td class="dn">137.00（今日低·已破 142.40 止损线）</td><td>不设——趋势已坏，65.5% 单票集中度必须先解除</td><td class="dn">高（-8.24% 破位·MA20 上方 30% 空间）</td></tr>
+  </table>
+</div>
+<div class="stock">
+  <div class="hd"><span class="clickable" data-copy="301311 昆船智能"><span class="cd">301311</span><span class="nm">昆船智能</span></span><span>昆船智能 500 股（成本 17.229）</span></div>
+  <table>
+  <colgroup><col style="width:17%"><col style="width:17%"><col style="width:15%"><col style="width:15%"><col style="width:18%"><col style="width:18%"></colgroup>
+  <tr><th>操作</th><th>支撑</th><th>压力</th><th>止损</th><th>目标</th><th>隔夜风险</th></tr>
+  <tr><td class="warn"><b>持有（破 17.80 清）</b></td><td>17.48（MA5）/ 16.23（1102 高）</td><td>18.98（今日涨停价）/ 18.75（MA10）</td><td class="warn">17.80（MA5 上方·移动止盈）</td><td>18.98 不过则做 T 全仓回转一次；站上 18.95（MA20）转持有</td><td class="">中（一日 +18% 后回吐压力）</td></tr>
+  </table>
+</div>
+<div class="stock">
+  <div class="hd"><span class="clickable" data-copy="600183 生益科技"><span class="cd">600183</span><span class="nm">生益科技</span></span><span>生益科技 100 股（成本 77.69）</span></div>
+  <table>
+  <colgroup><col style="width:17%"><col style="width:17%"><col style="width:15%"><col style="width:15%"><col style="width:18%"><col style="width:18%"></colgroup>
+  <tr><th>操作</th><th>支撑</th><th>压力</th><th>止损</th><th>目标</th><th>隔夜风险</th></tr>
+  <tr><td class="dn"><b>清仓（1104 竞价挂跌停价出）</b></td><td>73.87（今日跌停）</td><td>80.00（今日开盘）/ 87.91（MA5）</td><td class="dn">已跌停·无条件走</td><td>不设——禁买链 + 业绩杀，不留恋</td><td class="dn">高（跌停封单未开·次日大概率低开）</td></tr>
+  </table>
+</div>
+<div class="stock">
+  <div class="hd"><span class="clickable" data-copy="300061 旗天科技"><span class="cd">300061</span><span class="nm">旗天科技</span></span><span>旗天科技 3,400 股（成本 8.0077）</span></div>
+  <table>
+  <colgroup><col style="width:17%"><col style="width:17%"><col style="width:15%"><col style="width:15%"><col style="width:18%"><col style="width:18%"></colgroup>
+  <tr><th>操作</th><th>支撑</th><th>压力</th><th>止损</th><th>目标</th><th>隔夜风险</th></tr>
+  <tr><td class="dn"><b>清仓（1104 冲 7.85 不过即清）</b></td><td>7.32（今日低）/ 7.27（MA5）</td><td>8.00（成本）/ 8.15（今日高）</td><td class="dn">7.32（今日低·破位清）</td><td>不设——报告外追高票，反弹即走</td><td class="dn">中高（长上影 6%·无池票支撑）</td></tr>
+  </table>
+</div>
+<div class="stock">
+  <div class="hd"><span class="clickable" data-copy="400235 R 爱康 1"><span class="cd">400235</span><span class="nm">R 爱康 1</span></span><span>R 爱康 1 1,100 股</span></div>
+  <table>
+  <colgroup><col style="width:17%"><col style="width:17%"><col style="width:15%"><col style="width:15%"><col style="width:18%"><col style="width:18%"></colgroup>
+  <tr><th>操作</th><th>支撑</th><th>压力</th><th>止损</th><th>目标</th><th>隔夜风险</th></tr>
+  <tr><td class=""><b>无法交易（退市股）</b></td><td>—</td><td>—</td><td class="dn">—</td><td>市值 66 元，忽略</td><td class="">—</td></tr>
+  </table>
+</div>
+<table>
+<colgroup><col style="width:14%"><col style="width:30%"><col style="width:28%"><col style="width:28%"></colgroup>
+<tr><th>标的</th><th>T+1 兑现预案（三件套）</th><th>持有条件</th><th>隔夜风险</th></tr>
+<tr><td>协创数据</td><td>1104 竞价直接清 600 股（不等反弹、不设限价）</td><td>无持有条件——收盘确认制已触发，明日是执行日</td>
+  <td class="dn">高</td></tr>
+<tr><td>昆船智能</td><td>持有 500 股；破 17.80 清；冲 18.98 不过做 T（全仓回转一次）</td><td>中船系 ≥3 家红盘 + 不破 17.80；政策（海洋经济）仍在，但一日 +18% 已透支</td>
+  <td class="">中</td></tr>
+<tr><td>生益科技</td><td>1104 竞价卖出 100 股（跌停价挂单排队）</td><td>无——PCB 禁买链 + 业绩杀 + 距 MA5 -16%</td>
+  <td class="dn">高</td></tr>
+<tr><td>旗天科技</td><td>1104 冲 7.85 不过即清 3,400 股；破 7.32 无条件清</td><td>无池票支撑、长上影，只给一次反抽机会</td>
+  <td class="dn">中高</td></tr>
+<tr><td>总仓位</td><td><b class="dn">99.5% → 清协创+生益+旗天后降至约 7.4%</b>（仅剩昆船 500 + 爱康）</td><td>降仓顺序：协创（65.5%）> 旗天（20.7%）> 生益（5.8%）> 昆船（7.4%·唯一浮盈）</td>
+  <td class="dn">99.5% 是当前最大风险</td></tr>
+</table>
+<p class="note">板块预期：<b>中船系/海洋经济升级为第一候选</b>（发改委「十五五」发布会 + 排产到 2028-2030 + 三季报兑现）、电池/固态电池第二（净流入 25.3 亿）、养殖/保险第三（低位+红利）；<b class="dn">AI 硬件（CPO/PCB/光模块/存储）继续禁买</b>——今日 5 只跌停是筹码出清，不是估值底。研报面：协创数据无 30 日覆盖（零覆盖声明），不作为持有依据。<b class="cy">明日核心矛盾不是「买什么」，是「把 99.5% 降到 10% 以下」</b>——两天里第二次因为仓位而不是选股亏钱。</p>
+</div>
+
+<!-- 3.9 LHB -->
+<div class="card">
+<h2 id="sec-09">3.9 龙虎榜/连板梯队明日初判（置信度低一档）</h2>
+<table>
+<colgroup><col style="width:26%"><col style="width:24%"><col style="width:50%"></colgroup>
+<tr><th>席位信号</th><th>性质</th><th>判读</th></tr>
+<tr><td>中际旭创 <b class="dn">-12.69%</b>·成交 293.2 亿（全场第一）</td><td class="dn">光模块龙头放量杀跌</td><td>单日蒸发 822 亿——<b>光模块三巨头（中际/新易盛/天孚）合计蒸发 1,273 亿</b>，这是并购重估的直接定价</td></tr>
+<tr><td>生益科技 <b class="dn">-10.00% 跌停</b>·成交 77.1 亿</td><td class="dn">PCB 业绩杀</td><td>Q3 净利 34.4 亿（+238%）却跌停——<b class="cy">业绩好+筹码差=最惨的一种跌法</b>，应收 +77.9%、存货 +62.3% 是硬伤</td></tr>
+<tr><td>寒武纪 -10.81%（144.3 亿）/ 长鑫科技 -7.0%（155.2 亿）/ 兆易创新 -5.84%</td><td class="dn">算力与存储同步出清</td><td>高位科技全线放量下跌——<b>不是单票利空，是整条 AI 硬件链的筹码再定价</b></td></tr>
+<tr><td>阳光电源 <b class="up">+5.84%</b>·成交 72.3 亿</td><td class="up">新能源权重逆势吸金</td><td>电池/光伏是今日唯一放量上涨的大市值方向——<b>与「十五五电网投资超 5 万亿」共振</b></td></tr>
+<tr><td>银之杰 <b class="up">+8.17%</b>（34.5 亿）/ 掌阅科技 +7.49%（25.8 亿）</td><td class="up">AI 应用残余火力</td><td>昨日 AI 应用的两只龙头今日仍红——<b>但板块整体 -1.57%、红盘率 21%，是个股行情不是板块行情</b></td></tr>
+</table>
+<p class="dim"><b>梯队</b>：4 板 2 家（<b class="up">阳光照明</b> 商业航天封 1.99 亿 / <b class="up">东方海洋</b> 4 板封 2.16 亿）｜3 板 1 家（皇台酒业·白酒，封 1.38 亿）｜2 板 15 家（高争民爆封 5.50 亿最厚、紫竹高科/电魂网络/龙版传媒/七匹狼/奥飞娱乐/大晟文化/青岛双星/三峡新材）｜首板 <b class="dn">34</b> 家（昨 120）。<b class="dn">涨停 52 / 连板 18 / 首板 34——高度靠 4 板撑着，广度已经腰斩</b>，晋级率 27.3% 跌破冰点线。</p>
+</div>
+
+<!-- 3.10 前瞻 -->
+<div class="card">
+<h2 id="sec-10">3.10 明日可买板块前瞻（三源交叉，低置信度）</h2>
+<table>
+<colgroup><col style="width:15%"><col style="width:25%"><col style="width:32%"><col style="width:28%"></colgroup>
+<tr><th>板块</th><th>代表（龙头/弹性/低吸）</th><th>启动条件三层</th><th>T+1 预案雏形</th></tr>
+<tr><td><b class="gold">中船系/海洋经济（今日逆势 +4.02%）</b></td><td>昆船智能 301311（+18.08%·持仓 500）｜中国船舶 600150（+3.49%）｜中国动力 600482（+2.77%）</td><td>①发改委「十五五」海洋经济细则继续落地 ②中船系 ≥3 家红盘且昆船不破 17.80 ③造船三季报订单继续兑现</td><td>只做回踩不追高：昆船 17.80-18.20 回踩接 1/5；<b class="warn">今日 +18% 已透支，明日高开 &gt;3% 不接</b></td></tr>
+<tr><td>电池/固态电池（净流入 25.3 亿·全场第一）</td><td>宁德时代 300750（+3.8%·11 亿净买）｜尚水智能 301513（20cm）｜紫竹高科 002058（2 板）</td><td>①硫化锂/固态电解质材料继续催化 ②电池板块红盘率 ≥60% ③宁德不破 5 日线</td><td>只做「设备+材料」两端，不做整车；单票 ≤1/8；<b>这是低位方向，可给较高容错</b></td></tr>
+<tr><td>养殖/农业（+2.70%·猪价与鸡价共振）</td><td>巨星农牧 603477（+6.9%）｜温氏股份 300498（+4.14%）｜神农集团 605296（+6.38%）</td><td>①猪价期货继续上行 ②养殖板块连续 2 日红盘率 ≥60% ③机构席位出现净买</td><td>观察位：只做回踩 5 日线，不追单日 6% 的阳线；<b class="cy">农业是典型「低位+政策」防守方向，仓位 ≤1/10</b></td></tr>
+<tr><td><b class="dn">降级：AI 硬件（CPO -5.99%/PCB -4.29%/半导体 -5.15%）</b></td><td>中际旭创 300308（-12.69%）｜生益科技 600183（跌停·持仓 100）｜寒武纪 688256（-10.81%）</td><td><b>解除条件</b>：CPO+PCB 红盘率连 2 日 ≥50% 且成交回到 1.9 万亿——今日两项全不满足</td><td><b>禁买</b>；持仓生益明日竞价清；不抢跌停反弹，等「3 日不破低点 + 首根放量阳线」</td></tr>
+</table>
+<p class="dim"><b class="warn">低置信声明</b>：创业板失守 2400、科创50 创新低，任何「明天买什么」的判断都要降一档——今日 52 家涨停里首板 34 家，晋级率 27.3%，<b>情绪已从亢奋回到正常下沿</b>。<b>禁买清单</b>：CPO/光模块、PCB、半导体设备、存储芯片、4 板以上高标、以及所有「今日 20cm 涨停明日高开」的接力单。<b class="cy">明日真正的第一动作不是买，是把 99.5% 的仓位降到 10% 以下</b>。</p>
+</div>
+
+<!-- 3.10A 情景矩阵 -->
+<div class="card">
+<h2 id="sec-11">3.10A 指数情景矩阵预生成（1104 周三）</h2>
+<table>
+<colgroup><col style="width:17%"><col style="width:37%"><col style="width:10%"><col style="width:36%"></colgroup>
+<tr><th>情景</th><th>触发（机械口径）</th><th>概率</th><th>动作</th></tr>
+<tr><td>A 缩量止跌（基准）</td><td>创业板 2376-2400 区间震荡，成交 1.6-1.7 万亿，涨停 40-60 家</td><td class="num">33%</td><td>只做降仓：协创/生益/旗天按计划清；昆船 500 股持有看 17.80</td></tr>
+<tr><td>B 低位轮动延续</td><td>指数微跌但中船系/电池/养殖 ≥3 家涨停，创业板守住 2376</td><td class="num">27%</td><td>降仓后可用 ≤10% 仓位做中船系回踩（昆船 17.80-18.20）</td></tr>
+<tr><td>C 科技二次杀跌</td><td>科创50 破 1132.33（今日低），CPO/PCB 再跌 &gt;3%，跌停 &gt;30 家</td><td class="num">25%</td><td><b class="dn">清至现金</b>：昆船也清，等「连续 2 日不破前低」再谈</td></tr>
+<tr><td>D 强反弹（反抽）</td><td>AI 硬件低开高走 + 上证站回 3635（MA5），成交 &gt;1.9 万亿</td><td class="num">10%</td><td><b class="warn">按「反抽」处理不加仓</b>：协创借反弹卖更高价，其余不动</td></tr>
+<tr><td>E 恐慌加速</td><td>创业板破 2300 或跌停 &gt;40 家</td><td class="num">5%</td><td><b class="dn">全部清仓（含昆船）</b>，现金等 ETF 连续 3 日承接再进场</td></tr>
+</table>
+</div>
+
+<!-- 3.12 -->
+<div class="card">
+<h2 id="sec-12">3.12 明日修正要点（实证来源+条款位置）</h2>
+<ul><li><b>【R15·方向外推改双锚（新增）】</b>隔夜外围方向不再单看纳指：以「费半 + 产业链事件」为主锚、纳指为次锚，两者相反时按费半方向定 AI 硬件、按纳指定指数区间。<b>实证：1102 高开判反、1103 低开判反。</b><b>条款位置：策略 2.2A 映射通道 + 情景矩阵</b></li><li><b>【R16·情景矩阵强制双开盘档（新增）】</b>五情景必须同时含「低开档」与「高开档」，各 ≥15%；禁止连续 2 日出现单边开盘假设。<b>实证：1102 只有低开档、1103 只有高开档，两次全错。</b><b>条款位置：策略 2.9A 情景矩阵</b></li><li><b>【R17·止损改盘中触发（修订）】</b>「收盘确认制」只适用于振幅 &gt;7% 的恐慌段；其余情形改为「盘中触及即挂单，收盘前 15 分钟未收回则成交」。<b>实证：协创多亏 2,628。</b><b>条款位置：复盘 2.7B + 策略 2.7</b></li><li><b>【R18·卖出端挂单价校验（新增）】</b>挂单价与当日预判方向冲突时（如预判低开 ≥2% 却挂 -1.9%），必须改为「竞价市价」或「开盘后 5 分钟内市价」。<b>实证：中远 19.00 挂单不可能成交。</b><b>条款位置：策略 2.7 持仓卖法</b></li><li><b>【R19·报告外买入一票否决（升级）】</b>禁买清单内标的出现任何买入 → 次日<b>该标的强制清仓 + 总仓降 30pct</b>；报告外（非 ⑦/⑦D/⑦E 清单）买入 → 次日优先处理。<b>实证：生益（禁买链）-382、旗天（报告外）-1,080。</b><b>条款位置：策略 2.9 仓位 + 复盘 2.6 硬禁令</b></li><li><b>【R20·业绩杀识别（新增）】</b>「净利大增 + 股价距高点 ≥40% + 应收/存货增速 &gt;50%」三条同时成立 → 禁买，不看业绩。<b>实证：生益 Q3 +238% / 距高点 -52% / 应收 +77.9%，当日跌停。</b><b>条款位置：策略 2.4A 异常点识别</b></li></ul>
+</div>
+
+<!-- 3.12A 反思（V3.7 · 对当日策略日报的自我复盘，展示后归档至 kb「反思」） -->
+<div class="card">
+<h2 id="sec-12a">3.12A 反思 · 对当日策略日报的自我复盘</h2>
+<div class="bsp">错在<b>方向层</b>：同一份报告里，宏观段把「美股红」读成利多、产业段把「并购」读成利空，最终让利多主导了开盘方向。<b class="cy">不是数据不够，是两个模块各说各话，没人做裁决</b>。</div>
+<table>
+<colgroup><col style="width:15%"><col style="width:31%"><col style="width:33%"><col style="width:21%"></colgroup>
+<tr><th>判断项</th><th>报告预测</th><th>当日实际</th><th>结果</th></tr>
+<tr><td>指数方向与幅度</td><td>高开 +0.4%~+1.2%（2468-2490），收 2460 上方</td><td>低开 -1.18%（2429.77），收 2391.65（-2.73%）</td>
+  <td><span class="badge b-miss">错 + 幅度错</span></td></tr>
+<tr><td>五情景概率</td><td>A 高开冲高回落 35% 置顶 / B 延续 30% / E 跳水 7%</td><td>低开→翻红→午后杀跌收最低；五档无「低开杀跌」档</td>
+  <td><span class="badge b-miss">部分错</span></td></tr>
+<tr><td>主线判断</td><td>AI 应用为主线，红盘率 ≥60% 且 ≥3 家晋级 2 板</td><td>AI 应用 -1.57%、红盘率 21.2%、仅 2 家 2 板</td>
+  <td><span class="badge b-miss">错</span></td></tr>
+<tr><td>持仓指令（昆船）</td><td>竞价 15.60 清 1,900 股，不给任何持有理由</td><td>+18.08%（中船系 +4.02%、海洋经济发布会）</td>
+  <td><span class="badge b-miss">错</span></td></tr>
+<tr><td>兑现日定性</td><td>情绪 87 亢奋次日=兑现日，先卖后买、不追首板</td><td>涨停 131→52、晋级率 55.6%→27.3%、炸板率 17.6%→38.8%</td>
+  <td><span class="badge b-hit">对</span></td></tr>
+<tr><td>禁买清单（拆分后）</td><td>CPO/光模块、PCB 继续禁买</td><td>CPO -5.99%、PCB -4.29%、5 只跌停</td>
+  <td><span class="badge b-hit">对</span></td></tr>
+</table>
+<div class="bsp"><b class="cy">更深一层</b>：<b>同一组数据被两个模块用出相反结论</b>：电报 20:07 那条「迈威尔 1,150 亿美元收购 Lumentum」在产业段被写成「光模块事件催化，A 股 CPO 链 0-16.7% 红盘=资金不认」，在 forecast 段却被「纳指 +1.08%、中概大涨」覆盖，给出「高开 +0.4~+1.2%」。<b>产业段的结论没进概率分配</b>——这是本月第 2 次出现同类矛盾（1102 是「千亿贷款」在宏观段是托底、在情景段被忽略）。<b class="gold">建议：forecast 生成前强制读一遍「异常点表」，任何异常点与方向判断冲突时，异常点优先</b>。</div><p class="note"><b class="cy">错因（按贡献排序）</b></p>
+<ul><li><b>① 主导锚选错（贡献最大）</b>：forecast 的 basis 写「隔夜外围转红：纳指 +1.08%、中概大涨」——用指数涨幅替代了产业链方向。费半 -3.37%、Lumentum -18.59% 都在同一晚发生，却没进 basis。</li><li><b>② 异常点与方向判断未做冲突裁决</b>：2.4A 异常点表里写了「并购事件催化，但 CPO 链资金不认」，这句话本身就是「次日 AI 硬件要跌」的证据，但没有传导到 forecast。</li><li><b>③ 仓位条款再次空转</b>：b1103-002 自己给了 70% 的置信度（★核心），执行端 99.5%——<b class="cy">条款置信度再高，没有强制执行动作就等于没有</b>。</li><li><b>④ 持仓指令与产业判断脱节</b>：昆船「清仓第 5 日」的理由是「军工链断、量能萎缩」，但当日恰好有「海洋经济」政策发布会（电报里没抓到）——<b>清仓指令缺少「当日事件复核」这一步</b>。</li></ul>
+<p class="note"><b class="cy">本可救回的信号（盘中可见）</b></p>
+<ul><li><b>① 费城半导体 -3.37%（可观测：盘前 04:00 收盘值）</b>——若按费半而非纳指定方向，今日 AI 硬件应为「低开低走」，而非「高开分化」。</li><li><b>② KOSPI -3.59%、SK海力士 -5.03%（可观测：08:00 亚洲开盘）</b>——亚洲半导体链在 A 股开盘前已经定调，这是最直接的领先信号。</li><li><b>③ 生益科技竞价 80.00（-2.53%）（可观测：09:25）</b>——龙头竞价示弱，按报告自己的「低开 &lt;-0.5%=当日不接票」条款，9:25 就该停手。</li><li><b>④ 创业板竞价 2429.77（-1.18%）（可观测：09:25）</b>——直接落在「亢奋次日失败」档，但五情景里没有对应动作，只能靠 forecast 里那句「低开 &lt;-0.5% 当日不接票」临时兜底。</li></ul>
+<p class="note"><b class="cy">规则产出（待 n≥10 验证）</b></p>
+<ul><li><b>R15</b>：隔夜「纳指涨 + 费半跌」→ AI 硬件按费半定价，指数区间按纳指定价（待 n≥10 验证）。</li><li><b>R16</b>：情景矩阵必须有高开/低开双档，各 ≥15%，禁单边（待 n≥10 验证）。</li><li><b>R17</b>：止损改「盘中触发即挂单」，收盘确认只用于振幅 &gt;7% 的恐慌段（待 n≥10）。</li><li><b>R20</b>：业绩杀三条件（净利大增 + 距高点 ≥40% + 应收/存货 &gt;50%）→ 禁买（待 n≥10）。</li><li><b>R21（新）</b>：持仓「清仓」指令连写 ≥5 日 → 每日开盘前必须复核「当日政策/事件日历」，有正面事件则改为「冲高不创新高即清」（昆船教训，待验证）。</li></ul>
+<p class="dim">已归档：kb「反思」合集 <b>a0bf965e4d</b> · 条目 <b>f61305bf1e43</b>（entry_type=教训，type=通用）——报告 ↔ 知识库双向可追溯。</p>
+</div>
+
+<!-- 附：账本与对账存档（3.1A / 3.1B·3.1C / 3.2 / 3.11 融合，默认折叠） -->
+<details class="card appendix">
+<summary>附：账本与对账存档（3.1A 信念账本 · 3.1B/3.1C 信号源与校准 · 3.2 兑现度 · 3.11 错误模式）</summary>
+
+<div class="ap-h">3.1A 信念账本分层结算（19 条到期：hit 11 · miss 8 · ★核心 1/3（b1102 批·对 1102 的判断））</div>
+<p class="note">口径：本批 1102 晚注册、对 <b>1102</b> 的判断，for_date=1103 今日正式结算（1102 复盘已预对账）。T+1 口径：带内触发但未成交记「踏空」，不并入 hit 率；纸面利润与实际兑现分开。<b class="warn">另记流程缺陷</b>：1103 策略报告列了 12 条新增，账本实际 0 条——本次已按报告原文回填登记（b1103 批），正式结算日 1104。 <span class="badge b-hit">hit 11</span> <span class="badge b-hit">miss 8</span> <span class="badge b-hit">★核心 1/3</span> <span class="badge b-hit">b1102 批正式结算</span></p>
+<table>
+<colgroup><col style="width:17%"><col style="width:38%"><col style="width:12%"><col style="width:33%"></colgroup>
+<tr><th>条目</th><th>claim 摘要</th><th>判定</th><th>证据（T+1 口径）</th></tr>
+<tr>
+  <td><b class="gold">★ b1102-001</b></td>
+  <td>★指数·1102 创业板收 2380-2450（弱势震荡不站回）</td>
+  <td><span class="badge b-miss">miss</span></td>
+  <td>1102 收 <b class="up">2458.70（+1.87%）</b>，高出区间上限 8.7 点并站回 2450——不是弱势震荡，是 V 反。区间框架把「反弹」排除在概率外，是方向层的根因</td>
+</tr>
+<tr>
+  <td><b class="gold">★ b1102-002</b></td>
+  <td>★仓位·1102 总仓维持 ≤50%（雷夜不回补）</td>
+  <td><span class="badge b-miss">miss</span></td>
+  <td>收盘 <b class="dn">94.1%</b>（124,242/132,038）；买入 99,599 / 卖出 16,980 = <b class="dn">587%</b>。回补前提（跌停&lt;30 且收复 2450）当日都满足，但结果是「回补到满仓」</td>
+</tr>
+<tr>
+  <td><b class="gold">★ b1102-003</b></td>
+  <td>★商业航天·1102 高标至少 1 家续封或晋级</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>阳光照明 <b class="up">3 板一字 4.50</b> 续封（封单 5.64 亿）；沪工 -1.42%、盛洋 -1.76%——续封成立但只剩「一字买不到」一种表达</td>
+</tr>
+<tr>
+  <td>b1102-004</td>
+  <td>昆船智能·1102 竞价执行清仓</td>
+  <td><span class="badge b-miss">miss</span></td>
+  <td>未清：09:41 买 500@15.37 / 13:05 卖 500@15.64 用 T+0 代替，收盘仍持 1,900 股（第 4 日漏单）</td>
+</tr>
+<tr>
+  <td>b1102-005</td>
+  <td>绿盟科技·1102 反抽清仓或破锚清</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>09:30:46 破 9.21 锚，9.16 全清 1,000 股（当日低 9.08、收盘 10.47）——动作到位，价格最差</td>
+</tr>
+<tr>
+  <td>b1102-006</td>
+  <td>三季报线·1102 业绩容器确认</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>三季报线涨停 43 只（占全场 36%），远超「≥15 家且红盘率 ≥50%」门槛</td>
+</tr>
+<tr>
+  <td>b1102-007</td>
+  <td>次日预测·1102 形态（低开震荡不站回 2450=hit）</td>
+  <td><span class="badge b-miss">miss</span></td>
+  <td>高开 +1.05% 并收 2458.70 站回 2450——低开剧本未出现，概率分配整条落空</td>
+</tr>
+<tr>
+  <td>b1102-008</td>
+  <td>反转预备单·1102（低开后白酒/油运右侧各 1/4）</td>
+  <td><span class="badge b-warn">hit</span></td>
+  <td>前提（低开）未出现，预备单未触发；带位后到（泸州开 77.70 带内、中远低 18.70 进带）但未买——<b>按三分口径记「踏空」，不计报告错</b></td>
+</tr>
+<tr>
+  <td>b1102-009</td>
+  <td>泸州老窖·容器龙一（红盘率 ≥50% 且不破 74.60）</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>白酒 6/6 全红（均 +4.08%），泸州 +3.50% 收 79.77，未破 74.60</td>
+</tr>
+<tr>
+  <td>b1102-010</td>
+  <td>中远海能·油运抢跑（不破 18.33 且油运 ≥3 家红）</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>最低 18.70 未破 18.33，收 19.36（+2.00%），油运 5/5 全红</td>
+</tr>
+<tr>
+  <td>b1102-011</td>
+  <td>埃斯顿·超跌反抽（站上 29.50 或回踩 27.90-28.60 触带）</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>开 29.24 在或口径内、低 26.62 穿过回踩带（触带成立），随后破 26.80 放弃线——按纪律不接</td>
+</tr>
+<tr>
+  <td>b1102-012</td>
+  <td>宁波银行·R8 上移带（low 进 34.45-34.78 ±0.5%）</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>开 35.10 下探 33.72，穿过 34.45-34.78 带（触带成立），同破 34.08 放弃线</td>
+</tr>
+<tr>
+  <td>b1102-013</td>
+  <td>⑦E-惑惑·泸州老窖出手</td>
+  <td><span class="badge b-hit">hit</span></td>
+  <td>白酒红盘 6/6=100% ≥50%，泸州 +3.50%——出手判定兑现</td>
+</tr>
+<tr>
+  <td>b1102-014</td>
+  <td>⑦E-撑伞猫·空仓第 5 日（量能 &lt;2 万亿）</td>
+  <td><span class="badge b-warn">hit</span></td>
+  <td>量能 1.7831 万亿仍 &lt;2 万亿，解除条件未触发→框架 hit；当日指数 +1.87% = 结果踏空</td>
+</tr>
+<tr>
+  <td>b1102-015~019</td>
+  <td>⑦E 另五位（药门/冰冰/门捷列夫/柴柴/Joshua）空仓或意见</td>
+  <td><span class="badge b-warn">hit 1 · miss 4</span></td>
+  <td>柴柴「收复 2450 回 1 成」= hit；药门/门捷列夫/Joshua 的解除条件（材料红盘、设备不创新低、半导体红盘 &gt;50%）全部触发而未改判 = miss×3；冰冰「防御窗口」被银行 -0.84% 证伪 = miss。<b class="cy">七位在反转日集体轻仓，是本轮最大踏空</b></td>
+</tr>
+</table>
+<p class="dim"><b>★核心归因</b>：三条核心全押在「1102 继续弱」上，实际是 V 反——b1102-001 区间错、b1102-002 仓位错，只有 b1102-003 商业航天续封对。<b>观察项 16 条里 10 条 hit，但多数是「带位可达性」类技术判定</b>，真正有含金量的两条是 b1102-009/010（白酒+油运容器同时兑现）——<b class="cy">容器判断已经连续两周对，仓位判断连续两日错，问题不在选股能力，在仓位纪律</b>。</p>
+
+<div class="ap-h">3.1B 信号源计分表（含 ref 态）· 3.1C 校准审查</div>
+<table>
+<colgroup><col style="width:22%"><col style="width:13%"><col style="width:16%"><col style="width:14%"><col style="width:35%"></colgroup>
+<tr><th>来源</th><th>n</th><th>Brier</th><th>状态</th><th>一句话</th></tr>
+<tr><td>知识库</td><td class="num">340</td><td class="num">0.247</td>
+  <td><span class="tag tb">active</span></td><td>主信号源；今日容器判断（白酒/油运）继续兑现，但「AI 应用是主线」这条库内推演被一日游打脸</td></tr>
+<tr><td>用户</td><td class="num">86</td><td class="num">0.252</td>
+  <td><span class="tag tb">active</span></td><td>卖出端三笔全优于报告价（昆船 16.93/18.05 vs 15.60）——今日用户盘感强于系统，买入端仍全部报告外</td></tr>
+<tr><td>情绪指数</td><td class="num">36</td><td class="num">0.219</td>
+  <td><span class="tag tb">active</span></td><td>Brier 全场最低；87 亢奋→45 的兑现路径被提前标注（「亢奋次日防兑现」），是今日唯一有效的领先信号</td></tr>
+<tr><td>资金流</td><td class="num">122</td><td class="num">0.243</td>
+  <td><span class="tag tb">active</span></td><td>命中 55%；半导体 -188.4 亿/CPO -157.8 亿/电池 +25.3 亿——高低切方向与昨日报告推演一致</td></tr>
+<tr><td>大佬评审</td><td class="num">15</td><td class="num">0.231</td>
+  <td><span class="tag tb">active</span></td><td>样本少；月月「买本体不买伴生」对（光线 -1.15 vs AI 应用 -1.57），木反玄「二板接力」错（粤传媒未晋级）</td></tr>
+<tr><td>映射通道</td><td class="num">4</td><td class="num">0.246</td>
+  <td><span class="tag tb">warming</span></td><td>样本不足；今日映射方向对（费半 -3.37% → A 股半导体 -5.15%），但报告把「纳指 +1.08%」当利多</td></tr>
+<tr><td>回测先验</td><td class="num">262</td><td class="num">0.309</td>
+  <td><span class="tag tb">ref</span></td><td>仅作参考；「1 板次日开盘 +1.39% 收盘 +0.61%」的期望表今日失效（涨停 131→52）</td></tr>
+<tr><td>LHB</td><td class="num">19</td><td class="num">0.280</td>
+  <td><span class="tag tb">ref</span></td><td>今日源端缺失，降级为成交额异动榜（40 条）——不推断席位性质</td></tr>
+<tr><td>缠论</td><td class="num">30</td><td class="num">0.212</td>
+  <td><span class="tag tb">ref</span></td><td>只作参考位；创业板 2391.65 已破 2400，下一档 2376.39（今日低）/2300</td></tr>
+</table>
+<p class="note"><b>校准审查</b>：情绪指数 0.219（n=36）已成为全场最准信号——它在 1102 收盘就给出「87 亢奋、次日防兑现」，比任何个股判断都准。知识库 0.247（n=340）仍是主源，但今日「AI 应用主线」的库内推演被一日游证伪。<b class="dn">用户栏校准偏差最大</b>：卖出端三次判断（17.82 卖中远、16.93/18.05 卖昆船）全部优于报告，买入端却全部报告外——<b class="cy">同一个人的卖出纪律和买入纪律是两个人</b>。预判覆盖率：19/19=100%，登记质量达标。</p>
+
+<div class="ap-h">3.2 预判兑现度核对表（含排除栏+四分支）</div>
+<table>
+<colgroup><col style="width:26%"><col style="width:40%"><col style="width:11%"><col style="width:23%"></colgroup>
+<tr><th>昨日预判</th><th>今日实际</th><th>判定</th><th>偏差原因</th></tr>
+<tr><td>「基准判高开分化：创业板 +0.4%~+1.2%（2468-2490），能否站住看 2480」</td><td>低开 -1.18%（2429.77），盘中最高 2471.90（+0.54%）只摸到区间下沿，收 -2.73%——开盘与收盘双错</td>
+  <td><span class="badge b-miss">方向错 + 幅度错（收盘 -3.1pct）</span></td>
+  <td>把「纳指 +1.08%/中概大涨」当成高开依据，<b class="dn">忽略了自己写在同一份报告里的 Marvell-Lumentum 并购</b>（费半 -3.37%、Lumentum -18.59%）——同一份报告里两个模块给出相反方向</td></tr>
+<tr><td>「兑现日定性：情绪 87 亢奋次日，先卖后买、不追首板」</td><td>涨停 131→52、晋级率 55.6%→27.3%、炸板率 17.6%→38.8%——兑现日成立</td>
+  <td><span class="badge b-hit">兑现日定性正确</span></td>
+  <td><b class="up">这是今天最值钱的一段</b>：情绪指数的「亢奋次日防兑现」比指数方向判断准得多；可惜仓位没按它执行</td></tr>
+<tr><td>「主线·AI 应用红盘率 ≥60% 且 ≥3 家晋级 2 板」</td><td>AI 应用 <b class="dn">-1.57%</b>、红盘 64/302=<b class="dn">21.2%</b>；漫剧仅 2 家涨停（浙文/大晟 2 板）、粤传媒未晋级</td>
+  <td><span class="badge b-miss">一日游（红盘率 &amp;lt;40%）</span></td>
+  <td>把 120 只首板当成「主线启动」，实际是「广度修复的最后一天」——<b>首板潮次日只有 27.3% 晋级，主线未成立</b></td></tr>
+<tr><td>「油运只卖不买：WTI 崩 6%，中远海能竞价低开 ≥2%」</td><td>中远开 <b class="dn">18.10（-6.51%）</b>、收 18.28（-5.58%）；油运板块补跌</td>
+  <td><span class="badge b-hit">逻辑传导正确</span></td>
+  <td>隔夜油价 -7.55% 到 96.26 美元，A 股油运补跌——<b class="up">「逻辑反转即走」这条判断今天救了一次</b>（用户 17.82 卖出）</td></tr>
+<tr><td>「禁买清单（拆分后）：CPO/光模块 0% 红、PCB 16.7%、4 板以上、20cm 首板次日高开」</td><td>CPO <b class="dn">-5.99%</b>、PCB <b class="dn">-4.29%</b>、半导体 -5.15%、存储 -4.86%；生益/景旺/深南/德明利/光迅集体跌停</td>
+  <td><span class="badge b-hit">禁买方向全对</span></td>
+  <td><b class="up">禁买清单是今日最有价值的一条</b>——但它没有约束力：用户 9:53 买了生益科技（PCB）</td></tr>
+<tr><td>「券商 SFISF 招标落地=卖事实，不追券商」</td><td>券商 +0.73%（38 红 / 8 跌）、净流出 11.8 亿；国金/太平洋高开回落</td>
+  <td><span class="badge b-warn">卖事实成立（板块小涨但资金流出）</span></td>
+  <td>券商没有单边上行，但也没跌——<b>「落地即卖」在指数层面成立、在个股层面只是滞涨</b>，判断偏保守</td></tr>
+<tr><td>情景矩阵：A 高开冲高回落 35%（置顶）/ B 延续 30% / C 平开分化 18% / D 突破 10% / E 跳水破 2446 7%</td><td>走的是「低开→翻红→午后杀跌收最低」，形态最接近 A（冲高回落）但开盘方向与 A/E 都不同——<b>五档里没有「低开杀跌」这一档</b></td>
+  <td><span class="badge b-miss">概率分配 miss（缺低开档）</span></td>
+  <td>反锚定机制把 A 置顶（35%）反而锁死了「高开」假设——<b class="cy">连续 2 日出现「矩阵只有单边开盘假设」</b>：1102 只有低开档、1103 只有高开档</td></tr>
+</table>
+
+<div class="ap-h">3.11 高频错误模式统计（三本账+纸面利润单列+迟钝警报）</div>
+<ul><li><b>① 「外围指数涨→A 股高开」的线性外推，连续第 2 日错</b>：1102 判低开（实际高开 +1.05%）、1103 判高开（实际低开 -1.18%）。<b class="dn">两次都只看纳指，没看费半与产业链事件</b>——今日费半 -3.37%、Lumentum -18.59%，报告却让「纳指 +1.08%」主导方向。</li><li><b>② 仓位纪律第 2 日失守，且方向做反</b>：要求 ≤50%、清三笔，实际 94.1% → <b class="dn">99.5%</b>；买入 34,980 / 卖出 27,826 = <b class="dn">126%</b>（R1 上限 50%）。<b class="cy">「先卖后买」被执行成「卖出后立刻买更多」</b>。</li><li><b>③ 两只新买全在报告外</b>：生益（PCB·禁买清单）+ 旗天（不在任何清单），合计 34,980 = 全部买入额。<b class="dn">报告外买入占比 100%</b>——这是连续第 3 个交易日出现「报告外买入」。</li><li><b>④ 止损条款设计缺陷暴露</b>：协创「破 142.40 收盘确认清」——收盘确认=当日无法执行，实际从 142.40 跌到 138.02，<b class="dn">多亏 2,628</b>。<b class="cy">止损条款必须是「盘中触发即挂单」，不能等到收盘</b>。</li><li><b>⑤ 中远卖价与自身预判自相矛盾</b>：一边判「竞价低开 ≥2%」，一边把卖价挂在 -1.9%（19.00）——<b class="dn">挂单数学上不可能成交</b>，只能临时市价处理（比开盘少 56）。</li><li><b>⑥ 带位给了不买、清单外乱买</b>：⑦ 池泸州/锦江/光线三只或口径触发，一只没买；买的是清单外的生益、旗天。<b class="dn">「选股能力」与「执行对象」完全脱节</b>。</li></ul>
+
+</details>
+
+</div>
+
+<div class="sidecol">
+
+<div class="card">
+<h2 id="sec-13">今日账户快照</h2>
+<div class="kv"><span class="it">当日盈亏 <b class="dn">-5,689（-4.31%）</b></span><span class="it">总资产 <b class="">126,349</b></span></div>
+<div class="kv"><span class="it">收盘仓位 <b class="dn">99.5%</b></span><span class="it">可用现金 <b class="">597.75</b></span></div>
+<div class="kv"><span class="it">卖 昆船 900@16.93 <b class="up">+1,197（vs 报告 15.60）</b></span><span class="it">卖 昆船 500@18.05 <b class="up">+1,225（vs 报告）</b></span></div>
+<div class="kv"><span class="it">卖 中远 200@17.82 <b class="dn">-295（realized）</b></span><span class="it">买 生益 100@77.64 <b class="dn">-382（跌停）</b></span></div>
+<div class="kv"><span class="it">买 旗天 3,400@8.00 <b class="dn">-1,080（长上影）</b></span><span class="it">协创未清 600 <b class="dn">-5,281（浮亏）</b></span></div>
+<div class="kv"><span class="it">全天费用 <b class="dn">44.54</b></span><span class="it">买入/卖出比 <b class="dn">126%（R1 ✗）</b></span></div>
+<p class="dim"><b>一句话</b>：-5,689 元（-4.31%），跑输创业板 1.58pct——<b class="dn">亏损的 93% 来自协创（-5,281）</b>，而这只是「收盘确认制」延后一天的结果；卖出端三笔全部优于报告。realized（毛额口径）-153.64，费用 44.54。</p>
+</div>
+
+<div class="card">
+<h2 id="sec-14">指数与情绪</h2>
+<table>
+<colgroup><col style="width:25%"><col style="width:37%"><col style="width:38%"></colgroup>
+<tr><th>指数</th><th>收盘</th><th>涨跌</th></tr>
+<tr><td>上证指数</td><td class="num">3608.10</td><td class="num dn">-0.82%</td></tr>
+<tr><td>深证成指</td><td class="num">10876.99</td><td class="num dn">-1.21%</td></tr>
+<tr><td>创业板指</td><td class="num">2391.65</td><td class="num dn">-2.73%</td></tr>
+<tr><td>科创50</td><td class="num">1151.28</td><td class="num dn">-3.81%</td></tr>
+<tr><td>上证50</td><td class="num">2768.27</td><td class="num up">+0.21%</td></tr>
+<tr><td>北证50</td><td class="num">855.06</td><td class="num dn">-4.02%</td></tr>
+</table>
+<table>
+<colgroup><col style="width:30%"><col style="width:34%"><col style="width:36%"></colgroup>
+<tr><th>情绪项</th><th>值</th><th>vs 昨日</th></tr>
+<tr><td>涨停 / 跌停</td><td class="num dn">52 / 17</td><td class="num dn">131 → 52 腰斩</td></tr>
+<tr><td>连板晋级率</td><td class="num dn">3/11=27.3%</td><td class="num dn">55.6% → 27.3% 破冰点线</td></tr>
+<tr><td>炸板率</td><td class="num dn">38.8%</td><td class="num dn">17.6% → 38.8% 分歧释放</td></tr>
+<tr><td>情绪指数</td><td class="num dn">45（正常下沿）</td><td class="num dn">87 → 45</td></tr>
+<tr><td>成交额</td><td class="num dn">1.7003 万亿</td><td class="num dn">缩量 828 亿</td></tr>
+</table>
+<p class="dim"><b class="cy">一句话</b>：情绪从亢奋 87 一天回到正常下沿 45，晋级率跌破 30% 冰点线——这是标准的一日游兑现日，不是二次探底。</p>
+</div>
+
+<div class="card">
+<h2 id="sec-15">📌 明日速览（）</h2>
+<ul><li><b>开盘第一件事</b>：协创 600 股竞价直接清（65.5% 总资产·已破 137-142.40 全部止损位）——不用决策</li><li><b>第二件事</b>：生益 100 股跌停价挂单排队（禁买链 + 业绩杀，不留恋）；旗天 3,400 股冲 7.85 不过即清</li><li><b>仓位目标 ≤10%</b>：清完三笔后只剩昆船 500 股（7.4%）+ 爱康（66 元）——这是两日违规后的强制修复</li><li><b>昆船 500 股怎么拿</b>：破 17.80 清；冲 18.98 不过做 T 全仓回转一次；中船系 ≥3 家红盘才继续持有</li><li><b>中船系是明日唯一候选</b>：但今日 +18% 已透支，只做 17.80-18.20 回踩，高开 &gt;3% 不接</li><li><b>电池/固态电池看红盘率</b>：宁德 +3.8%、净流入 25.3 亿——红盘率 ≥60% 才谈参与，只做设备+材料</li><li><b>禁买清单（不变）</b>：CPO/光模块、PCB、半导体设备、存储芯片、4 板以上高标、今日 20cm 首板次日高开</li></ul>
+</div>
+
+<div class="card">
+<h2 id="sec-16">⚠️ 高频错误模式（近10日）</h2>
+<ul><li><b class="dn">仓位第 2 日严重违规</b>：94.1% → 99.5%（要求 ≤50%）</li><li><b class="dn">报告外买入 100%</b>：生益（禁买链）+ 旗天（清单外）= 34,980</li><li><b class="dn">止损条款延后</b>：协创「收盘确认」多亏 2,628</li><li><b class="dn">卖价与预判矛盾</b>：中远挂 19.00，开盘 18.10 不可成交</li></ul>
+</div>
+
+<div class="card">
+<h2 id="sec-17">💡 账本新增登记（）</h2>
+<ul><li>b1103-001 ★指数·1103 高开 2468-2490 后收 2460 上方（结算 1104）</li><li>b1103-002 ★仓位·清昆船+清中远后 ≤70%（结算 1104）</li><li>b1103-003 ★主线·AI 应用红盘率 ≥60% 且 ≥3 家晋级 2 板（结算 1104）</li><li>b1103-004 油运·中远海能竞价低开 ≥2%（结算 1104）</li><li>b1103-005~009 ⑦ 池五只带位触发（买区可达性v2·结算 1104）</li><li>b1103-010 券商 SFISF 落地=卖事实（结算 1104）</li><li>b1103-011 ⑦E 出手五位组均跑赢创业板（结算 1104）</li><li>b1103-012 首板潮次日晋级率 &lt;30%=兑现日确认（结算 1104）</li><li>b1104 批（本报告新增）：协创竞价清执行 / 仓位 ≤10% / 中船系回踩 / 电池红盘率 / 生益次日跌幅</li></ul>
+</div>
+
+<details class="card appendix">
+<summary>这些词什么意思（术语小抄 · 6 条）</summary>
+<div class="kv"><b>业绩杀</b><span class="v">业绩越好跌得越狠：利润大增但应收账款/存货同步暴涨，市场担心「赚的是纸面利润」，先卖再说</span><b>筹码出清</b><span class="v">把高位买入的人全部洗出去。特征是放量跌停、跌得莫名其妙，跟公司好坏无关</span><b>被动平仓</b><span class="v">融资买股的人被券商强制卖出。不是他想卖，是保证金不够了，所以不计成本</span><b>宽基 ETF 承接</b><span class="v">大资金买「一篮子股票」的基金来托指数，不买个股。指数被托住，个股照样跌</span><b>收盘确认制</b><span class="v">等到收盘看有没有跌破止损价，再决定卖。缺点是收盘后没法交易，只能第二天卖</span><b>长上影</b><span class="v">盘中冲得很高、收盘又跌回来，K 线上留一条长尾巴——当天买在高的那批人全部被套</span></div>
+</details>
+
+<div class="card">
+<h2 id="sec-18">🧾 结算与工具链</h2>
+<p class="dim">账本：settle --date 1103 取 <b>19 条</b>（b1102 批）→ 逐条 update（hit 11 / miss 8）→ score 重算 → check --date 1103 <b>pass=true</b>；<b class="warn">另发现 1103 批 12 条报告已列、账本 0 条</b> → 本次按报告原文回填登记（b1103-001~012·结算 1104）。<br>数据：fuyao 回填 5,215/5,227（缺 4 只停牌/退市）+ 腾讯快照 5,217 只 + 东财板块流 689 个 + LHB 源端缺失 → <b>lhb_fallback 成交额异动榜 40 条</b>（>20 亿且 |涨跌|>5%，不含席位性质）。<br>反思归档：python -m data.reflection_archive reports/template/data_1103.py → 合集「反思」a0bf965e4d。</p>
+<p class="dim">免责声明：本报告为 AI 辅助个人交易研判记录，基于公开数据生成，所有点位/概率不构成投资建议。</p>
+</div>
+
+</div></div>
+</div>
+<footer><div class="wrap">
+<p><b>免责声明</b>：本报告为 AI 辅助个人交易研判记录，基于公开数据生成，所有点位/仓位/判断均为研究假设，不构成任何投资建议。市场有风险，决策需独立。</p>
+<div class="footer-block"><b>数据来源</b>
+<ul class="footer-list"><li>fuyao（K 线 5,215/5,227 + 涨停 52/跌停 17/炸板 34 + 连板梯队 + 情绪七项）</li><li>腾讯全市场快照 5,217 只（涨 2,022 / 跌 3,045 / 平 150）</li><li>东财板块资金流 689 个（ulist 口径·22:01 拉取）</li><li><b class="dn">龙虎榜源端缺失（lhb_daily 最新 10-26）→ 降级为成交额异动榜 40 条</b>（criteria：&gt;20 亿且</li><li>涨跌</li><li>&gt;5%，<b>不含席位性质</b>）</li><li>财联社/公开收评（Marvell-Lumentum、SFISF、海洋经济发布会、四只 ETF 破百亿）</li><li><b class="dn">雪球同步未执行</b>（token 10-24 保存已 10 天，需人工重登）——⑦E 无当日新帖佐证。</li></ul></div>
+<div class="footer-block"><b>生成自检</b>
+<ul class="footer-list"><li>①对象日 1103 + T+1 结算日 1104</li><li>✅ ②数据：回填 5,215/5,227 + 快照 5,217 双源交叉</li><li>✅ ③停牌/退市 4 只已声明（*ST康佳A/元道退/信达证券/东兴证券）</li><li>✅ ④账本 settle 19 条（hit 11/miss 8）+ check pass=true</li><li>✅ ⑤b1103 批 12 条回填登记 + settle --dry-run 回验命中（for_date=1104）</li><li>✅ ⑥T+1 预案对账 8 行（逐单三件套）</li><li>✅ ⑦⑦ 池/⑦D/⑦E/⑦B/⑦C 逐位结算 10 行</li><li>✅ ⑧持仓 5 只三选一 + 四点位 + T+1 预案</li><li>✅ ⑨LHB 降级声明</li><li>✅ ⑩反思五段（六档判定含「幅度错」）+ 归档</li><li>✅ ⑪三色计数 gold≥10/cy≥5/exp≥3</li><li>✅ ⑫交付前机检：空 td=0 / 点位库内实测 / P·M·D 三向自洽（138.02 vs MA5 153.93 = -10.3%）</li><li>✅</li></ul></div>
+<div class="footer-block" style="margin-top:2px;"><b>已知问题与勘误</b>
+<ul class="footer-list"><li>①<b class="dn">龙虎榜源端缺失</b>（lhb_daily 最新 2026-10-26），已按降级链改成交额异动榜，不推断席位性质；②<b class="dn">雪球同步未执行</b>（token 过期），⑦E 结算缺当日新帖佐证，需人工跑 data/cls/_xq_login.py；③<b class="warn">1103 策略报告列了 12 条账本新增、账本实际 0 条</b>——本次已按报告原文回填登记，属流程缺陷（策略端登记环节漏执行）；④旗天科技无 30 日研报覆盖，持仓建议仅基于量价；⑤涨停/跌停口径：fuyao 52/17，全市场快照重算 61/25（含 ST/北交所），报告统一采用 fuyao 口径。</li></ul></div></div></footer>
+</div>
+
+<script>
+
+// 目录数据：从静态 DOM 提取（id 在骨架已固化为 sec-NN）
+(function(){
+  var items = [];
+  document.querySelectorAll('h2[id^="sec-"]').forEach(function(h){
+    items.push({ id: h.id, text: h.textContent.trim() });
+  });
+  window.TOC_ITEMS = items;
+  var panel = document.getElementById('tocPanel'), mask = document.getElementById('tocMask');
+  function closeToc(){ if (panel) { panel.classList.remove('open'); } if (mask) { mask.classList.remove('show'); } }
+  window.closeToc = closeToc;
+  if (panel) {
+    var list = panel.querySelector('.toc-list');
+    if (list && items.length) {
+      list.innerHTML = items.map(function(it){
+        return '<li><a href="#' + it.id + '">' + it.text + '</a></li>';
+      }).join('');
+    }
+  }
+  var d = document.getElementById('fabDir'), t = document.getElementById('fabTop'), c = document.getElementById('tocClose');
+  if (d) d.addEventListener('click', function(){
+    if (mask) mask.classList.add('show');
+    if (panel) panel.classList.add('open');
+  });
+  if (c) c.addEventListener('click', closeToc);
+  if (mask) mask.addEventListener('click', closeToc);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeToc(); });
+  if (t) t.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  if (panel) panel.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#sec-"]');
+    if (!a) return;
+    e.preventDefault();
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    closeToc();
+  });
+})();
+</script>
+
+<script>
+document.querySelectorAll('.clickable').forEach(function(el){
+  el.addEventListener('click', function(){
+    var t = el.getAttribute('data-copy') || '';
+    if (navigator.clipboard) navigator.clipboard.writeText(t);
+    var hint = el.querySelector('.cp-hint');
+    if (!hint) { hint = document.createElement('span'); hint.className = 'cp-hint'; el.appendChild(hint); }
+    hint.textContent = '\u2713已复制';
+    setTimeout(function(){ hint.textContent = '（点击复制）'; }, 1200);
+  });
+});
+</script>
+</body>
+</html>
