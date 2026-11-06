@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>景气排查 · 20261106 · 增强板块与四桶结论</title>
+<style>
+:root{
+  --paper:#F3EFE4; --ink:#141414; --red:#E23A2E; --blue:#1D4DB4; --yellow:#F5C400;
+  --gray:#6E6A60; --hair:rgba(20,20,20,.16); --green:#1F8A4C;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#141414}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.52}
+.wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+@media(max-width:486px){.wrap{border-left:0;border-right:0}}
+.hero{background:var(--ink);color:var(--paper);padding:20px 18px 20px;border-bottom:3px solid var(--ink)}
+.hero-top{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.22em;font-weight:700;color:#BDB8AC}
+.hero-shapes{display:flex;align-items:flex-end;gap:10px;margin:16px 0 12px}
+.sh-circle{width:42px;height:42px;border-radius:50%;background:var(--red)}
+.sh-square{width:36px;height:36px;background:var(--blue)}
+.sh-tri{width:0;height:0;border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:36px solid var(--yellow)}
+.hero h1{font-size:34px;font-weight:900;letter-spacing:3px;line-height:1.12;margin:2px 0 8px}
+.hero-sub{font-size:12px;color:#BDB8AC;letter-spacing:.06em}
+.dist{display:flex;height:10px;margin:14px 0 0;gap:4px}
+.dist i{display:block;height:100%}
+.d1{flex:2;background:var(--red)}.d2{flex:2;background:var(--blue)}.d3{flex:3;background:var(--yellow)}.d4{flex:2;background:#fff}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.lg{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:8px 10px;border:2.5px solid var(--ink);letter-spacing:.03em}
+.lg-red{background:var(--red);color:#fff}
+.lg-blue{background:var(--blue);color:#fff}
+.lg-yel{background:var(--yellow);color:var(--ink)}
+.lg-out{background:#fff;color:var(--ink)}
+.lg small{font-weight:700;opacity:.85;font-size:10.5px}
+.sec-title{display:flex;align-items:center;gap:10px;padding:16px 14px 8px}
+.sec-title .bar{width:26px;height:12px;background:var(--ink)}
+.sec-title h2{font-size:17px;font-weight:900;letter-spacing:.14em}
+.board{padding:0 14px 6px}
+.b-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:2px solid var(--ink);text-decoration:none;color:inherit}
+.b-row:first-of-type{border-top:2px solid var(--ink)}
+.b-num{width:30px;height:30px;flex:0 0 30px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.b-num.red{background:var(--red);color:#fff}.b-num.blue{background:var(--blue);color:#fff}.b-num.yel{background:var(--yellow);color:var(--ink)}.b-num.out{background:#fff;color:var(--ink)}
+.b-main{flex:1;min-width:0}
+.b-name{font-size:14.5px;font-weight:800}
+.b-lead{display:block;font-size:11.5px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 7px;border:2px solid var(--ink)}
+.b-chip.red{background:var(--red);color:#fff}.b-chip.blue{background:var(--blue);color:#fff}.b-chip.yel{background:var(--yellow);color:var(--ink)}.b-chip.out{background:#fff;color:var(--ink)}
+.cards{padding:14px 14px 6px}
+.card{border:3px solid var(--ink);background:var(--paper);margin-bottom:18px;box-shadow:5px 5px 0 var(--ink);scroll-margin-top:10px}
+.c-head{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:3px solid var(--ink);background:#fff}
+.c-num{width:44px;height:44px;flex:0 0 44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+.c-num.red{background:var(--red);color:#fff}.c-num.blue{background:var(--blue);color:#fff}.c-num.yel{background:var(--yellow);color:var(--ink)}.c-num.out{background:var(--paper);color:var(--ink)}
+.c-title{flex:1;min-width:0}
+.c-title h3{font-size:18px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.c-title .st{font-size:10.5px;color:var(--gray);margin-top:2px;letter-spacing:.04em}
+.c-verdict{flex:0 0 auto;font-size:11.5px;font-weight:900;padding:6px 8px;border:2.5px solid var(--ink);letter-spacing:.05em}
+.c-verdict.red{background:var(--red);color:#fff}.c-verdict.blue{background:var(--blue);color:#fff}.c-verdict.yel{background:var(--yellow);color:var(--ink)}.c-verdict.out{background:#fff;color:var(--ink)}
+.c-line{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--hair)}
+.c-line b{font-weight:800}
+.t{padding:10px 12px;border-bottom:1px solid var(--hair)}
+.t:last-of-type{border-bottom:0}
+.t-main{display:flex;align-items:baseline;gap:7px}
+.t-name{font-size:15.5px;font-weight:900}
+.t-code{font-size:10.5px;color:var(--gray);letter-spacing:.06em}
+.t-tier{margin-left:auto;font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);flex:0 0 auto}
+.t-tier.red{background:var(--red);color:#fff}
+.t-tier.blue{background:var(--blue);color:#fff}
+.t-tier.yel{background:var(--yellow);color:var(--ink)}
+.t-tier.watch{background:transparent;color:var(--ink)}
+.t-act{font-size:12.5px;margin-top:3px;font-weight:700}
+.t-risk{font-weight:500;color:var(--gray)}
+.c-dur{padding:7px 12px;font-size:11.5px;font-weight:800;border-bottom:1px solid var(--hair);background:rgba(245,196,0,.16)}
+.c-foot{background:var(--ink);color:#EDE9DE;padding:10px 12px;font-size:11.5px}
+.c-foot .row{display:flex;gap:6px}
+.c-foot .row+.row{margin-top:5px}
+.c-foot .k{flex:0 0 30px;font-weight:900;letter-spacing:.06em}
+.c-foot .k.g{color:var(--yellow)}
+.c-foot .k.b{color:#FF9A8F}
+.c-foot .v{flex:1}
+.c-foot .v li{list-style:none}
+.c-foot .v li+li{margin-top:2px}
+.c-foot .v li::before{content:"· ";color:#8F8A7E}
+.mood{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 14px 0}
+.mood .mi{border:2.5px solid var(--ink);padding:8px 10px;font-size:12px;font-weight:800;background:#fff}
+.mood .mi small{display:block;font-weight:700;font-size:10.5px;color:var(--gray);margin-top:2px}
+/* 前十板块景气榜（V3.0h）——热度分+趋势四态+持续期一行一块 */
+.top10{margin:10px 14px 0;border:3px solid var(--ink);background:#fff;box-shadow:5px 5px 0 var(--ink)}
+.top10 .t10-cap{padding:7px 10px;font-size:10px;font-weight:700;color:var(--gray);border-bottom:2px solid var(--ink);background:var(--paper);letter-spacing:.04em}
+.top10 .t10-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--hair);font-size:12px}
+.top10 .t10-row:last-child{border-bottom:0}
+.top10 .t10-rk{flex:0 0 18px;font-weight:900;color:var(--gray);font-size:11px}
+.top10 .t10-name{flex:1;min-width:0;font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top10 .t10-heat{flex:0 0 34px;text-align:center;font-weight:900;font-size:12px;border:2px solid var(--ink);padding:1px 0;color:var(--ink)}
+.top10 .t10-trend{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);white-space:nowrap}
+.top10 .t10-trend.up{background:var(--red);color:#fff;border-color:var(--red)}
+.top10 .t10-trend.strong{background:var(--yellow);color:var(--ink);border-color:var(--ink)}
+.top10 .t10-trend.down{background:var(--green);color:#fff;border-color:var(--green)}
+.top10 .t10-trend.steady{background:#fff;color:var(--gray)}
+.top10 .t10-dur{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#B8860B;white-space:nowrap}
+.exp{border:3px solid var(--ink);background:#fff;margin:0 14px 18px;box-shadow:5px 5px 0 var(--ink)}
+.exp .ex-h{padding:9px 12px;border-bottom:2px solid var(--ink);font-size:12px;font-weight:900;letter-spacing:.08em;background:var(--paper)}
+.exp .ex-r{display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--hair);font-size:11.5px}
+.exp .ex-r:last-child{border-bottom:0}
+.exp .ex-n{flex:0 0 52px;font-weight:900}
+.exp .ex-q{flex:1;color:#3E3B34}
+.exp .ex-q em{font-style:normal;font-weight:800}
+.foot{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.foot .fh{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.foot .fh i{display:block;width:18px;height:10px;background:var(--blue)}
+.foot p{font-size:11px;color:#3E3B34;line-height:1.75}
+.foot p+p{margin-top:6px}
+.foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.copybar{margin:18px 14px 8px;border:2.5px solid var(--ink);background:#fff;padding:12px 12px 10px}
+.cb-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:13.5px;font-weight:900;letter-spacing:.02em}
+.cb-n{font-size:11.5px;font-weight:800;color:var(--red);letter-spacing:.04em}
+.btn-copy{margin-top:10px;width:100%;border:2.5px solid var(--ink);background:var(--yellow);color:var(--ink);font-size:14px;font-weight:900;letter-spacing:.06em;padding:11px 12px;cursor:pointer;font-family:inherit;box-shadow:4px 4px 0 var(--ink);transition:transform .06s,box-shadow .06s}
+.btn-copy:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cb-codes{margin-top:10px;padding:9px 10px;border:1.5px dashed var(--hair);font-family:Consolas,Menlo,monospace;font-size:11.5px;line-height:1.75;color:var(--gray);word-break:normal;overflow-wrap:anywhere;max-height:96px;overflow:auto;user-select:all;-webkit-user-select:all}
+.cb-tip{margin-top:8px;font-size:11px;color:var(--gray);letter-spacing:.02em}
+@media(max-width:486px){.copybar{margin:14px 10px 8px}}
+
+.endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
+/* 长文段落（结论/预案/清单/风险）——V3.0g 新增，承接 conclusion/plan/consider/avoid/risks */
+.prose{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.prose .ph{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.prose .ph i{display:block;width:18px;height:10px;background:var(--red)}
+.prose p{font-size:12px;color:#2B2924;line-height:1.78}
+.prose p+p{margin-top:7px}
+.prose .pt{font-weight:900;font-size:12.5px;display:block;margin-bottom:3px}
+.prose ol,.prose ul{margin:0;padding-left:18px}
+.prose li{font-size:12px;line-height:1.72;color:#2B2924;margin:3px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 14px 0}
+.two .box{border:3px solid var(--ink);background:#fff;padding:10px 10px 12px}
+.two .box.b2{border-color:var(--blue)}
+.two .bh{font-weight:900;font-size:12px;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid var(--ink)}
+.two .box.b2 .bh{border-bottom-color:var(--blue);color:var(--blue)}
+.two li{font-size:11.5px;line-height:1.6;margin:4px 0;color:#2B2924}
+.riskbox{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px}
+.riskbox .rl{display:flex;gap:8px;font-size:11.5px;line-height:1.65;padding:5px 0;border-bottom:1px dashed var(--hair)}
+.riskbox .rl:last-child{border-bottom:0}
+.riskbox .lv{flex:0 0 30px;font-weight:900}
+.riskbox .lv.h{color:var(--red)}.riskbox .lv.m{color:#B8860B}
+b.up{color:var(--red);font-weight:800}
+b.dn{color:var(--green);font-weight:800}
+b.amt{font-weight:800}
+.endshapes .c{width:20px;height:20px;border-radius:50%;background:var(--red)}
+.endshapes .s{width:16px;height:16px;background:var(--blue)}
+.endshapes .t{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:17px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top"><span>SECTOR SCAN · JINGQI</span><span>2026-11-06 FRI</span></div>
+    <div class="hero-shapes"><span class="sh-circle"></span><span class="sh-square"></span><span class="sh-tri"></span></div>
+    <h1>景气排查</h1>
+    <div class="hero-sub">景气排查 · 1106（trend=up 8 / 320 行业 21:38 刷新 · recommended 0） · 数据基准 11-06 收盘 · 条件触发式 · T+1 结算口径</div>
+    <div class="dist"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></div>
+  </header>
+
+  <div class="legend">
+    <span class="lg lg-red">桶① 可入主推 <small>×2</small></span>
+    <span class="lg lg-blue">桶② 稳健低吸 <small>×5</small></span>
+    <span class="lg lg-yel">桶③ 谨慎博弈 <small>×4</small></span>
+    <span class="lg lg-out">桶④ 出列 <small>×4</small></span>
+  </div>
+
+  <div class="mood">
+    <span class="mi">涨停 / 跌停 33 / 15<small>炸板 13（28.3%）</small></span>
+    <span class="mi">连板晋级率 14.1%<small>12/85 · 最高 5 板 3 家</small></span>
+    <span class="mi">两市量能 1.656 万亿<small>缩量 4,597 亿（-21.7%）</small></span>
+    <span class="mi">情绪指数 23（冰点）<small>70 → 23 跨两级</small></span>
+  </div>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>前十板块景气榜</h2></div>
+  <div class="top10">
+    <div class="t10-cap">近10日板块景气排行 · 今日热度分 0-10（0.6×当日涨幅+0.4×五日动量·量价口径非基本面）· 趋势四态 · ⏳持续期预估（宁短勿长）</div>
+    <div class="t10-row"><span class="t10-rk">1</span><span class="t10-name">种子生产</span><span class="t10-heat" style="background:var(--red);color:#fff">10.0</span><span class="t10-trend steady">—</span></div>
+    <div class="t10-row"><span class="t10-rk">2</span><span class="t10-name">其他养殖</span><span class="t10-heat" style="background:var(--red);color:#fff">9.97</span><span class="t10-trend steady">—</span></div>
+    <div class="t10-row"><span class="t10-rk">3</span><span class="t10-name">种植业与林业</span><span class="t10-heat" style="background:var(--red);color:#fff">9.94</span><span class="t10-trend steady">—</span></div>
+    <div class="t10-row"><span class="t10-rk">4</span><span class="t10-name">光伏电池组件</span><span class="t10-heat" style="background:var(--red);color:#fff">9.91</span><span class="t10-trend up">📈 增强</span></div>
+    <div class="t10-row"><span class="t10-rk">5</span><span class="t10-name">新能源发电</span><span class="t10-heat" style="background:var(--red);color:#fff">9.88</span><span class="t10-trend up">📈 增强</span></div>
+    <div class="t10-row"><span class="t10-rk">6</span><span class="t10-name">农业综合</span><span class="t10-heat" style="background:var(--red);color:#fff">9.84</span><span class="t10-trend steady">—</span></div>
+    <div class="t10-row"><span class="t10-rk">7</span><span class="t10-name">粘胶</span><span class="t10-heat" style="background:var(--red);color:#fff">9.81</span><span class="t10-trend steady">—</span></div>
+    <div class="t10-row"><span class="t10-rk">8</span><span class="t10-name">氨纶</span><span class="t10-heat" style="background:var(--red);color:#fff">9.78</span><span class="t10-trend steady">→ 平稳</span></div>
+    <div class="t10-row"><span class="t10-rk">9</span><span class="t10-name">光伏辅材</span><span class="t10-heat" style="background:var(--red);color:#fff">9.75</span><span class="t10-trend up">📈 增强</span></div>
+    <div class="t10-row"><span class="t10-rk">10</span><span class="t10-name">其他种植业</span><span class="t10-heat" style="background:var(--red);color:#fff">9.72</span><span class="t10-trend steady">—</span></div>
+  </div>
+
+  <div class="sec-title"><span class="bar"></span><h2>结论总览</h2></div>
+  <nav class="board">
+    <a class="b-row" href="#s1"><span class="b-num red">01</span><span class="b-main"><span class="b-name">光伏电池组件 · 组均 +1.71%</span><br><span class="b-lead">东方日升 · 额 22.4 亿放量</span></span><span class="b-chip red">可入主推</span></a>
+    <a class="b-row" href="#s2"><span class="b-num yel">02</span><span class="b-main"><span class="b-name">光伏辅材 · 组均 +0.26%</span><br><span class="b-lead">永臻股份 · 4 板</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s3"><span class="b-num red">03</span><span class="b-main"><span class="b-name">新能源发电 · accel +3.40</span><br><span class="b-lead">立新能源 · 涨停</span></span><span class="b-chip red">可入主推</span></a>
+  </nav>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>逐板块四桶</h2></div>
+  <div class="cards">
+    <article class="card" id="s1">
+      <div class="c-head"><div class="c-num red">01</div><div class="c-title"><h3>光伏电池组件 · 组均 +1.71%</h3><div class="st"></div></div><div class="c-verdict red">可入主推</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>1-3 个交易日</b>（成熟段·随时兑现）</div>
+      <div class="t" data-code="300118"><div class="t-main"><span class="t-name">东方日升</span><span class="t-tier red">桶①</span></div><div class="t-act">额 22.4 亿放量 <span class="t-risk">｜ret20 +15.4</span></div></div>
+      <div class="t" data-code="002865"><div class="t-main"><span class="t-name">钧达股份</span><span class="t-tier blue">桶②</span></div><div class="t-act">额 26.5 亿最活跃 <span class="t-risk">｜ret20 +23.6 已偏高</span></div></div>
+      <div class="t" data-code="002506"><div class="t-main"><span class="t-name">协鑫集成</span><span class="t-tier blue">桶②</span></div><div class="t-act">⑦D 首板 <span class="t-risk">｜额 24.3 亿</span></div></div>
+      <div class="t" data-code="688429"><div class="t-main"><span class="t-name">时创能源</span><span class="t-tier yel">桶③</span></div><div class="t-act">额仅 1.9 亿 <span class="t-risk">｜小票弹性</span></div></div>
+      <div class="t" data-code="600537"><div class="t-main"><span class="t-name">*ST亿晶</span><span class="t-tier out">桶④</span></div><div class="t-act">ST 不碰（5 板高位） <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①2 / 桶②2 / 桶③2 / 桶④2｜今日唯一逆势的成长方向，但 pos5=4 处成熟段——只做回踩不追高</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s2">
+      <div class="c-head"><div class="c-num yel">02</div><div class="c-title"><h3>光伏辅材 · 组均 +0.26%</h3><div class="st"></div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>1-2 个交易日</b>（成熟段·广度不足）</div>
+      <div class="t" data-code="603381"><div class="t-main"><span class="t-name">永臻股份</span><span class="t-tier yel">桶③</span></div><div class="t-act">4 板 <span class="t-risk">｜ret20 +41.0 高位</span></div></div>
+      <div class="t" data-code="601865"><div class="t-main"><span class="t-name">福莱特</span><span class="t-tier blue">桶②</span></div><div class="t-act">龙头 <span class="t-risk">｜额 3.3 亿 · 跌 0.4% 抗跌</span></div></div>
+      <div class="t" data-code="301697"><div class="t-main"><span class="t-name">贝特利</span><span class="t-tier yel">桶③</span></div><div class="t-act">3 板 20cm <span class="t-risk">｜额 6.3 亿</span></div></div>
+      <div class="t" data-code="600207"><div class="t-main"><span class="t-name">安彩高科</span><span class="t-tier out">桶④</span></div><div class="t-act">ret20 -12.9 超跌反弹 <span class="t-risk">｜</span></div></div>
+      <div class="t" data-code="600876"><div class="t-main"><span class="t-name">凯盛新能</span><span class="t-tier out">桶④</span></div><div class="t-act">额 0.8 亿无量 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①1 / 桶②1 / 桶③2 / 桶④2｜广度不足（仅 5 红），靠贝特利 +20%、永臻 +10% 撑住，观察不给仓</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s3">
+      <div class="c-head"><div class="c-num red">03</div><div class="c-title"><h3>新能源发电 · accel +3.40</h3><div class="st"></div></div><div class="c-verdict red">可入主推</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>3-5 个交易日</b>（若明日红盘 ≥40% 则延续）</div>
+      <div class="t" data-code="001258"><div class="t-main"><span class="t-name">立新能源</span><span class="t-tier red">桶①</span></div><div class="t-act">涨停 <span class="t-risk">｜额 3.2 亿</span></div></div>
+      <div class="t" data-code="003816"><div class="t-main"><span class="t-name">中国广核</span><span class="t-tier blue">桶②</span></div><div class="t-act">额 6.5 亿 <span class="t-risk">｜ret20 +7.2 最稳</span></div></div>
+      <div class="t" data-code="002310"><div class="t-main"><span class="t-name">东方新能</span><span class="t-tier yel">桶③</span></div><div class="t-act">2.32 元低价 <span class="t-risk">｜额 2.8 亿</span></div></div>
+      <div class="t" data-code="300317"><div class="t-main"><span class="t-name">珈伟新能</span><span class="t-tier out">桶④</span></div><div class="t-act">ret20 -5.4 弱反弹 <span class="t-risk">｜</span></div></div>
+      <div class="t" data-code="002015"><div class="t-main"><span class="t-name">协鑫能科</span><span class="t-tier blue">桶②</span></div><div class="t-act">额 10.5 亿最大 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①2 / 桶②1 / 桶③1 / 桶④1｜加速第 1 日（streak 1），三只涨停开路，是八条里唯一「还没走完」的</li></ul></div></div>
+    </article>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--ink)"></i>一句话总判</div>
+      <p>AI 硬件崩盘日的「农业 + 光伏」逆势：种子生产 10.0 登顶、种植业与林业 9.94、光伏电池组件 9.91，而半导体/通信/机器人全线失血 <b class="amt">600 亿</b>级。trend=up 扩到 8 条，但全部标记「5 日爬升成熟段·末日情绪极值」——这是「超跌资金找低位」而非「新主线启动」。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--red)"></i>核心结论与前三板块深度</div>
+      <p>增强板块 8 条，按 avg 排序：光伏电池组件 7.22 / 光伏辅材 6.68 / 新能源发电 6.30 / 耐火材料 5.99 / 食品及饲料添加剂 4.80 / 电网设备 4.17 / 输变电设备 3.94 / 电气自控设备 3.92。**八条全部带「5 日爬升成熟段·随时兑现防守·位置偏高扣减·末日情绪极值」标记，pos5 均为 4**——没有一条处在发酵初期，**本期不给任何一条「启动」结论，全部按「兑现中」处理**。</p>
+      <p>板块内部实测（成分股现算）：光伏电池组件 21 只 10 红、组均 <b class="up">+1.71%</b>，是今日唯一逆势的成长方向；光伏辅材 20 只仅 5 红（组均 <b class="up">+0.26%</b>），靠贝特利 <b class="up">+20%</b>、永臻 <b class="up">+10%</b> 两只撑住；新能源发电 34 只 15 红、组均 <b class="up">+0.88%</b>、accel +3.40 最强，属「加速第 1 日」。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--blue)"></i>操作预案 · 给明日策略日报的输入</div>
+      <p>【给 1109 策略日报的三行输入】</p>
+      <p>① 增强板块清单：光伏电池组件（组均 <b class="up">+1.71%</b>·唯一逆势成长）/ 新能源发电（accel +3.40·加速第 1 日）/ 光伏辅材（仅 2 只涨停撑着，观察不给仓）。三条均标「兑现中」，只做回踩不追高。</p>
+      <p>② 排除栏：种子生产 / 种植业与林业 / 其他养殖——今日 score 前三但 dur_note 明示「位置偏高 + 末日情绪极值」，属超跌资金一日游，禁止追。</p>
+      <p>③ 仓位：71.2%（现金 39,668），只允许 1/8 仓试探；不接 4 板以上（今日晋级率 14.1%）。</p>
+  </div>
+
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--yellow)"></span><h2>专家推演</h2></div>
+  <div class="exp">
+    <div class="ex-h">专家推演 · KB 原话（前三板块共用）</div>
+    <div class="ex-r"><span class="ex-n">分歧</span><span class="ex-q">本期不做四专家推演：KB 今日新增 50 条中无针对光伏链/新能源发电的原话，按《专家框架库》「无原话不代发言」规则留空——不编造推演。可参考的相邻原话：三石「黄金做对冲」（已用于 ⑦E）、冰冰「收缩窗口只做逆势独立」（已用于 ⑦E）。</span></div>
+  </div>
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--blue)"></span><h2>需要考虑 / 需要避免</h2></div>
+  <div class="two">
+    <div class="box"><div class="bh">需要考虑</div><ul><li>仓位前提：71.2%，现金 39,668（含逆回购 29,000）——只允许 1/8 仓试探，板块结论只作「换仓方向」参考。</li><li>情绪开关：情绪 23 冰点档，冰点次日反弹概率 &gt;55%（b1106-005），但冰点期只做「低位+资金进」，不追高位。</li><li>成熟段一律不追：八条 trend=up 全部 pos5=4 且带「末日情绪极值」标记，按《板块分析提示词 V3》一律只做回踩。</li><li>光伏的逆势属性来自「低位 + 光储装机预期」，不是业绩驱动——按 1-3 日交易处理，不做趋势。</li></ul></div>
+    <div class="box b2"><div class="bh">需要避免</div><ul><li>不做种子生产：因为它今日 score 10.0 登顶但 dur_note 明示「位置偏高 + 末日情绪极值」，追高即接兑现盘。</li><li>不做光伏辅材的 3-4 板：贝特利 <b class="up">+20%</b>、永臻 4 板，晋级率 14.1% 的环境下高位票断板概率 &gt;60%。</li><li>不做 AI 硬件链（存储/光模块/PCB/液冷）：8/8 全绿、失血 <b class="amt">600 亿</b>级，报告排除栏连续 2 日有效。</li><li>不做 *ST亿晶：5 板 ST 股，退市风险 + 流动性陷阱，任何技术位都无效。</li></ul></div>
+  </div>
+  <div class="riskbox"><div class="bh" style="font-weight:900;font-size:12px;margin-bottom:6px">风险提示</div>
+    <div class="rl"><span class="lv h">高</span><span>光伏链「成熟段 + 末日情绪极值」：今日组均 <b class="up">+1.71%</b> 是逆势资金找低位的结果，若明日大盘继续跌，逆势板块补跌幅度更大。</span></div>
+    <div class="rl"><span class="lv h">高</span><span>trend 标签与价格背离：八条 up 全部 pos5=4，历史上前三板块在成熟段后 1-3 日内兑现的比例 &gt;60%。</span></div>
+    <div class="rl"><span class="lv m">中</span><span>新能源发电 accel +3.40 只有 1 日数据（streak 1），单日加速可能是「一日游」。</span></div>
+    <div class="rl"><span class="lv m">中</span><span>光伏辅材广度不足（5/20 红）：两只涨停撑着，一旦断板板块随即转负。</span></div>
+    <div class="rl"><span class="lv m">低</span><span>情绪 23 冰点若持续 3 日以上，所有板块信号都会失效（无承接盘）。</span></div>
+  </div>
+
+
+  <div class="copybar" id="copybar">
+    <div class="cb-h">📋 一键复制全部个股编码<span class="cb-n">15 只（已去重）</span></div>
+    <button class="btn-copy" type="button" id="copyAllBtn">复制全部编码</button>
+    <div class="cb-codes" id="copyCodes">300118 002865 002506 688429 600537 603381 601865 301697 600207 600876 001258 003816 002310 300317 002015</div>
+    <div class="cb-tip">复制后粘进行情软件即可建自选股；若浏览器拦截剪贴板，可直接点上面这行文本全选复制。</div>
+  </div>
+
+  <footer class="foot">
+    <div class="fh"><i></i>口径声明</div>
+    <p>① 景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位），<b>非基本面景气</b>；全部价位为<b>条件触发</b>（回踩带/低吸带/右侧确认），非现价指令——条件不成立即放弃，禁止带外追价。</p>
+    <p>② 数据基准 = 20261106 收盘（sector-strength-10d refresh=1）；T+1 结算口径 · daily low 硬核验。</p>
+    <p>③ 四桶分级：可入主推（红）＞稳健低吸（蓝）＞谨慎博弈（黄）＞出列（白）；⏳ 持续期=资金×题材×叙事三合评估，禁超档包装。仅供个人复盘参考，非投资建议。</p>
+    <div class="src">数据源：sector-strength-10d refresh=1（updated 2026-11-06 21:38·320 行业·trend=up 8）+ days[-1] Top10 + 东财板块资金流 597 个（21:25）+ 成分股现算（fuyao index_constituents_t · 生成 2026-11-06 23:09 · 景气排查标准 UI（V3.0d）</div>
+  </footer>
+
+  <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
+</div>
+<script>
+(function () {
+  var box = document.getElementById('copyCodes');
+  var btn = document.getElementById('copyAllBtn');
+  if (!box || !btn) return;
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', 'readonly');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  btn.addEventListener('click', function () {
+    var text = (box.textContent || '').trim();
+    if (!text || text === '（未识别到个股代码）') return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = '✅ 已复制 ' + text.split(/\s+/).length + ' 只'; })
+        .catch(function () { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; });
+    } else { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; }
+  });
+})();
+</script>
+</body>
+</html>
