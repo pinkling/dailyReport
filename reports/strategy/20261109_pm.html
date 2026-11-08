@@ -171,15 +171,17 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 .sec-panel { background: var(--card, #141926); border: 1px solid var(--line, #2a3244); border-radius: 14px; max-width: 720px; width: 100%; max-height: 82vh; overflow: auto; padding: 14px 16px; box-shadow: 0 18px 48px rgba(0,0,0,.45); }
 .sec-hd2 { font-size: 14px; font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .sec-close { background: rgba(127,127,127,.14); border: 1px solid var(--line, #2a3244); color: inherit; border-radius: 8px; width: 28px; height: 28px; cursor: pointer; font-size: 13px; }
-.sec-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.sec-tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; table-layout: fixed; }
 .sec-tbl th { text-align: left; padding: 5px 7px; color: var(--sub, #8b97b8); font-weight: 600; border-bottom: 1px solid var(--line, #2a3244); white-space: nowrap; }
-.sec-tbl td { padding: 7px; border-bottom: 1px dashed rgba(127,127,127,.22); vertical-align: top; line-height: 1.6; }
+.sec-tbl td { padding: 7px; border-bottom: 1px dashed rgba(127,127,127,.22); vertical-align: top; line-height: 1.6; word-break: break-word; overflow-wrap: anywhere; }
 .sec-tbl .cd2 { font-family: ui-monospace, monospace; white-space: nowrap; }
-.role, .fit { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; white-space: nowrap; }
+.role, .fit { display: inline-block; max-width: 100%; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 999px; white-space: normal; line-height: 1.35; text-align: center; }
 .r-龙一 { background: #a03028; color: #fff; } .r-龙二 { background: #b45309; color: #fff; } .r-中军 { background: #1f5f8a; color: #fff; } .r-跟风 { background: rgba(127,127,127,.22); } .r-标杆 { background: rgba(127,127,127,.22); }
 .f-核心贴合 { background: rgba(160,48,40,.16); color: #ff8a7a; border: 1px solid rgba(160,48,40,.4); } .f-逻辑适配 { background: rgba(31,95,138,.18); color: #7ec2ff; border: 1px solid rgba(31,95,138,.45); } .f-资金驱动 { background: rgba(138,112,36,.2); color: #ffd166; border: 1px solid rgba(138,112,36,.5); }
 .sec-note { margin-top: 10px; font-size: 11.5px; color: var(--sub, #8b97b8); line-height: 1.7; }
-@media (max-width: 560px) { .sec-tbl th:nth-child(1), .sec-tbl td:nth-child(1) { display: none; } }
+.sec-tblwrap { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.sec-swipe { display: none; }
+@media (max-width: 560px) { .sec-panel { padding: 12px; } .sec-tblwrap { margin: 0 -4px; padding: 0 4px; } .sec-tbl { min-width: 480px; font-size: 12px; } .sec-tbl th, .sec-tbl td { padding: 6px 4px; } .sec-tbl .cd2 { font-size: 11.5px; } .sec-tbl .role, .sec-tbl .fit { font-size: 10.5px; padding: 1px 4px; } .sec-swipe { display: block; font-size: 11px; color: var(--sub, #8b97b8); margin: -2px 0 6px; } }
 @media print { .sec-badge { display: none; } .sec-modal { display: none !important; } .sec-hd[data-sec] { cursor: default; } }
 @media print { .fab, .toc-panel, .toc-mask { display: none !important; } details.endnote { display: block !important; } }
 @media print { .wrap { max-width:100%; } .card, .stock { break-inside: avoid; } .footer-block { break-inside: avoid; } }
@@ -471,8 +473,10 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 <div class="sec-modal" id="sec-modal-1" hidden>
 <div class="sec-panel">
 <div class="sec-hd2">A · 光伏设备（5 日最强 + 首板潮 · 只做龙头）<button type="button" class="sec-close" data-sec-close="1" aria-label="关闭">✕</button></div>
+<div class="sec-swipe">← 左右滑动查看完整表格 →</div>
+<div class="sec-tblwrap">
 <table class="sec-tbl">
-<colgroup><col style="width:9%"><col style="width:11%"><col style="width:11%"><col style="width:14%"><col style="width:55%"></colgroup>
+<colgroup><col style="width:12%"><col style="width:13%"><col style="width:15%"><col style="width:13%"><col style="width:47%"></colgroup>
 <tr><th>梯队</th><th>贴合</th><th>代码</th><th>名称</th><th>一句话逻辑</th></tr>
 <tr><td><span class="role r-龙一">龙一</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">300751</td><td>迈为股份</td><td>ret5 +35.2% 板块最强，27.4 亿成交</td></tr>
 <tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">300274</td><td>阳光电源</td><td>92.4 亿成交·逆变器龙头·⑦ 池 A 锚</td></tr>
@@ -480,6 +484,7 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 <tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">300316</td><td>晶盛机电</td><td>ret5 +19.2% 但成交仅 5.5 亿</td></tr>
 <tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-逻辑适配">逻辑适配</span></td><td class="cd2">600207</td><td>安彩高科</td><td>光伏玻璃·1106 首板·辅材环节</td></tr>
 </table>
+</div>
 <div class="sec-note">成分核验：同花顺行业「光伏设备」881279.TI 在册 73 只——迈为/阳光/捷佳/晶盛/安彩全部在册；「逆变器」884304.TI 在册 10 只（阳光/德业/锦浪）。日出东方、立新能源不在光伏设备在册名单，属资金驱动，仅列入首板潮观察，不进成员表。</div>
 </div>
 </div>
@@ -490,14 +495,17 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 <div class="sec-modal" id="sec-modal-2" hidden>
 <div class="sec-panel">
 <div class="sec-hd2">B · 半导体设备（外盘修复 · 位置最低）<button type="button" class="sec-close" data-sec-close="2" aria-label="关闭">✕</button></div>
+<div class="sec-swipe">← 左右滑动查看完整表格 →</div>
+<div class="sec-tblwrap">
 <table class="sec-tbl">
-<colgroup><col style="width:9%"><col style="width:11%"><col style="width:11%"><col style="width:14%"><col style="width:55%"></colgroup>
+<colgroup><col style="width:12%"><col style="width:13%"><col style="width:15%"><col style="width:13%"><col style="width:47%"></colgroup>
 <tr><th>梯队</th><th>贴合</th><th>代码</th><th>名称</th><th>一句话逻辑</th></tr>
 <tr><td><span class="role r-龙一">龙一</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">002371</td><td>北方华创</td><td>76.9 亿·设备龙头·⑦ 池 B 锚</td></tr>
 <tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">688012</td><td>中微公司</td><td>73.4 亿·刻蚀设备</td></tr>
 <tr><td><span class="role r-龙二">龙二</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">688072</td><td>拓荆科技</td><td>ret5 +21.9%·45.0 亿</td></tr>
 <tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">688120</td><td>华海清科</td><td>ret5 +22.9%·31.6 亿</td></tr>
 </table>
+</div>
 <div class="sec-note">成分核验：同花顺行业「半导体设备」884229.TI 在册 26 只——北方华创/中微/拓荆/华海清科全部在册。兆易创新属「半导体设计」，不列入本板块成员表（存储另作 ⑦ 池 C 锚）。</div>
 </div>
 </div>
@@ -508,8 +516,10 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 <div class="sec-modal" id="sec-modal-3" hidden>
 <div class="sec-panel">
 <div class="sec-hd2">C · 避险承接（电力/银行 · 底仓而非进攻）<button type="button" class="sec-close" data-sec-close="3" aria-label="关闭">✕</button></div>
+<div class="sec-swipe">← 左右滑动查看完整表格 →</div>
+<div class="sec-tblwrap">
 <table class="sec-tbl">
-<colgroup><col style="width:9%"><col style="width:11%"><col style="width:11%"><col style="width:14%"><col style="width:55%"></colgroup>
+<colgroup><col style="width:12%"><col style="width:13%"><col style="width:15%"><col style="width:13%"><col style="width:47%"></colgroup>
 <tr><th>梯队</th><th>贴合</th><th>代码</th><th>名称</th><th>一句话逻辑</th></tr>
 <tr><td><span class="role r-中军">中军</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">600900</td><td>长江电力</td><td>50.4 亿·公用龙头·收在当日最高</td></tr>
 <tr><td><span class="role r-龙一">龙一</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">601939</td><td>建设银行</td><td>11.91 阶段新高·19.8 亿</td></tr>
@@ -517,6 +527,7 @@ details.endnote[open] > summary { color: var(--tx, #e8edf7); }
 <tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">600011</td><td>华能国际</td><td>火电·8.4 亿</td></tr>
 <tr><td><span class="role r-跟风">跟风</span></td><td><span class="fit f-核心贴合">核心贴合</span></td><td class="cd2">600795</td><td>国电电力</td><td>水电+火电·9.4 亿</td></tr>
 </table>
+</div>
 <div class="sec-note">成分核验：避险板块按东财行业资金流口径（BK0428 电力、BK0475 银行Ⅱ）确认成分与红绿比，非概念板块；5 只均为行业内成交额前列。黄金未入表——1106 仅 1 只红盘，未形成承接。</div>
 </div>
 </div>
