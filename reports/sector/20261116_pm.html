@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#141414">
+<title>景气排查 · 20261116 · 增强板块与四桶结论</title>
+<style>
+:root{
+  --paper:#F3EFE4; --ink:#141414; --red:#E23A2E; --blue:#1D4DB4; --yellow:#F5C400;
+  --gray:#6E6A60; --hair:rgba(20,20,20,.16); --green:#1F8A4C;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;background:#141414}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.52}
+.wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+@media(max-width:486px){.wrap{border-left:0;border-right:0}}
+.hero{background:var(--ink);color:var(--paper);padding:20px 18px 20px;border-bottom:3px solid var(--ink)}
+.hero-top{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.22em;font-weight:700;color:#BDB8AC}
+.hero-shapes{display:flex;align-items:flex-end;gap:10px;margin:16px 0 12px}
+.sh-circle{width:42px;height:42px;border-radius:50%;background:var(--red)}
+.sh-square{width:36px;height:36px;background:var(--blue)}
+.sh-tri{width:0;height:0;border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:36px solid var(--yellow)}
+.hero h1{font-size:34px;font-weight:900;letter-spacing:3px;line-height:1.12;margin:2px 0 8px}
+.hero-sub{font-size:12px;color:#BDB8AC;letter-spacing:.06em}
+.dist{display:flex;height:10px;margin:14px 0 0;gap:4px}
+.dist i{display:block;height:100%}
+.d1{flex:2;background:var(--red)}.d2{flex:2;background:var(--blue)}.d3{flex:3;background:var(--yellow)}.d4{flex:2;background:#fff}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 4px}
+.lg{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;padding:8px 10px;border:2.5px solid var(--ink);letter-spacing:.03em}
+.lg-red{background:var(--red);color:#fff}
+.lg-blue{background:var(--blue);color:#fff}
+.lg-yel{background:var(--yellow);color:var(--ink)}
+.lg-out{background:#fff;color:var(--ink)}
+.lg small{font-weight:700;opacity:.85;font-size:10.5px}
+.sec-title{display:flex;align-items:center;gap:10px;padding:16px 14px 8px}
+.sec-title .bar{width:26px;height:12px;background:var(--ink)}
+.sec-title h2{font-size:17px;font-weight:900;letter-spacing:.14em}
+.board{padding:0 14px 6px}
+.b-row{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:2px solid var(--ink);text-decoration:none;color:inherit}
+.b-row:first-of-type{border-top:2px solid var(--ink)}
+.b-num{width:30px;height:30px;flex:0 0 30px;border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+.b-num.red{background:var(--red);color:#fff}.b-num.blue{background:var(--blue);color:#fff}.b-num.yel{background:var(--yellow);color:var(--ink)}.b-num.out{background:#fff;color:var(--ink)}
+.b-main{flex:1;min-width:0}
+.b-name{font-size:14.5px;font-weight:800}
+.b-lead{display:block;font-size:11.5px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-chip{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:4px 7px;border:2px solid var(--ink)}
+.b-chip.red{background:var(--red);color:#fff}.b-chip.blue{background:var(--blue);color:#fff}.b-chip.yel{background:var(--yellow);color:var(--ink)}.b-chip.out{background:#fff;color:var(--ink)}
+.cards{padding:14px 14px 6px}
+.card{border:3px solid var(--ink);background:var(--paper);margin-bottom:18px;box-shadow:5px 5px 0 var(--ink);scroll-margin-top:10px}
+.c-head{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:3px solid var(--ink);background:#fff}
+.c-num{width:44px;height:44px;flex:0 0 44px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px}
+.c-num.red{background:var(--red);color:#fff}.c-num.blue{background:var(--blue);color:#fff}.c-num.yel{background:var(--yellow);color:var(--ink)}.c-num.out{background:var(--paper);color:var(--ink)}
+.c-title{flex:1;min-width:0}
+.c-title h3{font-size:18px;font-weight:900;letter-spacing:.03em;line-height:1.2}
+.c-title .st{font-size:10.5px;color:var(--gray);margin-top:2px;letter-spacing:.04em}
+.c-verdict{flex:0 0 auto;font-size:11.5px;font-weight:900;padding:6px 8px;border:2.5px solid var(--ink);letter-spacing:.05em}
+.c-verdict.red{background:var(--red);color:#fff}.c-verdict.blue{background:var(--blue);color:#fff}.c-verdict.yel{background:var(--yellow);color:var(--ink)}.c-verdict.out{background:#fff;color:var(--ink)}
+.c-line{padding:10px 12px;font-size:13px;border-bottom:1px solid var(--hair)}
+.c-line b{font-weight:800}
+.t{padding:10px 12px;border-bottom:1px solid var(--hair)}
+.t:last-of-type{border-bottom:0}
+.t-main{display:flex;align-items:baseline;gap:7px}
+.t-name{font-size:15.5px;font-weight:900}
+.t-code{font-size:10.5px;color:var(--gray);letter-spacing:.06em}
+.t-tier{margin-left:auto;font-size:10px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);flex:0 0 auto}
+.t-tier.red{background:var(--red);color:#fff}
+.t-tier.blue{background:var(--blue);color:#fff}
+.t-tier.yel{background:var(--yellow);color:var(--ink)}
+.t-tier.watch{background:transparent;color:var(--ink)}
+.t-act{font-size:12.5px;margin-top:3px;font-weight:700}
+.t-risk{font-weight:500;color:var(--gray)}
+.c-dur{padding:7px 12px;font-size:11.5px;font-weight:800;border-bottom:1px solid var(--hair);background:rgba(245,196,0,.16)}
+.c-foot{background:var(--ink);color:#EDE9DE;padding:10px 12px;font-size:11.5px}
+.c-foot .row{display:flex;gap:6px}
+.c-foot .row+.row{margin-top:5px}
+.c-foot .k{flex:0 0 30px;font-weight:900;letter-spacing:.06em}
+.c-foot .k.g{color:var(--yellow)}
+.c-foot .k.b{color:#FF9A8F}
+.c-foot .v{flex:1}
+.c-foot .v li{list-style:none}
+.c-foot .v li+li{margin-top:2px}
+.c-foot .v li::before{content:"· ";color:#8F8A7E}
+.mood{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 14px 0}
+.mood .mi{border:2.5px solid var(--ink);padding:8px 10px;font-size:12px;font-weight:800;background:#fff}
+.mood .mi small{display:block;font-weight:700;font-size:10.5px;color:var(--gray);margin-top:2px}
+.statebar{margin:8px 14px 0;border:2.5px solid var(--ink);background:#fff;padding:7px 10px;font-size:11.5px;font-weight:800;line-height:1.5}
+.statebar b{color:var(--red);letter-spacing:.08em}
+/* 前十板块景气榜（V3.0h）——热度分+趋势四态+持续期一行一块 */
+.top10{margin:10px 14px 0;border:3px solid var(--ink);background:#fff;box-shadow:5px 5px 0 var(--ink)}
+.top10 .t10-cap{padding:7px 10px;font-size:10px;font-weight:700;color:var(--gray);border-bottom:2px solid var(--ink);background:var(--paper);letter-spacing:.04em}
+.top10 .t10-row{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--hair);font-size:12px}
+.top10 .t10-row:last-child{border-bottom:0}
+.top10 .t10-rk{flex:0 0 18px;font-weight:900;color:var(--gray);font-size:11px}
+.top10 .t10-name{flex:1;min-width:0;font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top10 .t10-heat{flex:0 0 34px;text-align:center;font-weight:900;font-size:12px;border:2px solid var(--ink);padding:1px 0;color:var(--ink)}
+.top10 .t10-trend{flex:0 0 auto;font-size:10.5px;font-weight:800;padding:2px 6px;border:2px solid var(--ink);white-space:nowrap}
+.top10 .t10-trend.up{background:var(--red);color:#fff;border-color:var(--red)}
+.top10 .t10-trend.strong{background:var(--yellow);color:var(--ink);border-color:var(--ink)}
+.top10 .t10-trend.down{background:var(--green);color:#fff;border-color:var(--green)}
+.top10 .t10-trend.steady{background:#fff;color:var(--gray)}
+.top10 .t10-dur{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#B8860B;white-space:nowrap}
+.exp{border:3px solid var(--ink);background:#fff;margin:0 14px 18px;box-shadow:5px 5px 0 var(--ink)}
+.exp .ex-h{padding:9px 12px;border-bottom:2px solid var(--ink);font-size:12px;font-weight:900;letter-spacing:.08em;background:var(--paper)}
+.exp .ex-r{display:flex;gap:8px;padding:8px 12px;border-bottom:1px solid var(--hair);font-size:11.5px}
+.exp .ex-r:last-child{border-bottom:0}
+.exp .ex-n{flex:0 0 52px;font-weight:900}
+.exp .ex-q{flex:1;color:#3E3B34}
+.exp .ex-q em{font-style:normal;font-weight:800}
+.foot{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.foot .fh{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.foot .fh i{display:block;width:18px;height:10px;background:var(--blue)}
+.foot p{font-size:11px;color:#3E3B34;line-height:1.75}
+.foot p+p{margin-top:6px}
+.foot .src{color:var(--gray);font-size:10.5px;margin-top:8px;border-top:1px solid var(--hair);padding-top:8px}
+.copybar{margin:18px 14px 8px;border:2.5px solid var(--ink);background:#fff;padding:12px 12px 10px}
+.cb-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:13.5px;font-weight:900;letter-spacing:.02em}
+.cb-n{font-size:11.5px;font-weight:800;color:var(--red);letter-spacing:.04em}
+.btn-copy{margin-top:10px;width:100%;border:2.5px solid var(--ink);background:var(--yellow);color:var(--ink);font-size:14px;font-weight:900;letter-spacing:.06em;padding:11px 12px;cursor:pointer;font-family:inherit;box-shadow:4px 4px 0 var(--ink);transition:transform .06s,box-shadow .06s}
+.btn-copy:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.cb-codes{margin-top:10px;padding:9px 10px;border:1.5px dashed var(--hair);font-family:Consolas,Menlo,monospace;font-size:11.5px;line-height:1.75;color:var(--gray);word-break:normal;overflow-wrap:anywhere;max-height:96px;overflow:auto;user-select:all;-webkit-user-select:all}
+.cb-tip{margin-top:8px;font-size:11px;color:var(--gray);letter-spacing:.02em}
+@media(max-width:486px){.copybar{margin:14px 10px 8px}}
+
+.endshapes{display:flex;gap:8px;justify-content:center;align-items:flex-end;padding:20px 0 26px}
+/* 长文段落（结论/预案/清单/风险）——V3.0g 新增，承接 conclusion/plan/consider/avoid/risks */
+.prose{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px 12px 14px}
+.prose .ph{display:flex;gap:8px;align-items:center;font-weight:900;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.prose .ph i{display:block;width:18px;height:10px;background:var(--red)}
+.prose p{font-size:12px;color:#2B2924;line-height:1.78}
+.prose p+p{margin-top:7px}
+.prose .pt{font-weight:900;font-size:12.5px;display:block;margin-bottom:3px}
+.prose ol,.prose ul{margin:0;padding-left:18px}
+.prose li{font-size:12px;line-height:1.72;color:#2B2924;margin:3px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 14px 0}
+.two .box{border:3px solid var(--ink);background:#fff;padding:10px 10px 12px}
+.two .box.b2{border-color:var(--blue)}
+.two .bh{font-weight:900;font-size:12px;margin-bottom:6px;padding-bottom:5px;border-bottom:2px solid var(--ink)}
+.two .box.b2 .bh{border-bottom-color:var(--blue);color:var(--blue)}
+.two li{font-size:11.5px;line-height:1.6;margin:4px 0;color:#2B2924}
+.riskbox{margin:8px 14px 0;border:3px solid var(--ink);background:#fff;padding:12px}
+.riskbox .rl{display:flex;gap:8px;font-size:11.5px;line-height:1.65;padding:5px 0;border-bottom:1px dashed var(--hair)}
+.riskbox .rl:last-child{border-bottom:0}
+.riskbox .lv{flex:0 0 30px;font-weight:900}
+.riskbox .lv.h{color:var(--red)}.riskbox .lv.m{color:#B8860B}
+b.up{color:var(--red);font-weight:800}
+b.dn{color:var(--green);font-weight:800}
+b.amt{font-weight:800}
+.endshapes .c{width:20px;height:20px;border-radius:50%;background:var(--red)}
+.endshapes .s{width:16px;height:16px;background:var(--blue)}
+.endshapes .t{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:17px solid var(--yellow)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top"><span>SECTOR SCAN · JINGQI</span><span>2026-11-16 MON</span></div>
+    <div class="hero-shapes"><span class="sh-circle"></span><span class="sh-square"></span><span class="sh-tri"></span></div>
+    <h1>景气排查</h1>
+    <div class="hero-sub">景气排查 · 1116（矩阵 50 条中 trend=up 21 / 全量 320 行业 · 21:37 刷新 · recommended 0） · 数据基准 11-16 收盘 · 条件触发式 · T+1 结算口径</div>
+    <div class="dist"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i></div>
+  </header>
+
+  <div class="legend">
+    <span class="lg lg-red">桶① 可入主推 <small>×6</small></span>
+    <span class="lg lg-blue">桶② 稳健低吸 <small>×8</small></span>
+    <span class="lg lg-yel">桶③ 谨慎博弈 <small>×6</small></span>
+    <span class="lg lg-out">桶④ 出列 <small>×10</small></span>
+  </div>
+
+  <div class="mood">
+    <span class="mi">涨停 / 跌停 33 / 63<small>炸板 16（32.7%）·跌停是涨停的 1.9 倍</small></span>
+    <span class="mi">连板晋级率 42.9%<small>3/7 · 最高 4 板 北纬科技</small></span>
+    <span class="mi">两市量能 1.48 万亿<small>较 1113 的 1.66 万亿缩 1,712 亿</small></span>
+    <span class="mi">情绪指数 40（偏冷）<small>25 → 40 与创业板 -4.37% 背离</small></span>
+  </div>
+
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>前十板块景气榜</h2></div>
+  <div class="top10">
+    <div class="t10-cap">近10日板块景气排行 · 今日热度分 0-10（0.6×当日涨幅+0.4×五日动量·量价口径非基本面）· 趋势四态 · ⏳持续期预估（宁短勿长）</div>
+    <div class="t10-row"><span class="t10-rk">1</span><span class="t10-name">电视广播</span><span class="t10-heat" style="background:var(--red);color:#fff">10.0</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">2</span><span class="t10-name">汽车服务</span><span class="t10-heat" style="background:var(--red);color:#fff">9.97</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">3</span><span class="t10-name">国有大型银行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.94</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳5-8日</span></div>
+    <div class="t10-row"><span class="t10-rk">4</span><span class="t10-name">城商行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.81</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳5-8日</span></div>
+    <div class="t10-row"><span class="t10-rk">5</span><span class="t10-name">股份制银行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.78</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳5-8日</span></div>
+    <div class="t10-row"><span class="t10-rk">6</span><span class="t10-name">影视院线</span><span class="t10-heat" style="background:var(--red);color:#fff">9.75</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">7</span><span class="t10-name">银行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.72</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳5-8日</span></div>
+    <div class="t10-row"><span class="t10-rk">8</span><span class="t10-name">农商行</span><span class="t10-heat" style="background:var(--red);color:#fff">9.69</span><span class="t10-trend up">📈 增强</span><span class="t10-dur">⏳5-8日</span></div>
+    <div class="t10-row"><span class="t10-rk">9</span><span class="t10-name">其他黑色家电</span><span class="t10-heat" style="background:var(--red);color:#fff">9.59</span><span class="t10-trend strong">🔥 高位</span></div>
+    <div class="t10-row"><span class="t10-rk">10</span><span class="t10-name">生猪养殖</span><span class="t10-heat" style="background:var(--red);color:#fff">9.5</span><span class="t10-trend down">🌊 退潮</span></div>
+  </div>
+
+  <div class="sec-title"><span class="bar"></span><h2>结论总览</h2></div>
+  <nav class="board">
+    <a class="b-row" href="#s1"><span class="b-num red">01</span><span class="b-main"><span class="b-name">银行族 · 42/42 红 · 18 只新高</span><br><span class="b-lead">江苏银行 · 回踩 13.05-13.25</span></span><span class="b-chip red">可入主推</span></a>
+    <a class="b-row" href="#s2"><span class="b-num blue">02</span><span class="b-main"><span class="b-name">交运 · 24/28 红 · 防御第一天</span><br><span class="b-lead">招商港口 · 回踩 25.60-26.20</span></span><span class="b-chip blue">稳健低吸</span></a>
+    <a class="b-row" href="#s3"><span class="b-num blue">03</span><span class="b-main"><span class="b-name">公用 · 长江电力新高 · 11 只新高</span><br><span class="b-lead">长江电力 · 回踩 29.90-30.20</span></span><span class="b-chip blue">稳健低吸</span></a>
+    <a class="b-row" href="#s4"><span class="b-num blue">04</span><span class="b-main"><span class="b-name">肉鸡养殖 · 扩散 2/7 · 指数强个股不跟</span><br><span class="b-lead">圣农发展 · 低吸 16.80-16.90</span></span><span class="b-chip blue">稳健低吸</span></a>
+    <a class="b-row" href="#s5"><span class="b-num yel">05</span><span class="b-main"><span class="b-name">添加剂 · 21 只仅 6 红 · 两只独走</span><br><span class="b-lead">梅花生物 · 低吸 6.90-6.95</span></span><span class="b-chip yel">谨慎博弈</span></a>
+    <a class="b-row" href="#s6"><span class="b-num out">06</span><span class="b-main"><span class="b-name">旅游 · ret5 -2.65% · 失守 MA20</span><br><span class="b-lead">三峡旅游 · 仅观察：ret5 +1.9 但额 0.4 亿、无承接</span></span><span class="b-chip out">出列</span></a>
+    <a class="b-row" href="#s7"><span class="b-num yel">07</span><span class="b-main"><span class="b-name">煤炭+其他 · 76% 红但 0 只新高</span><br><span class="b-lead">陕西煤业 · 低吸 27.00-27.30</span></span><span class="b-chip yel">谨慎博弈</span></a>
+  </nav>
+
+  <div class="sec-title"><span class="bar" style="background:var(--red)"></span><h2>逐板块四桶</h2></div>
+  <div class="cards">
+    <article class="card" id="s1">
+      <div class="c-head"><div class="c-num red">01</div><div class="c-title"><h3>银行族 · 42/42 红 · 18 只新高</h3><div class="st">42 只全红）· 核心主线</div></div><div class="c-verdict red">可入主推</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>5-8 个交易日</b>（至 11-23 ~ 11-26 前后·看净流入与新高家数）</div>
+      <div class="t" data-code="600919"><div class="t-main"><span class="t-name">江苏银行</span><span class="t-tier red">桶①</span></div><div class="t-act">回踩 13.05-13.25 <span class="t-risk">｜止损 12.70 · 额 18.2 亿 · ret20 +7.5</span></div></div>
+      <div class="t" data-code="601398"><div class="t-main"><span class="t-name">工商银行</span><span class="t-tier red">桶①</span></div><div class="t-act">回踩 8.74-8.90 <span class="t-risk">｜止损 8.45 · 额 33.3 亿 · 股息避险首选</span></div></div>
+      <div class="t" data-code="601009"><div class="t-main"><span class="t-name">南京银行</span><span class="t-tier blue">桶②</span></div><div class="t-act">低吸 12.70-12.90 <span class="t-risk">｜止损 12.30 · ret20 +9.0 · 波动小于城商行</span></div></div>
+      <div class="t" data-code="002948"><div class="t-main"><span class="t-name">青岛银行</span><span class="t-tier yel">桶③</span></div><div class="t-act">仅小仓博弈 <span class="t-risk">｜dev20 +9.4 已偏高 · ret5 +7.2 弹性最大也最易回撤</span></div></div>
+      <div class="t" data-code="601229"><div class="t-main"><span class="t-name">上海银行</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：ret20 -10.8%、dd60 -13.8%，破位反抽不追 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①2 / 桶②1 / 桶③1 / 桶④1｜避险主线：绝对价格+相对景气双强，唯一全族扩散的增强方向；不追高，只做 MA5 回踩。</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s2">
+      <div class="c-head"><div class="c-num blue">02</div><div class="c-title"><h3>交运 · 24/28 红 · 防御第一天</h3><div class="st">3 条 up）· 短期支线</div></div><div class="c-verdict blue">稳健低吸</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>3-6 个交易日</b>（至 11-20 ~ 11-25 前后·看成交额能否延续）</div>
+      <div class="t" data-code="001872"><div class="t-main"><span class="t-name">招商港口</span><span class="t-tier red">桶①</span></div><div class="t-act">回踩 25.60-26.20 <span class="t-risk">｜止损 24.85 · 今日 +4.01% 领涨 · dev20 +6.8</span></div></div>
+      <div class="t" data-code="601816"><div class="t-main"><span class="t-name">京沪高铁</span><span class="t-tier red">桶①</span></div><div class="t-act">回踩 5.27-5.35 <span class="t-risk">｜止损 5.05 · dd60 0（60 日新高） · 额 10.6 亿</span></div></div>
+      <div class="t" data-code="601006"><div class="t-main"><span class="t-name">大秦铁路</span><span class="t-tier blue">桶②</span></div><div class="t-act">低吸 4.85-4.90 <span class="t-risk">｜止损 4.60 · 高股息、波动最小</span></div></div>
+      <div class="t" data-code="600009"><div class="t-main"><span class="t-name">上海机场</span><span class="t-tier blue">桶②</span></div><div class="t-act">低吸 24.10-24.40 <span class="t-risk">｜止损 23.00 · ret20 +5.8</span></div></div>
+      <div class="t" data-code="000582"><div class="t-main"><span class="t-name">北部湾港</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：dd60 -38.2%，弱于板块 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①2 / 桶②2 / 桶④1｜24/28 只上涨、净流入铁路公路 6.1 亿/交通运输 5.9 亿——防御配置第一天，回踩再入。</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s3">
+      <div class="c-head"><div class="c-num blue">03</div><div class="c-title"><h3>公用 · 长江电力新高 · 11 只新高</h3><div class="st">3 条 up）· 短期支线</div></div><div class="c-verdict blue">稳健低吸</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>3-5 个交易日</b>（至 11-19 ~ 11-23 前后）</div>
+      <div class="t" data-code="600900"><div class="t-main"><span class="t-name">长江电力</span><span class="t-tier red">桶①</span></div><div class="t-act">回踩 29.90-30.20 <span class="t-risk">｜止损 28.95 · 额 45.8 亿 · dd60 -0.03 新高</span></div></div>
+      <div class="t" data-code="600674"><div class="t-main"><span class="t-name">川投能源</span><span class="t-tier red">桶①</span></div><div class="t-act">回踩 17.95-18.15 <span class="t-risk">｜止损 17.35 · ret5 +3.9</span></div></div>
+      <div class="t" data-code="600011"><div class="t-main"><span class="t-name">华能国际</span><span class="t-tier blue">桶②</span></div><div class="t-act">低吸 7.65-7.75 <span class="t-risk">｜止损 7.45 · 火电成本改善</span></div></div>
+      <div class="t" data-code="600483"><div class="t-main"><span class="t-name">福能股份</span><span class="t-tier yel">桶③</span></div><div class="t-act">dev20 +9.2 已偏高 <span class="t-risk">｜只做小仓追势，不低吸</span></div></div>
+      <div class="t" data-code="600969"><div class="t-main"><span class="t-name">郴电国际</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：dd60 -29.1% <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①2 / 桶②1 / 桶③1 / 桶④1｜长江电力新高带动 11 只新高，红利避险；火电成本端看煤价，追高只到福能为止。</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s4">
+      <div class="c-head"><div class="c-num blue">04</div><div class="c-title"><h3>肉鸡养殖 · 扩散 2/7 · 指数强个股不跟</h3><div class="st"></div></div><div class="c-verdict blue">稳健低吸</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>2-4 个交易日</b>（至 11-18 ~ 11-20 前后·苗价与扩散家数是开关）</div>
+      <div class="t" data-code="002299"><div class="t-main"><span class="t-name">圣农发展</span><span class="t-tier blue">桶②</span></div><div class="t-act">低吸 16.80-16.90 <span class="t-risk">｜止损 16.20 · 205 亿大票 · dev20 +1.5 位置最低</span></div></div>
+      <div class="t" data-code="300761"><div class="t-main"><span class="t-name">立华股份</span><span class="t-tier blue">桶②</span></div><div class="t-act">回踩 22.60-22.90 <span class="t-risk">｜止损 21.80 · ret20 +9.7</span></div></div>
+      <div class="t" data-code="002982"><div class="t-main"><span class="t-name">湘佳股份</span><span class="t-tier yel">桶③</span></div><div class="t-act">小仓博弈 <span class="t-risk">｜18 亿小票 · ret20 +13.2 弹性大</span></div></div>
+      <div class="t" data-code="002234"><div class="t-main"><span class="t-name">民和股份</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：dd60 -20.9%、MA20 下方 <span class="t-risk">｜</span></div></div>
+      <div class="t" data-code="002458"><div class="t-main"><span class="t-name">益生股份</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：dd60 -29.2% <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①空 / 桶②2 / 桶③1 / 桶④2｜avg 第一靠 5 日排名爬升，今日扩散仅 2/7、0 只新高——指数级增强、个股不跟，只做低吸不追。</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s5">
+      <div class="c-head"><div class="c-num yel">05</div><div class="c-title"><h3>添加剂 · 21 只仅 6 红 · 两只独走</h3><div class="st"></div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>1-3 个交易日</b>（至 11-17 ~ 11-19 前后）</div>
+      <div class="t" data-code="600873"><div class="t-main"><span class="t-name">梅花生物</span><span class="t-tier blue">桶②</span></div><div class="t-act">低吸 6.90-6.95 <span class="t-risk">｜止损 6.65 · dev20 -2.2 低位反抽</span></div></div>
+      <div class="t" data-code="300829"><div class="t-main"><span class="t-name">金丹科技</span><span class="t-tier yel">桶③</span></div><div class="t-act">换手 21.4%、dd60 -10.5 <span class="t-risk">｜高位分歧，只做小仓</span></div></div>
+      <div class="t" data-code="002597"><div class="t-main"><span class="t-name">金禾实业</span><span class="t-tier yel">桶③</span></div><div class="t-act">dev20 +6.2、量比 2.8 放量 <span class="t-risk">｜不追高</span></div></div>
+      <div class="t" data-code="603968"><div class="t-main"><span class="t-name">醋化股份</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：dd60 -36.8%、ret20 -20.7% <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①空 / 桶②1 / 桶③2 / 桶④1｜21 只只有 6 只红、5 只站上 MA20——金丹/金禾两只独走，板块不成立；按个股博弈对待。</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s6">
+      <div class="c-head"><div class="c-num out">06</div><div class="c-title"><h3>旅游 · ret5 -2.65% · 失守 MA20</h3><div class="st"></div></div><div class="c-verdict out">出列</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>1-3 个交易日</b>（仅反抽口径·不持有）</div>
+      <div class="t" data-code="002627"><div class="t-main"><span class="t-name">三峡旅游</span><span class="t-tier out">桶④</span></div><div class="t-act">仅观察：ret5 +1.9 但额 0.4 亿、无承接 <span class="t-risk">｜</span></div></div>
+      <div class="t" data-code="000524"><div class="t-main"><span class="t-name">岭南控股</span><span class="t-tier out">桶④</span></div><div class="t-act">仅观察：dd60 -19.5%、ret20 +0.9 弱反抽 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①空 / 桶②空 / 桶③空 / 桶④2｜板块 ret5 -2.65%/-2.43%、失守 MA20，20 只旅游股只有 2 只 ret5 为正——rank 上升是相对抗跌，不是增强；只做 T+1 反抽不持有。</li></ul></div></div>
+    </article>
+
+    <article class="card" id="s7">
+      <div class="c-head"><div class="c-num yel">07</div><div class="c-title"><h3>煤炭+其他 · 76% 红但 0 只新高</h3><div class="st"></div></div><div class="c-verdict yel">谨慎博弈</div></div>
+      <div class="c-dur">⏳ 预计还可延续 <b>1-3 个交易日</b>（至 11-17 ~ 11-19 前后）</div>
+      <div class="t" data-code="601225"><div class="t-main"><span class="t-name">陕西煤业</span><span class="t-tier blue">桶②</span></div><div class="t-act">低吸 27.00-27.30 <span class="t-risk">｜止损 26.10 · 额 13.1 亿、MA20 上方</span></div></div>
+      <div class="t" data-code="600408"><div class="t-main"><span class="t-name">安泰集团</span><span class="t-tier yel">桶③</span></div><div class="t-act">换手 20.4%、5 日 1 板 <span class="t-risk">｜纯游资博弈，≤2% 仓</span></div></div>
+      <div class="t" data-code="600188"><div class="t-main"><span class="t-name">兖矿能源</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：dd60 -24.7%、MA20 下方 <span class="t-risk">｜</span></div></div>
+      <div class="t" data-code="601898"><div class="t-main"><span class="t-name">中煤能源</span><span class="t-tier out">桶④</span></div><div class="t-act">出列：ret20 -12.3%、趋势未修复 <span class="t-risk">｜</span></div></div>
+      <div class="c-foot"><div class="row"><span class="k g">小结</span><ul class="v"><li>桶①空 / 桶②1 / 桶③1 / 桶④2｜煤炭 76% 红但 0 只新高、34 只只有 9 只 ret5 为正——单日反弹不是趋势；只留陕西煤业一只低吸，安泰集团纯博弈。</li></ul></div></div>
+    </article>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--ink)"></i>一句话总判</div>
+      <p>指数分化（创业板 <b class="dn">-4.37%</b> / 上证 <b class="dn">-0.87%</b>）：银行族 42 只全红、18 只近 60 日新高，净流入银行 <b class="amt">3.9 亿</b>/股份制 <b class="amt">4.6 亿</b>/国有大行 <b class="amt">4.4 亿</b>——21 条 up 里只有银行是「绝对价格+相对景气」双强；农业/旅游/煤炭多为相对抗跌（价格仍跌、失守 MA20），按伪增强处理。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--red)"></i>核心结论与前三板块深度</div>
+      <p>【前十】电视广播 10.0 / 汽车服务 9.97 / 国有大行 9.94 / 城商行 9.81 / 股份制银行 9.78 / 影视院线 9.75 / 银行 9.72 / 农商行 9.69 / 其他黑色家电 9.59 / 生猪养殖 9.50。</p>
+      <p>【增强 21 条】银行族 5（国有大行/城商行/股份制/银行/农商行）、交运 3（铁路/机场/港口）、公用 3（电能综合/水电/火电）、农业食品 3（肉鸡/添加剂/肉制品）、旅游 2（自然景点/旅游酒店）、煤炭 2（开采/加工）、其他 3（其他酒类/个护/石油加工）。</p>
+      <p>【关键判读】21 条 up 的 avg 全部 ≤6.56、recommended=0；320 行业扩散 44/320=13.8%、拥挤度 1113 分位 81.7（1116 state_daily 未刷新）——按 V3.0j 全族降档。用「ret5&gt;0 且 MA20 上方」硬筛：只剩银行族（ret5 +2.34~+3.29、ret20 +4.2~+5.4、dd60 0、42/42 红、18 只新高）、肉鸡（ret5 +0.28 但扩散 2/7）、机场/铁路/港口（ret5 -0.4~+0.03、扩散 24/28）。其余 15 条 ret5 为负且 MA20 下方=相对抗跌，不是增强。</p>
+      <p>【前三判定】①银行族=发酵中（第 3-4 日，避险主线，非兑现）：42/42 红+18 只新高+两日连续净流入，防兑现三联判 0/3 命中；②交运（港口/铁路/机场）=发酵初期（第 1-2 日，防御配置）：24/28 红、铁路公路净流入 <b class="amt">6.1 亿</b>；③公用（水电/火电）=发酵中段（第 3 日，红利避险）：长江电力新高、11 只新高。影视院线/电视广播/其他黑色家电=strong 高位对照，兑现判定从严，不入排查轨。</p>
+      <p>【持续期】银行族 5-8 日 / 交运 3-6 日 / 公用 3-5 日 / 肉鸡 2-4 日 / 添加剂 1-3 日 / 旅游 1-3 日 / 煤炭 1-3 日。</p>
+  </div>
+
+  <div class="prose"><div class="ph"><i style="background:var(--blue)"></i>操作预案 · 给明日策略日报的输入</div>
+      <p>① 增强板块（给 ⑦ 池前置过滤）：银行族 5 条（持续期 5-8 日）+ 交运 3 条（3-6 日）+ 公用 3 条（3-5 日）；其余 10 条为相对抗跌，⑦ 池不入。</p>
+      <p>② 前三判定与参与方式：银行族=发酵中·回踩再入（不追高，回踩 MA5）；交运=发酵初期·回踩再入；公用=发酵中段·只看龙头（长江电力）。影视院线 strong 高位只作对照，不追。</p>
+      <p>③ 可入票 Top5：江苏银行 600919 回踩 13.05-13.25 止损 12.70；工商银行 601398 8.74-8.90 止损 8.45；南京银行 601009 12.70-12.90 止损 12.30；招商港口 001872 25.60-26.20 止损 24.85；京沪高铁 601816 5.27-5.35 止损 5.05。</p>
+  </div>
+
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--yellow)"></span><h2>七专家推演</h2></div>
+  <div class="exp">
+    <div class="ex-h">七专家推演 · KB 原话（前三板块共用）</div>
+    <div class="ex-r"><span class="ex-n">撑伞猫</span><span class="ex-q"><em>观望·银行不是我的战场</em> — 「我说白了指数这鸟样基本告别交易了，今天除了买传媒能赚点其他的有一个死一个，睡觉吧直接，明天指数再往下直接画通道，反包再谈怎么交易」（KB 2026-11-16）<br>他的体系只做连板/分支轮动，银行无涨停、无身位，不构成交易标的；今日唯一活口是传媒（金逸 3 板/文投 4 板），但尾盘也顶不住。对银行族的态度是「不否认强、但不是我的模式」，明日传媒反包失败则全场空仓。</span></div>
+    <div class="ex-r"><span class="ex-n">冰冰小美</span><span class="ex-q"><em>多银行·空题材</em> — 「银行创新高已成定局，中国银行新高。对应双创，易中天继续处于风暴眼。熊头。题材依旧是token方向，其他都在跌，市场没得选」（KB 2026-11-16）<br>她把银行新高定义为「市场失去锚之后唯一的定价锚」，维护市场的力量集中在银行端；双创（易中天=AI 指数）仍在风暴眼。映射本场：银行是风格窗口受益端，不是短线题材，持有逻辑=避险+维稳，跌破 5 日线才谈结束。</span></div>
+    <div class="ex-r"><span class="ex-n">柴柴</span><span class="ex-q"><em>多·左侧打满档（点位已破）</em> — 「2900前无脑看多。持仓结构调整」（KB 2026-11-11）；「2700可以2-3成进入2600可以半仓进入2500打满」（KB 2026-10-11）<br>他的创指点位表在 2320 已跌破 2500 的「打满」档——按表应满仓，但框架已进失效区（点位假设基于 2500-2900 箱体）。仓位映射可选宽基，不适用单票追高；银行只作底仓不进攻。</span></div>
+    <div class="ex-r"><span class="ex-n">月月看玉玉</span><span class="ex-q"><em>只认真强度·银行是本体</em> — 「强度本体与伴生共振得分清楚转折本身自带强度，你得分清楚谁是蹭的谁是本体。我称之为真强度与谄媚强度。分清楚真共振与假共振的区别很关键」（KB 2026-10-26）<br>用她的「真强度/谄媚强度」分：银行 42/42 红+18 只新高=本体真强度；自然景点/旅游/添加剂是「谄媚强度」（rank 上升但价格跌）。她只做本体不做蹭的——银行回踩可做，旅游反抽不追。</span></div>
+    <div class="ex-r"><span class="ex-n">三石而立orz</span><span class="ex-q"><em>中性偏多·警惕另一种拥挤</em> — 「盘面上也还是跷跷板的感觉，除了一枝独秀的银伟达……交易情绪还是不高，但悲观的因素确实得到了消化」（KB 2026-11-16）；「权益市场的风险厌恶程度越来越高，这何尝不是另一种拥挤」（KB 2026-11-13）<br>他确认跷跷板（银行 vs 双创），但明确提示「风险厌恶本身也是拥挤」——银行族 18 只新高+拥挤度分位 81.7，正是他说的另一种拥挤。结论：银行可持有，不宜在 18 只新高当天追，等回踩。</span></div>
+    <div class="ex-r"><span class="ex-n">白河愁博士</span><span class="ex-q"><em>多低波·空动量</em> — 「今日最强因子为 低振幅20日（综合 RPS 96.5，多空净值今日 +5.87%）；最弱为 动量120日（RPS 8.5）」（KB 2026-11-16）<br>因子层面直接指路：低振幅（银行/公用/交运）最强、动量（AI 硬件）最弱，20 因子里 19 个多空为负=普跌市。他的减仓序列（机器人→AI 应用→PCB→光通信→存储→半导体设备）与今日 PCB 5 日 -7.43% 一致；银行/公用是减仓后的避风港，不是主攻。</span></div>
+    <div class="ex-r"><span class="ex-n">惑惑</span><span class="ex-q"><em>观察·未到重拳时点</em> — 「后面的行情倾向于是一段一段的，冰点再重拳出击的盈亏比和效率会拉满，考验人混沌期时能否管住手了，此阶段把控好仓位是最重要的」（知识库 2026-08-22；专家蒸馏 2026-11-02 复述）<br>情绪 40 而非 ≤25 冰点，按他的口径「不是重拳时点」；银行是后手避险，不是先手。他的冰点重拳窗口要求情绪≤25 且跌停收窄，今日跌停 63 家反而扩大——管住手，等冰点。</span></div>
+    <div class="ex-r"><span class="ex-n">分歧</span><span class="ex-q">七位分歧点：多银行=冰冰小美/白河愁（避险锚+低波因子），月月只认「本体真强度」；警惕拥挤=三石（风险厌恶也是拥挤，18 只新高当天不追）；不做=撑伞猫（无涨停无身位）/惑惑（情绪 40 未到冰点）；柴柴仓位表已破位（创指 2320 &lt; 2500 打满档），只作宽基口径。共识底线：只做绝对强度（银行/交运/公用），不追相对抗跌（旅游/添加剂/煤炭）。</span></div>
+  </div>
+
+
+  <div class="sec-title"><span class="bar" style="background:var(--blue)"></span><h2>需要考虑 / 需要避免</h2></div>
+  <div class="two">
+    <div class="box"><div class="bh">需要考虑</div><ul><li>仓位前提：总资产 136,295、仓位 98.5%、可用现金 2,087——任何新买入必须先成交止损单/减仓释放仓位，单票 ≤5%（约 6,800 元）。</li><li>情绪开关：情绪 40 偏冷但未冰点（≤25 才是惑惑重拳窗口），跌停 63 家&gt;涨停 33 家——反弹只能当反抽做。</li><li>板块内部结构：银行族 18 只新高=扩散后段，回踩 MA5 是唯一安全带；若明日高开 &gt;3% 全部放弃。</li><li>事件窗：本周英伟达财报（1113 电报提示）+ APEC，AI 硬件波动外溢双创，避险资金可能继续抱银行。</li><li>资金竞争：现有持仓欧亚 29.5%/弘信 24.9%/龙建 16%/祥源 14.7% 三只超 5% 上限，买银行前必须先降集中度。</li><li>口径：景气分=量价相对排名，不是基本面；拥挤度 1116 未刷新，用 1113 分位 81.7。</li></ul></div>
+    <div class="box b2"><div class="bh">需要避免</div><ul><li>不做追高：银行 18 只新高当天不追（三石：风险厌恶也是拥挤），只在 MA5 带接。</li><li>不做相对强度陷阱：自然景点 ret5 <b class="dn">-2.65%</b>、添加剂 21 只只有 6 只红——rank 上升≠价格强，不做。</li><li>不做煤炭追涨：安泰集团换手 20.4%、0 只新高，纯游资博弈，≤2% 或不参与。</li><li>不做满仓单吊银行：仓位 98.5% 状态下先降集中度，不新增单票 &gt;5%。</li><li>不把「景气分高」当业绩好：量价口径，银行涨的是估值修复/避险，不是盈利上修。</li><li>不在情绪 40 抢反弹：跌停 63 家仍在扩大，等晋级率站稳 40%+ 或情绪回 25 以下再谈重拳。</li></ul></div>
+  </div>
+  <div class="riskbox"><div class="bh" style="font-weight:900;font-size:12px;margin-bottom:6px">风险提示</div>
+    <div class="rl"><span class="lv h">高</span><span>银行族已 18 只新高、拥挤度分位 81.7——若创业板单日反弹 &gt;1.5%，高低切换回摆，银行单日回撤 2<b class="dn">-3%</b>。</span></div>
+    <div class="rl"><span class="lv h">高</span><span>21 条 up 里 15 条 ret5 为负、MA20 下方：它们是「相对抗跌」不是「绝对增强」，一旦指数止跌，资金回流双创，这些板块会原地失血。</span></div>
+    <div class="rl"><span class="lv m">中</span><span>肉鸡/添加剂扩散度仅 2/7、6/21：指数级增强靠权重与单票，板块内多数票不跟，回踩买点容易变成接刀。</span></div>
+    <div class="rl"><span class="lv m">中</span><span>交运/公用是防御配置第一天/第三天，净流入体量小（铁路公路 <b class="amt">6.1 亿</b>、交通运输 <b class="amt">5.9 亿</b>），容量撑不起大资金。</span></div>
+    <div class="rl"><span class="lv m">中</span><span>英伟达财报若超预期，AI 硬件反抽会抽走避险资金，银行/公用同步回落。</span></div>
+    <div class="rl"><span class="lv m">低</span><span>1116 拥挤度/扩散度 state_daily 未刷新（ths_index_daily 止于 1113），crowd 过滤用的是 1113 读数，阈值可能滞后。</span></div>
+  </div>
+
+
+  <div class="copybar" id="copybar">
+    <div class="cb-h">📋 一键复制全部个股编码<span class="cb-n">30 只（已去重）</span></div>
+    <button class="btn-copy" type="button" id="copyAllBtn">复制全部编码</button>
+    <div class="cb-codes" id="copyCodes">600919 601398 601009 002948 601229 001872 601816 601006 600009 000582 600900 600674 600011 600483 600969 002299 300761 002982 002234 002458 600873 300829 002597 603968 002627 000524 601225 600408 600188 601898</div>
+    <div class="cb-tip">复制后粘进行情软件即可建自选股；若浏览器拦截剪贴板，可直接点上面这行文本全选复制。</div>
+  </div>
+
+  <footer class="foot">
+    <div class="fh"><i></i>口径声明</div>
+    <p>① 景气分=量价口径（0.6×当日涨幅+0.4×五日动量日内排名百分位），<b>非基本面景气</b>；全部价位为<b>条件触发</b>（回踩带/低吸带/右侧确认），非现价指令——条件不成立即放弃，禁止带外追价。</p>
+    <p>② 数据基准 = 20261116 收盘（sector-strength-10d refresh=1）；T+1 结算口径 · daily low 硬核验。</p>
+    <p>③ 四桶分级：可入主推（红）＞稳健低吸（蓝）＞谨慎博弈（黄）＞出列（白）；⏳ 持续期=资金×题材×叙事三合评估，禁超档包装。仅供个人复盘参考，非投资建议。</p>
+    <div class="src">行情核验：cache.db kline_cache（qfq，截至 2026-11-16 收盘，自算 MA5/20/60、ret5/20、dd60、5 日额）；资金：data/sector_flow --force（clist 回退，21:39）与 sector_flow_daily；景气：fuyao · 生成 2026-11-16 21:57 · 景气排查标准 UI（V3.0d）</div>
+  </footer>
+
+  <div class="endshapes"><span class="c"></span><span class="s"></span><span class="t"></span></div>
+</div>
+<script>
+(function () {
+  var box = document.getElementById('copyCodes');
+  var btn = document.getElementById('copyAllBtn');
+  if (!box || !btn) return;
+  function fallback(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', 'readonly');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  btn.addEventListener('click', function () {
+    var text = (box.textContent || '').trim();
+    if (!text || text === '（未识别到个股代码）') return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = '✅ 已复制 ' + text.split(/\s+/).length + ' 只'; })
+        .catch(function () { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; });
+    } else { fallback(text); btn.textContent = '✅ 已复制（备用方式）'; }
+  });
+})();
+</script>
+</body>
+</html>
