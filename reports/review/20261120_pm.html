@@ -438,8 +438,8 @@ details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 1
 <details class="card appendix">
 <summary>附：账本与对账存档（3.1A 信念账本 · 3.1B/3.1C 信号源与校准 · 3.2 兑现度 · 3.11 错误模式）</summary>
 
-<div class="ap-h">3.1A 信念账本分层结算（24 条在册：hit 14 / miss 10（58.3%）· report 池 20 条 hit 8（40.0%）·★核心 0/3）</div>
-<p class="note">结算口径：b1119 批 24 条（记账日 1119、结算日 1120）= <b>★3 条</b> + 其他 7 条 + 专家引擎 9 条（自动）+ 买区可达性 5 条。T+1 收盘口径：hit=断言实质成立；miss=实质失败或带未触及（未及）。<b>不计分池 4 条</b>（scope=指数 3 条 + 仓位映射 1 条）不进胜率统计——报告只引用 report 池。买区可达性 v2 的 5 条（030/031/032/033/034）按「带内/or 收盘未破」双条件判定。 <span class="badge b-hit">hit 14</span> <span class="badge b-miss">miss 10</span> <span class="badge b-miss">★核心 0/3</span> <span class="badge b-hit">带类 5/5</span></p>
+<div class="ap-h">3.1A 信念账本分层结算（24 条在册：hit 14 / miss 10（58.3%）· report 池 17 条 hit 8（47.1%）·★核心 0/3）</div>
+<p class="note">结算口径：b1119 批 24 条（记账日 1119、结算日 1120）= <b>★3 条</b> + 其他 7 条 + 专家引擎 9 条（自动）+ 买区可达性 5 条。T+1 收盘口径：hit=断言实质成立；miss=实质失败或带未触及（未及）。<b>不计分池 7 条</b>（scope=指数 3 条 + 仓位映射 1 条 + 专家引擎 dup 3 条 205/206/207）不进胜率统计——报告只引用 report 池。买区可达性 v2 的 5 条（030/031/032/033/034）按「带内/or 收盘未破」双条件判定。 <span class="badge b-hit">hit 14</span> <span class="badge b-miss">miss 10</span> <span class="badge b-miss">★核心 0/3</span> <span class="badge b-hit">engine 5/9</span></p>
 <table>
 <colgroup><col style="width:17%"><col style="width:38%"><col style="width:12%"><col style="width:33%"></colgroup>
 <tr><th>条目</th><th>claim 摘要</th><th>判定</th><th>证据（T+1 口径）</th></tr>
@@ -588,8 +588,8 @@ details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 1
   <td>IC 制造净流入 <b class="dn">-6.78 亿</b>转负即证伪；中芯 +2.63/海光 -8.75/华虹 -5.17——只对龙一有效</td>
 </tr>
 </table>
-<p class="dim"><b class="dn">★核心 0/3——全周最差</b>：<b class="dn">001 市况 miss</b>（双底失守 53.6 点，收在全日最低）；<b class="dn">002 三清 miss</b>（剩 100 股，第 16 日未归零）；<b class="dn">004 净流入 miss</b>（-109.45 亿，第 4 日转负=出货确认）。<b>hit 的结构</b>：专家引擎 2/5（京蓝/中京）+ 买区可达性 5/5（中芯/北方华创/⑦池组均等）+ 排除 1（华东不追）+ 情绪/仓位 3（006/007/009 不计分）。<b class="cy">今天「防守性断言」5/5 全对（带位/可达性），「进攻性断言」0/3 全错（市况/持仓/资金）——与 1119 完全同型，连续第 2 日：会算带位、不会判方向</b>。</p>
-<p class="dim">准确率口径（report 池）：<b>n=636 · 58.0% · Brier 0.2502</b>；本期 report 池 20 条 40.0%（<b class="dn">低于均值 18pct</b>）。「近 100 条 <b class="dn">45.0%</b>」——连续 5 日低位。不计分池 238 条（52.5%）不进胜率统计；本期 4 条不计分（3 指数 + 1 仓位）。</p>
+<p class="dim"><b class="dn">★核心 0/3——全周最差</b>：<b class="dn">001 市况 miss</b>（双底失守 53.6 点，收在全日最低）；<b class="dn">002 三清 miss</b>（剩 100 股，第 16 日未归零）；<b class="dn">004 净流入 miss</b>（-109.45 亿，第 4 日转负=出货确认）。<b>hit 的结构</b>：专家引擎 <b>5/9</b>（京蓝/中京 + 白河愁/惑惑/月月 dup hit）+ 带类 <b>4/7</b>（003/030/031/033）+ 资金流板块 1（010）+ 排除 1（008）+ 情绪/仓位 3（006/007/009 不计分）。<b class="cy">今天「防守性断言」全对（带位/可达性/躲跌停），「进攻性断言」0/3 全错（市况/持仓/资金）——与 1119 完全同型，连续第 2 日：会算带位、不会判方向</b>。</p>
+<p class="dim">准确率口径（report 池）：<b>n=636 · 58.0% · Brier 0.2502</b>；本期 report 池 17 条 8 hit（<b class="dn">47.1%，低于均值 11pct</b>）。「近 100 条 <b class="dn">45.0%</b>」——连续 5 日低位。不计分池 238 条（52.5%）不进胜率统计；本期 7 条不计分（3 指数 + 1 仓位 + 3 engine dup）。</p>
 <div class="ap-h">3.1B 信号源计分表（含 ref 态）· 3.1C 校准审查</div>
 <table>
 <colgroup><col style="width:22%"><col style="width:13%"><col style="width:16%"><col style="width:14%"><col style="width:35%"></colgroup>
@@ -607,7 +607,7 @@ details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 1
 <tr><td>用户</td><td class="num">96</td><td class="num">0.2520</td>
   <td><span class="tag tb">active</span></td><td>hit 55.2%；本期 1/2（009 仓位 hit，002 三清 miss）</td></tr>
 <tr><td>专家引擎</td><td class="num">31</td><td class="num">0.2769</td>
-  <td><span class="tag tb">active</span></td><td>hit 41.9%；本期 2/5（京蓝/中京 hit，毅昌/华升/康盛 miss）</td></tr>
+  <td><span class="tag tb">active</span></td><td>hit 41.9%；本期 5/9（京蓝/中京 + 白河愁/惑惑/月月 dup hit；毅昌/华升/康盛/柴柴 miss）</td></tr>
 <tr><td>大佬评审</td><td class="num">16</td><td class="num">0.2341</td>
   <td><span class="tag tb">active</span></td><td>hit 93.8%，样本小（n&lt;30 校准期）</td></tr>
 <tr><td>映射通道</td><td class="num">5</td><td class="num">0.2075</td>
@@ -615,7 +615,7 @@ details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 1
 <tr><td>缠论</td><td class="num">31</td><td class="num">0.1743</td>
   <td><span class="tag tb">ref</span></td><td>hit 19.4%，conf 封顶 10；Brier 失真禁排序</td></tr>
 </table>
-<p class="note"><b>校准审查</b>：全库 report 池 <b>n=636</b>、hit <b>58.0%</b>、Brier 0.2502、平均置信 51.4；本期 report 池 20 条 hit 8（<b class="dn">40.0%</b>），低于均值 18pct。<b class="cy">结构：45-50 分的带位条目 5/5 hit；55 分的「进攻类」条目（001/002/004/032）全 miss；60 分的专家引擎 2/5</b>——与 1119 完全同型，连续第 2 日「高置信方向判断错、低置信带位判断对」。校准偏移：自称 ≥70% 条目本期 0 条；last10 命中 5/10。<b class="dn">迟钝警报</b>：近 4 份主推命中率 50.0%/38.9%/57.9%/40.0%，★核心 1/3→1/3→3/5→0/3——共性漏洞=「方向层无新信息、只靠旧叙事」：国产替代吸筹第 3 日 → 第 4 日转负，报告仍在用第 3 日的钱判第 4 日。</p>
+<p class="note"><b>校准审查</b>：全库 report 池 <b>n=636</b>、hit <b>58.0%</b>、Brier 0.2502、平均置信 51.4；本期 report 池 17 条 hit 8（<b class="dn">47.1%</b>），低于均值 11pct。<b class="cy">结构：45-50 分的带位条目 4/7 hit；55 分的「进攻类」条目（001/002/004/032）全 miss；60 分的专家引擎 5/9（含 3 条 dup）</b>——与 1119 同型，连续第 2 日「高置信方向判断错、低置信带位判断对」。校准偏移：自称 ≥70% 条目本期 0 条；last10 命中 5/10。<b class="dn">迟钝警报</b>：近 4 份主推命中率 50.0%/38.9%/57.9%/47.1%，★核心 1/3→1/3→3/5→0/3——共性漏洞=「方向层无新信息、只靠旧叙事」：国产替代吸筹第 3 日 → 第 4 日转负，报告仍在用第 3 日的钱判第 4 日。</p>
 
 <div class="ap-h">3.2 预判兑现度核对表（含排除栏+四分支）</div>
 <table>
