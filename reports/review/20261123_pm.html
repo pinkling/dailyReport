@@ -536,7 +536,7 @@ details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 1
 <tr><td>回测先验</td><td class="num">264</td><td class="num">0.3060</td>
   <td><span class="tag tb">ref</span></td><td>hit 27.7%，Brier 最差；本期 0/0</td></tr>
 <tr><td>LHB</td><td class="num">20</td><td class="num">0.2806</td>
-  <td><span class="tag tb">ref</span></td><td>hit 30.0%；本期 0/0（今日 LHB 82 只，入账在明日批）</td></tr>
+  <td><span class="tag tb">ref</span></td><td>hit 30.0%；本期 0/0（今日 LHB 82 条席位/72 只，入账在明日批）</td></tr>
 <tr><td>用户</td><td class="num">100</td><td class="num">0.2562</td>
   <td><span class="tag tb">active</span></td><td>hit 54.0%；本期 0/2（002 清仓、008 仓位双 miss）——<b class="dn">用户栏连续 2 期 0/2</b></td></tr>
 <tr><td>专家引擎</td><td class="num">41</td><td class="num">0.2591</td>
@@ -646,7 +646,7 @@ details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 1
 
 <div class="card">
 <h2 id="sec-18">🧾 结算与工具链</h2>
-<p class="dim">结算与工具链：<b>fuyao_backfill --days 1</b>（5,219/5,229·11.6 分钟，回落 16 只 baostock 0 行=停牌/退市）→ <b>六指数补行</b>（_idx_1123.py·6/6 行 qfq）→ <b>THS 行业 320 个</b>（ths_index_backfill --days 3·640 行）→ <b>雪球 <b>data/cls/_xq_daily.py</b></b>（直连可用·19 人·新增 74 条）→ <b>财联社 497 条</b>（_kb_1123pm.py·B 级 57·条目 10521ab25000）→ <b>账本结算</b>（settle_engine 9 条自动 + 手结 21 条 + dedupe 4 条 dup）→ <b>ledger check pass=true</b>（open_due 0·dup 0）→ <b>rule_reg</b>（R075 hit / R076 miss；新增 R077/R078）→ <b>state_review_1123.md</b>（pack_1123·target 1123）→ <b>景气矩阵双口径</b>（sector_strength 320 只·10 日矩阵 trend=up 1 条）。<br>口径说明：<b>东财 ulist 断连</b>→clist 回退（行业前 30/后 20，半导体子行业榜外，003 结算用电子父板块 + 半导体 THS 代偿）；<b>LHB 游资明细 0 条</b>（只有个股 82 只）；<b>美债收益率缺失</b>（treasury.gov 周末未返回）。</p>
+<p class="dim">结算与工具链：<b>fuyao_backfill --days 1</b>（5,219/5,229·11.6 分钟，回落 16 只 baostock 0 行=停牌/退市）→ <b>六指数补行</b>（_idx_1123.py·6/6 行 qfq）→ <b>THS 行业 320 个</b>（ths_index_backfill --days 3·640 行）→ <b>雪球 <b>data/cls/_xq_daily.py</b></b>（直连可用·19 人·新增 74 条）→ <b>财联社 497 条</b>（_kb_1123pm.py·B 级 57·条目 10521ab25000）→ <b>账本结算</b>（settle_engine 9 条自动 + 手结 21 条 + dedupe 4 条 dup）→ <b>ledger check pass=true</b>（open_due 0·dup 0）→ <b>rule_reg</b>（R075 hit / R076 miss；新增 R077/R078）→ <b>state_review_1123.md</b>（pack_1123·target 1123）→ <b>景气矩阵双口径</b>（sector_strength 320 只·10 日矩阵 trend=up 1 条）。<br>口径说明：<b>东财 ulist 断连</b>→clist 回退（行业前 30/后 20，半导体子行业榜外，003 结算用电子父板块 + 半导体 THS 代偿）；<b>LHB 游资明细 0 条</b>（只有个股 82 条·72 只）；<b>美债收益率缺失</b>（treasury.gov 周末未返回）。</p>
 <p class="dim">免责声明：本报告为 AI 辅助个人交易研判记录，基于公开数据生成，所有点位/概率不构成投资建议。</p>
 </div>
 
@@ -655,11 +655,11 @@ details.appendix .ap-h { font-size: 13.5px; color: var(--cy, #4dd6b8); margin: 1
 <footer><div class="wrap">
 <p><b>免责声明</b>：本报告为 AI 辅助个人交易研判记录，基于公开数据生成，所有点位/仓位/判断均为研究假设，不构成任何投资建议。市场有风险，决策需独立。</p>
 <div class="footer-block"><b>数据来源</b>
-<ul class="footer-list"><li>数据源：fuyao 全市场 K 线 5,219 行（2026-11-23）· 涨跌停池真值（涨停 150/跌停 7/炸板 23）· THS 320 行业（640 行/3 日）· 东财板块资金 clist 回退</li><li>LHB 82 只（游资明细 0）· 雪球 74 条（19 人）· 财联社 497 条（B 级 57·至 20:19）· 交割单 4 笔</li><li>state_review_1123（pack_1123·data_day 1123）· 账本 30 条结算 + 11 条新登记</li></ul></div>
+<ul class="footer-list"><li>数据源：fuyao 全市场 K 线 5,219 行（2026-11-23）· 涨跌停池真值（涨停 150/跌停 7/炸板 23）· THS 320 行业（640 行/3 日）· 东财板块资金 clist 回退</li><li>LHB 82 条席位 / 72 只（游资明细 0）· 雪球 74 条（19 人）· 财联社 497 条（B 级 57·至 20:19）· 交割单 4 笔</li><li>state_review_1123（pack_1123·data_day 1123）· 账本 30 条结算 + 11 条新登记</li></ul></div>
 <div class="footer-block"><b>生成自检</b>
 <ul class="footer-list"><li>自检：★核心 1/3 置顶</li><li>✅ / 非核心批量</li><li>✅ / T+1 口径标注</li><li>✅ / 纸面·实现分离</li><li>✅ / 预案对账 7 单</li><li>✅ / 排除栏条件式</li><li>✅ / 四分支（A-E）分布</li><li>✅ / 资金四时段</li><li>✅ / 对手盘四类</li><li>✅ / 主力三证据</li><li>✅ / 催化 5 条 ⭐分级</li><li>✅ / 持仓量价入表</li><li>✅ / 逐笔两维归因</li><li>✅ / 三选一对账</li><li>✅ / 三本账 T+1</li><li>✅ / 纸面损耗单列</li><li>✅ / 错误标签 6 条</li><li>✅ / 高频聚合+迟钝警报</li><li>✅ / 持仓三选一+四点位+预案三件套</li><li>✅ / 零覆盖声明</li><li>✅ / ⑦D 逐只 + ⑦E 五席双轨 + ⑦ 池逐只</li><li>✅ / ⑦B 无清单声明</li><li>✅ / ⑦C 升级核对</li><li>✅ / 修正要点 6 条含实证</li><li>✅ / 账本 check pass=true</li><li>✅ / 锚位口径</li><li>✅ / LHB 与资金流降级声明</li><li>✅ / 两栏+打印</li><li>✅ / 三色计数</li><li>✅ / h2 唯一</li><li>✅ / 错码核验（400235 三板退市股·白名单）</li><li>✅ / 移动端</li><li>✅ / 板块前瞻 3 板块×3 只</li><li>✅ / 情景矩阵 5 行（不计分）</li><li>✅ / 反思五段+九档+幅度错独立</li><li>✅ / 规则 R077/R078 ≤2</li><li>✅ / 术语小抄 8 条</li><li>✅</li></ul></div>
 <div class="footer-block" style="margin-top:2px;"><b>已知问题与勘误</b>
-<ul class="footer-list"><li>①<b>东财 ulist 断连</b>（RemoteDisconnected）→ clist 回退只覆盖行业前 30/后 20，半导体/IC 制造/计算机设备子行业净额榜外，b1120-003 用「电子父板块 +69.2 亿 + 半导体 THS +3.19%」代偿判定；②<b>LHB 游资明细 0 条</b>（只有 82 只个股明细），席位性质无法判定；③<b>美债收益率缺失</b>（treasury.gov 未返回）；④<b>400235 R爱康1 不在 stock_list</b>（三板退市整理股，无报价，校验白名单）；⑤<b>sector_strength 10 日矩阵 trend=up 仅 1 条（工程机械）</b>——与当日机器人 +9.38% 的表面强度背离，因矩阵按 10 日相对强度、单日暴涨未入 up；⑥<b>竞价买点精度</b>：交割单无委托时间秒级，13:18/13:20/13:34/13:49 为用户提供的成交时间。</li></ul></div></div></footer>
+<ul class="footer-list"><li>①<b>东财 ulist 断连</b>（RemoteDisconnected）→ clist 回退只覆盖行业前 30/后 20，半导体/IC 制造/计算机设备子行业净额榜外，b1120-003 用「电子父板块 +69.2 亿 + 半导体 THS +3.19%」代偿判定；②<b>LHB 游资明细 0 条</b>（只有 72 只个股明细·82 条席位），席位性质无法判定；③<b>美债收益率缺失</b>（treasury.gov 未返回）；④<b>400235 R爱康1 不在 stock_list</b>（三板退市整理股，无报价，校验白名单）；⑤<b>state 块 LHB 计 72 只 vs 报告 82 条</b>——同源不同口径（state 用 pack.stock_count=72 去重个股，报告用 stock_items=82 条席位）；⑥<b>sector_strength 10 日矩阵 trend=up 仅 1 条（工程机械）</b>——与当日机器人 +9.38% 的表面强度背离，因矩阵按 10 日相对强度、单日暴涨未入 up；⑦<b>竞价买点精度</b>：交割单无委托时间秒级，13:18/13:20/13:34/13:49 为用户提供的成交时间。</li></ul></div></div></footer>
 </div>
 
 <script>
